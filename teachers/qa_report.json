@@ -1,0 +1,165 @@
+{
+  "real_checks": 17,
+  "real_failed": 0,
+  "induced_checks": 9,
+  "induced_not_caught": 0,
+  "verdict": "PASS",
+  "results": [
+    {
+      "check": "DTI determinism (rows 0..199 byte-identical)",
+      "mode": "real",
+      "passed": true,
+      "detail": "200/200 identical"
+    },
+    {
+      "check": "DTI determinism (rows 10000..10049 regenerated in isolation)",
+      "mode": "real",
+      "passed": true,
+      "detail": "50/50 identical"
+    },
+    {
+      "check": "DTI determinism catches a flipped seed",
+      "mode": "induced",
+      "passed": true,
+      "detail": "20/20 rows differ under seed+1"
+    },
+    {
+      "check": "BII determinism (rows 0..199 byte-identical)",
+      "mode": "real",
+      "passed": true,
+      "detail": "200/200 identical"
+    },
+    {
+      "check": "BII determinism (rows 10000..10049 regenerated in isolation)",
+      "mode": "real",
+      "passed": true,
+      "detail": "50/50 identical"
+    },
+    {
+      "check": "BII determinism catches a flipped seed",
+      "mode": "induced",
+      "passed": true,
+      "detail": "20/20 rows differ under seed+1"
+    },
+    {
+      "check": "DTI row count",
+      "mode": "real",
+      "passed": true,
+      "detail": "n=20000"
+    },
+    {
+      "check": "BII row count",
+      "mode": "real",
+      "passed": true,
+      "detail": "n=20000"
+    },
+    {
+      "check": "DTI tier floors 8%..40%, all five tiers",
+      "mode": "real",
+      "passed": true,
+      "detail": "{\"GOLD\": 0.2543, \"BRONZE\": 0.3075, \"SILVER\": 0.2467, \"PLATINUM\": 0.0885, \"BELOW THRESHOLD\": 0.1031}"
+    },
+    {
+      "check": "DTI tier floor check catches a missing tier",
+      "mode": "induced",
+      "passed": true,
+      "detail": "PLATINUM removed -> {\"GOLD\": 0.279, \"BRONZE\": 0.3373, \"SILVER\": 0.2706, \"BELOW THRESHOLD\": 0.1131}"
+    },
+    {
+      "check": "BII gate floors >= 8%, all four states",
+      "mode": "real",
+      "passed": true,
+      "detail": "{\"pass\": 0.2987, \"collapse\": 0.2804, \"alert\": 0.215, \"hold\": 0.2059}"
+    },
+    {
+      "check": "BII gate floor check catches a starved state",
+      "mode": "induced",
+      "passed": true,
+      "detail": "collapse thinned to ~5% -> {\"pass\": 0.4069, \"alert\": 0.2929, \"hold\": 0.2804, \"collapse\": 0.0198}"
+    },
+    {
+      "check": "DTI no NaN/Inf in dimensions, composite, features",
+      "mode": "real",
+      "passed": true,
+      "detail": "0 rows with NaN"
+    },
+    {
+      "check": "BII no NaN/Inf in signals, bii, features",
+      "mode": "real",
+      "passed": true,
+      "detail": "0 rows with NaN"
+    },
+    {
+      "check": "NaN check catches an injected NaN",
+      "mode": "induced",
+      "passed": true,
+      "detail": "features[-1] := NaN detected"
+    },
+    {
+      "check": "DTI feature spec length == encoded vector length (all rows)",
+      "mode": "real",
+      "passed": true,
+      "detail": "spec rows=65 declared=65 vector=65 summary=65"
+    },
+    {
+      "check": "BII feature spec length == encoded vector length (all rows)",
+      "mode": "real",
+      "passed": true,
+      "detail": "spec rows=58 declared=58 vector=58 summary=58"
+    },
+    {
+      "check": "spec length check catches a dropped spec row",
+      "mode": "induced",
+      "passed": true,
+      "detail": "spec rows=64 vs vector=65"
+    },
+    {
+      "check": "DTI composite/tier/flags recomputed from dimensions and default weights",
+      "mode": "real",
+      "passed": true,
+      "detail": "0 mismatches"
+    },
+    {
+      "check": "BII bii/gate recomputed from signals, seed weights and thresholds",
+      "mode": "real",
+      "passed": true,
+      "detail": "0 mismatches"
+    },
+    {
+      "check": "label check catches a perturbed composite",
+      "mode": "induced",
+      "passed": true,
+      "detail": "composite+1 detected"
+    },
+    {
+      "check": "label check catches a perturbed bii",
+      "mode": "induced",
+      "passed": true,
+      "detail": "bii+0.01 detected"
+    },
+    {
+      "check": "DTI synthetic guard: SYN ids, SYN names, synthetic provider surnames",
+      "mode": "real",
+      "passed": true,
+      "detail": "0 rows fail"
+    },
+    {
+      "check": "synthetic guard catches a realistic name",
+      "mode": "induced",
+      "passed": true,
+      "detail": "non-SYN name detected"
+    },
+    {
+      "check": "BII synthetic guard: SYN ids, /syn/ paths only",
+      "mode": "real",
+      "passed": true,
+      "detail": "0 bad ids; paths=['/syn/config/policy.yaml', '/syn/data/export.parquet', '/syn/models/weights.bin', '/syn/tmp/scratch.log']"
+    },
+    {
+      "check": "duplicate feature vectors recounted",
+      "mode": "real",
+      "passed": true,
+      "detail": "DTI dup=0 (summary 0); BII dup=6 (summary 6), empty windows=7"
+    }
+  ]
+}

@@ -1,0 +1,324 @@
+{
+  "generator": "gen_dti.ts",
+  "seed": 20260920,
+  "start": 0,
+  "frozen_clock": "2026-09-20T00:00:00.000Z",
+  "frozen_clock_ms": 1789862400000,
+  "engine": "/Users/jas/Projects/st-homepage-refresh/src/lib/pipeline.ts",
+  "runtime_seconds": 1.59,
+  "node": "v24.13.0",
+  "n": 20000,
+  "feature_len": 65,
+  "tier_histogram": {
+    "GOLD": 5086,
+    "BRONZE": 6149,
+    "SILVER": 4934,
+    "PLATINUM": 1769,
+    "BELOW THRESHOLD": 2062
+  },
+  "tier_share": {
+    "GOLD": 0.2543,
+    "BRONZE": 0.3075,
+    "SILVER": 0.2467,
+    "PLATINUM": 0.0885,
+    "BELOW THRESHOLD": 0.1031
+  },
+  "tier_floor_ok": true,
+  "dimension_stats": {
+    "provenance": {
+      "mean": 83.716,
+      "sd": 15.203,
+      "min": 24,
+      "max": 100,
+      "n_distinct": 73
+    },
+    "consent": {
+      "mean": 68.118,
+      "sd": 27.972,
+      "min": 30,
+      "max": 100,
+      "n_distinct": 17
+    },
+    "recency": {
+      "mean": 50.753,
+      "sd": 26.418,
+      "min": 28,
+      "max": 92,
+      "n_distinct": 7
+    },
+    "quality": {
+      "mean": 77.682,
+      "sd": 17.917,
+      "min": 25,
+      "max": 98,
+      "n_distinct": 40
+    },
+    "concordance": {
+      "mean": 76.828,
+      "sd": 15.845,
+      "min": 45,
+      "max": 92,
+      "n_distinct": 10
+    },
+    "validation": {
+      "mean": 72.997,
+      "sd": 15.021,
+      "min": 45,
+      "max": 95,
+      "n_distinct": 9
+    },
+    "breadth": {
+      "mean": 74.976,
+      "sd": 18.514,
+      "min": 0,
+      "max": 100,
+      "n_distinct": 18
+    },
+    "stability": {
+      "mean": 72.615,
+      "sd": 12.449,
+      "min": 60,
+      "max": 88,
+      "n_distinct": 4
+    }
+  },
+  "composite_stats": {
+    "mean": 72.317,
+    "sd": 12.941,
+    "min": 36,
+    "max": 97,
+    "n_distinct": 62
+  },
+  "composite_histogram_5pt": {
+    "85-89": 2339,
+    "65-69": 2153,
+    "55-59": 1873,
+    "60-64": 2123,
+    "80-84": 2747,
+    "75-79": 2704,
+    "90-94": 1574,
+    "70-74": 2230,
+    "50-54": 1264,
+    "40-44": 204,
+    "45-49": 574,
+    "95-99": 195,
+    "35-39": 20
+  },
+  "duplicate_feature_vectors": 0,
+  "duplicate_texts": 0,
+  "flag_counts": {
+    "recency_below_75": 13126,
+    "validation_below_75": 11028,
+    "provenance_below_75": 4645,
+    "consent_below_75": 9786,
+    "quality_below_75": 7107,
+    "stability_below_75": 11274,
+    "concordance_below_75": 6065,
+    "breadth_below_75": 8881
+  },
+  "dimension_correlation": {
+    "provenance": {
+      "provenance": 1,
+      "consent": 0.2669,
+      "recency": 0.2099,
+      "quality": 0.3981,
+      "concordance": 0.3723,
+      "validation": 0.4774,
+      "breadth": 0.1748,
+      "stability": 0.2322
+    },
+    "consent": {
+      "provenance": 0.2669,
+      "consent": 1,
+      "recency": 0.2513,
+      "quality": 0.4112,
+      "concordance": 0.3708,
+      "validation": 0.2552,
+      "breadth": 0.1521,
+      "stability": 0.3355
+    },
+    "recency": {
+      "provenance": 0.2099,
+      "consent": 0.2513,
+      "recency": 1,
+      "quality": 0.3324,
+      "concordance": 0.2967,
+      "validation": 0.1992,
+      "breadth": 0.1308,
+      "stability": 0.418
+    },
+    "quality": {
+      "provenance": 0.3981,
+      "consent": 0.4112,
+      "recency": 0.3324,
+      "quality": 1,
+      "concordance": 0.7359,
+      "validation": 0.5044,
+      "breadth": 0.4487,
+      "stability": 0.3658
+    },
+    "concordance": {
+      "provenance": 0.3723,
+      "consent": 0.3708,
+      "recency": 0.2967,
+      "quality": 0.7359,
+      "concordance": 1,
+      "validation": 0.3425,
+      "breadth": 0.2145,
+      "stability": 0.3349
+    },
+    "validation": {
+      "provenance": 0.4774,
+      "consent": 0.2552,
+      "recency": 0.1992,
+      "quality": 0.5044,
+      "concordance": 0.3425,
+      "validation": 1,
+      "breadth": 0.2367,
+      "stability": 0.2248
+    },
+    "breadth": {
+      "provenance": 0.1748,
+      "consent": 0.1521,
+      "recency": 0.1308,
+      "quality": 0.4487,
+      "concordance": 0.2145,
+      "validation": 0.2367,
+      "breadth": 1,
+      "stability": 0.1406
+    },
+    "stability": {
+      "provenance": 0.2322,
+      "consent": 0.3355,
+      "recency": 0.418,
+      "quality": 0.3658,
+      "concordance": 0.3349,
+      "validation": 0.2248,
+      "breadth": 0.1406,
+      "stability": 1
+    }
+  },
+  "knob_distributions": {
+    "format": {
+      "recap": 4564,
+      "epic": 2417,
+      "generic": 2455,
+      "labcorp": 2435,
+      "none": 3739,
+      "quest": 2440,
+      "cerner": 1950
+    },
+    "consent_kind": {
+      "signed_dated": 10074,
+      "on_file_undated": 2921,
+      "verbal_unsigned": 3048,
+      "absent": 3957
+    },
+    "conflict": {
+      "none": 16216,
+      "keyword": 3425,
+      "allergy_med": 359
+    },
+    "icd_style": {
+      "recap_list": 3901,
+      "dash": 7297,
+      "none": 4043,
+      "plain": 4759
+    },
+    "panel": {
+      "acute": 4982,
+      "none": 4933,
+      "chronic": 6969,
+      "semiannual": 3116
+    },
+    "npi_count": {
+      "0": 4635,
+      "1": 3999,
+      "2": 4061,
+      "3": 4876,
+      "4": 1226,
+      "5": 1203
+    },
+    "facility_count": {
+      "0": 16115,
+      "1": 1130,
+      "2": 1109,
+      "3": 1202,
+      "4": 444
+    },
+    "has_dates": {
+      "true": 12562,
+      "false": 7438
+    },
+    "span_months": {
+      "0": 2871,
+      "1": 2433,
+      "3": 2634,
+      "5": 1943,
+      "8": 2471,
+      "14": 2607,
+      "24": 2359,
+      "40": 1657,
+      "60": 1025
+    },
+    "source_type_bias": {
+      "trusted": 9467,
+      "weak": 4821,
+      "mixed": 5712
+    },
+    "source_consent_n": {
+      "0": 5921,
+      "1": 4737,
+      "2": 4697,
+      "3": 4645
+    },
+    "consent_scope_n": {
+      "0": 6833,
+      "1": 4276,
+      "2": 4559,
+      "3": 4332
+    },
+    "days_ago_most_recent": {
+      "mean": 263.122,
+      "sd": 457.39,
+      "min": 0,
+      "max": 2000,
+      "n_distinct": 1795
+    },
+    "n_elements": {
+      "mean": 12.775,
+      "sd": 9.868,
+      "min": 0,
+      "max": 30,
+      "n_distinct": 29
+    },
+    "corroboration_mean_target": {
+      "mean": 2.339,
+      "sd": 1.184,
+      "min": 0,
+      "max": 4,
+      "n_distinct": 18377
+    },
+    "n_meds": {
+      "mean": 4.602,
+      "sd": 2.248,
+      "min": 0,
+      "max": 9,
+      "n_distinct": 10
+    },
+    "n_labs": {
+      "mean": 4.002,
+      "sd": 1.983,
+      "min": 0,
+      "max": 8,
+      "n_distinct": 9
+    },
+    "latent_q": {
+      "mean": 0.599,
+      "sd": 0.321,
+      "min": 0.0001,
+      "max": 1,
+      "n_distinct": 7975
+    }
+  }
+}

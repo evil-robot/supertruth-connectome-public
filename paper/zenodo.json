@@ -1,0 +1,60 @@
+{
+  "_note": "Zenodo deposit metadata draft. Mirrors record 10.5281/zenodo.19601616 (publisher SuperTruth, CC-BY-4.0, ORCID). JAS uploads or hands a token; no token on file. Fill [RESULTS] in description from results.json before deposit.",
+  "metadata": {
+    "upload_type": "publication",
+    "publication_type": "workingpaper",
+    "title": "Intelligence Is Structure, Not Scale: A Whole Central Nervous System Connectome as a Fixed Substrate for Scoring Health Data Trust",
+    "creators": [
+      {
+        "name": "Snyder, Jason Alan",
+        "affiliation": "SuperTruth Inc.",
+        "orcid": "0009-0001-6157-8100"
+      }
+    ],
+    "description": "We took the wiring diagram of a fruit fly's central nervous system, held every connection and sign fixed, and trained only synaptic gains, an input projection and a readout. The task: reproduce two SuperTruth trust scores, the Data Trust Index™ (DTI) on health records and the Behavioral Integrity Index (BII) on agent event logs. Controls: a shuffled graph, a random graph, a parameter-matched network, a linear readout, and four frontier models (Claude Opus 5, GPT-5, Grok 4, Gemini 3 Flash) given the published DTI paper and the same records; Section 4 names the arms that have finished. On the first of five seeds, the degree-preserving shuffle matched the fly's wiring against the DTI engine (composite error 1.53 against 1.58 points); the random graph matched on tier agreement and every dimension. Every fixed graph beat the parameter-matched network by 1.9 to 2.2 points: provisional until five seeds, the substrate carries the computation. On 300 identical records Claude Opus 5 matched the engine's tier on 20% at a median 13.1 s and $0.106 per record; the fly, 84% at 16 ms and no marginal cost. To our knowledge, as of 20 September 2026, this is the first reported use of a whole central nervous system connectome to score the trustworthiness of health data. Every record was synthetic; no real person's data was used. Simply put, the future of intelligence is analog. (Version 1.0, provisional: first of five seeds; later versions add seeds and the remaining model arms.)",
+    "access_right": "open",
+    "license": "cc-by-4.0",
+    "publication_date": "2026-09-20",
+    "language": "eng",
+    "version": "1.0",
+    "keywords": [
+      "connectome",
+      "Drosophila",
+      "MaleCNS",
+      "fixed-substrate learning",
+      "data trust",
+      "Data Trust Index",
+      "Behavioral Integrity Index",
+      "health data integrity",
+      "auditable AI",
+      "analog intelligence"
+    ],
+    "related_identifiers": [
+      {
+        "identifier": "10.5281/zenodo.19601616",
+        "relation": "cites",
+        "resource_type": "publication-workingpaper",
+        "scheme": "doi"
+      },
+      {
+        "identifier": "10.1016/j.cell.2026.08.015",
+        "relation": "cites",
+        "resource_type": "publication-article",
+        "scheme": "doi"
+      },
+      {
+        "identifier": "https://male-cns.janelia.org/",
+        "relation": "isDerivedFrom",
+        "resource_type": "dataset",
+        "scheme": "url"
+      },
+      {
+        "identifier": "[REPO URL]",
+        "relation": "isSupplementedBy",
+        "resource_type": "software",
+        "scheme": "url"
+      }
+    ],
+    "notes": "Every record in this study was generated synthetically; no real person's data was used. DTI and BII score data records and software-agent behavior; they do not diagnose, treat, or make recommendations about any patient."
+  }
+}

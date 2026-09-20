@@ -1,0 +1,22 @@
+{
+  "generated": "2026-09-20T21:37:56+00:00",
+  "status": "partial",
+  "seeds": [
+    1
+  ],
+  "framing": {
+    "n": 1,
+    "case": "substrate",
+    "provisional": true
+  },
+  "outputs": {
+    "paper/results/section4.md": "809c2395eb013261abc32de0d6a9e488116ef1382ebfa5d07dec6c3eb07a4427",
+    "paper/results/abstract_sentences.md": "a4832463e638fe3b5bdc21d45f51c17dc8b78fff0efa198e5eebbf1903abd2fd",
+    "paper/results/page_sentences.json": "58be6ff26bd17ec0daafb16d8f8fe4e75426f5c2d9eb27601c10158894814c39",
+    "paper/figures/fig3_paired_differences.png": "a767d356ef8e4098bb5d0ce97d2f0c953cea9cb662ff4fc01f9fe7a92b3a097b",
+    "paper/figures/fig3_paired_differences.svg": "c79649d5a147f1b2d9b66cd0d38184b3f940b3f3f5c5ee56cc90115e4f1ed476",
+    "paper/figures/fig4_dimension_mae.png": "f61426b65bca123e9fd7e9a016e6996278c7bd1a6b72ae7520de73a82d4b58ce",
+    "paper/figures/fig4_dimension_mae.svg": "afa3afaa03f38d4c5b573d2f926aa5a0ca1a037071c92188cdbb957f19e78ae9",
+    "viz/dist/results/results.json": "f30f76f0bd57a502738a5236a6f120d3994c179ca12f0a9415e1dde56c8feb40"
+  }
+}

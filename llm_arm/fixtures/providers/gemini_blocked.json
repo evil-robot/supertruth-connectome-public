@@ -1,0 +1,7 @@
+{
+ "_comment": "Hand-built blocked response per the GenerateContentResponse shape (promptFeedback.blockReason); candidates empty.",
+ "model_version": "gemini-3-flash-preview", "response_id": "fixture-blocked",
+ "candidates": [],
+ "prompt_feedback": {"block_reason": "PROHIBITED_CONTENT"},
+ "usage_metadata": {"prompt_token_count": 21, "total_token_count": 21}
+}

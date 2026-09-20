@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SuperTruth connectome study results",
+  "description": "Arms x metrics for viz/results_charts.html. Every value is a number produced by a run, or null (awaiting run). Nothing here is estimated.",
+  "type": "object",
+  "required": ["status", "generated", "seeds", "teacher", "arms", "metrics", "results"],
+  "properties": {
+    "status": { "enum": ["awaiting run", "partial", "complete"] },
+    "generated": { "type": ["string", "null"], "description": "ISO 8601 timestamp of the run that wrote this file" },
+    "run_manifest": { "type": ["string", "null"], "description": "path or hash of the run manifest" },
+    "seeds": { "type": "array", "items": { "type": "integer" }, "description": "seeds the mean and 95% CI are taken over" },
+    "ci": { "type": "string", "description": "how the 95% CI was computed, e.g. 't over seeds' or 'bootstrap 10,000'" },
+    "teacher": {
+      "type": "object",
+      "description": "reference values for the teacher engine itself, drawn as a line in every panel where they apply",
+      "additionalProperties": { "type": ["number", "null"] }
+    },
+    "arms": {
+      "type": "array",
+      "items": { "type": "object", "required": ["id", "label"],
+        "properties": { "id": { "type": "string" }, "label": { "type": "string" }, "trainable_parameters": { "type": ["integer", "null"] } } }
+    },
+    "metrics": {
+      "type": "array",
+      "items": { "type": "object", "required": ["id", "label", "unit", "better"],
+        "properties": {
+          "id": { "type": "string" }, "label": { "type": "string" }, "unit": { "type": "string" },
+          "better": { "enum": ["lower", "higher"] },
+          "domain": { "type": "array", "items": { "type": ["number", "null"] }, "minItems": 2, "maxItems": 2, "description": "fixed axis domain, or null to fit" },
+          "dimensions": { "type": "array", "items": { "type": "string" }, "description": "for per-dimension metrics: the dimension names, in order" }
+        } }
+    },
+    "results": {
+      "type": "object",
+      "description": "results[arm_id][metric_id] = { mean, ci_low, ci_high, n } or, for per-dimension metrics, { per_dimension: [ {mean, ci_low, ci_high}, ... ] }",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": {
+          "type": "object",
+          "properties": {
+            "mean": { "type": ["number", "null"] }, "ci_low": { "type": ["number", "null"] }, "ci_high": { "type": ["number", "null"] },
+            "n": { "type": ["integer", "null"], "description": "seeds or records the statistic is over" },
+            "per_dimension": { "type": "array", "items": { "type": "object",
+              "properties": { "mean": { "type": ["number", "null"] }, "ci_low": { "type": ["number", "null"] }, "ci_high": { "type": ["number", "null"] } } } }
+          }
+        }
+      }
+    }
+  }
+}

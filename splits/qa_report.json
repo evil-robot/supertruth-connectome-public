@@ -1,0 +1,454 @@
+{
+  "dti": {
+    "task": "dti",
+    "split_file": "splits/dti_seed1.json",
+    "split_sha256": "cb23989c5192e687b635aada79e3a01ee1a645484a16d6b8eb0880cce35aa864",
+    "checks": {
+      "no_id_overlap": {
+        "pass": true,
+        "overlap": {
+          "train&val": 0,
+          "test&train": 0,
+          "test&val": 0
+        },
+        "unknown_ids": 0,
+        "missing_ids": 0,
+        "duplicate_within_partition": 0
+      },
+      "stratified": {
+        "pass": true,
+        "max_abs_share_diff_pp": 0.02,
+        "tolerance_pp": 1.0
+      },
+      "no_duplicate_straddle": {
+        "pass": true,
+        "duplicate_groups": 0,
+        "rows_in_duplicate_groups": 0,
+        "groups_straddling": 0
+      },
+      "class_floors": {
+        "pass": true,
+        "floor": 0.08,
+        "min_test_support": 30,
+        "shares": {
+          "train:BELOW THRESHOLD": {
+            "n": 1443,
+            "share": 0.1031
+          },
+          "train:BRONZE": {
+            "n": 4304,
+            "share": 0.3075
+          },
+          "train:GOLD": {
+            "n": 3560,
+            "share": 0.2543
+          },
+          "train:PLATINUM": {
+            "n": 1238,
+            "share": 0.0884
+          },
+          "train:SILVER": {
+            "n": 3454,
+            "share": 0.2467
+          },
+          "val:BELOW THRESHOLD": {
+            "n": 206,
+            "share": 0.103
+          },
+          "val:BRONZE": {
+            "n": 615,
+            "share": 0.3075
+          },
+          "val:GOLD": {
+            "n": 509,
+            "share": 0.2545
+          },
+          "val:PLATINUM": {
+            "n": 177,
+            "share": 0.0885
+          },
+          "val:SILVER": {
+            "n": 493,
+            "share": 0.2465
+          },
+          "test:BELOW THRESHOLD": {
+            "n": 413,
+            "share": 0.1032
+          },
+          "test:BRONZE": {
+            "n": 1230,
+            "share": 0.3074
+          },
+          "test:GOLD": {
+            "n": 1017,
+            "share": 0.2542
+          },
+          "test:PLATINUM": {
+            "n": 354,
+            "share": 0.0885
+          },
+          "test:SILVER": {
+            "n": 987,
+            "share": 0.2467
+          }
+        }
+      },
+      "id_not_predictive": {
+        "pass": true,
+        "max_one_vs_rest_auroc": 0.5092,
+        "per_class": {
+          "BELOW THRESHOLD": 0.505,
+          "BRONZE": 0.5092,
+          "GOLD": 0.5014,
+          "PLATINUM": 0.5023,
+          "SILVER": 0.5085
+        },
+        "threshold": 0.55
+      },
+      "no_target_in_features": {
+        "pass": true,
+        "feature_names_that_are_output_fields": [],
+        "max_abs_corr": 0.97428,
+        "spec_names": 65,
+        "feature_columns": 65,
+        "top10": [
+          {
+            "feature": "log1p_date_span_months",
+            "target": "stability",
+            "abs_corr": 0.9743
+          },
+          {
+            "feature": "has_conflict",
+            "target": "concordance",
+            "abs_corr": 0.8366
+          },
+          {
+            "feature": "consent_found",
+            "target": "consent",
+            "abs_corr": 0.7809
+          },
+          {
+            "feature": "log1p_days_since_most_recent",
+            "target": "recency",
+            "abs_corr": 0.7562
+          },
+          {
+            "feature": "log1p_medication_count",
+            "target": "quality",
+            "abs_corr": 0.7103
+          },
+          {
+            "feature": "source_null",
+            "target": "provenance",
+            "abs_corr": 0.6919
+          },
+          {
+            "feature": "consent_date_present",
+            "target": "consent",
+            "abs_corr": 0.6892
+          },
+          {
+            "feature": "log1p_days_since_most_recent",
+            "target": "composite",
+            "abs_corr": 0.6636
+          },
+          {
+            "feature": "log1p_consent_age_days",
+            "target": "consent",
+            "abs_corr": 0.6423
+          },
+          {
+            "feature": "log1p_medication_count",
+            "target": "composite",
+            "abs_corr": 0.6409
+          }
+        ]
+      }
+    },
+    "health": {
+      "rows": 20000,
+      "counts": {
+        "train": {
+          "total": 13999,
+          "BELOW THRESHOLD": 1443,
+          "BRONZE": 4304,
+          "GOLD": 3560,
+          "PLATINUM": 1238,
+          "SILVER": 3454
+        },
+        "val": {
+          "total": 2000,
+          "BELOW THRESHOLD": 206,
+          "BRONZE": 615,
+          "GOLD": 509,
+          "PLATINUM": 177,
+          "SILVER": 493
+        },
+        "test": {
+          "total": 4001,
+          "BELOW THRESHOLD": 413,
+          "BRONZE": 1230,
+          "GOLD": 1017,
+          "PLATINUM": 354,
+          "SILVER": 987
+        }
+      },
+      "imbalance": {
+        "shares": {
+          "BELOW THRESHOLD": 0.1031,
+          "BRONZE": 0.3075,
+          "GOLD": 0.2543,
+          "PLATINUM": 0.0885,
+          "SILVER": 0.2467
+        },
+        "max_over_min_share": 3.476
+      },
+      "exact_duplicate_feature_rows": 0,
+      "missing_values": 0,
+      "constant_features": [
+        35,
+        36,
+        41
+      ],
+      "multicollinearity": {
+        "non_constant_features": 62,
+        "rank": 57,
+        "exactly_collinear_columns": 5,
+        "max_vif_pinv": 2378921313190.6,
+        "median_vif_pinv": 1.49
+      },
+      "ks_train_vs_test": {
+        "provenance": 0.0079,
+        "consent": 0.0134,
+        "recency": 0.0107,
+        "quality": 0.0133,
+        "concordance": 0.0174,
+        "validation": 0.0092,
+        "breadth": 0.0112,
+        "stability": 0.0038,
+        "composite": 0.006
+      },
+      "target_sd": {
+        "provenance": 0.152,
+        "consent": 0.2797,
+        "recency": 0.2642,
+        "quality": 0.1792,
+        "concordance": 0.1584,
+        "validation": 0.1502,
+        "breadth": 0.1851,
+        "stability": 0.1245,
+        "composite": 0.1294
+      },
+      "degenerate_targets": []
+    },
+    "PASS": true
+  },
+  "bii": {
+    "task": "bii",
+    "split_file": "splits/bii_seed1.json",
+    "split_sha256": "c42920804158f4b9a3e5779cf1563f99f86818f53fe3083b0e2ca39acbf29127",
+    "checks": {
+      "no_id_overlap": {
+        "pass": true,
+        "overlap": {
+          "train&val": 0,
+          "test&train": 0,
+          "test&val": 0
+        },
+        "unknown_ids": 0,
+        "missing_ids": 0,
+        "duplicate_within_partition": 0
+      },
+      "stratified": {
+        "pass": true,
+        "max_abs_share_diff_pp": 0.02,
+        "tolerance_pp": 1.0
+      },
+      "no_duplicate_straddle": {
+        "pass": true,
+        "duplicate_groups": 1,
+        "rows_in_duplicate_groups": 7,
+        "groups_straddling": 0
+      },
+      "class_floors": {
+        "pass": true,
+        "floor": 0.1,
+        "min_test_support": 30,
+        "shares": {
+          "train:ALERT": {
+            "n": 3010,
+            "share": 0.215
+          },
+          "train:COLLAPSE": {
+            "n": 3926,
+            "share": 0.2804
+          },
+          "train:HOLD": {
+            "n": 2882,
+            "share": 0.2059
+          },
+          "train:PASS": {
+            "n": 4182,
+            "share": 0.2987
+          },
+          "val:ALERT": {
+            "n": 430,
+            "share": 0.215
+          },
+          "val:COLLAPSE": {
+            "n": 561,
+            "share": 0.2805
+          },
+          "val:HOLD": {
+            "n": 412,
+            "share": 0.206
+          },
+          "val:PASS": {
+            "n": 597,
+            "share": 0.2985
+          },
+          "test:ALERT": {
+            "n": 860,
+            "share": 0.215
+          },
+          "test:COLLAPSE": {
+            "n": 1122,
+            "share": 0.2805
+          },
+          "test:HOLD": {
+            "n": 823,
+            "share": 0.2057
+          },
+          "test:PASS": {
+            "n": 1195,
+            "share": 0.2988
+          }
+        }
+      },
+      "id_not_predictive": {
+        "pass": true,
+        "max_one_vs_rest_auroc": 0.503,
+        "per_class": {
+          "ALERT": 0.503,
+          "COLLAPSE": 0.503,
+          "HOLD": 0.5019,
+          "PASS": 0.5019
+        },
+        "threshold": 0.55
+      },
+      "no_target_in_features": {
+        "pass": true,
+        "feature_names_that_are_output_fields": [],
+        "max_abs_corr": 0.73381,
+        "spec_names": 58,
+        "feature_columns": 58,
+        "top10": [
+          {
+            "feature": "eval_mean_absdelta_far",
+            "target": "bii",
+            "abs_corr": 0.7338
+          },
+          {
+            "feature": "eval_max_absdelta",
+            "target": "bii",
+            "abs_corr": 0.6841
+          },
+          {
+            "feature": "cfg_share_unauthorized",
+            "target": "bii",
+            "abs_corr": 0.6817
+          },
+          {
+            "feature": "cfg_share_agent_initiated",
+            "target": "bii",
+            "abs_corr": 0.558
+          },
+          {
+            "feature": "cfg_share_viol_protected",
+            "target": "bii",
+            "abs_corr": 0.5286
+          },
+          {
+            "feature": "cfg_share_viol_unprotected",
+            "target": "bii",
+            "abs_corr": 0.5053
+          },
+          {
+            "feature": "eval_mean_absdelta_near",
+            "target": "bii",
+            "abs_corr": 0.464
+          },
+          {
+            "feature": "eval_mean_reported",
+            "target": "bii",
+            "abs_corr": 0.433
+          },
+          {
+            "feature": "file_share_asset_model_weights",
+            "target": "bii",
+            "abs_corr": 0.4305
+          },
+          {
+            "feature": "file_share_unauth_near0_mw1_ct1",
+            "target": "bii",
+            "abs_corr": 0.367
+          }
+        ]
+      }
+    },
+    "health": {
+      "rows": 20000,
+      "counts": {
+        "train": {
+          "total": 14000,
+          "ALERT": 3010,
+          "COLLAPSE": 3926,
+          "HOLD": 2882,
+          "PASS": 4182
+        },
+        "val": {
+          "total": 2000,
+          "ALERT": 430,
+          "COLLAPSE": 561,
+          "HOLD": 412,
+          "PASS": 597
+        },
+        "test": {
+          "total": 4000,
+          "ALERT": 860,
+          "COLLAPSE": 1122,
+          "HOLD": 823,
+          "PASS": 1195
+        }
+      },
+      "imbalance": {
+        "shares": {
+          "ALERT": 0.215,
+          "COLLAPSE": 0.2804,
+          "HOLD": 0.2059,
+          "PASS": 0.2987
+        },
+        "max_over_min_share": 1.451
+      },
+      "exact_duplicate_feature_rows": 6,
+      "missing_values": 0,
+      "constant_features": [],
+      "multicollinearity": {
+        "non_constant_features": 58,
+        "rank": 55,
+        "exactly_collinear_columns": 3,
+        "max_vif_pinv": 345557421221.8,
+        "median_vif_pinv": 450.2
+      },
+      "ks_train_vs_test": {
+        "bii": 0.0086
+      },
+      "target_sd": {
+        "bii": 0.2459
+      },
+      "degenerate_targets": []
+    },
+    "PASS": true
+  },
+  "PASS": true
+}

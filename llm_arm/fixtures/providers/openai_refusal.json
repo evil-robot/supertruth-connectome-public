@@ -1,0 +1,6 @@
+{
+ "_comment": "Hand-built refusal per https://developers.openai.com/api/docs/guides/structured-outputs ('the API response will include a new field called refusal').",
+ "id": "chatcmpl-fixture-refusal", "object": "chat.completion", "created": 1789930000, "model": "gpt-5-2025-08-07", "_request_id": "req_fixture_r",
+ "choices": [{"index": 0, "finish_reason": "stop", "message": {"role": "assistant", "content": null, "refusal": "I'm sorry, I cannot assist with that request."}}],
+ "usage": {"prompt_tokens": 7000, "completion_tokens": 20, "total_tokens": 7020, "prompt_tokens_details": {"cached_tokens": 0}, "completion_tokens_details": {"reasoning_tokens": 0}}
+}

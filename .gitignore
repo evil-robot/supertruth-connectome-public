@@ -1,0 +1,14 @@
+data/*
+!data/build_graph.py
+!data/README.md
+*.safetensors
+.venv/
+__pycache__/
+*.pyc
+.DS_Store
+runs/
+teachers/*.jsonl
+teachers/.venv-vigil/
+teachers/node_modules/
+dataset/*.gz
+dataset/splits.json

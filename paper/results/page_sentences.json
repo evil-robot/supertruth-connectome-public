@@ -1,0 +1,21 @@
+{
+  "generated": "2026-09-20T21:37:56+00:00",
+  "seeds": [
+    1
+  ],
+  "status": "partial",
+  "max_chars": 240,
+  "source": "results/results.json via scripts/render_results.py",
+  "sentences": {
+    "wiring_vs_shuffle": "On the first of 5 seeds, the fly's wiring and its degree-preserving shuffle reproduced the DTI engine equally well: composite error 1.58 vs 1.53 points (difference -0.06), tier agreement 0.880 vs 0.876.",
+    "wiring_vs_random_and_matched_network": "The random graph at matched density matched the fly on tier agreement (0.875 vs 0.880) and composite error (1.82 vs 1.58 points); all three fixed graphs beat the same-size trained network (3.73 points, 0.842).",
+    "model_arms_beside_fly": "Four models given the DTI paper and 300 of the same records matched the engine's tier on 20% (Claude Opus 5) to 45% (Gemini 3 Flash), at 13 s to 73 s and $0.04 to $0.26 per record. The fly, same records: 84%, 16 ms, $0 marginal.",
+    "bii": "BII, under the seed policy with empty registries: the fly's score error 0.0288 and gate agreement 0.914 on 4,000 synthetic windows."
+  },
+  "chars": {
+    "wiring_vs_shuffle": 202,
+    "wiring_vs_random_and_matched_network": 209,
+    "model_arms_beside_fly": 228,
+    "bii": 131
+  }
+}

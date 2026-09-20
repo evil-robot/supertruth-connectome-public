@@ -1,0 +1,489 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The fly central nervous system connectome, neuron by neuron</title>
+<meta name="description" content="Interactive 3D map of the 166,700 neurons of the MaleCNS v1.0 fruit fly connectome, colored by their role in the SuperTruth fixed-substrate model: sensory input, descending and motor readout, and the wiring between.">
+<style>
+  .viz-root {
+    color-scheme: light;
+    --surface: #fcfcfb; --page: #f9f9f7;
+    --ink: #0b0b0b; --ink-2: #52514e; --muted: #898781; --hairline: #e1e0d9; --axis: #c3c2b7;
+    --sensory: #2a78d6; --readout: #eb6834; --excit: #008300; --inhib: #4a3aa7; --other: #b8b6ae;
+    --act-low: #d9d8d2; --act-mid: #9a988f; --act-high: #0b0b0b;
+    font: 15px/1.45 system-ui, -apple-system, "Segoe UI", sans-serif; color: var(--ink); background: var(--surface);
+    max-width: 1120px; margin: 0 auto; padding: 20px 20px 28px;
+  }
+  body { margin: 0; background: var(--surface); }
+  h1 { font-size: 1.45rem; line-height: 1.25; margin: 0 0 6px; font-weight: 600; text-wrap: balance; max-width: 60ch; }
+  .lede { margin: 0 0 14px; color: var(--ink-2); max-width: 78ch; }
+  .lede b { color: var(--ink); font-weight: 600; }
+  .controls { display: flex; flex-wrap: wrap; gap: 10px 22px; align-items: flex-end; margin-bottom: 10px; }
+  fieldset { border: 0; padding: 0; margin: 0; display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+  legend { font-size: 0.78rem; color: var(--muted); padding: 0; margin-bottom: 4px; text-transform: uppercase; letter-spacing: .04em; float: left; width: 100%; }
+  .seg label, button { font: inherit; font-size: 0.9rem; border: 1px solid var(--axis); background: var(--surface); color: var(--ink);
+    padding: 5px 11px; border-radius: 6px; cursor: pointer; }
+  .seg input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+  .seg input:checked + label { background: var(--ink); color: var(--surface); border-color: var(--ink); }
+  .seg input:focus-visible + label, button:focus-visible, #stage:focus-visible { outline: 2px solid var(--sensory); outline-offset: 2px; }
+  button[aria-pressed="true"] { background: var(--ink); color: var(--surface); border-color: var(--ink); }
+  button:disabled { color: var(--muted); cursor: default; }
+  .seg { position: relative; }
+  #stage { position: relative; width: 100%; aspect-ratio: 16 / 9; max-height: 620px; background: var(--surface); border-top: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline); touch-action: none; }
+  #stage canvas { display: block; width: 100% !important; height: 100% !important; }
+  #stage .status { position: absolute; inset: 0; display: grid; place-items: center; color: var(--ink-2); pointer-events: none; }
+  #overlay { position: absolute; inset: 0; pointer-events: none; }
+  #overlay .vp { position: absolute; font-size: 0.78rem; color: var(--ink-2); }
+  #overlay .vp.title { padding: 6px 10px; }
+  #overlay .vp.title b { color: var(--ink); font-weight: 600; }
+  #overlay .split { position: absolute; top: 0; bottom: 0; border-left: 1px solid var(--hairline); }
+  #overlay .split.h { bottom: auto; left: 0; right: 0; border-left: 0; border-top: 1px solid var(--hairline); }
+  /* under 560 px of stage width: smaller title, controls one fieldset per row, E/I halves stacked in a taller stage */
+  .viz-root.narrow h1 { font-size: 1.2rem; }
+  .viz-root.narrow .controls { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .viz-root.narrow #stage.stacked { aspect-ratio: 4 / 5; }
+  .viz-root.narrow #orient { max-width: 55%; }
+  .viz-root.narrow #overlay .cell { font-size: 0.6rem; }
+  #overlay .strip { position: absolute; left: 0; right: 0; border-top: 1px solid var(--hairline); }
+  #overlay .cell { position: absolute; text-align: center; font-size: 0.72rem; color: var(--ink-2); padding-top: 2px; line-height: 1.25; }
+  #overlay .cell.current { outline: 1px solid var(--ink); outline-offset: -1px; }
+  #overlay .cell b { color: var(--ink); font-weight: 600; font-variant-numeric: tabular-nums; }
+  #scalebar { position: absolute; left: 14px; bottom: 12px; font-size: 0.78rem; color: var(--ink-2); pointer-events: none; }
+  #scalebar i { display: block; height: 0; border-top: 2px solid var(--ink-2); margin-bottom: 3px; }
+  #orient { position: absolute; right: 14px; bottom: 12px; font-size: 0.78rem; color: var(--ink-2); pointer-events: none; text-align: right; }
+  figure { margin: 0; }
+  figcaption { margin: 10px 0 6px; max-width: 90ch; }
+  .legend { display: flex; flex-wrap: wrap; gap: 6px 22px; font-size: 0.9rem; color: var(--ink-2); margin: 0 0 6px; align-items: center; }
+  .legend span::before { content: ""; display: inline-block; width: 11px; height: 11px; border-radius: 50%; margin-right: 7px; vertical-align: -1px; background: var(--c, var(--other)); }
+  .legend span.noswatch::before { display: none; }
+  .legend b { color: var(--ink); font-weight: 600; font-variant-numeric: tabular-nums; }
+  .ramp { display: inline-flex; align-items: center; gap: 5px; }
+  .ramp i { position: relative; display: inline-block; width: 90px; height: 11px; background: linear-gradient(90deg, var(--act-mid), var(--act-high)); border-radius: 2px; }
+  .ramp i::after { content: "1"; position: absolute; left: 62%; top: -2px; height: 15px; border-left: 1px solid var(--surface); padding-left: 3px; font-size: 0.72rem; line-height: 30px; color: var(--ink-2); font-style: normal; }
+  .ramp small { font-size: 0.8rem; font-variant-numeric: tabular-nums; }
+  .note { font-size: 0.85rem; color: var(--ink-2); max-width: 90ch; margin: 4px 0; }
+  .note.alert { color: var(--ink); border-left: 3px solid var(--ink); padding-left: 10px; }
+  .help { font-size: 0.8rem; color: var(--muted); margin: 6px 0 0; }
+  details { font-size: 0.85rem; color: var(--ink-2); margin-top: 8px; }
+  table { border-collapse: collapse; margin-top: 6px; font-variant-numeric: tabular-nums; }
+  td, th { text-align: left; padding: 3px 14px 3px 0; border-bottom: 1px solid var(--hairline); font-weight: 400; }
+  th { color: var(--muted); font-size: 0.78rem; text-transform: uppercase; letter-spacing: .04em; }
+  td.n { text-align: right; }
+  footer { margin-top: 18px; padding-top: 10px; border-top: 1px solid var(--hairline); font-size: 0.8rem; color: var(--ink-2); max-width: 100ch; }
+  footer p { margin: 3px 0; }
+  .hidden { display: none !important; }
+</style>
+</head>
+<body>
+<main class="viz-root" data-points="points.bin" data-meta="points_meta.json" data-frames="activity_frames.bin" data-sample="sample40k.bin">
+  <h1 id="headline">Every neuron of one fly's central nervous system, placed where it sits in the animal</h1>
+  <p class="lede" id="lede">Loading the neuron table.</p>
+
+  <div class="controls" role="toolbar" aria-label="View and camera">
+    <fieldset class="seg" id="views">
+      <legend>View</legend>
+      <input type="radio" name="view" id="v-roles" value="roles" checked><label for="v-roles">Roles in the model</label>
+      <input type="radio" name="view" id="v-activity" value="activity"><label for="v-activity">A record enters (placeholder run)</label>
+      <input type="radio" name="view" id="v-nt" value="nt"><label for="v-nt">Excitatory vs inhibitory</label>
+    </fieldset>
+    <fieldset id="cams">
+      <legend>Camera</legend>
+      <button type="button" data-cam="dorsal">Dorsal</button>
+      <button type="button" data-cam="lateral">Lateral</button>
+      <button type="button" data-cam="front">Front</button>
+      <button type="button" data-cam="reset">Reset</button>
+    </fieldset>
+    <fieldset id="anim" class="hidden">
+      <legend>Step shown large</legend>
+      <button type="button" id="play" aria-pressed="false">Play</button>
+      <button type="button" id="prev" aria-label="Previous step">&larr;</button>
+      <span id="stepLabel" aria-live="polite" style="min-width:9ch;display:inline-block">t = 1 of 8</span>
+      <button type="button" id="next" aria-label="Next step">&rarr;</button>
+    </fieldset>
+  </div>
+
+  <figure>
+    <p class="note alert hidden" id="placeholder">Placeholder computation, not a result: a forward pass of the frozen signed graph with unit gains and a random input on the sensory neurons (seed 0). The trained run replaces this file.</p>
+    <div id="stage" tabindex="0" role="img" aria-label="Rotatable 3D point cloud of neuron positions. Arrow keys rotate, plus and minus zoom, R resets.">
+      <div class="status" id="status">Loading 166,700 neuron positions (2.5 MB).</div>
+      <div id="overlay"></div>
+      <div id="scalebar" class="hidden"><i id="scalebarLine"></i><span id="scalebarText"></span></div>
+      <div id="orient" class="hidden"></div>
+    </div>
+    <figcaption id="caption"></figcaption>
+    <p class="note alert hidden" id="perfnote"></p>
+    <div class="legend" id="legend" aria-live="polite"></div>
+    <p class="note" id="posnote"></p>
+    <p class="help">Drag to orbit, scroll or pinch to zoom, right-drag to pan. With the stage focused: arrow keys rotate, plus and minus zoom, R resets the camera. Orthographic projection: the scale bar is true everywhere in the frame.</p>
+    <details><summary>The same counts as a table</summary><div id="table"></div></details>
+  </figure>
+
+  <footer id="footer">
+    <p>Source: MaleCNS v1.0 (HHMI Janelia, Cambridge, MRC LMB, Google Research), CC BY 4.0, released 8 Jun 2026; edges &ge;5 synapses; positions from body-annotations-male-cns-v1.0-minconf-0.5.feather (somaLocation, tosomaLocation) and syn-points-male-cns-v1.0-minconf-0.5.feather (synapse centroids), 8 nm voxels converted to micrometres; built 20 Sep 2026.</p>
+    <p id="renderline"></p>
+  </footer>
+</main>
+
+<script type="module">
+// Vendored three.js 0.169.0 (see vendor/README.md for sha256). No CDN, no external requests: the page is served in a
+// sandboxed same-origin iframe (opaque origin), so every relative fetch is a CORS request without credentials.
+import * as THREE from './vendor/three.module.min.js';
+import { OrbitControls } from './vendor/OrbitControls.js';
+const get = (u) => fetch(u, { mode: 'cors', credentials: 'omit' });
+
+const root = document.querySelector('main');
+const q = new URLSearchParams(location.search);
+const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const css = (v) => getComputedStyle(root).getPropertyValue(v).trim();
+const fmt = (n) => n.toLocaleString('en-US');
+const $ = (id) => document.getElementById(id);
+
+const T = 8;
+let meta, N, pos, role, nt, psrc, frames = null, framesError = null, sampleMask = null;
+let usingSample = false, drawn = { roles: [0, 0, 0, 0], nt: [0, 0, 0, 0] };
+let view = 'roles', step = 1, playing = false, timer = null;
+
+// ---------- data ----------
+async function load() {
+  const [mb, pb] = await Promise.all([get(root.dataset.meta).then(r => r.json()), get(root.dataset.points).then(r => r.arrayBuffer())]);
+  meta = mb; N = meta.n_neurons;
+  const o = meta.points_bin;
+  pos = new Float32Array(pb, 0, N * 3);
+  role = new Uint8Array(pb, o.role_offset, N);
+  nt = new Uint8Array(pb, o.nt_class_offset, N);
+  psrc = new Uint8Array(pb, o.pos_source_offset, N);
+  // frames and sample are optional: the page works without them
+  const framesUrl = q.get('frames') || root.dataset.frames;
+  get(framesUrl).then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.arrayBuffer(); }).then(b => {
+    if (b.byteLength !== T * N) throw new Error(`expected ${T * N} bytes, got ${b.byteLength}`);
+    frames = new Uint8Array(b); packFrames(); if (view === 'activity') applyFrame();
+  }).catch((e) => { framesError = `Activity frames could not be loaded from ${framesUrl} (${e.message}); the activity view shows every neuron as not active.`; console.warn(framesError); writeCaption(); });
+  const sb = await get(root.dataset.sample).then(r => r.ok ? r.arrayBuffer() : null).catch(() => null);
+  if (sb) { sampleMask = new Uint8Array(N); for (const i of new Uint32Array(sb)) sampleMask[i] = 1; }
+}
+
+// ---------- text on the surface ----------
+function writeText() {
+  const rc = meta.role_counts, nc = meta.nt_class_counts, ps = meta.position_sources;
+  const readout = rc.descending + rc.motor;
+  $('lede').innerHTML = `<b>${fmt(N)}</b> neurons and <b>${fmt(meta.n_edges_at_threshold)}</b> connections of at least ${meta.threshold} synapses, from the 2026 MaleCNS release. In our model the record enters through the <b>${fmt(rc.sensory)}</b> sensory neurons and the score is read from the <b>${fmt(readout)}</b> descending and motor neurons; nothing in between is rewired.`;
+  $('posnote').textContent = `Positions: soma location for ${fmt(ps.soma)} neurons, tracing-to-soma location for ${fmt(ps.tosoma)}, and the centroid of the neuron's own synapses for ${fmt(ps.synapse_centroid)} (mostly sensory neurons, whose cell bodies lie outside the imaged volume). ${fmt(meta.n_unpositioned)} neurons have no recorded position and are not drawn. Every neuron is drawn at the same size.`;
+  $('table').innerHTML = `<table><tr><th>Group</th><th>Neurons</th></tr>
+    <tr><td>Sensory input</td><td class="n">${fmt(rc.sensory)}</td></tr>
+    <tr><td>Descending (readout)</td><td class="n">${fmt(rc.descending)}</td></tr>
+    <tr><td>Motor (readout)</td><td class="n">${fmt(rc.motor)}</td></tr>
+    <tr><td>All other neurons</td><td class="n">${fmt(rc.other)}</td></tr>
+    <tr><td>Excitatory (acetylcholine)</td><td class="n">${fmt(nc.excitatory)}</td></tr>
+    <tr><td>Inhibitory (GABA, glutamate, histamine)</td><td class="n">${fmt(nc.inhibitory)}</td></tr>
+    <tr><td>Modulatory (dopamine, octopamine, serotonin)</td><td class="n">${fmt(nc.modulatory)}</td></tr>
+    <tr><td>Neurotransmitter unclear</td><td class="n">${fmt(nc.unclear)}</td></tr>
+    <tr><td>Neurons active after each step, t = 1 to ${T} (placeholder run)</td><td class="n">${meta.activity.active_per_step.map(fmt).join(', ')}</td></tr>
+    </table>`;
+}
+
+function writeCaption() {
+  const rc = meta.role_counts, nc = meta.nt_class_counts;
+  const readout = rc.descending + rc.motor;
+  const L = $('legend'), C = $('caption');
+  const d = (k, i) => usingSample ? ` <small>(${fmt(drawn[k][i])} drawn)</small>` : '';
+  if (view === 'roles') {
+    C.textContent = `Compared: where the ${fmt(rc.sensory)} sensory neurons that receive a record sit against the ${fmt(readout)} descending and motor neurons that report the score; the ${fmt(rc.other)} other neurons are the fixed wiring between them.`;
+    L.innerHTML = `<span style="--c:var(--sensory)">Sensory input <b>${fmt(rc.sensory)}</b>${d('roles', 1)}</span>
+      <span style="--c:var(--readout)">Descending <b>${fmt(rc.descending)}</b> and motor <b>${fmt(rc.motor)}</b> readout${usingSample ? ` <small>(${fmt(drawn.roles[2] + drawn.roles[3])} drawn)</small>` : ''}</span>
+      <span>All other neurons <b>${fmt(rc.other)}</b>${d('roles', 0)}</span>`;
+  } else if (view === 'activity') {
+    const act = meta.activity.active_per_step[step - 1];
+    if (framesError) { C.textContent = framesError; L.innerHTML = ''; return; }
+    C.textContent = `Compared: how far activity that starts in the sensory neurons has spread after each of ${T} steps, shown small below the large view of step ${step}: ${fmt(act)} of ${fmt(N)} neurons active at step ${step} (unit gains, random input; the trained run replaces this).`;
+    L.innerHTML = `<span style="--c:var(--act-low)">Not active at step ${step} <b>${fmt(N - act)}</b></span>
+      <span class="noswatch ramp">Active <b>${fmt(act)}</b>, shade = activity on a square-root scale: <small>0</small><i></i><small>${meta.activity.act_max.toFixed(2)}</small></span>`;
+  } else {
+    C.textContent = `Compared, ${stacked() ? 'one above the other' : 'side by side'} at the same camera: the ${fmt(nc.excitatory)} neurons whose outgoing connections excite (acetylcholine) against the ${fmt(nc.inhibitory)} whose connections inhibit (GABA, glutamate, histamine); ${meta.pct_edges_excitatory}% of the ${fmt(meta.n_edges_at_threshold)} connections are excitatory and ${meta.pct_edges_inhibitory}% inhibitory.`;
+    L.innerHTML = `<span style="--c:var(--excit)">Excitatory <b>${fmt(nc.excitatory)}</b>${d('nt', 0)}</span>
+      <span style="--c:var(--inhib)">Inhibitory <b>${fmt(nc.inhibitory)}</b>${d('nt', 1)}</span>
+      <span>Modulatory <b>${fmt(nc.modulatory)}</b> or unclear <b>${fmt(nc.unclear)}</b>, drawn grey in both halves${usingSample ? ` <small>(${fmt(drawn.nt[2] + drawn.nt[3])} drawn)</small>` : ''}</span>`;
+  }
+}
+
+// ---------- three ----------
+const stage = $('stage'), overlay = $('overlay');
+const renderer = new THREE.WebGLRenderer({ antialias: false, alpha: false, powerPreference: 'high-performance' });
+renderer.setClearColor(new THREE.Color(css('--surface')));
+renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+renderer.autoClear = false;
+stage.appendChild(renderer.domElement);
+const scene = new THREE.Scene();
+// Orthographic: rotation is the only 3D the data asks for; no perspective foreshortening, so one scale bar is true everywhere.
+const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 1, 20000);
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.enableDamping = !reduced; controls.dampingFactor = 0.12; controls.rotateSpeed = 0.7;
+
+const col = (v) => new THREE.Color(css(v));
+const uniforms = {
+  uMode: { value: 0 }, uFrame: { value: 0 }, uPixelRatio: { value: renderer.getPixelRatio() }, uSize: { value: 2.2 },
+  uCol: { value: [col('--other'), col('--sensory'), col('--readout'), col('--excit'), col('--inhib'), col('--act-high')] },
+  uActLow: { value: col('--act-low') }, uActMid: { value: col('--act-mid') },
+};
+const vert = `
+  attribute float aRole; attribute float aNt; attribute vec4 aActA; attribute vec4 aActB;
+  uniform float uMode, uFrame, uSize, uPixelRatio; uniform vec3 uCol[6]; uniform vec3 uActLow, uActMid;
+  varying vec4 vColor;
+  float frameAct() {
+    if (uFrame < 0.5) return aActA.x; if (uFrame < 1.5) return aActA.y; if (uFrame < 2.5) return aActA.z; if (uFrame < 3.5) return aActA.w;
+    if (uFrame < 4.5) return aActB.x; if (uFrame < 5.5) return aActB.y; if (uFrame < 6.5) return aActB.z; return aActB.w;
+  }
+  void main() {
+    vec3 c; float a;
+    if (uMode < 0.5) { if (aRole > 0.5) { c = aRole < 1.5 ? uCol[1] : uCol[2]; a = 0.9; } else { c = uCol[0]; a = 0.3; } }
+    else if (uMode < 1.5) { float act = frameAct(); if (act <= 0.0) { c = uActLow; a = 0.2; } else { c = mix(uActMid, uCol[5], act); a = 0.35 + 0.55 * act; } }
+    else { if (aNt < 0.5) { c = uCol[3]; a = 0.45; } else if (aNt < 1.5) { c = uCol[4]; a = 0.45; } else { c = uCol[0]; a = 0.35; } }
+    vColor = vec4(c, a);
+    gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+    gl_PointSize = uSize * uPixelRatio;
+  }`;
+const frag = `
+  varying vec4 vColor;
+  void main() { vec2 d = gl_PointCoord - 0.5; float r = length(d); if (r > 0.5) discard;
+    gl_FragColor = vec4(vColor.rgb, vColor.a * (1.0 - smoothstep(0.3, 0.5, r))); }`;
+// one marker size for every neuron; highlights sit above the muted layer by draw order, not by size
+const matMuted = new THREE.ShaderMaterial({ uniforms, vertexShader: vert, fragmentShader: frag, transparent: true, depthWrite: false, depthTest: true });
+const matHi = new THREE.ShaderMaterial({ uniforms, vertexShader: vert, fragmentShader: frag, transparent: true, depthWrite: false, depthTest: false });
+let geoMuted, geoA, geoB, pm, pa, pb, actA, actB, centered, positioned;
+
+function buildGeometry() {
+  const c = meta.extent_um.center;
+  centered = new Float32Array(N * 3);
+  positioned = [];
+  for (let i = 0; i < N; i++) {
+    const x = pos[3 * i], y = pos[3 * i + 1], z = pos[3 * i + 2];
+    if (Number.isNaN(x)) { centered.set([1e9, 1e9, 1e9], 3 * i); continue; }   // parked far outside the frustum
+    centered[3 * i] = x - c[0]; centered[3 * i + 1] = y - c[1]; centered[3 * i + 2] = z - c[2];
+    positioned.push(i);
+  }
+  const posAttr = new THREE.BufferAttribute(centered, 3);
+  const roleAttr = new THREE.BufferAttribute(role, 1), ntAttr = new THREE.BufferAttribute(nt, 1);
+  actA = new THREE.BufferAttribute(new Uint8Array(N * 4), 4, true); actB = new THREE.BufferAttribute(new Uint8Array(N * 4), 4, true);
+  const mk = () => { const g = new THREE.BufferGeometry(); g.setAttribute('position', posAttr); g.setAttribute('aRole', roleAttr);
+    g.setAttribute('aNt', ntAttr); g.setAttribute('aActA', actA); g.setAttribute('aActB', actB); return g; };
+  geoMuted = mk(); geoA = mk(); geoB = mk();
+  pm = new THREE.Points(geoMuted, matMuted); pa = new THREE.Points(geoA, matHi); pb = new THREE.Points(geoB, matHi);
+  for (const p of [pm, pa, pb]) { p.frustumCulled = false; scene.add(p); }
+  pm.renderOrder = 0; pa.renderOrder = 1; pb.renderOrder = 1;
+  if (frames) packFrames();
+}
+function packFrames() {
+  if (!actA) return;
+  const a = actA.array, b = actB.array;
+  for (let t = 0; t < 4; t++) for (let i = 0; i < N; i++) a[4 * i + t] = frames[t * N + i];
+  for (let t = 4; t < 8; t++) for (let i = 0; i < N; i++) b[4 * i + t - 4] = frames[t * N + i];
+  actA.needsUpdate = true; actB.needsUpdate = true;
+}
+
+function setIndices() {
+  const muted = [], A = [], B = [];
+  drawn = { roles: [0, 0, 0, 0], nt: [0, 0, 0, 0] };
+  for (const i of positioned) {
+    if (usingSample && !sampleMask[i]) continue;
+    drawn.roles[role[i]]++; drawn.nt[nt[i]]++;
+    if (view === 'roles') (role[i] > 0 ? A : muted).push(i);
+    else if (view === 'nt') (nt[i] === 0 ? A : nt[i] === 1 ? B : muted).push(i);
+    else A.push(i);
+  }
+  geoMuted.setIndex(new THREE.BufferAttribute(new Uint32Array(muted), 1));
+  geoA.setIndex(new THREE.BufferAttribute(new Uint32Array(A), 1));
+  geoB.setIndex(new THREE.BufferAttribute(new Uint32Array(B), 1));
+  $('renderline').textContent = `Rendering ${fmt(muted.length + A.length + B.length)} neurons as GPU point sprites of one size (WebGL, orthographic camera) with three.js 0.169.0 (vendored, no external requests).`;
+}
+
+function applyFrame() {
+  uniforms.uFrame.value = step - 1;
+  $('stepLabel').textContent = `t = ${step} of ${T}`;
+  $('prev').disabled = step === 1; $('next').disabled = step === T;
+  writeCaption(); layoutOverlay();
+}
+
+// ---------- camera ----------
+const CAMS = {
+  // eye direction (unit, in data axes) and up. Data axes: x lateral (animal's left = +x), y dorsal (low) to ventral (high), z anterior (low) to posterior (high).
+  dorsal:  { dir: [0, -1, 0],          up: [-1, 0, 0], text: 'Dorsal view. Brain left, ventral nerve cord right; the animal’s right side is up.' },
+  lateral: { dir: [1, 0, 0],           up: [0, -1, 0], text: 'Lateral view from the animal’s left. Brain left, ventral nerve cord right; dorsal is up.' },
+  front:   { dir: [0, 0, -1],          up: [0, -1, 0], text: 'Front view, looking at the face. The animal’s left is on your right; dorsal is up.' },
+  reset:   { dir: [0.25, -0.9, -0.35], up: [-1, 0, 0], text: 'Oblique dorsal view. Brain left, ventral nerve cord right.' },
+};
+const CAM_DIST = 5000;
+function corners() {
+  const e = meta.extent_um, c = e.center, out = [];
+  for (const x of [e.min[0], e.max[0]]) for (const y of [e.min[1], e.max[1]]) for (const z of [e.min[2], e.max[2]]) out.push(new THREE.Vector3(x - c[0], y - c[1], z - c[2]));
+  return out;
+}
+const CORNERS = [];
+function fitHalfHeight(aspect) {
+  // half-height of the orthographic frustum, in micrometres, that fits every corner of the data box with a 6% margin at the current camera basis
+  const f = camera.position.clone().sub(controls.target).normalize();           // from target toward eye
+  const r = new THREE.Vector3().crossVectors(camera.up, f).normalize();          // screen right
+  const u = new THREE.Vector3().crossVectors(f, r).normalize();                  // screen up
+  let mx = 0, my = 0;
+  for (const p of CORNERS) { const d = p.clone().sub(controls.target); mx = Math.max(mx, Math.abs(d.dot(r))); my = Math.max(my, Math.abs(d.dot(u))); }
+  return Math.max(my, mx / aspect) / 0.94;
+}
+function setFrustum(aspect, halfH) {
+  camera.left = -halfH * aspect; camera.right = halfH * aspect; camera.top = halfH; camera.bottom = -halfH; camera.updateProjectionMatrix();
+}
+function setCam(name) {
+  const c = CAMS[name];
+  camera.up.set(...c.up); camera.position.set(...c.dir).normalize().multiplyScalar(CAM_DIST); controls.target.set(0, 0, 0);
+  camera.zoom = 1; controls.update();
+  const vp = mainViewport(); setFrustum(vp.w / vp.h, fitHalfHeight(vp.w / vp.h));
+  $('orient').textContent = c.text;
+  for (const b of document.querySelectorAll('#cams button')) b.setAttribute('aria-pressed', String(b.dataset.cam === name));
+}
+// viewports in CSS pixels (origin bottom-left, as WebGL wants)
+const NARROW = 560;                                   // stage width below which the header compacts and the E/I halves stack
+const narrow = () => stage.clientWidth < NARROW;
+const stacked = () => view === 'nt' && narrow();
+layoutClasses();                                      // compact the header before the data arrives
+function mainViewport() {
+  const w = stage.clientWidth, h = stage.clientHeight;
+  if (view === 'nt') return stacked() ? { x: 0, y: h / 2, w, h: h / 2 } : { x: 0, y: 0, w: w / 2, h };
+  if (view === 'activity') { const sh = Math.round(h * 0.28); return { x: 0, y: sh, w, h: h - sh }; }
+  return { x: 0, y: 0, w, h };
+}
+function scalebar() {
+  const vp = mainViewport();
+  const pxPerUm = vp.h / ((camera.top - camera.bottom) / camera.zoom);
+  const choices = [10, 20, 50, 100, 200, 500];
+  const maxPx = Math.min(180, vp.w * 0.3);           // on a narrow stage the bar stays clear of the orientation text
+  const um = choices.reduce((a, b) => (b * pxPerUm <= maxPx ? b : a), 10);
+  $('scalebarLine').style.width = (um * pxPerUm).toFixed(0) + 'px';
+  $('scalebarText').textContent = um + ' µm';
+  $('scalebar').style.bottom = (stage.clientHeight - vp.y - vp.h + 12 + (view === 'activity' ? vp.y : 0)) + 'px';
+  $('scalebar').style.bottom = (vp.y + 12) + 'px';
+  $('orient').style.bottom = (vp.y + 12) + 'px';
+}
+function layoutClasses() {
+  root.classList.toggle('narrow', narrow());
+  stage.classList.toggle('stacked', stacked());   // changes the stage height, so it runs before anything measures it
+}
+function resize() {
+  layoutClasses();
+  const w = stage.clientWidth, h = stage.clientHeight;
+  renderer.setSize(w, h, false);
+  const vp = mainViewport(); setFrustum(vp.w / vp.h, fitHalfHeight(vp.w / vp.h) );
+  if (meta && view === 'nt') writeCaption();      // "side by side" or "one above the other"
+  layoutOverlay();
+}
+
+// HTML labels over the viewports: half titles for the E/I split, one cell per step for the activity strip
+function layoutOverlay() {
+  overlay.innerHTML = '';
+  if (!meta) return;
+  const w = stage.clientWidth, h = stage.clientHeight, nc = meta.nt_class_counts;
+  if (view === 'nt') {
+    const ex = `<div class="vp title" style="left:0;top:0"><b>Excitatory</b> ${fmt(nc.excitatory)} neurons</div>`;
+    overlay.innerHTML = stacked()
+      ? `${ex}<div class="vp title" style="left:0;top:50%"><b>Inhibitory</b> ${fmt(nc.inhibitory)} neurons</div><div class="split h" style="top:50%"></div>`
+      : `${ex}<div class="vp title" style="left:50%;top:0"><b>Inhibitory</b> ${fmt(nc.inhibitory)} neurons</div><div class="split" style="left:50%"></div>`;
+  } else if (view === 'activity') {
+    const sh = Math.round(h * 0.28), cw = w / T;
+    let s = `<div class="strip" style="bottom:${sh}px"></div>`;
+    for (let t = 1; t <= T; t++) s += `<div class="cell${t === step ? ' current' : ''}" style="left:${((t - 1) * cw).toFixed(1)}px;width:${cw.toFixed(1)}px;bottom:0;height:${sh}px">t = ${t}<br><b>${fmt(meta.activity.active_per_step[t - 1])}</b>${narrow() ? '' : ' active'}</div>`;
+    overlay.innerHTML = s;
+  }
+}
+
+// ---------- interaction ----------
+for (const b of document.querySelectorAll('#cams button')) b.addEventListener('click', () => setCam(b.dataset.cam));
+$('views').addEventListener('change', (e) => {
+  view = e.target.value; uniforms.uMode.value = { roles: 0, activity: 1, nt: 2 }[view];
+  $('anim').classList.toggle('hidden', view !== 'activity');
+  $('placeholder').classList.toggle('hidden', view !== 'activity');
+  setIndices(); writeCaption(); resize();
+  if (view === 'activity') { applyFrame(); if (!reduced && !playing) togglePlay(); } else if (playing) togglePlay();
+});
+function togglePlay() {
+  playing = !playing; $('play').textContent = playing ? 'Pause' : 'Play'; $('play').setAttribute('aria-pressed', String(playing));
+  clearInterval(timer);
+  if (playing) timer = setInterval(() => { step = step === T ? 1 : step + 1; applyFrame(); }, 900);
+}
+$('play').addEventListener('click', togglePlay);
+$('prev').addEventListener('click', () => { step = Math.max(1, step - 1); applyFrame(); });
+$('next').addEventListener('click', () => { step = Math.min(T, step + 1); applyFrame(); });
+stage.addEventListener('keydown', (e) => {
+  const sph = new THREE.Spherical().setFromVector3(camera.position.clone().sub(controls.target));
+  const k = e.key; let handled = true;
+  if (k === 'ArrowLeft') sph.theta -= 0.12; else if (k === 'ArrowRight') sph.theta += 0.12;
+  else if (k === 'ArrowUp') sph.phi = Math.max(0.05, sph.phi - 0.12); else if (k === 'ArrowDown') sph.phi = Math.min(Math.PI - 0.05, sph.phi + 0.12);
+  else if (k === '+' || k === '=') camera.zoom *= 1.18; else if (k === '-' || k === '_') camera.zoom /= 1.18;
+  else if (k === 'r' || k === 'R') { setCam('reset'); return; } else handled = false;
+  if (!handled) return;
+  e.preventDefault();
+  camera.position.setFromSpherical(sph).add(controls.target); camera.updateProjectionMatrix(); controls.update();
+});
+window.addEventListener('resize', resize);
+
+// ---------- degrade on weak GPUs ----------
+function gpuLooksSoft() {
+  const gl = renderer.getContext(); const ext = gl.getExtension('WEBGL_debug_renderer_info');
+  const name = ext ? gl.getParameter(ext.UNMASKED_RENDERER_WEBGL) : '';
+  return /swiftshader|llvmpipe|software/i.test(name);
+}
+function useSample(reason) {
+  if (!sampleMask || usingSample) return;
+  usingSample = true; setIndices(); writeCaption();
+  $('perfnote').classList.remove('hidden');
+  $('perfnote').textContent = `Showing a stratified sample of ${fmt(meta.sample.n)} of the ${fmt(meta.n_positioned)} positioned neurons (the same share of every role; drawn counts are beside each legend entry) because ${reason}. Add ?full=1 to the address to force the full set.`;
+}
+
+// ---------- render ----------
+function renderViewport(vp, showMuted, showA, showB, frame) {
+  renderer.setViewport(vp.x, vp.y, vp.w, vp.h); renderer.setScissor(vp.x, vp.y, vp.w, vp.h);
+  pm.visible = showMuted; pa.visible = showA; pb.visible = showB;
+  if (frame !== undefined) uniforms.uFrame.value = frame;
+  renderer.render(scene, camera);
+}
+const times = [];
+function loop(t) {
+  requestAnimationFrame(loop);
+  controls.update();
+  const w = stage.clientWidth, h = stage.clientHeight;
+  renderer.setScissorTest(false); renderer.clear(); renderer.setScissorTest(true);
+  const main = mainViewport();
+  if (view === 'nt') {
+    renderViewport(main, true, true, false);
+    renderViewport(stacked() ? { x: 0, y: 0, w, h: h / 2 } : { x: w / 2, y: 0, w: w / 2, h }, true, false, true);
+  } else if (view === 'activity') {
+    renderViewport(main, false, true, false, step - 1);
+    // the strip: every step at the same camera direction, each fitted to its own small frame
+    const saved = { l: camera.left, r: camera.right, t: camera.top, b: camera.bottom, z: camera.zoom };
+    const cw = w / T, sh = main.y, pad = 4;
+    const cell = { w: cw - 2 * pad, h: sh - 30 }; const half = fitHalfHeight(cell.w / cell.h);
+    camera.zoom = 1; setFrustum(cell.w / cell.h, half);
+    for (let s = 0; s < T; s++) renderViewport({ x: s * cw + pad, y: 26, w: cell.w, h: cell.h }, false, true, false, s);
+    camera.left = saved.l; camera.right = saved.r; camera.top = saved.t; camera.bottom = saved.b; camera.zoom = saved.z; camera.updateProjectionMatrix();
+    uniforms.uFrame.value = step - 1;
+  } else {
+    renderViewport(main, true, true, false);
+  }
+  scalebar();
+  if (times.length < 90) { times.push(t); if (times.length === 90) judge(); }
+}
+function judge() {
+  if (q.get('full') === '1') return;
+  const dt = (times[89] - times[29]) / 60;
+  if (dt > 25) useSample(`this device drew the full set at ${Math.round(1000 / dt)} frames per second`);
+}
+load().then(() => {
+  $('status').remove();
+  CORNERS.push(...corners());
+  writeText(); buildGeometry(); setIndices(); writeCaption(); setCam('reset'); resize();
+  $('scalebar').classList.remove('hidden'); $('orient').classList.remove('hidden');
+  if (q.get('sample') === '1' || (q.get('full') !== '1' && gpuLooksSoft())) useSample(q.get('sample') === '1' ? 'you asked for the sample' : 'this browser is drawing with a software renderer');
+  if (q.get('view')) { const r = document.querySelector(`input[value="${q.get('view')}"]`); if (r) { r.checked = true; r.dispatchEvent(new Event('change', { bubbles: true })); } }
+  if (q.get('step')) { step = Math.min(T, Math.max(1, +q.get('step'))); if (playing) togglePlay(); applyFrame(); }
+  if (q.get('cam')) setCam(q.get('cam'));
+  requestAnimationFrame(loop);
+}).catch((e) => { $('status').textContent = 'Could not load the neuron table: ' + e.message; });
+</script>
+</body>
+</html>

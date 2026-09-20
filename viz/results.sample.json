@@ -1,0 +1,36 @@
+{
+  "_comment": "SAMPLE FILE. Every value is null: no run has produced results yet. Replace with results.json written by the run.",
+  "status": "awaiting run",
+  "generated": null,
+  "run_manifest": null,
+  "seeds": [],
+  "ci": "95% CI over seeds; method recorded by the run",
+  "teacher": { "dti_mae": null, "dti_tier_accuracy": null, "bii_mae": null, "bii_gate_accuracy": null, "latency_ms": null, "usd_per_record": null, "determinism": null },
+  "arms": [
+    { "id": "connectome", "label": "Connectome (MaleCNS wiring, fixed)", "trainable_parameters": null },
+    { "id": "shuffled", "label": "Degree-preserving shuffle", "trainable_parameters": null },
+    { "id": "random", "label": "Random graph, matched density", "trainable_parameters": null },
+    { "id": "mlp", "label": "MLP, matched parameters", "trainable_parameters": null },
+    { "id": "linear", "label": "Linear readout", "trainable_parameters": null },
+    { "id": "frontier", "label": "Frontier model given the DTI paper", "trainable_parameters": null }
+  ],
+  "metrics": [
+    { "id": "dti_mae", "label": "DTI composite, mean absolute error", "unit": "points (0 to 100)", "better": "lower", "domain": [0, null] },
+    { "id": "dti_dim_mae", "label": "DTI per-dimension mean absolute error", "unit": "points", "better": "lower", "domain": [0, null],
+      "dimensions": ["Provenance", "Consent", "Recency", "Quality", "Concordance", "Validation", "Breadth", "Stability"] },
+    { "id": "dti_tier_accuracy", "label": "DTI tier agreement with teacher", "unit": "share of records", "better": "higher", "domain": [0, 1] },
+    { "id": "bii_mae", "label": "BII, mean absolute error", "unit": "score units (0 to 1)", "better": "lower", "domain": [0, null] },
+    { "id": "bii_gate_accuracy", "label": "BII gate agreement with teacher", "unit": "share of windows", "better": "higher", "domain": [0, 1] },
+    { "id": "latency_ms", "label": "Latency per record", "unit": "ms", "better": "lower", "domain": [0, null] },
+    { "id": "usd_per_record", "label": "Cost per record", "unit": "USD", "better": "lower", "domain": [0, null] },
+    { "id": "determinism", "label": "Determinism: identical output on repeat", "unit": "share of records", "better": "higher", "domain": [0, 1] }
+  ],
+  "results": {
+    "connectome": { "dti_mae": { "mean": null, "ci_low": null, "ci_high": null, "n": null }, "dti_dim_mae": { "per_dimension": [] }, "dti_tier_accuracy": { "mean": null, "ci_low": null, "ci_high": null, "n": null }, "bii_mae": { "mean": null, "ci_low": null, "ci_high": null, "n": null }, "bii_gate_accuracy": { "mean": null, "ci_low": null, "ci_high": null, "n": null }, "latency_ms": { "mean": null, "ci_low": null, "ci_high": null, "n": null }, "usd_per_record": { "mean": null, "ci_low": null, "ci_high": null, "n": null }, "determinism": { "mean": null, "ci_low": null, "ci_high": null, "n": null } },
+    "shuffled":   { "dti_mae": { "mean": null, "ci_low": null, "ci_high": null, "n": null }, "dti_dim_mae": { "per_dimension": [] }, "dti_tier_accuracy": { "mean": null, "ci_low": null, "ci_high": null, "n": null }, "bii_mae": { "mean": null, "ci_low": null, "ci_high": null, "n": null }, "bii_gate_accuracy": { "mean": null, "ci_low": null, "ci_high": null, "n": null }, "latency_ms": { "mean": null, "ci_low": null, "ci_high": null, "n": null }, "usd_per_record": { "mean": null, "ci_low": null, "ci_high": null, "n": null }, "determinism": { "mean": null, "ci_low": null, "ci_high": null, "n": null } },
+    "random":     { "dti_mae": { "mean": null, "ci_low": null, "ci_high": null, "n": null }, "dti_dim_mae": { "per_dimension": [] }, "dti_tier_accuracy": { "mean": null, "ci_low": null, "ci_high": null, "n": null }, "bii_mae": { "mean": null, "ci_low": null, "ci_high": null, "n": null }, "bii_gate_accuracy": { "mean": null, "ci_low": null, "ci_high": null, "n": null }, "latency_ms": { "mean": null, "ci_low": null, "ci_high": null, "n": null }, "usd_per_record": { "mean": null, "ci_low": null, "ci_high": null, "n": null }, "determinism": { "mean": null, "ci_low": null, "ci_high": null, "n": null } },
+    "mlp":        { "dti_mae": { "mean": null, "ci_low": null, "ci_high": null, "n": null }, "dti_dim_mae": { "per_dimension": [] }, "dti_tier_accuracy": { "mean": null, "ci_low": null, "ci_high": null, "n": null }, "bii_mae": { "mean": null, "ci_low": null, "ci_high": null, "n": null }, "bii_gate_accuracy": { "mean": null, "ci_low": null, "ci_high": null, "n": null }, "latency_ms": { "mean": null, "ci_low": null, "ci_high": null, "n": null }, "usd_per_record": { "mean": null, "ci_low": null, "ci_high": null, "n": null }, "determinism": { "mean": null, "ci_low": null, "ci_high": null, "n": null } },
+    "linear":     { "dti_mae": { "mean": null, "ci_low": null, "ci_high": null, "n": null }, "dti_dim_mae": { "per_dimension": [] }, "dti_tier_accuracy": { "mean": null, "ci_low": null, "ci_high": null, "n": null }, "bii_mae": { "mean": null, "ci_low": null, "ci_high": null, "n": null }, "bii_gate_accuracy": { "mean": null, "ci_low": null, "ci_high": null, "n": null }, "latency_ms": { "mean": null, "ci_low": null, "ci_high": null, "n": null }, "usd_per_record": { "mean": null, "ci_low": null, "ci_high": null, "n": null }, "determinism": { "mean": null, "ci_low": null, "ci_high": null, "n": null } },
+    "frontier":   { "dti_mae": { "mean": null, "ci_low": null, "ci_high": null, "n": null }, "dti_dim_mae": { "per_dimension": [] }, "dti_tier_accuracy": { "mean": null, "ci_low": null, "ci_high": null, "n": null }, "bii_mae": { "mean": null, "ci_low": null, "ci_high": null, "n": null }, "bii_gate_accuracy": { "mean": null, "ci_low": null, "ci_high": null, "n": null }, "latency_ms": { "mean": null, "ci_low": null, "ci_high": null, "n": null }, "usd_per_record": { "mean": null, "ci_low": null, "ci_high": null, "n": null }, "determinism": { "mean": null, "ci_low": null, "ci_high": null, "n": null } }
+  }
+}

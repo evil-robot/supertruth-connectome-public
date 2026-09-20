@@ -1,0 +1,9 @@
+{
+ "_comment": "Hand-built from https://developers.openai.com/api/docs/guides/structured-outputs and the Chat Completions object shape (2026-09-20); no live gpt-5 call was possible on 2026-09-20 (account had no credits). Replace with a captured body once a call succeeds.",
+ "id": "chatcmpl-fixture", "object": "chat.completion", "created": 1789930000, "model": "gpt-5-2025-08-07", "_request_id": "req_fixture",
+ "choices": [{"index": 0, "finish_reason": "stop", "message": {"role": "assistant", "refusal": null,
+   "content": "{\"dimensions\":{\"provenance\":80,\"consent\":75,\"recency\":90,\"quality\":85,\"concordance\":70,\"validation\":88,\"breadth\":60,\"stability\":65},\"composite\":80,\"tier\":\"GOLD\"}"}}],
+ "usage": {"prompt_tokens": 7000, "completion_tokens": 900, "total_tokens": 7900,
+   "prompt_tokens_details": {"cached_tokens": 6016, "audio_tokens": 0},
+   "completion_tokens_details": {"reasoning_tokens": 832, "audio_tokens": 0, "accepted_prediction_tokens": 0, "rejected_prediction_tokens": 0}}
+}

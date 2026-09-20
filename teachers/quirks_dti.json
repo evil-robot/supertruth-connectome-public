@@ -1,0 +1,87 @@
+{
+ "rescoring_reproduces_labels": "4000/4000",
+ "q1_care_gaps_removed": {
+  "records_with_care_gaps": 2028,
+  "any_dimension_changed": 0
+ },
+ "q2_recency_sentinel": {
+  "dated_records_ge_999_days": 169,
+  "of_which_recency_35": 91,
+  "dated_stale_lt_999_no_element_dates": 373,
+  "of_which_recency_28": 373
+ },
+ "q3_recap_validation": {
+  "recap_records": 889,
+  "max_validation": 65,
+  "flagged_below_75": 889
+ },
+ "q4_hospital_name_as_patient_name": {
+  "recap_no_name_with_facilities": 213,
+  "patientName_found": 213,
+  "example": "SYN Facility"
+ },
+ "q5_mgdl_labs_count_as_meds": {
+  "records_with_zero_meds_and_chronic_labs": 44,
+  "medicationCount_gt_0": 39
+ },
+ "q6_consent_date_in_date_pool": {
+  "dated_consent_with_clinical_dates": 1501,
+  "consent_date_became_most_recent_or_oldest": 953
+ },
+ "q7_element_dates_only_lower_recency": {
+  "records_with_element_dates_and_text_dates": 1554,
+  "removing_element_dates_raised_recency": 924,
+  "lowered_recency": 0
+ },
+ "q8_provenance_below_base_45": {
+  "records": 71,
+  "min": 29
+ },
+ "q9_coarse_dims": {
+  "breadth_zero": 5,
+  "stability_values": [
+   60,
+   72,
+   80,
+   88
+  ],
+  "recency_values": [
+   28,
+   35,
+   42,
+   58,
+   75,
+   83,
+   92
+  ],
+  "validation_values": [
+   45,
+   50,
+   55,
+   65,
+   70,
+   75,
+   85,
+   90,
+   95
+  ],
+  "concordance_values": [
+   45,
+   47,
+   60,
+   65,
+   72,
+   75,
+   80,
+   82,
+   84,
+   92
+  ]
+ },
+ "q10_consent_caps": {
+  "source_consent_has_none": 769,
+  "consent_le_40": 625,
+  "treatment_only_no_broad": 295,
+  "consent_le_72": 295
+ }
+}

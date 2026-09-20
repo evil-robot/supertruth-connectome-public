@@ -1,0 +1,128 @@
+{
+  "title": "Synthetic health records and agent event windows for 'Intelligence Is Structure, Not Scale' (connectome substrate study)",
+  "version": "1.0",
+  "license": "CC-BY-4.0",
+  "generated_utc": "2026-09-20T22:01:17+00:00",
+  "repo": "https://github.com/evil-robot/supertruth-connectome",
+  "repo_commit": "9f6a3dc49366123b877c199d46439aba2b28d1c4",
+  "generator_commits": {
+    "gen_dti.ts": "c60deb39e274557b5bd5d4c20e2e588977f5a777",
+    "gen_bii.py": "c60deb39e274557b5bd5d4c20e2e588977f5a777"
+  },
+  "seed": 20260920,
+  "frozen_clock": "2026-09-20T00:00:00Z",
+  "engine_commits": {
+    "dti": "e4785726e225e55b1dbdad201758f861f4588ebc",
+    "bii_vigil": "1cffd016b7bfa4e6ddc0dcd71a81f281fcd40031"
+  },
+  "sources": {
+    "teachers/dti_teacher.jsonl": "2aa26f37b1be93f7af42c4eebfb8f8b03a92839fc433d0e11a0df928936c4b22",
+    "teachers/bii_teacher.jsonl": "c43bb314823f19f35bd993d9860bd444663137bae48c4c836826e7cd7372f67b",
+    "splits/dti_seed1.json": "cb23989c5192e687b635aada79e3a01ee1a645484a16d6b8eb0880cce35aa864",
+    "splits/bii_seed1.json": "c42920804158f4b9a3e5779cf1563f99f86818f53fe3083b0e2ca39acbf29127",
+    "llm_arm/llm_runs/20260920T154525Z/calls.jsonl": "38ead99aa6c7710fc958f7b4a36f8f94d00b6a6073ab41fb62ba88b25cbf30e4"
+  },
+  "released": {
+    "dti_corpus": "records, features, all 20,000 engine labels, trained parameters (seed 1, five arms)",
+    "bii_corpus": "windows and features"
+  },
+  "held": {
+    "bii_corpus": "scores and gates, trained parameters, feature specification: the Behavioral Integrity Index scorer is unpublished work; its outputs and the models trained on them are held until it is.",
+    "engines": "the DTI scoring module and the VIGIL detection code are not released"
+  },
+  "files": {
+    "dti_records.jsonl.gz": {
+      "bytes": 8112892,
+      "sha256": "e53348429ec5d9573ef5d2154caf41342c70474d4ac121864b15e1163845ed1e",
+      "rows": 20000
+    },
+    "dti_labels.jsonl.gz": {
+      "bytes": 328960,
+      "sha256": "c132c083754d71e9fd9d7e2ec5b1301e46cffb72b99df4bd6a6ec18f3fc39595",
+      "rows": 20000
+    },
+    "bii_windows.jsonl.gz": {
+      "bytes": 14399325,
+      "sha256": "68c0f494ac63498fa6ea0ec19a63fef76f90fa20ef62b925d56401ba35282b2e",
+      "rows": 20000
+    },
+    "dti_weights_seed1.tar.gz": {
+      "bytes": 112781958,
+      "sha256": "2e1e9603067cb110809db2843e778925658497103da40d1c4a99ab65a15434af",
+      "members": {
+        "dti_weights_seed1/connectome/best.safetensors": {
+          "bytes": 57620460,
+          "sha256": "437b90cb7d4cb43571ebdae4d0118bfe920d42f2a24aadff09b8fb3218af58c8"
+        },
+        "dti_weights_seed1/connectome/run.json": {
+          "bytes": 23281,
+          "sha256": "00c170baf75e97ccf6259acc6dd41f6c408f54b4f9ba6e8aed8575fe06095b94"
+        },
+        "dti_weights_seed1/connectome/standardization.json": {
+          "bytes": 2581,
+          "sha256": "e2d83c6f6a3c1807a4de66008c66d7ff4e9d7102efb5d319a7ac5b006de63429"
+        },
+        "dti_weights_seed1/shuffle/best.safetensors": {
+          "bytes": 57620460,
+          "sha256": "57042fcb2f2ee18401123ef55c58f115448d99bdb06af6f42bc2194a0f9b80e3"
+        },
+        "dti_weights_seed1/shuffle/run.json": {
+          "bytes": 23271,
+          "sha256": "d067564ab3502c8be36669700fdea945c677990f7387dce7d7a272ea419ba318"
+        },
+        "dti_weights_seed1/shuffle/standardization.json": {
+          "bytes": 2581,
+          "sha256": "e2d83c6f6a3c1807a4de66008c66d7ff4e9d7102efb5d319a7ac5b006de63429"
+        },
+        "dti_weights_seed1/er/best.safetensors": {
+          "bytes": 57620460,
+          "sha256": "d34ccef795e893613c98a9ee87022bcbbc290574e655c9c6fbbd103a3ef6e497"
+        },
+        "dti_weights_seed1/er/run.json": {
+          "bytes": 20524,
+          "sha256": "455b283fa765bbcb2bdf15bdd08893d195e6c3fb1b9a65dcef3b881920d7ab86"
+        },
+        "dti_weights_seed1/er/standardization.json": {
+          "bytes": 2581,
+          "sha256": "e2d83c6f6a3c1807a4de66008c66d7ff4e9d7102efb5d319a7ac5b006de63429"
+        },
+        "dti_weights_seed1/mlp/best.safetensors": {
+          "bytes": 31814856,
+          "sha256": "0c1b4fd504b7951c93de3bc6d950e3f53cb8c54adcbfe4512d9e873d21d90887"
+        },
+        "dti_weights_seed1/mlp/run.json": {
+          "bytes": 15767,
+          "sha256": "effda22f9dd0210f204d866ade2078426913e1311dd7fb95bce0a92009dfb6dd"
+        },
+        "dti_weights_seed1/mlp/standardization.json": {
+          "bytes": 2581,
+          "sha256": "e2d83c6f6a3c1807a4de66008c66d7ff4e9d7102efb5d319a7ac5b006de63429"
+        },
+        "dti_weights_seed1/ridge/best.safetensors": {
+          "bytes": 3768,
+          "sha256": "4c19a871573c5329215eeb006b8befc40588d2333afc08449b7397a55e8ef5dd"
+        },
+        "dti_weights_seed1/ridge/run.json": {
+          "bytes": 9741,
+          "sha256": "9be5322a918d898d4e7fc3adc06ba2dbdf5979035ceb430afa545c93e52b9859"
+        },
+        "dti_weights_seed1/ridge/standardization.json": {
+          "bytes": 2581,
+          "sha256": "e2d83c6f6a3c1807a4de66008c66d7ff4e9d7102efb5d319a7ac5b006de63429"
+        }
+      }
+    },
+    "splits.json": {
+      "bytes": 848581,
+      "sha256": "402129742ca15531c36c977066534841bcd833a998003cec25aeedc95c6bf42d"
+    },
+    "README.md": {
+      "bytes": 19869,
+      "sha256": "681d576f0047e6a35a42a7442ad2dd27949e8c240e4605f2c081c2cc80e30119"
+    },
+    "zenodo-dataset.json": {
+      "bytes": 3515,
+      "sha256": "f5617932e70064ad9fb264e978d77535978a0d773af4d05d3f04642b9c69a07c"
+    }
+  }
+}

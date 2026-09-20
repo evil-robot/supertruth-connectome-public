@@ -1,0 +1,157 @@
+{
+  "generated": "2026-09-20T21:48:05+00:00",
+  "as_of": "2026-09-20T00:00:00.000Z",
+  "selection_seed": 20260920,
+  "budget_prefix_tokens": 150000,
+  "max_output_tokens": 16000,
+  "record_allowance_tokens": 6000,
+  "limits": {
+    "anthropic": {
+      "context_tokens": 1000000,
+      "source": "claude-api bundled skill 2.1.278 shared/models.md line 76: 'Claude Opus 5 ... 1M context window (default and maximum), 128K max output'"
+    },
+    "openai": {
+      "context_tokens": 400000,
+      "source": "https://developers.openai.com/api/docs/models/gpt-5: '400,000 context window', '128,000 max output tokens'"
+    },
+    "xai": {
+      "context_tokens": 200000,
+      "source": "https://docs.x.ai/docs/models: grok-4.3 context 1M; long-context pricing from 200k tokens (api.x.ai/v1/language-models/grok-4.3 long_context_threshold 200000); 200k is the binding limit so every call stays on the < 200k price row"
+    },
+    "gemini": {
+      "context_tokens": 1048576,
+      "source": "models.get gemini-3-flash-preview on 2026-09-20: input_token_limit 1048576, output_token_limit 65536"
+    }
+  },
+  "counters": {
+    "anthropic": "POST /v1/messages/count_tokens, model claude-opus-5, prefix counted as one user turn",
+    "openai": "tiktoken o200k_base (tiktoken.encoding_for_model('gpt-5'))",
+    "xai": "POST https://api.x.ai/v1/tokenize-text, model grok-4",
+    "gemini": "models.count_tokens gemini-3-flash-preview (Developer API counts contents; prefix counted as contents)"
+  },
+  "candidates": {
+    "50": {
+      "prefix_tokens": {
+        "anthropic": 73316,
+        "openai": 49776,
+        "xai": 48117,
+        "gemini": 57248
+      },
+      "tokens_per_example": {
+        "anthropic": 1355.2,
+        "openai": 927.1,
+        "xai": 896.9,
+        "gemini": 1072.9
+      },
+      "fits_every_vendor": true,
+      "fits": {
+        "anthropic": true,
+        "openai": true,
+        "xai": true,
+        "gemini": true
+      },
+      "prefix_sha256": "0d406acca6765f9da9f8973859ad58dcb185340d35e6fdb91c598fcc48538ecf",
+      "examples_block_sha256": "12fc82aa21a6c7fade652cd39d5270eb602b89267512c9f7e3b1ed5aacfabcb6",
+      "record_ids_sha256": "c15902ed3056b5d3d47e3c01a6d568599c1f5db751a97592915ab6695ecb4208",
+      "per_tier": {
+        "BELOW THRESHOLD": 10,
+        "BRONZE": 10,
+        "SILVER": 10,
+        "GOLD": 10,
+        "PLATINUM": 10
+      },
+      "leakage_check": {
+        "examples": 50,
+        "scored_ids": 300,
+        "test_split_ids": 4001,
+        "overlap_with_scored": 0,
+        "overlap_with_test_split": 0
+      }
+    },
+    "100": {
+      "prefix_tokens": {
+        "anthropic": 139555,
+        "openai": 94918,
+        "xai": 91737,
+        "gemini": 109437
+      },
+      "tokens_per_example": {
+        "anthropic": 1340.0,
+        "openai": 915.0,
+        "xai": 884.7,
+        "gemini": 1058.4
+      },
+      "fits_every_vendor": true,
+      "fits": {
+        "anthropic": true,
+        "openai": true,
+        "xai": true,
+        "gemini": true
+      },
+      "prefix_sha256": "9a9186ec1c53fecdf61737eaab83deb1e2f861471929c85b8d39587feba92679",
+      "examples_block_sha256": "612674deff39a07a10845c81876bbc377f65ee9c955e9912ece6d1eface33060",
+      "record_ids_sha256": "8fc40296111737cc8497baafbdbfd8b638f35e8e0cc4975276a6910d47e4094a",
+      "per_tier": {
+        "BELOW THRESHOLD": 20,
+        "BRONZE": 20,
+        "SILVER": 20,
+        "GOLD": 20,
+        "PLATINUM": 20
+      },
+      "leakage_check": {
+        "examples": 100,
+        "scored_ids": 300,
+        "test_split_ids": 4001,
+        "overlap_with_scored": 0,
+        "overlap_with_test_split": 0
+      }
+    },
+    "200": {
+      "prefix_tokens": {
+        "anthropic": 265092,
+        "openai": 180052,
+        "xai": 174097,
+        "gemini": 207914
+      },
+      "tokens_per_example": {
+        "anthropic": 1297.7,
+        "openai": 883.2,
+        "xai": 854.1,
+        "gemini": 1021.6
+      },
+      "fits_every_vendor": false,
+      "fits": {
+        "anthropic": false,
+        "openai": false,
+        "xai": false,
+        "gemini": false
+      },
+      "prefix_sha256": "d43da8657be6e158a8069f88b55b8b49ef64d013db4dbd277f99d26a2bce2ace",
+      "examples_block_sha256": "352381e414f88bde84790769e07c77a4167f1eb3c0b28644e155373d2ebc22e6",
+      "record_ids_sha256": "0a0df6736d67b6de561b090a8558b76b5ffeb0723c8ee56e4b665a3557391223",
+      "per_tier": {
+        "BELOW THRESHOLD": 40,
+        "BRONZE": 40,
+        "SILVER": 40,
+        "GOLD": 40,
+        "PLATINUM": 40
+      },
+      "leakage_check": {
+        "examples": 200,
+        "scored_ids": 300,
+        "test_split_ids": 4001,
+        "overlap_with_scored": 0,
+        "overlap_with_test_split": 0
+      }
+    }
+  },
+  "base_prompt_sha256": "5e7f42957795615a5e16b61d9e0d1e7d11864d8aabfdde0233a1d06ee87bca71",
+  "base_prefix_tokens": {
+    "anthropic": 5554,
+    "openai": 3420,
+    "xai": 3271,
+    "gemini": 3601
+  },
+  "chosen_E": 100,
+  "rule": "largest E in {50, 100, 200} with prefix < 150,000 tokens for every vendor and prefix + record allowance + max output < each vendor's context limit"
+}

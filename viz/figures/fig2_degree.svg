@@ -1,0 +1,495 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="518.4pt" height="237.6pt" viewBox="0 0 518.4 237.6" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-09-20T16:49:22.466149</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.11.1, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 237.6 
+L 518.4 237.6 
+L 518.4 0 
+L 0 0 
+z
+" style="fill: #fcfcfb"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 46.656 173.448 
+L 270.963692 173.448 
+L 270.963692 57.024 
+L 46.656 57.024 
+z
+" style="fill: #fcfcfb"/>
+   </g>
+   <g id="line2d_1">
+    <path d="M 125.051146 173.448 
+L 125.051146 57.024 
+" clip-path="url(#p03e5aedd04)" style="fill: none; stroke: #e1e0d9; stroke-width: 0.8; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_2">
+    <path d="M 169.947671 173.448 
+L 169.947671 57.024 
+" clip-path="url(#p03e5aedd04)" style="fill: none; stroke: #e1e0d9; stroke-width: 0.8; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_3">
+    <path d="M 187.282403 173.448 
+L 187.282403 57.024 
+" clip-path="url(#p03e5aedd04)" style="fill: none; stroke: #e1e0d9; stroke-width: 0.8; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_4">
+    <path d="M 260.767888 173.448 
+L 260.767888 57.024 
+" clip-path="url(#p03e5aedd04)" style="fill: none; stroke: #e1e0d9; stroke-width: 0.8; stroke-linecap: square"/>
+   </g>
+   <image xlink:href="data:image/png;base64,
+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" id="image4d47245272" transform="scale(1 -1) translate(0 -88.56)" x="55.44" y="-83.52" width="207.36" height="88.56"/>
+   <g id="matplotlib.axis_1">
+    <g id="xtick_1">
+     <g id="line2d_5">
+      <defs>
+       <path id="m4fae568b98" d="M 0 0 
+L 0 2 
+" style="stroke: #52514e; stroke-width: 0.8"/>
+      </defs>
+      <g>
+       <use xlink:href="#m4fae568b98" x="56.851804" y="173.448" style="fill: #52514e; stroke: #52514e; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_1">
+      <!-- $\mathdefault{10^{0}}$ -->
+      <g style="fill: #52514e" transform="translate(50.691804 186.564)">
+       <text>
+        <tspan x="0" y="-0.725688" style="font-size: 8px; font-family: 'Helvetica Neue'; fill: #52514e">1</tspan>
+        <tspan x="4.447937" y="-0.725688" style="font-size: 8px; font-family: 'Helvetica Neue'; fill: #52514e">0</tspan>
+        <tspan x="8.972437" y="-4.029687" style="font-size: 5.6px; font-family: 'Helvetica Neue'; fill: #52514e">0</tspan>
+       </text>
+      </g>
+     </g>
+    </g>
+    <g id="xtick_2">
+     <g id="line2d_6">
+      <g>
+       <use xlink:href="#m4fae568b98" x="110.184473" y="173.448" style="fill: #52514e; stroke: #52514e; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_2">
+      <!-- $\mathdefault{10^{1}}$ -->
+      <g style="fill: #52514e" transform="translate(104.024473 186.564)">
+       <text>
+        <tspan x="0" y="-0.725688" style="font-size: 8px; font-family: 'Helvetica Neue'; fill: #52514e">1</tspan>
+        <tspan x="4.447937" y="-0.725688" style="font-size: 8px; font-family: 'Helvetica Neue'; fill: #52514e">0</tspan>
+        <tspan x="8.972437" y="-4.029687" style="font-size: 5.6px; font-family: 'Helvetica Neue'; fill: #52514e">1</tspan>
+       </text>
+      </g>
+     </g>
+    </g>
+    <g id="xtick_3">
+     <g id="line2d_7">
+      <g>
+       <use xlink:href="#m4fae568b98" x="163.517141" y="173.448" style="fill: #52514e; stroke: #52514e; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_3">
+      <!-- $\mathdefault{10^{2}}$ -->
+      <g style="fill: #52514e" transform="translate(157.357141 186.564)">
+       <text>
+        <tspan x="0" y="-0.725688" style="font-size: 8px; font-family: 'Helvetica Neue'; fill: #52514e">1</tspan>
+        <tspan x="4.447937" y="-0.725688" style="font-size: 8px; font-family: 'Helvetica Neue'; fill: #52514e">0</tspan>
+        <tspan x="8.972437" y="-4.029687" style="font-size: 5.6px; font-family: 'Helvetica Neue'; fill: #52514e">2</tspan>
+       </text>
+      </g>
+     </g>
+    </g>
+    <g id="xtick_4">
+     <g id="line2d_8">
+      <g>
+       <use xlink:href="#m4fae568b98" x="216.84981" y="173.448" style="fill: #52514e; stroke: #52514e; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_4">
+      <!-- $\mathdefault{10^{3}}$ -->
+      <g style="fill: #52514e" transform="translate(210.68981 186.564)">
+       <text>
+        <tspan x="0" y="-0.725688" style="font-size: 8px; font-family: 'Helvetica Neue'; fill: #52514e">1</tspan>
+        <tspan x="4.447937" y="-0.725688" style="font-size: 8px; font-family: 'Helvetica Neue'; fill: #52514e">0</tspan>
+        <tspan x="8.972437" y="-4.029687" style="font-size: 5.6px; font-family: 'Helvetica Neue'; fill: #52514e">3</tspan>
+       </text>
+      </g>
+     </g>
+    </g>
+    <g id="xtick_5">
+     <g id="line2d_9">
+      <g>
+       <use xlink:href="#m4fae568b98" x="270.182479" y="173.448" style="fill: #52514e; stroke: #52514e; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_5">
+      <!-- $\mathdefault{10^{4}}$ -->
+      <g style="fill: #52514e" transform="translate(264.022479 186.564)">
+       <text>
+        <tspan x="0" y="-0.725688" style="font-size: 8px; font-family: 'Helvetica Neue'; fill: #52514e">1</tspan>
+        <tspan x="4.447937" y="-0.725688" style="font-size: 8px; font-family: 'Helvetica Neue'; fill: #52514e">0</tspan>
+        <tspan x="8.972437" y="-4.029687" style="font-size: 5.6px; font-family: 'Helvetica Neue'; fill: #52514e">4</tspan>
+       </text>
+      </g>
+     </g>
+    </g>
+    <g id="text_6">
+     <text style="font-size: 8px; font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #52514e" x="158.809846" y="199.884" transform="rotate(-0 158.809846 199.884)">Connections per neuron (edges ≥5 synapses)</text>
+    </g>
+   </g>
+   <g id="matplotlib.axis_2">
+    <g id="ytick_1">
+     <g id="line2d_10">
+      <defs>
+       <path id="m219c223f62" d="M 0 0 
+L -2 0 
+" style="stroke: #52514e; stroke-width: 0.8"/>
+      </defs>
+      <g>
+       <use xlink:href="#m219c223f62" x="46.656" y="169.900386" style="fill: #52514e; stroke: #52514e; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_7">
+      <!-- $\mathdefault{10^{0}}$ -->
+      <g style="fill: #52514e" transform="translate(28.836 173.708386)">
+       <text>
+        <tspan x="0" y="-0.725688" style="font-size: 8px; font-family: 'Helvetica Neue'; fill: #52514e">1</tspan>
+        <tspan x="4.447937" y="-0.725688" style="font-size: 8px; font-family: 'Helvetica Neue'; fill: #52514e">0</tspan>
+        <tspan x="8.972437" y="-4.029687" style="font-size: 5.6px; font-family: 'Helvetica Neue'; fill: #52514e">0</tspan>
+       </text>
+      </g>
+     </g>
+    </g>
+    <g id="ytick_2">
+     <g id="line2d_11">
+      <g>
+       <use xlink:href="#m219c223f62" x="46.656" y="146.998067" style="fill: #52514e; stroke: #52514e; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_8">
+      <!-- $\mathdefault{10^{1}}$ -->
+      <g style="fill: #52514e" transform="translate(28.836 150.806067)">
+       <text>
+        <tspan x="0" y="-0.725688" style="font-size: 8px; font-family: 'Helvetica Neue'; fill: #52514e">1</tspan>
+        <tspan x="4.447937" y="-0.725688" style="font-size: 8px; font-family: 'Helvetica Neue'; fill: #52514e">0</tspan>
+        <tspan x="8.972437" y="-4.029687" style="font-size: 5.6px; font-family: 'Helvetica Neue'; fill: #52514e">1</tspan>
+       </text>
+      </g>
+     </g>
+    </g>
+    <g id="ytick_3">
+     <g id="line2d_12">
+      <g>
+       <use xlink:href="#m219c223f62" x="46.656" y="124.095747" style="fill: #52514e; stroke: #52514e; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_9">
+      <!-- $\mathdefault{10^{2}}$ -->
+      <g style="fill: #52514e" transform="translate(28.836 127.903747)">
+       <text>
+        <tspan x="0" y="-0.725688" style="font-size: 8px; font-family: 'Helvetica Neue'; fill: #52514e">1</tspan>
+        <tspan x="4.447937" y="-0.725688" style="font-size: 8px; font-family: 'Helvetica Neue'; fill: #52514e">0</tspan>
+        <tspan x="8.972437" y="-4.029687" style="font-size: 5.6px; font-family: 'Helvetica Neue'; fill: #52514e">2</tspan>
+       </text>
+      </g>
+     </g>
+    </g>
+    <g id="ytick_4">
+     <g id="line2d_13">
+      <g>
+       <use xlink:href="#m219c223f62" x="46.656" y="101.193428" style="fill: #52514e; stroke: #52514e; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_10">
+      <!-- $\mathdefault{10^{3}}$ -->
+      <g style="fill: #52514e" transform="translate(28.836 105.001428)">
+       <text>
+        <tspan x="0" y="-0.725688" style="font-size: 8px; font-family: 'Helvetica Neue'; fill: #52514e">1</tspan>
+        <tspan x="4.447937" y="-0.725688" style="font-size: 8px; font-family: 'Helvetica Neue'; fill: #52514e">0</tspan>
+        <tspan x="8.972437" y="-4.029687" style="font-size: 5.6px; font-family: 'Helvetica Neue'; fill: #52514e">3</tspan>
+       </text>
+      </g>
+     </g>
+    </g>
+    <g id="ytick_5">
+     <g id="line2d_14">
+      <g>
+       <use xlink:href="#m219c223f62" x="46.656" y="78.291109" style="fill: #52514e; stroke: #52514e; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_11">
+      <!-- $\mathdefault{10^{4}}$ -->
+      <g style="fill: #52514e" transform="translate(28.836 82.099109)">
+       <text>
+        <tspan x="0" y="-0.725688" style="font-size: 8px; font-family: 'Helvetica Neue'; fill: #52514e">1</tspan>
+        <tspan x="4.447937" y="-0.725688" style="font-size: 8px; font-family: 'Helvetica Neue'; fill: #52514e">0</tspan>
+        <tspan x="8.972437" y="-4.029687" style="font-size: 5.6px; font-family: 'Helvetica Neue'; fill: #52514e">4</tspan>
+       </text>
+      </g>
+     </g>
+    </g>
+    <g id="text_12">
+     <text style="font-size: 8px; font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #52514e" x="23.132" y="115.236" transform="rotate(-90 23.132 115.236)">Neurons with that many</text>
+    </g>
+   </g>
+   <g id="patch_3">
+    <path d="M 46.656 173.448 
+L 46.656 57.024 
+" style="fill: none; stroke: #e1e0d9; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 46.656 173.448 
+L 270.963692 173.448 
+" style="fill: none; stroke: #e1e0d9; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
+   </g>
+   <g id="text_13">
+    <text style="font-size: 6.5px; font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'DejaVu Sans', sans-serif; fill: #52514e" transform="translate(114.332748 69.1831)">median</text>
+    <text style="font-size: 6.5px; font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'DejaVu Sans', sans-serif; fill: #52514e" transform="translate(121.437552 76.9376)">19</text>
+   </g>
+   <g id="text_14">
+    <text style="font-size: 6.5px; font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'DejaVu Sans', sans-serif; fill: #52514e" transform="translate(163.50353 69.1831)">95th</text>
+    <text style="font-size: 6.5px; font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'DejaVu Sans', sans-serif; fill: #52514e" transform="translate(164.52728 76.9376)">132</text>
+   </g>
+   <g id="text_15">
+    <text style="font-size: 6.5px; font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'DejaVu Sans', sans-serif; fill: #52514e" transform="translate(180.838262 58.611181)">99th</text>
+    <text style="font-size: 6.5px; font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'DejaVu Sans', sans-serif; fill: #52514e" transform="translate(181.862012 66.365681)">279</text>
+   </g>
+   <g id="text_16">
+    <text style="font-size: 6.5px; font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'DejaVu Sans', sans-serif; fill: #52514e" transform="translate(254.56699 69.1831)">max</text>
+    <text style="font-size: 6.5px; font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'DejaVu Sans', sans-serif; fill: #52514e" transform="translate(252.637302 76.9376)">6,660</text>
+   </g>
+   <g id="text_17">
+    <text style="font-size: 6.5px; font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'DejaVu Sans', sans-serif; fill: #898781" transform="translate(194.955195 131.318451)">4,989 neurons with none</text>
+    <text style="font-size: 6.5px; font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'DejaVu Sans', sans-serif; fill: #898781" transform="translate(231.441523 141.05149)">(not plotted)</text>
+   </g>
+   <g id="text_18">
+    <text style="font-size: 8.5px; font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'DejaVu Sans', sans-serif; text-anchor: start; fill: #0b0b0b" x="46.656" y="51.024" transform="rotate(-0 46.656 51.024)">In-degree (presynaptic partners)</text>
+   </g>
+  </g>
+  <g id="axes_2">
+   <g id="patch_5">
+    <path d="M 288.908308 173.448 
+L 513.216 173.448 
+L 513.216 57.024 
+L 288.908308 57.024 
+z
+" style="fill: #fcfcfb"/>
+   </g>
+   <g id="line2d_15">
+    <path d="M 372.59094 173.448 
+L 372.59094 57.024 
+" clip-path="url(#p060987125b)" style="fill: none; stroke: #e1e0d9; stroke-width: 0.8; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_16">
+    <path d="M 405.784639 173.448 
+L 405.784639 57.024 
+" clip-path="url(#p060987125b)" style="fill: none; stroke: #e1e0d9; stroke-width: 0.8; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_17">
+    <path d="M 422.854746 173.448 
+L 422.854746 57.024 
+" clip-path="url(#p060987125b)" style="fill: none; stroke: #e1e0d9; stroke-width: 0.8; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_18">
+    <path d="M 503.020196 173.448 
+L 503.020196 57.024 
+" clip-path="url(#p060987125b)" style="fill: none; stroke: #e1e0d9; stroke-width: 0.8; stroke-linecap: square"/>
+   </g>
+   <image xlink:href="data:image/png;base64,
+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" id="image670bcee332" transform="scale(1 -1) translate(0 -86.4)" x="297.36" y="-85.68" width="208.08" height="86.4"/>
+   <g id="matplotlib.axis_3">
+    <g id="xtick_6">
+     <g id="line2d_19">
+      <g>
+       <use xlink:href="#m4fae568b98" x="299.104112" y="173.448" style="fill: #52514e; stroke: #52514e; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_19">
+      <!-- $\mathdefault{10^{0}}$ -->
+      <g style="fill: #52514e" transform="translate(292.944112 186.564)">
+       <text>
+        <tspan x="0" y="-0.725688" style="font-size: 8px; font-family: 'Helvetica Neue'; fill: #52514e">1</tspan>
+        <tspan x="4.447937" y="-0.725688" style="font-size: 8px; font-family: 'Helvetica Neue'; fill: #52514e">0</tspan>
+        <tspan x="8.972437" y="-4.029687" style="font-size: 5.6px; font-family: 'Helvetica Neue'; fill: #52514e">0</tspan>
+       </text>
+      </g>
+     </g>
+    </g>
+    <g id="xtick_7">
+     <g id="line2d_20">
+      <g>
+       <use xlink:href="#m4fae568b98" x="351.672053" y="173.448" style="fill: #52514e; stroke: #52514e; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_20">
+      <!-- $\mathdefault{10^{1}}$ -->
+      <g style="fill: #52514e" transform="translate(345.512053 186.564)">
+       <text>
+        <tspan x="0" y="-0.725688" style="font-size: 8px; font-family: 'Helvetica Neue'; fill: #52514e">1</tspan>
+        <tspan x="4.447937" y="-0.725688" style="font-size: 8px; font-family: 'Helvetica Neue'; fill: #52514e">0</tspan>
+        <tspan x="8.972437" y="-4.029687" style="font-size: 5.6px; font-family: 'Helvetica Neue'; fill: #52514e">1</tspan>
+       </text>
+      </g>
+     </g>
+    </g>
+    <g id="xtick_8">
+     <g id="line2d_21">
+      <g>
+       <use xlink:href="#m4fae568b98" x="404.239994" y="173.448" style="fill: #52514e; stroke: #52514e; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_21">
+      <!-- $\mathdefault{10^{2}}$ -->
+      <g style="fill: #52514e" transform="translate(398.079994 186.564)">
+       <text>
+        <tspan x="0" y="-0.725688" style="font-size: 8px; font-family: 'Helvetica Neue'; fill: #52514e">1</tspan>
+        <tspan x="4.447937" y="-0.725688" style="font-size: 8px; font-family: 'Helvetica Neue'; fill: #52514e">0</tspan>
+        <tspan x="8.972437" y="-4.029687" style="font-size: 5.6px; font-family: 'Helvetica Neue'; fill: #52514e">2</tspan>
+       </text>
+      </g>
+     </g>
+    </g>
+    <g id="xtick_9">
+     <g id="line2d_22">
+      <g>
+       <use xlink:href="#m4fae568b98" x="456.807935" y="173.448" style="fill: #52514e; stroke: #52514e; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_22">
+      <!-- $\mathdefault{10^{3}}$ -->
+      <g style="fill: #52514e" transform="translate(450.647935 186.564)">
+       <text>
+        <tspan x="0" y="-0.725688" style="font-size: 8px; font-family: 'Helvetica Neue'; fill: #52514e">1</tspan>
+        <tspan x="4.447937" y="-0.725688" style="font-size: 8px; font-family: 'Helvetica Neue'; fill: #52514e">0</tspan>
+        <tspan x="8.972437" y="-4.029687" style="font-size: 5.6px; font-family: 'Helvetica Neue'; fill: #52514e">3</tspan>
+       </text>
+      </g>
+     </g>
+    </g>
+    <g id="xtick_10">
+     <g id="line2d_23">
+      <g>
+       <use xlink:href="#m4fae568b98" x="509.375876" y="173.448" style="fill: #52514e; stroke: #52514e; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_23">
+      <!-- $\mathdefault{10^{4}}$ -->
+      <g style="fill: #52514e" transform="translate(503.215876 186.564)">
+       <text>
+        <tspan x="0" y="-0.725688" style="font-size: 8px; font-family: 'Helvetica Neue'; fill: #52514e">1</tspan>
+        <tspan x="4.447937" y="-0.725688" style="font-size: 8px; font-family: 'Helvetica Neue'; fill: #52514e">0</tspan>
+        <tspan x="8.972437" y="-4.029687" style="font-size: 5.6px; font-family: 'Helvetica Neue'; fill: #52514e">4</tspan>
+       </text>
+      </g>
+     </g>
+    </g>
+    <g id="text_24">
+     <text style="font-size: 8px; font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #52514e" x="401.062154" y="199.884" transform="rotate(-0 401.062154 199.884)">Connections per neuron (edges ≥5 synapses)</text>
+    </g>
+   </g>
+   <g id="matplotlib.axis_4">
+    <g id="ytick_6">
+     <g id="line2d_24">
+      <g>
+       <use xlink:href="#m219c223f62" x="288.908308" y="169.900386" style="fill: #52514e; stroke: #52514e; stroke-width: 0.8"/>
+      </g>
+     </g>
+    </g>
+    <g id="ytick_7">
+     <g id="line2d_25">
+      <g>
+       <use xlink:href="#m219c223f62" x="288.908308" y="146.998067" style="fill: #52514e; stroke: #52514e; stroke-width: 0.8"/>
+      </g>
+     </g>
+    </g>
+    <g id="ytick_8">
+     <g id="line2d_26">
+      <g>
+       <use xlink:href="#m219c223f62" x="288.908308" y="124.095747" style="fill: #52514e; stroke: #52514e; stroke-width: 0.8"/>
+      </g>
+     </g>
+    </g>
+    <g id="ytick_9">
+     <g id="line2d_27">
+      <g>
+       <use xlink:href="#m219c223f62" x="288.908308" y="101.193428" style="fill: #52514e; stroke: #52514e; stroke-width: 0.8"/>
+      </g>
+     </g>
+    </g>
+    <g id="ytick_10">
+     <g id="line2d_28">
+      <g>
+       <use xlink:href="#m219c223f62" x="288.908308" y="78.291109" style="fill: #52514e; stroke: #52514e; stroke-width: 0.8"/>
+      </g>
+     </g>
+    </g>
+   </g>
+   <g id="patch_6">
+    <path d="M 288.908308 173.448 
+L 288.908308 57.024 
+" style="fill: none; stroke: #e1e0d9; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
+   </g>
+   <g id="patch_7">
+    <path d="M 288.908308 173.448 
+L 513.216 173.448 
+" style="fill: none; stroke: #e1e0d9; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
+   </g>
+   <g id="text_25">
+    <text style="font-size: 6.5px; font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'DejaVu Sans', sans-serif; fill: #52514e" transform="translate(361.872542 71.2065)">median</text>
+    <text style="font-size: 6.5px; font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'DejaVu Sans', sans-serif; fill: #52514e" transform="translate(368.977346 78.961)">25</text>
+   </g>
+   <g id="text_26">
+    <text style="font-size: 6.5px; font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'DejaVu Sans', sans-serif; fill: #52514e" transform="translate(399.340498 71.2065)">95th</text>
+    <text style="font-size: 6.5px; font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'DejaVu Sans', sans-serif; fill: #52514e" transform="translate(400.364248 78.961)">107</text>
+   </g>
+   <g id="text_27">
+    <text style="font-size: 6.5px; font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'DejaVu Sans', sans-serif; fill: #52514e" transform="translate(416.410605 60.634582)">99th</text>
+    <text style="font-size: 6.5px; font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'DejaVu Sans', sans-serif; fill: #52514e" transform="translate(417.434355 68.389082)">226</text>
+   </g>
+   <g id="text_28">
+    <text style="font-size: 6.5px; font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'DejaVu Sans', sans-serif; fill: #52514e" transform="translate(496.819297 71.2065)">max</text>
+    <text style="font-size: 6.5px; font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'DejaVu Sans', sans-serif; fill: #52514e" transform="translate(494.88961 78.961)">7,570</text>
+   </g>
+   <g id="text_29">
+    <text style="font-size: 6.5px; font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'DejaVu Sans', sans-serif; fill: #898781" transform="translate(437.207502 131.318451)">4,521 neurons with none</text>
+    <text style="font-size: 6.5px; font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'DejaVu Sans', sans-serif; fill: #898781" transform="translate(473.693831 141.05149)">(not plotted)</text>
+   </g>
+   <g id="text_30">
+    <text style="font-size: 8.5px; font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'DejaVu Sans', sans-serif; text-anchor: start; fill: #0b0b0b" x="288.908308" y="51.024" transform="rotate(-0 288.908308 51.024)">Out-degree (postsynaptic partners)</text>
+   </g>
+  </g>
+  <g id="text_31">
+   <text style="font-weight: 600; font-size: 9.5px; font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'DejaVu Sans', sans-serif; fill: #0b0b0b" transform="translate(46.656 15.832944)">Most neurons have a few dozen partners; about a hundred have a thousand or more</text>
+   <text style="font-weight: 600; font-size: 9.5px; font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'DejaVu Sans', sans-serif; fill: #0b0b0b" transform="translate(46.656 30.567503)">(median in-degree 19, out-degree 25; at least 1,000: 109 in, 81 out; maximum in 6,660, out 7,570)</text>
+  </g>
+  <g id="text_32">
+   <text style="font-size: 6.5px; font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'DejaVu Sans', sans-serif; fill: #52514e" transform="translate(46.656 224.022219)">Source: MaleCNS v1.0 (HHMI Janelia, Cambridge, MRC LMB, Google Research), CC BY 4.0, released 8 Jun 2026; edges ≥5 synapses; built 20 Sep 2026.</text>
+   <text style="font-size: 6.5px; font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'DejaVu Sans', sans-serif; fill: #52514e" transform="translate(46.656 233.837523)">166,700 neurons, 6,242,118 edges; quantiles from graph_meta.json.</text>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p03e5aedd04">
+   <rect x="46.656" y="57.024" width="224.307692" height="116.424"/>
+  </clipPath>
+  <clipPath id="p060987125b">
+   <rect x="288.908308" y="57.024" width="224.307692" height="116.424"/>
+  </clipPath>
+ </defs>
+</svg>

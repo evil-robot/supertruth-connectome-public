@@ -1,0 +1,36 @@
+// quirks_probe.ts -- re-score the same synthetic records with ONE input perturbed and count effects.
+// Evidence for the paper's limitations list. Run from the website repo with tsx.
+import { extractFields, scoreDTI, computeDTIResult } from "/Users/jas/Projects/st-homepage-refresh/src/lib/pipeline";
+const FROZEN_MS = Date.parse("2026-09-20T00:00:00.000Z"); Date.now = () => FROZEN_MS;
+const fs = require("fs");
+const rows = fs.readFileSync("/tmp/connectome-paper/teachers/dti_teacher.jsonl", "utf8").split("\n").filter(Boolean).slice(0, 4000).map((l: string) => JSON.parse(l));
+// We need the text; regenerate via the generator's deterministic builder is heavy to import, so re-score from a rebuilt text is not needed:
+// perturbations below act on the extracted FIELDS or CONTEXT (what scoreDTI reads), which the rows carry.
+function dimsOf(fields: any, ctx: any) { const d = scoreDTI(fields, ctx); const r = computeDTIResult(d); return { dims: Object.fromEntries(d.map(x => [x.name.toLowerCase(), x.score])), composite: r.composite, tier: r.tier }; }
+function reviveFields(r: any) { const f = { ...r.extracted }; f.mostRecentDate = f.mostRecentDate ? new Date(f.mostRecentDate) : null; f.oldestDate = f.oldestDate ? new Date(f.oldestDate) : null; return f; }
+function ctxOf(r: any) { const c: any = {}; if (r.element_scores.length) c.elementScores = r.element_scores; if (Object.keys(r.source_consent).length) c.sourceConsent = r.source_consent; if (Object.keys(r.consent_scope).length) c.consentScope = r.consent_scope; return c; }
+const out: any = {};
+// sanity: re-scoring the stored fields reproduces the stored labels
+let repro = 0; for (const r of rows) { const b = dimsOf(reviveFields(r), ctxOf(r)); if (b.composite === r.composite && b.tier === r.tier) repro++; }
+out.rescoring_reproduces_labels = `${repro}/${rows.length}`;
+// Q1 care gaps: careGapCount -> 0 and drop 'care gaps' data type
+{ let changed = 0, n = 0; for (const r of rows) { if (r.extracted.careGapCount === 0) continue; n++; const f = reviveFields(r); f.careGapCount = 0; f.dataTypes = f.dataTypes.filter((t: string) => t !== "care gaps"); const b = dimsOf(f, ctxOf(r)); if (JSON.stringify(b.dims) !== JSON.stringify(r.dimensions)) changed++; } out.q1_care_gaps_removed = { records_with_care_gaps: n, any_dimension_changed: changed }; }
+// Q2 recency sentinel: records with dates present and daysSince >= 999 score 35 (vs 28 for stale-but-<999)
+{ let n999 = 0, s35 = 0, stale = 0, s28 = 0; for (const r of rows) { if (!r.extracted.mostRecentDate) continue; const days = Math.floor((FROZEN_MS - Date.parse(r.extracted.mostRecentDate)) / 86400000); const ratio = days / r.extracted.primaryRecencyWindowDays; if (days >= 999) { n999++; if (r.dimensions.recency === 35) s35++; } else if (ratio > 2 && !(r.element_scores.some((e: any) => e.collectedAt && e.field))) { stale++; if (r.dimensions.recency === 28) s28++; } } out.q2_recency_sentinel = { dated_records_ge_999_days: n999, of_which_recency_35: s35, dated_stale_lt_999_no_element_dates: stale, of_which_recency_28: s28 }; }
+// Q3 RECAP validation ceiling
+{ let n = 0, mx = 0, flagged = 0; for (const r of rows) { if (!r.extracted.isRecapFormat) continue; n++; mx = Math.max(mx, r.dimensions.validation); if (r.flags.includes("validation_below_75")) flagged++; } out.q3_recap_validation = { recap_records: n, max_validation: mx, flagged_below_75: flagged }; }
+// Q4 Hospital Name read as patientName (RECAP with facilities and name knob absent)
+{ let n = 0, found = 0; for (const r of rows) { if (r.knobs.format === "recap" && !r.knobs.name_present && r.knobs.facility_count > 0) { n++; if (r.extracted.patientName) found++; } } out.q4_hospital_name_as_patient_name = { recap_no_name_with_facilities: n, patientName_found: found, example: rows.find((r: any) => r.knobs.format === "recap" && !r.knobs.name_present && r.knobs.facility_count > 0)?.extracted.patientName ?? null }; }
+// Q5 mg/dL lab values counted as medications
+{ let n = 0, over = 0; for (const r of rows) { if (r.knobs.n_meds === 0 && r.knobs.n_labs > 0 && r.knobs.panel === "chronic") { n++; if (r.extracted.medicationCount > 0) over++; } } out.q5_mgdl_labs_count_as_meds = { records_with_zero_meds_and_chronic_labs: n, medicationCount_gt_0: over }; }
+// Q6 consent date enters the recency/stability date pool
+{ let n = 0, moved = 0; for (const r of rows) { if (r.knobs.consent_kind !== "signed_dated" || !r.knobs.has_dates) continue; n++; const cd = FROZEN_MS - r.knobs.consent_age_days * 86400000; const mr = Date.parse(r.extracted.mostRecentDate); const od = Date.parse(r.extracted.oldestDate); if (Math.abs(mr - cd) < 86400000 * 1.5 && r.knobs.consent_age_days < r.knobs.days_ago_most_recent) moved++; else if (Math.abs(od - cd) < 86400000 * 1.5 && r.knobs.consent_age_days > r.knobs.days_ago_most_recent + r.knobs.span_months * 30.44) moved++; } out.q6_consent_date_in_date_pool = { dated_consent_with_clinical_dates: n, consent_date_became_most_recent_or_oldest: moved }; }
+// Q7 element dates can only lower recency: remove collectedAt from all elements and count direction of change
+{ let n = 0, up = 0, down = 0; for (const r of rows) { const dated = r.element_scores.filter((e: any) => e.collectedAt && e.field); if (!dated.length || !r.extracted.mostRecentDate) continue; n++; const c = ctxOf(r); c.elementScores = r.element_scores.map((e: any) => ({ ...e, collectedAt: undefined })); const b = dimsOf(reviveFields(r), c); if (b.dims.recency > r.dimensions.recency) up++; else if (b.dims.recency < r.dimensions.recency) down++; } out.q7_element_dates_only_lower_recency = { records_with_element_dates_and_text_dates: n, removing_element_dates_raised_recency: up, lowered_recency: down }; }
+// Q8 provenance trust penalty: typed weak sources drive provenance below the 45 floor
+{ let below45 = 0; for (const r of rows) if (r.dimensions.provenance < 45) below45++; out.q8_provenance_below_base_45 = { records: below45, min: Math.min(...rows.map((r: any) => r.dimensions.provenance)) }; }
+// Q9 breadth can hit 0 and concordance without elements has only 5 values
+{ out.q9_coarse_dims = { breadth_zero: rows.filter((r: any) => r.dimensions.breadth === 0).length, stability_values: [...new Set(rows.map((r: any) => r.dimensions.stability))].sort((a: any, b: any) => a - b), recency_values: [...new Set(rows.map((r: any) => r.dimensions.recency))].sort((a: any, b: any) => a - b), validation_values: [...new Set(rows.map((r: any) => r.dimensions.validation))].sort((a: any, b: any) => a - b), concordance_values: [...new Set(rows.map((r: any) => r.dimensions.concordance))].sort((a: any, b: any) => a - b) }; }
+// Q10 consent 'none' cap and treatment_only cap
+{ let none = 0, noneLe40 = 0, tOnly = 0, tLe72 = 0; for (const r of rows) { const lv = Object.values(r.source_consent); const sc = Object.values(r.consent_scope); if (lv.includes("none")) { none++; if (r.dimensions.consent <= 40) noneLe40++; } if (sc.includes("treatment_only") && !sc.includes("research_eligible") && !sc.includes("commercial_eligible") && !lv.includes("none")) { tOnly++; if (r.dimensions.consent <= 72) tLe72++; } } out.q10_consent_caps = { source_consent_has_none: none, consent_le_40: noneLe40, treatment_only_no_broad: tOnly, consent_le_72: tLe72 }; }
+console.log(JSON.stringify(out, null, 1));

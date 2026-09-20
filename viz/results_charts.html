@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Connectome study: arms compared on every metric</title>
+<meta name="description" content="Small-multiple comparison of the connectome model against its controls: one panel per metric, a dot with a 95% confidence interval per arm, the teacher engine as the reference line.">
+<style>
+  .viz-root { color-scheme: light; --surface:#fcfcfb; --ink:#0b0b0b; --ink-2:#52514e; --muted:#898781; --hairline:#e1e0d9; --axis:#c3c2b7;
+    --arm:#2a78d6; --teacher:#52514e;
+    font: 15px/1.45 system-ui, -apple-system, "Segoe UI", sans-serif; color: var(--ink); background: var(--surface); max-width: 1120px; margin: 0 auto; padding: 20px 20px 28px; }
+  body { margin: 0; background: var(--surface); }
+  h1 { font-size: 1.45rem; line-height: 1.25; margin: 0 0 6px; font-weight: 600; text-wrap: balance; max-width: 60ch; }
+  .lede { color: var(--ink-2); margin: 0 0 14px; max-width: 80ch; }
+  .status { display: inline-block; font-size: .85rem; padding: 3px 9px; border: 1px solid var(--axis); border-radius: 6px; color: var(--ink-2); margin-bottom: 14px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 18px 26px; }
+  .panel h2 { font-size: .95rem; font-weight: 600; margin: 0 0 2px; }
+  .panel .unit { font-size: .8rem; color: var(--muted); margin: 0 0 4px; }
+  .panel .plot { width: 100%; height: 230px; }
+  .panel.wide { grid-column: 1 / -1; }
+  .panel.wide .plot { height: 300px; }
+  .await { display: grid; place-items: center; height: 230px; border: 1px dashed var(--hairline); border-radius: 6px; color: var(--muted); font-size: .9rem; }
+  .legend { display: flex; gap: 22px; font-size: .9rem; color: var(--ink-2); margin: 0 0 16px; flex-wrap: wrap; }
+  .legend .dot::before { content:""; display:inline-block; width:10px; height:10px; border-radius:50%; background: var(--arm); margin-right:7px; vertical-align:-1px; }
+  .legend .line::before { content:""; display:inline-block; width:22px; height:0; border-top: 2px solid var(--teacher); margin-right:7px; vertical-align: 3px; }
+  details { font-size: .85rem; color: var(--ink-2); margin-top: 14px; }
+  table { border-collapse: collapse; font-variant-numeric: tabular-nums; font-size: .85rem; margin-top: 6px; }
+  td, th { text-align: left; padding: 3px 12px 3px 0; border-bottom: 1px solid var(--hairline); font-weight: 400; white-space: nowrap; }
+  th { color: var(--muted); font-size: .75rem; text-transform: uppercase; letter-spacing: .04em; }
+  td.n { text-align: right; }
+  footer { margin-top: 18px; padding-top: 10px; border-top: 1px solid var(--hairline); font-size: .8rem; color: var(--ink-2); }
+</style>
+<script src="vendor/plotly-basic.min.js" charset="utf-8"></script>
+</head>
+<body>
+<main class="viz-root" data-results="results.sample.json">
+  <h1 id="headline">How the fixed fly wiring compares with its controls, metric by metric</h1>
+  <p class="lede" id="lede">Each panel is one metric. Each dot is one arm's mean over seeds with its 95% confidence interval; the grey line is the teacher engine where it has a value of its own. Same scale within a panel; every arm on every panel.</p>
+  <div class="status" id="status">Loading results.</div>
+  <div class="legend"><span class="dot">Arm mean, whiskers = 95% CI over seeds</span><span class="line">Teacher engine (reference)</span></div>
+  <div class="grid" id="grid"></div>
+  <details><summary>The same numbers as a table</summary><div id="table"></div></details>
+  <footer id="footer"></footer>
+</main>
+<script>
+(async function () {
+  const root = document.querySelector('main');
+  const q = new URLSearchParams(location.search);
+  const src = q.get('results') || root.dataset.results;
+  const css = (v) => getComputedStyle(root).getPropertyValue(v).trim();
+  const fmt = (v, d = 3) => v === null || v === undefined ? '' : (Math.abs(v) >= 100 ? v.toLocaleString('en-US', { maximumFractionDigits: 0 }) : v.toLocaleString('en-US', { maximumFractionDigits: d }));
+  let R;
+  try { R = await (await fetch(src, { mode: 'cors', credentials: 'omit' })).json(); } catch (e) { document.getElementById('status').textContent = 'Could not load ' + src + ': ' + e.message; return; }
+
+  const has = (v) => typeof v === 'number' && Number.isFinite(v);
+  const status = document.getElementById('status');
+  status.textContent = R.status === 'awaiting run' ? `Awaiting run. Source file: ${src} (all values null).` :
+    `${R.status}; run ${R.generated || 'unknown'}; ${R.seeds.length} seeds; CI: ${R.ci}.`;
+
+  const font = { family: 'system-ui, -apple-system, "Segoe UI", sans-serif', size: 12, color: css('--ink-2') };
+  const grid = document.getElementById('grid');
+  const rows = [];
+
+  for (const m of R.metrics) {
+    const panel = document.createElement('section'); panel.className = 'panel' + (m.dimensions ? ' wide' : '');
+    panel.innerHTML = `<h2>${m.label}</h2><p class="unit">${m.unit}; ${m.better} is better</p>`;
+    const plot = document.createElement('div'); plot.className = 'plot'; panel.appendChild(plot); grid.appendChild(panel);
+
+    if (m.dimensions) {
+      // per-dimension: one small multiple per dimension would be 8 panels; instead one panel, dimensions on x, arms as dots per dimension
+      const traces = []; let any = false;
+      R.arms.forEach((a, ai) => {
+        const pd = (R.results[a.id] && R.results[a.id][m.id] && R.results[a.id][m.id].per_dimension) || [];
+        const y = m.dimensions.map((_, i) => pd[i] && has(pd[i].mean) ? pd[i].mean : null);
+        const lo = m.dimensions.map((_, i) => pd[i] && has(pd[i].ci_low) ? pd[i].mean - pd[i].ci_low : 0);
+        const hi = m.dimensions.map((_, i) => pd[i] && has(pd[i].ci_high) ? pd[i].ci_high - pd[i].mean : 0);
+        if (y.some(has)) any = true;
+        m.dimensions.forEach((d, i) => rows.push([a.label, m.label + ': ' + d, pd[i] ? pd[i].mean : null, pd[i] ? pd[i].ci_low : null, pd[i] ? pd[i].ci_high : null, null]));
+        traces.push({ type: 'scatter', mode: 'markers', name: a.label, x: m.dimensions.map((d) => d), y, marker: { size: 8, color: a.id === 'connectome' ? css('--arm') : css('--teacher'), line: { width: 2, color: css('--surface') } },
+          error_y: { type: 'data', array: hi, arrayminus: lo, thickness: 1.2, width: 0, color: a.id === 'connectome' ? css('--arm') : css('--teacher') }, hovertemplate: `${a.label}<br>%{x}: %{y}<extra></extra>` });
+      });
+      if (!any) { plot.replaceWith(Object.assign(document.createElement('div'), { className: 'await', textContent: 'awaiting run' })); continue; }
+      Plotly.newPlot(plot, traces, layout(m, true), { displayModeBar: false, responsive: true });
+      continue;
+    }
+
+    const x = [], lo = [], hi = [], labels = [], text = []; let any = false;
+    for (const a of R.arms) {
+      const r = (R.results[a.id] || {})[m.id] || {};
+      labels.push(a.label);
+      x.push(has(r.mean) ? r.mean : null);
+      lo.push(has(r.mean) && has(r.ci_low) ? r.mean - r.ci_low : 0);
+      hi.push(has(r.mean) && has(r.ci_high) ? r.ci_high - r.mean : 0);
+      text.push(has(r.mean) ? `${fmt(r.mean)} [${fmt(r.ci_low)}, ${fmt(r.ci_high)}]` : 'awaiting run');
+      if (has(r.mean)) any = true;
+      rows.push([a.label, m.label, r.mean, r.ci_low, r.ci_high, r.n]);
+    }
+    const teacher = R.teacher ? R.teacher[m.id] : null;
+    if (has(teacher)) rows.push(['Teacher engine', m.label, teacher, null, null, null]);
+    if (!any) { plot.replaceWith(Object.assign(document.createElement('div'), { className: 'await', textContent: 'awaiting run' })); continue; }
+    const traces = [{ type: 'scatter', mode: 'markers', x, y: labels, text, hovertemplate: '%{y}<br>%{text}<extra></extra>',
+      marker: { size: 9, color: css('--arm'), line: { width: 2, color: css('--surface') } },
+      error_x: { type: 'data', array: hi, arrayminus: lo, thickness: 1.5, width: 0, color: css('--arm') } }];
+    const lay = layout(m, false);
+    if (has(teacher)) lay.shapes = [{ type: 'line', x0: teacher, x1: teacher, y0: -0.5, y1: labels.length - 0.5, line: { color: css('--teacher'), width: 2 } }],
+      lay.annotations = [{ x: teacher, y: labels.length - 0.5, text: 'teacher ' + fmt(teacher), showarrow: false, yanchor: 'bottom', font: { size: 11, color: css('--ink-2') } }];
+    Plotly.newPlot(plot, traces, lay, { displayModeBar: false, responsive: true });
+  }
+
+  function layout(m, perDim) {
+    const dom = m.domain && m.domain.every(has) ? m.domain : (m.domain && has(m.domain[0]) ? { rangemode: 'tozero' } : {});
+    const axisBase = { showgrid: false, zeroline: false, linecolor: css('--axis'), ticks: 'outside', tickcolor: css('--axis'), ticklen: 3, tickfont: font };
+    const valueAxis = Object.assign({}, axisBase, Array.isArray(dom) ? { range: dom } : dom, { title: { text: m.unit, font } });
+    return perDim
+      ? { paper_bgcolor: css('--surface'), plot_bgcolor: css('--surface'), font, margin: { l: 56, r: 10, t: 10, b: 40 }, showlegend: true,
+          legend: { orientation: 'h', y: -0.25, font }, xaxis: Object.assign({}, axisBase, { type: 'category' }), yaxis: valueAxis }
+      : { paper_bgcolor: css('--surface'), plot_bgcolor: css('--surface'), font, margin: { l: 210, r: 10, t: 16, b: 40 }, showlegend: false,
+          xaxis: valueAxis, yaxis: Object.assign({}, axisBase, { autorange: 'reversed', ticks: '' }) };
+  }
+
+  document.getElementById('table').innerHTML = '<table><tr><th>Arm</th><th>Metric</th><th>Mean</th><th>CI low</th><th>CI high</th><th>n</th></tr>' +
+    rows.map((r) => `<tr><td>${r[0]}</td><td>${r[1]}</td><td class="n">${fmt(r[2]) || 'awaiting run'}</td><td class="n">${fmt(r[3])}</td><td class="n">${fmt(r[4])}</td><td class="n">${r[5] ?? ''}</td></tr>`).join('') + '</table>';
+
+  document.getElementById('footer').textContent = `Source: ${src}; status ${R.status}; run ${R.generated || 'none yet'}; manifest ${R.run_manifest || 'none yet'}; seeds ${R.seeds.length ? R.seeds.join(', ') : 'none yet'}. Arms and metrics as pre-registered in the protocol. Teacher engines: deployed DTI engine and VIGIL scorer at the SHAs in the run manifest. Rendered with Plotly 2.35.2 (basic build, vendored). Page built 20 Sep 2026.`;
+})();
+</script>
+</body>
+</html>
