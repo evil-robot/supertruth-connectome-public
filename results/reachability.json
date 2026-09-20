@@ -1,0 +1,148 @@
+{
+  "generated": "2026-09-20T22:13:14+00:00",
+  "script": "scripts/reachability.py",
+  "graph": {
+    "npz": "data/malecns/graph.npz",
+    "graph_meta_sha256": "d043ac552fd6eb22833eda020224a44497a7b3cd10de4fc79388db8b7be8b952",
+    "n_neurons": 166700,
+    "n_edges": 6242118,
+    "threshold": 5
+  },
+  "T": 8,
+  "hop_convention": "dist = fewest directed edges from any sensory neuron; within T means dist <= T (rule 13 wording); the synchronous update delivers sensory input to a neuron d hops away at step d + 1, so the readout after T steps carries input from neurons with dist <= T - 1 (flytrust/model.py)",
+  "sets": {
+    "n_sensory": 17937,
+    "n_readout": 2131,
+    "n_descending": 1316,
+    "n_motor": 815,
+    "sensory_and_readout_overlap": 0
+  },
+  "readout": {
+    "n": 2131,
+    "count_at_hop": {
+      "0": 0,
+      "1": 1164,
+      "2": 943,
+      "3": 16,
+      "4": 0,
+      "5": 0,
+      "6": 0,
+      "unreachable": 8
+    },
+    "count_within_hops": {
+      "0": 0,
+      "1": 1164,
+      "2": 2107,
+      "3": 2123,
+      "4": 2123,
+      "5": 2123,
+      "6": 2123,
+      "7": 2123,
+      "8": 2123
+    },
+    "share_within_hops": {
+      "0": 0.0,
+      "1": 0.5462224307836696,
+      "2": 0.9887376818395119,
+      "3": 0.996245893946504,
+      "4": 0.996245893946504,
+      "5": 0.996245893946504,
+      "6": 0.996245893946504,
+      "7": 0.996245893946504,
+      "8": 0.996245893946504
+    },
+    "share_within_T": 0.996245893946504,
+    "share_within_T_minus_1": 0.996245893946504,
+    "share_unreachable": 0.003754106053496011,
+    "median_hops_reachable": 1.0,
+    "mean_hops_reachable": 1.4592557701365991,
+    "max_hops_reachable": 3
+  },
+  "all_neurons": {
+    "n": 166700,
+    "count_at_hop": {
+      "0": 17937,
+      "1": 27955,
+      "2": 85685,
+      "3": 33891,
+      "4": 795,
+      "5": 21,
+      "6": 5,
+      "unreachable": 411
+    },
+    "count_within_hops": {
+      "0": 17937,
+      "1": 45892,
+      "2": 131577,
+      "3": 165468,
+      "4": 166263,
+      "5": 166284,
+      "6": 166289,
+      "7": 166289,
+      "8": 166289
+    },
+    "share_within_hops": {
+      "0": 0.10760047990401919,
+      "1": 0.27529694061187765,
+      "2": 0.7893041391721656,
+      "3": 0.9926094781043792,
+      "4": 0.997378524295141,
+      "5": 0.9975044991001799,
+      "6": 0.9975344931013798,
+      "7": 0.9975344931013798,
+      "8": 0.9975344931013798
+    },
+    "share_within_T": 0.9975344931013798,
+    "share_within_T_minus_1": 0.9975344931013798,
+    "share_unreachable": 0.002465506898620276,
+    "median_hops_reachable": 2.0,
+    "mean_hops_reachable": 1.8300248362790081,
+    "max_hops_reachable": 6
+  },
+  "non_sensory_neurons": {
+    "n": 148763,
+    "count_at_hop": {
+      "0": 0,
+      "1": 27955,
+      "2": 85685,
+      "3": 33891,
+      "4": 795,
+      "5": 21,
+      "6": 5,
+      "unreachable": 411
+    },
+    "count_within_hops": {
+      "0": 0,
+      "1": 27955,
+      "2": 113640,
+      "3": 147531,
+      "4": 148326,
+      "5": 148347,
+      "6": 148352,
+      "7": 148352,
+      "8": 148352
+    },
+    "share_within_hops": {
+      "0": 0.0,
+      "1": 0.18791635016771643,
+      "2": 0.763899625578941,
+      "3": 0.9917183708314568,
+      "4": 0.9970624416017424,
+      "5": 0.9972036057352971,
+      "6": 0.9972372162432863,
+      "7": 0.9972372162432863,
+      "8": 0.9972372162432863
+    },
+    "share_within_T": 0.9972372162432863,
+    "share_within_T_minus_1": 0.9972372162432863,
+    "share_unreachable": 0.002762783756713699,
+    "median_hops_reachable": 2.0,
+    "mean_hops_reachable": 2.0512901747195857,
+    "max_hops_reachable": 6
+  },
+  "rule_13": {
+    "floor": 0.9,
+    "share_within_T": 0.996245893946504,
+    "passes": true
+  }
+}

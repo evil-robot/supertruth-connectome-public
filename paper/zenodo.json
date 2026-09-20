@@ -11,7 +11,7 @@
         "orcid": "0009-0001-6157-8100"
       }
     ],
-    "description": "We took the wiring diagram of a fruit fly's central nervous system, held every connection and sign fixed, and trained only synaptic gains, an input projection and a readout. The task: reproduce two SuperTruth trust scores, the Data Trust Index™ (DTI) on health records and the Behavioral Integrity Index (BII) on agent event logs. Controls: a shuffled graph, a random graph, a parameter-matched network, a linear readout, and four frontier models (Claude Opus 5, GPT-5, Grok 4, Gemini 3 Flash) given the published DTI paper and the same records; Section 4 names the arms that have finished. On the first of five seeds, the degree-preserving shuffle matched the fly's wiring against the DTI engine (composite error 1.53 against 1.58 points); the random graph matched on tier agreement and every dimension. Every fixed graph beat the parameter-matched network by 1.9 to 2.2 points: provisional until five seeds, the substrate carries the computation. On 300 identical records Claude Opus 5 matched the engine's tier on 20% at a median 13.1 s and $0.106 per record; the fly, 84% at 16 ms and no marginal cost. To our knowledge, as of 20 September 2026, this is the first reported use of a whole central nervous system connectome to score the trustworthiness of health data. Every record was synthetic; no real person's data was used. Simply put, the future of intelligence is analog. (Version 1.0, provisional: first of five seeds; later versions add seeds and the remaining model arms.)",
+    "description": "We took the wiring diagram of a fruit fly's central nervous system, held every connection and sign fixed, and trained only synaptic gains, an input projection and a readout. The task: reproduce two SuperTruth trust scores, the Data Trust Index™ (DTI) on health records and the Behavioral Integrity Index (BII) on agent event logs. Controls: a shuffled graph, a random graph, a parameter-matched network, a linear readout, and four frontier models (Claude Opus 5, GPT-5, Grok 4, Gemini 3 Flash) given the published DTI paper and the same records; Section 4 names the arms that have finished. On the first of five seeds, the degree-preserving shuffle matched the fly's wiring against the DTI engine (composite error 1.53 against 1.58 points); the random graph matched on tier agreement and every dimension. Every fixed graph beat the parameter-matched network by 1.9 to 2.2 points: provisional until five seeds, the substrate carries the computation. On 300 identical records Claude Opus 5 matched the engine's tier on 20% at a median 13.1 s and $0.106 per record; the fly, 84% at 16 ms and no marginal cost. To our knowledge, as of 20 September 2026, this is the first reported use of a whole central nervous system connectome to score the trustworthiness of health data. Every record was synthetic; no real person's data was used. Simply put, the future of intelligence is analog. Version 1.0 is provisional: it reports seed 1 of the pre-registered five; later versions add the remaining seeds, the BII controls, and a post-hoc examples arm at the same DOI.",
     "access_right": "open",
     "license": "cc-by-4.0",
     "publication_date": "2026-09-20",
@@ -49,12 +49,19 @@
         "scheme": "url"
       },
       {
-        "identifier": "[REPO URL]",
+        "identifier": "https://github.com/evil-robot/supertruth-connectome-public",
         "relation": "isSupplementedBy",
         "resource_type": "software",
         "scheme": "url"
+      },
+      {
+        "identifier": "10.5281/zenodo.22865020",
+        "relation": "isSupplementedBy",
+        "resource_type": "dataset",
+        "scheme": "doi"
       }
     ],
-    "notes": "Every record in this study was generated synthetically; no real person's data was used. DTI and BII score data records and software-agent behavior; they do not diagnose, treat, or make recommendations about any patient."
+    "notes": "Every record in this study was generated synthetically; no real person's data was used. DTI and BII score data records and software-agent behavior; they do not diagnose, treat, or make recommendations about any patient.",
+    "doi": "10.5281/zenodo.22865215"
   }
 }

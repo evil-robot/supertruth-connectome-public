@@ -1,6 +1,6 @@
 {
   "status": "partial",
-  "generated": "2026-09-20T21:37:56+00:00",
+  "generated": "2026-09-20T22:07:56+00:00",
   "run_manifest": "runs/*/*/seed*/run.json; runs/eval_ledger.jsonl",
   "seeds": [
     1
@@ -47,6 +47,7 @@
       "label": "Claude Opus 5 given the DTI paper",
       "provider": "anthropic",
       "model": "claude-opus-5",
+      "arm": "g",
       "trainable_parameters": null
     },
     {
@@ -54,6 +55,7 @@
       "label": "GPT-5 given the DTI paper",
       "provider": "openai",
       "model": "gpt-5",
+      "arm": "g",
       "trainable_parameters": null
     },
     {
@@ -61,6 +63,7 @@
       "label": "Grok 4 given the DTI paper",
       "provider": "xai",
       "model": "grok-4",
+      "arm": "g",
       "trainable_parameters": null
     },
     {
@@ -68,6 +71,43 @@
       "label": "Gemini 3 Flash given the DTI paper",
       "provider": "gemini",
       "model": "gemini-3-flash-preview",
+      "arm": "g",
+      "trainable_parameters": null
+    },
+    {
+      "id": "anthropic_ex",
+      "label": "Claude Opus 5 given the DTI paper and scored examples",
+      "provider": "anthropic",
+      "model": "claude-opus-5",
+      "arm": "g2-examples",
+      "base": "anthropic",
+      "trainable_parameters": null
+    },
+    {
+      "id": "openai_ex",
+      "label": "GPT-5 given the DTI paper and scored examples",
+      "provider": "openai",
+      "model": "gpt-5",
+      "arm": "g2-examples",
+      "base": "openai",
+      "trainable_parameters": null
+    },
+    {
+      "id": "xai_ex",
+      "label": "Grok 4 given the DTI paper and scored examples",
+      "provider": "xai",
+      "model": "grok-4",
+      "arm": "g2-examples",
+      "base": "xai",
+      "trainable_parameters": null
+    },
+    {
+      "id": "gemini_ex",
+      "label": "Gemini 3 Flash given the DTI paper and scored examples",
+      "provider": "gemini",
+      "model": "gemini-3-flash-preview",
+      "arm": "g2-examples",
+      "base": "gemini",
       "trainable_parameters": null
     }
   ],
@@ -378,16 +418,22 @@
         }
       },
       "bii_mae": {
-        "mean": null,
+        "mean": 0.02577618509531021,
         "ci_low": null,
         "ci_high": null,
-        "n": null
+        "n": 1,
+        "per_seed": {
+          "1": 0.02577618509531021
+        }
       },
       "bii_gate_accuracy": {
-        "mean": null,
+        "mean": 0.9117500185966492,
         "ci_low": null,
         "ci_high": null,
-        "n": null
+        "n": 1,
+        "per_seed": {
+          "1": 0.9117500185966492
+        }
       },
       "latency_ms": {
         "mean": null,
@@ -399,7 +445,7 @@
         "mean": 0.0,
         "ci_low": null,
         "ci_high": null,
-        "n": 4001,
+        "n": 4000,
         "note": "marginal API spend; hardware power not measured (protocol 6)"
       },
       "determinism": {
@@ -1181,10 +1227,222 @@
         "composite_range_mean": 2.15,
         "method": "share of records with identical tier across k repeats"
       }
+    },
+    "anthropic_ex": {
+      "dti_mae": {
+        "mean": null,
+        "ci_low": null,
+        "ci_high": null,
+        "n": null
+      },
+      "dti_mae_direct": {
+        "mean": null,
+        "ci_low": null,
+        "ci_high": null,
+        "n": null
+      },
+      "dti_dim_mae": {
+        "per_dimension": []
+      },
+      "dti_tier_accuracy": {
+        "mean": null,
+        "ci_low": null,
+        "ci_high": null,
+        "n": null
+      },
+      "bii_mae": {
+        "mean": null,
+        "ci_low": null,
+        "ci_high": null,
+        "n": null
+      },
+      "bii_gate_accuracy": {
+        "mean": null,
+        "ci_low": null,
+        "ci_high": null,
+        "n": null
+      },
+      "latency_ms": {
+        "mean": null,
+        "ci_low": null,
+        "ci_high": null,
+        "n": null
+      },
+      "usd_per_record": {
+        "mean": null,
+        "ci_low": null,
+        "ci_high": null,
+        "n": null
+      },
+      "determinism": {
+        "mean": null,
+        "ci_low": null,
+        "ci_high": null,
+        "n": null
+      }
+    },
+    "openai_ex": {
+      "dti_mae": {
+        "mean": null,
+        "ci_low": null,
+        "ci_high": null,
+        "n": null
+      },
+      "dti_mae_direct": {
+        "mean": null,
+        "ci_low": null,
+        "ci_high": null,
+        "n": null
+      },
+      "dti_dim_mae": {
+        "per_dimension": []
+      },
+      "dti_tier_accuracy": {
+        "mean": null,
+        "ci_low": null,
+        "ci_high": null,
+        "n": null
+      },
+      "bii_mae": {
+        "mean": null,
+        "ci_low": null,
+        "ci_high": null,
+        "n": null
+      },
+      "bii_gate_accuracy": {
+        "mean": null,
+        "ci_low": null,
+        "ci_high": null,
+        "n": null
+      },
+      "latency_ms": {
+        "mean": null,
+        "ci_low": null,
+        "ci_high": null,
+        "n": null
+      },
+      "usd_per_record": {
+        "mean": null,
+        "ci_low": null,
+        "ci_high": null,
+        "n": null
+      },
+      "determinism": {
+        "mean": null,
+        "ci_low": null,
+        "ci_high": null,
+        "n": null
+      }
+    },
+    "xai_ex": {
+      "dti_mae": {
+        "mean": null,
+        "ci_low": null,
+        "ci_high": null,
+        "n": null
+      },
+      "dti_mae_direct": {
+        "mean": null,
+        "ci_low": null,
+        "ci_high": null,
+        "n": null
+      },
+      "dti_dim_mae": {
+        "per_dimension": []
+      },
+      "dti_tier_accuracy": {
+        "mean": null,
+        "ci_low": null,
+        "ci_high": null,
+        "n": null
+      },
+      "bii_mae": {
+        "mean": null,
+        "ci_low": null,
+        "ci_high": null,
+        "n": null
+      },
+      "bii_gate_accuracy": {
+        "mean": null,
+        "ci_low": null,
+        "ci_high": null,
+        "n": null
+      },
+      "latency_ms": {
+        "mean": null,
+        "ci_low": null,
+        "ci_high": null,
+        "n": null
+      },
+      "usd_per_record": {
+        "mean": null,
+        "ci_low": null,
+        "ci_high": null,
+        "n": null
+      },
+      "determinism": {
+        "mean": null,
+        "ci_low": null,
+        "ci_high": null,
+        "n": null
+      }
+    },
+    "gemini_ex": {
+      "dti_mae": {
+        "mean": null,
+        "ci_low": null,
+        "ci_high": null,
+        "n": null
+      },
+      "dti_mae_direct": {
+        "mean": null,
+        "ci_low": null,
+        "ci_high": null,
+        "n": null
+      },
+      "dti_dim_mae": {
+        "per_dimension": []
+      },
+      "dti_tier_accuracy": {
+        "mean": null,
+        "ci_low": null,
+        "ci_high": null,
+        "n": null
+      },
+      "bii_mae": {
+        "mean": null,
+        "ci_low": null,
+        "ci_high": null,
+        "n": null
+      },
+      "bii_gate_accuracy": {
+        "mean": null,
+        "ci_low": null,
+        "ci_high": null,
+        "n": null
+      },
+      "latency_ms": {
+        "mean": null,
+        "ci_low": null,
+        "ci_high": null,
+        "n": null
+      },
+      "usd_per_record": {
+        "mean": null,
+        "ci_low": null,
+        "ci_high": null,
+        "n": null
+      },
+      "determinism": {
+        "mean": null,
+        "ci_low": null,
+        "ci_high": null,
+        "n": null
+      }
     }
   },
-  "git_sha": "6ff6672249fa2a972aac123344050af78db32155",
-  "runs_completed": 7,
+  "git_sha": "a2054b4cfb43e9bf4ab6874784a08a4edfff18a4",
+  "runs_completed": 8,
   "runs_expected_full_protocol": 50,
   "decision_rules": [
     {
@@ -1426,14 +1684,14 @@
       "claim": "Wiring matters",
       "metric": "delta_b = MAE(shuffle) - MAE(connectome)",
       "threshold": ">= 0.015, CI lower > 0, connectome better on every seed",
-      "value": null,
+      "value": -0.002979513257741928,
       "ci": [
         null,
         null
       ],
-      "n_seeds": null,
-      "per_seed_connectome_better": null,
-      "verdict": "AWAITING RUN",
+      "n_seeds": 1,
+      "per_seed_connectome_better": false,
+      "verdict": "INSUFFICIENT SEEDS (1/5; point estimate misses the bar)",
       "p_raw_one_sided": null,
       "p_holm": null
     },
@@ -1936,6 +2194,58 @@
             "stability": [
               2.7715003490448
             ]
+          }
+        },
+        "bii": {
+          "seeds": [
+            1
+          ],
+          "trainable_params": 7811162,
+          "fitted_params": 7811162,
+          "epochs_run": [
+            16
+          ],
+          "best_epoch": [
+            12
+          ],
+          "wall_seconds_total": [
+            4912.328148083005
+          ],
+          "peak_device_gb": [
+            12.96
+          ],
+          "deterministic_test_forward": [
+            true
+          ],
+          "macro_f1": {
+            "mean": 0.9037735054107762,
+            "ci_low": null,
+            "ci_high": null,
+            "n": 1
+          },
+          "ece": {
+            "mean": 0.01015947461128235,
+            "ci_low": null,
+            "ci_high": null,
+            "n": 1
+          },
+          "brier": {
+            "mean": 0.12233679741621017,
+            "ci_low": null,
+            "ci_high": null,
+            "n": 1
+          },
+          "mean_confidence": {
+            "mean": 0.9201475977897644,
+            "ci_low": null,
+            "ci_high": null,
+            "n": 1
+          },
+          "test_loss": {
+            "mean": 0.20504834153689444,
+            "ci_low": null,
+            "ci_high": null,
+            "n": 1
           }
         }
       },
@@ -2491,7 +2801,9 @@
         "macro_f1_mean_of_runs": 0.0975609756097561,
         "n_records": 300,
         "k": 3,
-        "complete": true
+        "complete": true,
+        "arm": "g",
+        "post_hoc": false
       },
       "openai": {
         "determinism_exact_match_share": 0.0,
@@ -2594,7 +2906,9 @@
         "macro_f1_mean_of_runs": 0.2151994420035411,
         "n_records": 300,
         "k": 3,
-        "complete": true
+        "complete": true,
+        "arm": "g",
+        "post_hoc": false
       },
       "xai": {
         "determinism_exact_match_share": 0.0,
@@ -2695,7 +3009,9 @@
         "macro_f1_mean_of_runs": 0.20166122370927403,
         "n_records": 300,
         "k": 3,
-        "complete": true
+        "complete": true,
+        "arm": "g",
+        "post_hoc": false
       },
       "gemini": {
         "determinism_exact_match_share": 0.27,
@@ -2796,7 +3112,9 @@
         "macro_f1_mean_of_runs": 0.42890095051178345,
         "n_records": 300,
         "k": 3,
-        "complete": true
+        "complete": true,
+        "arm": "g",
+        "post_hoc": false
       }
     },
     "paired": {
@@ -3035,6 +3353,36 @@
         }
       },
       "bii": {
+        "shuffled": {
+          "bii_mae": {
+            "mean": -0.002979513257741928,
+            "ci_low": null,
+            "ci_high": null,
+            "n": 1,
+            "per_seed": {
+              "1": -0.002979513257741928
+            },
+            "seeds": [
+              1
+            ],
+            "connectome_better_seeds": 0,
+            "orientation": "positive = connectome better"
+          },
+          "gate_acc": {
+            "mean": 0.001999974250793457,
+            "ci_low": null,
+            "ci_high": null,
+            "n": 1,
+            "per_seed": {
+              "1": 0.001999974250793457
+            },
+            "seeds": [
+              1
+            ],
+            "connectome_better_seeds": 1,
+            "orientation": "positive = connectome better"
+          }
+        },
         "linear": {
           "bii_mae": {
             "mean": 0.04362699016928673,
@@ -3069,8 +3417,8 @@
     }
   },
   "footers": {
-    "dti": "Source: MaleCNS v1.0 (gs://flyem-male-cns/v1.0/...; sha256 in data/README.md; CC-BY 4.0; Berg et al. 2026)\n | Graph: N=166700 neurons (superclass non-null), E=6242118 edges (weight>=5), sign policy plus/plus, graph sha256 d043ac552fd6eb22833eda020224a44497a7b3cd10de4fc79388db8b7be8b952\n | Teacher: pipeline.ts commit e4785726e225e55b1dbdad201758f861f4588ebc, clock frozen at 2026-09-20T00:00:00Z\n | Data: teachers/dti_teacher.jsonl (gen_dti.ts) sha256 2aa26f37b1be93f7af42c4eebfb8f8b03a92839fc433d0e11a0df928936c4b22, run_seed 20260920, 13999/2000/4001 records, split sha256 cb23989c5192e687b635aada79e3a01ee1a645484a16d6b8eb0880cce35aa864, SYNTHETIC, zero PHI\n | Coverage: TEST only, 4001 records, 1 seeds {1} of protocol {1..5}; teacher dimensions excluded as degenerate: none (splits/qa_report.json)\n | Feature spec 3d57b09155d4dd58a2c75eba0fa7fe2e84882320f218fb2f4ad07f1a81e52909 | Evaluated 2026-09-20T21:37:56+00:00 | Language-model arms: claude-opus-5 (served as claude-opus-5), adaptive, effort high, max_tokens 16000, temperature not settable under adaptive thinking (not sent), k=3, N=300, prompt sha256 5e7f42957795, prices from claude-api bundled skill, Claude Code 2.1.278 retrieved 2026-09-20; gpt-5 (served as gpt-5-2025-08-07), reasoning_effort high, effort high, max_tokens 16000, temperature 0.0 requested, accepted False, k=3, N=300, prompt sha256 5e7f42957795, prices from developers.openai.com pricing and model pages retrieved 2026-09-20; grok-4 (served as grok-4.3), reasoning_effort high, effort high, max_tokens 16000, temperature 0.0 requested, accepted True, k=3, N=300, prompt sha256 5e7f42957795, prices from docs.x.ai models page and the API's language-models endpoint retrieved 2026-09-20; gemini-3-flash-preview (served as gemini-3-flash-preview), thinking_level high, effort high, max_tokens 16000, temperature 0.0 requested, accepted True, k=3, N=300, prompt sha256 5e7f42957795, prices from ai.google.dev pricing page retrieved 2026-09-20",
-    "bii": "Source: MaleCNS v1.0 (gs://flyem-male-cns/v1.0/...; sha256 in data/README.md; CC-BY 4.0; Berg et al. 2026)\n | Graph: N=166700 neurons (superclass non-null), E=6242118 edges (weight>=5), sign policy plus/plus, graph sha256 d043ac552fd6eb22833eda020224a44497a7b3cd10de4fc79388db8b7be8b952\n | Teacher: VIGIL commit 1cffd016b7bfa4e6ddc0dcd71a81f281fcd40031 + policy digest 5d8db364...8573859, clock frozen at 2026-09-20T00:00:00Z\n | Data: teachers/bii_teacher.jsonl (gen_bii.py) sha256 c43bb314823f19f35bd993d9860bd444663137bae48c4c836826e7cd7372f67b, run_seed 20260920, 14000/2000/4000 records, split sha256 c42920804158f4b9a3e5779cf1563f99f86818f53fe3083b0e2ca39acbf29127, SYNTHETIC, zero PHI\n | Coverage: TEST only, 4000 records, 1 seeds {1} of protocol {1..5}; teacher dimensions excluded as degenerate: none (splits/qa_report.json)\n | Feature spec 20a2cd2c28bcb3b5ed6728d64eaa9fce7c8ec681c57fb6018beaa855c2dea409 | Evaluated 2026-09-20T21:37:56+00:00 | Language-model arms: not run for this task"
+    "dti": "Source: MaleCNS v1.0 (gs://flyem-male-cns/v1.0/...; sha256 in data/README.md; CC-BY 4.0; Berg et al. 2026)\n | Graph: N=166700 neurons (superclass non-null), E=6242118 edges (weight>=5), sign policy plus/plus, graph sha256 d043ac552fd6eb22833eda020224a44497a7b3cd10de4fc79388db8b7be8b952\n | Teacher: pipeline.ts commit e4785726e225e55b1dbdad201758f861f4588ebc, clock frozen at 2026-09-20T00:00:00Z\n | Data: teachers/dti_teacher.jsonl (gen_dti.ts) sha256 2aa26f37b1be93f7af42c4eebfb8f8b03a92839fc433d0e11a0df928936c4b22, run_seed 20260920, 13999/2000/4001 records, split sha256 cb23989c5192e687b635aada79e3a01ee1a645484a16d6b8eb0880cce35aa864, SYNTHETIC, zero PHI\n | Coverage: TEST only, 4001 records, 1 seeds {1} of protocol {1..5}; teacher dimensions excluded as degenerate: none (splits/qa_report.json)\n | Feature spec 3d57b09155d4dd58a2c75eba0fa7fe2e84882320f218fb2f4ad07f1a81e52909 | Evaluated 2026-09-20T22:07:56+00:00 | Language-model arms: claude-opus-5 (served as claude-opus-5), adaptive, effort high, max_tokens 16000, temperature not settable under adaptive thinking (not sent), k=3, N=300, prompt sha256 5e7f42957795, prices from claude-api bundled skill, Claude Code 2.1.278 retrieved 2026-09-20; gpt-5 (served as gpt-5-2025-08-07), reasoning_effort high, effort high, max_tokens 16000, temperature 0.0 requested, accepted False, k=3, N=300, prompt sha256 5e7f42957795, prices from developers.openai.com pricing and model pages retrieved 2026-09-20; grok-4 (served as grok-4.3), reasoning_effort high, effort high, max_tokens 16000, temperature 0.0 requested, accepted True, k=3, N=300, prompt sha256 5e7f42957795, prices from docs.x.ai models page and the API's language-models endpoint retrieved 2026-09-20; gemini-3-flash-preview (served as gemini-3-flash-preview), thinking_level high, effort high, max_tokens 16000, temperature 0.0 requested, accepted True, k=3, N=300, prompt sha256 5e7f42957795, prices from ai.google.dev pricing page retrieved 2026-09-20",
+    "bii": "Source: MaleCNS v1.0 (gs://flyem-male-cns/v1.0/...; sha256 in data/README.md; CC-BY 4.0; Berg et al. 2026)\n | Graph: N=166700 neurons (superclass non-null), E=6242118 edges (weight>=5), sign policy plus/plus, graph sha256 d043ac552fd6eb22833eda020224a44497a7b3cd10de4fc79388db8b7be8b952\n | Teacher: VIGIL commit 1cffd016b7bfa4e6ddc0dcd71a81f281fcd40031 + policy digest 5d8db364...8573859, clock frozen at 2026-09-20T00:00:00Z\n | Data: teachers/bii_teacher.jsonl (gen_bii.py) sha256 c43bb314823f19f35bd993d9860bd444663137bae48c4c836826e7cd7372f67b, run_seed 20260920, 14000/2000/4000 records, split sha256 c42920804158f4b9a3e5779cf1563f99f86818f53fe3083b0e2ca39acbf29127, SYNTHETIC, zero PHI\n | Coverage: TEST only, 4000 records, 1 seeds {1} of protocol {1..5}; teacher dimensions excluded as degenerate: none (splits/qa_report.json)\n | Feature spec 20a2cd2c28bcb3b5ed6728d64eaa9fce7c8ec681c57fb6018beaa855c2dea409 | Evaluated 2026-09-20T22:07:56+00:00 | Language-model arms: not run for this task"
   },
   "health_report": "splits/qa_report.json"
 }

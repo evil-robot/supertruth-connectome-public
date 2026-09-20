@@ -36,3 +36,8 @@
 20. §4 results: a determinism row in Table 9 with two columns per arm: exact-output repeat share and tier-identical share, plus mean and max composite range. Values for the model arms from each run's summary.json (determinism.exact_match_share, tier_identical_share, composite_range_mean); Opus 5: 0.000, 0.953, 2.47, max 8. Add the sentence: "By the pre-registered gate (§3.7: fly 1.00 and model below 0.90 on tier identity) the comparative claim is not made for Claude Opus 5, whose tier held on 95.3% of records; the exact-output figures are reported as measured." Do not soften the gate and do not change the metric after the fact.
 21. §6 position, one sentence after "Its intelligence is in the shape of the thing": "A shape does not change its mind. The same record gets the same score, and that is the property an auditor needs before accuracy even enters."
 22. Non-Affiliation and §3.8 table: unchanged by this round.
+
+## Round 5 (v1.1 follow-ups, 21 Sep)
+23. splice_paper.py should also write the site's CONNECTOME_RESULTS / CONNECTOME_STUDY constants (results table, summary, FAQ 3–4 on the page read them by hand today) so the page cannot drift from results.json after seed 2.
+24. Viewer .bin assets served uncompressed by Next static serving (CDN or route handler); poster + click-to-load already removes them from the default load.
+25. Dataset hasPart JSON-LD: add distribution URL once the Zenodo record is published (files URL pattern https://zenodo.org/records/22865020/files/<name>?download=1).

@@ -181,10 +181,16 @@ Fixed Substrate for Scoring Health Data Trust</h1>
 <p>¹SuperTruth Inc., United States. ORCID 0009-0001-6157-8100</p>
 <p><strong>Correspondence:</strong> jas@supertruth.ai</p>
 <p><strong>Submitted:</strong> September 2026</p>
+<p><strong>DOI:</strong> https://doi.org/10.5281/zenodo.22865215 (this
+version). <strong>Dataset:</strong>
+https://doi.org/10.5281/zenodo.22865020.</p>
 <hr />
-<!-- STATUS: front matter, plain-language opener, attribution, intended use, COI, footer are SETTLED (legal flags 1–13 applied).
-     Sections 3–6 are filled from PROTOCOL.md and the run results. No number appears here that was not produced by a run.
-     BUILD: ./build.sh reproduces the DTI paper's look (pandoc standalone HTML → headless Chrome PDF). -->
+<!-- STATUS: v1.0 provisional (2026-09-20). Front matter, plain-language opener, attribution, intended use, COI, footer are SETTLED
+     (legal flags 1 to 13 applied). Sections 3 to 6 are filled from PROTOCOL.md and the run results; no number appears here that was
+     not produced by a run. Version 1.0 = seed 1 of five for every finished arm; cells with no run say "not in this version"
+     (render_results.py --version 1.0); the live spot check and the window-cap parity check are SKIPPED with reason; the dataset DOI
+     placeholder in Data and Code Availability is filled by splice_paper.py --dataset-doi once the Zenodo dataset record exists. Version 1.1 adds the BII controls, g2 and seeds 2 to 5.
+     BUILD: ./build.sh reproduces the DTI paper's look (pandoc standalone HTML -> headless Chrome PDF). -->
 <h2 id="abstract">Abstract</h2>
 <!-- TODO-RESULTS: fill from results.json; keep to 200 words; last sentence fixed below. -->
 <p>We took the wiring diagram of a fruit fly’s central nervous system,
@@ -284,7 +290,7 @@ reproduce the Data Trust Index on health records and the Behavioral
 Integrity Index on agent event logs. And we made it compete: the same
 wiring shuffled, a random graph of the same density, a conventional
 network with the same number of trainable parameters, a linear readout,
-and a frontier model handed our published paper and the same
+and four frontier models handed our published paper and the same
 records.</p>
 <p>If the fly’s wiring does the job, the judge has 6,242,118 connections
 and every one of them can be looked up. Trust stops being a vendor’s
@@ -322,8 +328,8 @@ moved none of them. We tuned three things only: how loud each connection
 is, where a health record enters, and where the score comes out. Then we
 asked the fly’s wiring to reproduce our trust scores and compared it
 with the same wiring shuffled, a random graph of the same density, a
-same-size conventional network, a linear readout, and a frontier model
-reading our published paper.</p>
+same-size conventional network, a linear readout, and four frontier
+models reading our published paper.</p>
 <p>A chatbot is a library with the doors welded shut. The fly brain is a
 circuit board with every trace labeled and the schematic published.</p>
 <p>We are not saying a fly is smarter than a chatbot. We are not
@@ -513,13 +519,15 @@ v0.1, 20 September 2026), the decision log that amends it
 the binding specification where the two differ. Nothing in it was
 written after seeing a result. Every number is measured from a file on
 disk on 20 September 2026 or is a threshold committed before the first
-run. Where a number can exist only after a run, a bracketed placeholder
-of the form [RUN: what is needed] holds its place and is filled from the
-run manifest. Code, the derived graph, the DTI feature specification,
-the protocol, the decision rules, every run manifest, the synthetic
-corpora with the DTI labels, and the DTI-trained parameters are
-released; the BII labels, the BII-trained parameters and the BII feature
-specification are held (see Data and Code Availability).</p>
+run. Where a number did not yet exist when this text was drafted, it was
+filled from the run files by scripts/splice_paper.py and carries a run
+marker in the source; the two checks that were not run before the frozen
+clock day ended are marked SKIPPED with the reason. Code, the derived
+graph, the DTI feature specification, the protocol, the decision rules,
+every run manifest, the synthetic corpora with the DTI labels, and the
+DTI-trained parameters are released; the BII labels, the BII-trained
+parameters and the BII feature specification are held (see Data and Code
+Availability).</p>
 <h3 id="graph-construction">3.1 Graph construction</h3>
 <p>Three release files were downloaded from the public MaleCNS v1.0
 bucket on 20 September 2026: body annotations at minimum confidence 0.5,
@@ -665,19 +673,19 @@ kept<!-- /RUN -->. Realized epochs and the checkpoint kept, per finished
 run:
 <!-- RUN: realized epochs and best checkpoint per finished run -->BII
 seed 1: fly wiring (a) stopped after 16 epochs, checkpoint from epoch
-12; DTI seed 1: fly wiring (a) stopped after 16 epochs, checkpoint from
-epoch 12, random graph (c) stopped after 13 epochs, checkpoint from
-epoch 9, matched network (d) stopped after 8 epochs, checkpoint from
-epoch 4, shuffle (b) stopped after 16 epochs, checkpoint from epoch 12
-(run.json counts epochs from 0; “stopped” means validation loss had not
-improved for 3 epochs, the pre-registered patience)<!-- /RUN -->. Data
-order within an epoch is drawn from a generator seeded with the run
-seed. Every setting is written to run.json. Arm e is fit in closed form
-and is not trained by gradient. Checkpoints are chosen on validation
-only; the test split is read once per (task, arm, seed) by
-scripts/run_arm.py from the best checkpoint, the read is recorded in
-runs/eval_ledger.jsonl, and a second read is refused without a written
-reason (rule 9).</p>
+12, shuffle (b) stopped after 16 epochs, checkpoint from epoch 12; DTI
+seed 1: fly wiring (a) stopped after 16 epochs, checkpoint from epoch
+12, random graph (c) stopped after 13 epochs, checkpoint from epoch 9,
+matched network (d) stopped after 8 epochs, checkpoint from epoch 4,
+shuffle (b) stopped after 16 epochs, checkpoint from epoch 12 (run.json
+counts epochs from 0; “stopped” means validation loss had not improved
+for 3 epochs, the pre-registered patience)<!-- /RUN -->. Data order
+within an epoch is drawn from a generator seeded with the run seed.
+Every setting is written to run.json. Arm e is fit in closed form and is
+not trained by gradient. Checkpoints are chosen on validation only; the
+test split is read once per (task, arm, seed) by scripts/run_arm.py from
+the best checkpoint, the read is recorded in runs/eval_ledger.jsonl, and
+a second read is refused without a written reason (rule 9).</p>
 <p><strong>Hardware and feasibility gate.</strong> One Apple M4 Max, 64
 GB, PyTorch MPS (torch 2.14.0). Before any training, one forward and
 backward pass at batch 64 and T = 8 on the threshold-5 graph must finish
@@ -689,8 +697,17 @@ record at batch 256, 20.8 GB of device memory after the training step,
 8,914,095 padded edge slots for 6,242,118 edges; the gate passes and the
 threshold-5 graph is kept. The share of readout neurons reachable from
 the sensory set within T hops must be at least 0.90 or T is raised
-before the freeze (rule 13): [RUN: readout reachable share within
-T].</p>
+before the freeze (rule 13):
+<!-- RUN: readout reachable share within T -->0.9962: 2,123 of the 2,131
+descending and motor neurons lie within 8 directed hops of a sensory
+neuron, and the other 8 have no path from the sensory set at any length;
+166,289 of all 166,700 neurons (0.9975) are within 8 hops and 411 are
+unreachable. The median shortest path from the sensory set to a readout
+neuron is 1 hop and the longest 3 (readout neurons by hop count: 1,164
+at 1, 943 at 2, 16 at 3). The synchronous update delivers input to a
+neuron d hops away at step d + 1, so the readout after T = 8 steps
+carries input from every neuron within 7 hops, the same 0.9962
+(scripts/reachability.py, results/reachability.json)<!-- /RUN -->.</p>
 <h3 id="synthetic-data">3.3 Synthetic data</h3>
 <p>No real person’s data and no production traffic are used. Every
 record is generated by code from a seed.</p>
@@ -779,8 +796,10 @@ scores 50 records through the public endpoint, from SuperTruth’s own
 sandbox tenant, on the UTC day of AS_OF; every dimension, the composite,
 and the tier must equal the local teacher exactly, and any mismatch
 halts the run as engine drift. Off that day the check is reported
-SKIPPED, never PASSED: [RUN: live spot check 50/50 or SKIPPED with
-reason].</p>
+SKIPPED, never PASSED: SKIPPED: the live API spot check was not run
+before the frozen clock day (2026-09-20 UTC) ended; the offline teacher
+at the pinned commit is the reference for every label; a live check on a
+later day would disagree on Recency by design (rule A8).</p>
 <p>The student’s input is the engine’s own extracted-field structure
 plus its scoring context, encoded as a fixed vector of 65 floats by the
 released specification teachers/dti_features_spec.md (sha256 in every
@@ -820,15 +839,17 @@ registries. The live service reads an agent’s newest 300 events and
 trims to 50 per type; generated windows never exceed 300 events, so the
 offline view equals the live view, and 50 replayed windows must
 reproduce the offline score to four decimals through the service’s own
-test harness (rule 16): [RUN: window-cap parity 50/50 or SKIPPED]. The
-student’s input is a fixed encoding of one window as 58 floats
-(teachers/bii_features_spec.md, sha256 in every footer): per-type event
-counts scaled to the 50-per-type cap, shares of events by their payload
-flags and codes (authorization, initiator, operation, asset,
-monitored-at-time), and summary and order statistics of the numeric
-payload fields. The specification states which of the scorer’s inputs
-the vector carries exactly and which only in summary; that division is
-part of the released specification, not of this paper.</p>
+test harness (rule 16): SKIPPED: the offline BII replica caps windows
+exactly as the live path does by construction (300-event fetch, 50 per
+type); a live parity check was not run. The student’s input is a fixed
+encoding of one window as 58 floats (teachers/bii_features_spec.md,
+sha256 in every footer): per-type event counts scaled to the 50-per-type
+cap, shares of events by their payload flags and codes (authorization,
+initiator, operation, asset, monitored-at-time), and summary and order
+statistics of the numeric payload fields. The specification states which
+of the scorer’s inputs the vector carries exactly and which only in
+summary; that division is part of the released specification, not of
+this paper.</p>
 <h3 id="arms">3.5 Arms</h3>
 <p>All arms train on identical splits and seeds. Arm a is the claim; b
 and c are the null substrates that separate wiring from degree sequence
@@ -1063,11 +1084,11 @@ split, a shuffle with one skipped swap, and a lowered floor among them),
 and a verifier that passes its own red fixtures stops the run. Floors in
 baseline.json ratchet upward only; a floor is lowered only by a hand
 edit in a reviewed commit that states the reason, and this section lists
-every such edit: [RUN: floor edits, expected none]. Twelve DTI records
-and eight BII windows frozen from a run whose live check passed are
-recomputed exactly on every cycle (rule 24). Two rules, the sign
-convention (28) and the population disclaimer (29), have presence checks
-only and are marked so.</p>
+every such edit: None: no floor in the pre-registered thresholds was
+edited. Twelve DTI records and eight BII windows frozen from a run whose
+live check passed are recomputed exactly on every cycle (rule 24). Two
+rules, the sign convention (28) and the population disclaimer (29), have
+presence checks only and are marked so.</p>
 <h3 id="metrics-and-pre-registered-decision-rules">3.7 Metrics and
 pre-registered decision rules</h3>
 <p><strong>Metrics.</strong> DTI: mean absolute error (MAE) per
@@ -1299,8 +1320,7 @@ beneath the table.</p>
 <td>reasoning_effort high</td>
 <td>0.0 / not accepted, the API rejects it for this model</td>
 <td>response_format json_schema strict=true</td>
-<td>awaiting run (protocol N = 300, k = 3); probe of 300 × 3 on this
-date recorded the served model</td>
+<td>300 × 3 (900 calls, 0 errors, 1 parse failure)</td>
 <td>developers.openai.com pricing and model pages; retrieved
 2026-09-20</td>
 </tr>
@@ -1364,8 +1384,8 @@ seed-to-seed standard deviation of the per-seed MAE difference. Pilot
 rule: two seeds of arms a and b run on the DTI corpus first; if s_seed
 exceeds 0.5 points, the seed count rises to ten for all arms before the
 freeze, and the minimum detectable margin at five seeds is about 1 +
-1.24 × s_seed: <!-- RUN: pilot s_seed and final seed count -->s_seed
-awaiting run (fly and shuffle both finished on DTI seeds {1}; two are
+1.24 × s_seed: <!-- RUN: pilot s_seed and final seed count -->s_seed not
+in this version (fly and shuffle both finished on DTI seeds {1}; two are
 needed); the seed count stays at five until it is measured<!-- /RUN -->.
 The released pilot script (scripts/run_pilot.sh) runs seeds {1, 2}
 across arms a to e on both tasks, sequentially, and skips any run that
@@ -1376,15 +1396,19 @@ clock.</p>
 <hr />
 <h2 id="results">4. Results</h2>
 <!-- RESULTS-SECTION4: spliced by scripts/splice_paper.py from paper/results/section4.md; edit scripts/render_results.py, not this block -->
-<p>Status <strong>partial</strong>: 7 of 50 local runs finished (seeds
+<p>Status <strong>partial</strong>: 8 of 50 local runs finished (seeds
 {1} of the protocol’s {1..5}); language-model arms complete: anthropic,
 openai, xai, gemini. Every number in this section is read from
 results/results.json, regenerated by scripts/render_results.py on
-2026-09-20T21:37:56+00:00 from git 6ff6672249fa; a cell that says
-“awaiting run” has no run behind it. Means are over finished seeds with
-a two-sided 95% t-interval when two or more seeds exist; a single seed
-is a point marked as such. Paired differences are control minus fly on
-the same test records, so a positive difference means the fly did
+2026-09-20T22:07:56+00:00 from git a2054b4cfb43; a cell that says “not
+in this version” has no run behind it. Version 1.0 reports seed 1 of the
+pre-registered five for every arm that has finished; the BII
+random-graph and matched-network controls, the post-hoc examples arm
+(g2), and seeds 2 to 5 are running at the time of writing and will
+appear in version 1.1 at the same DOI. Means are over finished seeds
+with a two-sided 95% t-interval when two or more seeds exist; a single
+seed is a point marked as such. Paired differences are control minus fly
+on the same test records, so a positive difference means the fly did
 better. The dataset health report (splits/qa_report.json) passed every
 line for both tasks before any score below was computed. All records are
 SYNTHETIC; zero PHI.</p>
@@ -1478,9 +1502,20 @@ with a full-split figure; the same-record rows are the fair comparison.
 Latency and cost are on different footings by design: an API call over
 the network against a forward pass on the laptop that trained the
 model.</p>
+<p><strong>The post-hoc examples arm.</strong> After the four arm g
+results above had been read, a second model arm was run at the author’s
+request (g2-examples; amendment 1, row 17): the same four models and
+served ids, the same 300 records, k = 3, the same schema, validator, and
+instruction block, plus a fixed block of engine-scored records from the
+training split in the cached system prefix, so that the models, like the
+local arms, saw the engine’s outputs and not only its published
+description. It is post-hoc: it changes no pre-registered rule and no
+headline, and it is reported beside arm g, not in place of it. Post-hoc
+arm g2-examples: running; results in version 1.1, beside arm g in Table
+9.</p>
 <p><strong>BII.</strong> Under the seed policy with empty registries the
 fly reached score error 0.0288 (×100: 2.88) and gate agreement 0.914;
-shuffle minus fly awaiting run, random graph minus fly awaiting run
+shuffle minus fly -0.0030, random graph minus fly not in this version
 (pre-registered margin 0.015).</p>
 <h3 id="main-results">4.2 Main results</h3>
 <p><strong>Table 8: Main results by arm, test split, mean over finished
@@ -1569,7 +1604,7 @@ sha256 2aa26f37b1be, run_seed 20260920, 13,999 / 2,000 / 4,001 records
 PHI. Coverage: TEST split only, 4,001 records, seed 1 of the protocol’s
 five; teacher dimensions excluded as degenerate: none
 (splits/qa_report.json). Feature spec 3d57b09155d4. Evaluated
-2026-09-20T21:37:56+00:00. Full digests in results/results.json
+2026-09-20T22:07:56+00:00. Full digests in results/results.json
 (footers) and teachers/MANIFEST.md.</em></small></p>
 <p><em>8a′. DTI agreement with the engine’s tier (5 classes). Units:
 share of test records; ECE on the same 0 to 1 scale.</em></p>
@@ -1630,7 +1665,7 @@ share of test records; ECE on the same 0 to 1 scale.</em></p>
 </tbody>
 </table>
 <p><small><em>Provenance: as Table 8a; snapshot 2026-09-20; seeds 1 of
-5; evaluated 2026-09-20T21:37:56+00:00.</em></small></p>
+5; evaluated 2026-09-20T22:07:56+00:00.</em></small></p>
 <p><em>8b. BII error under the seed policy with empty registries
 (teacher = VIGIL scorer). Units: score on the 0 to 1 scale; the ×100
 column is the same error in points.</em></p>
@@ -1655,21 +1690,21 @@ column is the same error in points.</em></p>
 </tr>
 <tr>
 <td>Degree-preserving shuffle (b)</td>
-<td style="text-align: right;">awaiting run</td>
-<td style="text-align: right;"></td>
-<td style="text-align: right;"></td>
-<td class="nw">0</td>
+<td class="nw" style="text-align: right;">0.0258</td>
+<td class="nw" style="text-align: right;">2.58</td>
+<td class="nw" style="text-align: right;">7,811,162</td>
+<td>1 of 5, single seed</td>
 </tr>
 <tr>
 <td>Random graph, matched density (c)</td>
-<td style="text-align: right;">awaiting run</td>
+<td style="text-align: right;">not in this version</td>
 <td style="text-align: right;"></td>
 <td style="text-align: right;"></td>
 <td class="nw">0</td>
 </tr>
 <tr>
 <td>Matched-parameter network (d)</td>
-<td style="text-align: right;">awaiting run</td>
+<td style="text-align: right;">not in this version</td>
 <td style="text-align: right;"></td>
 <td style="text-align: right;"></td>
 <td class="nw">0</td>
@@ -1691,7 +1726,7 @@ column is the same error in points.</em></p>
 </tbody>
 </table>
 <p><small><em>Provenance: as Table 8a; snapshot 2026-09-20; seeds 1 of
-5; evaluated 2026-09-20T21:37:56+00:00. BII differs: teacher VIGIL
+5; evaluated 2026-09-20T22:07:56+00:00. BII differs: teacher VIGIL
 commit 1cffd016b7bf + policy digest 5d8db364…8573859, clock frozen at
 2026-09-20T00:00:00Z; data teachers/bii_teacher.jsonl (gen_bii.py)
 sha256 c43bb314823f, run_seed 20260920, 14,000 / 2,000 / 4,000 records
@@ -1723,21 +1758,21 @@ share of test windows; ECE on the 0 to 1 scale.</em></p>
 </tr>
 <tr>
 <td>Degree-preserving shuffle (b)</td>
-<td style="text-align: right;">awaiting run</td>
-<td style="text-align: right;"></td>
-<td style="text-align: right;"></td>
-<td class="nw">0</td>
+<td class="nw" style="text-align: right;">0.912</td>
+<td class="nw" style="text-align: right;">0.904</td>
+<td class="nw" style="text-align: right;">0.010</td>
+<td>1 of 5, single seed</td>
 </tr>
 <tr>
 <td>Random graph, matched density (c)</td>
-<td style="text-align: right;">awaiting run</td>
+<td style="text-align: right;">not in this version</td>
 <td style="text-align: right;"></td>
 <td style="text-align: right;"></td>
 <td class="nw">0</td>
 </tr>
 <tr>
 <td>Matched-parameter network (d)</td>
-<td style="text-align: right;">awaiting run</td>
+<td style="text-align: right;">not in this version</td>
 <td style="text-align: right;"></td>
 <td style="text-align: right;"></td>
 <td class="nw">0</td>
@@ -1759,7 +1794,7 @@ share of test windows; ECE on the 0 to 1 scale.</em></p>
 </tbody>
 </table>
 <p><small><em>Provenance: as Table 8a; snapshot 2026-09-20; seeds 1 of
-5; evaluated 2026-09-20T21:37:56+00:00. BII rows as Table
+5; evaluated 2026-09-20T22:07:56+00:00. BII rows as Table
 8b.</em></small></p>
 <p><em>8c. DTI per-dimension MAE, one row per dimension, arms across.
 Units: points; no dimension is degenerate, every teacher SD is at least
@@ -1863,7 +1898,7 @@ repeats.</em></p>
 </tbody>
 </table>
 <p><small><em>Provenance: as Table 8a; snapshot 2026-09-20; seeds 1 of
-5; evaluated 2026-09-20T21:37:56+00:00.</em></small></p>
+5; evaluated 2026-09-20T22:07:56+00:00.</em></small></p>
 <p><strong>Reading the floor against the matched network.</strong> The
 linear floor’s mean per-dimension error (5.62 points) and composite
 error (3.07) are both lower than the matched network’s (5.83 and 3.73)
@@ -1911,15 +1946,15 @@ the right edge of each panel rather than plotted, so the comparison the
 figure exists to make (fixed graphs against trained controls) keeps its
 resolution.</p>
 <p><small><em>Provenance: as Table 8a; snapshot 2026-09-20; seeds 1 of
-5; evaluated 2026-09-20T21:37:56+00:00.</em></small></p>
+5; evaluated 2026-09-20T22:07:56+00:00.</em></small></p>
 <h3 id="the-language-model-arms">4.4 The language-model arms</h3>
 <p><strong>Table 9: Language-model arms beside the fly: agreement with
 the engine.</strong> One row per vendor; a vendor whose protocol run (N
-= 300, k = 3) has no summary yet says “awaiting run”. Units: composite
-error in points on the 0 to 100 scale, mean of repeats, direct head in
-parentheses; tier agreement as a share with its Wilson 95% interval over
-records. The fly row is the full test split; the same-record block below
-is the fair comparison.</p>
+= 300, k = 3) has no summary yet says “not in this version”. Units:
+composite error in points on the 0 to 100 scale, mean of repeats, direct
+head in parentheses; tier agreement as a share with its Wilson 95%
+interval over records. The fly row is the full test split; the
+same-record block below is the fair comparison.</p>
 <table class="narrow"><colgroup><col style="width:25%"></colgroup>
 
 <thead>
@@ -2074,8 +2109,11 @@ records; local arms show the mean over their finished seeds.</em></p>
 </tr>
 </tbody>
 </table>
+<p><em>Post-hoc arm g2-examples: running; results in version 1.1
+(amendment 1, row 17); it will show arm g and arm g2 side by side per
+vendor with the gain from the examples.</em></p>
 <p><small><em>Provenance: as Table 8a; snapshot 2026-09-20; seeds 1 of
-5; evaluated 2026-09-20T21:37:56+00:00. Language-model arms:
+5; evaluated 2026-09-20T22:07:56+00:00. Language-model arms:
 claude-opus-5 (served as claude-opus-5), adaptive, effort high,
 max_tokens 16000, temperature not settable under adaptive thinking (not
 sent), k=3, N=300, prompt sha256 5e7f42957795, prices from claude-api
@@ -2165,7 +2203,7 @@ electricity not measured.</p>
 </tbody>
 </table>
 <p><small><em>Provenance: as Table 8a; snapshot 2026-09-20; seeds 1 of
-5; evaluated 2026-09-20T21:37:56+00:00. Model-arm settings and prices as
+5; evaluated 2026-09-20T22:07:56+00:00. Model-arm settings and prices as
 the line under Table 9.</em></small></p>
 <h3 id="work-per-record">4.5 Work per record</h3>
 <p><strong>Table 10: Work per record.</strong> The fly’s count is exact
@@ -2262,7 +2300,7 @@ calls; $0.0274 per call over k = 3 calls per record; prices from
 20260920T185415Z/prices.json (ai.google.dev pricing page, retrieved
 2026-09-20); output tokens include thinking.</p>
 <p><small><em>Provenance: as Table 8a; snapshot 2026-09-20; seeds 1 of
-5; evaluated 2026-09-20T21:37:56+00:00.</em></small></p>
+5; evaluated 2026-09-20T22:07:56+00:00.</em></small></p>
 <h3 id="decision-rules">4.6 Decision rules</h3>
 <p><strong>Table 11: Pre-registered decision rules (Table 4 / PROTOCOL
 8.1), evaluated on the finished seeds.</strong> A verdict is PASS or
@@ -2445,17 +2483,17 @@ as the wiring rule; not pre-registered)</td>
 <td>Wiring matters</td>
 <td>δ_b = MAE(shuffle) − MAE(connectome)</td>
 <td>≥ 0.015, CI lower &gt; 0, connectome better on every seed</td>
-<td>awaiting run</td>
-<td><strong>AWAITING RUN</strong></td>
-<td></td>
+<td class="nw">-0.0030</td>
+<td><strong>INSUFFICIENT SEEDS (1/5)</strong></td>
+<td>misses</td>
 </tr>
 <tr>
 <td>BII</td>
 <td>Wiring matters</td>
 <td>δ_c = MAE(ER) − MAE(connectome)</td>
 <td>≥ 0.015, CI lower &gt; 0, connectome better on every seed</td>
-<td>awaiting run</td>
-<td><strong>AWAITING RUN</strong></td>
+<td>not in this version</td>
+<td><strong>NOT IN THIS VERSION</strong></td>
 <td></td>
 </tr>
 <tr>
@@ -2473,8 +2511,8 @@ as the wiring rule; not pre-registered)</td>
 <td>MAE(MLP) − MAE(connectome)</td>
 <td>≥ 0.015, CI lower &gt; 0, connectome better on every seed (same
 margin as the wiring rule; not pre-registered)</td>
-<td>awaiting run</td>
-<td><strong>AWAITING RUN</strong></td>
+<td>not in this version</td>
+<td><strong>NOT IN THIS VERSION</strong></td>
 <td></td>
 </tr>
 <tr>
@@ -2552,7 +2590,7 @@ margin as the wiring rule; not pre-registered)</td>
 </tbody>
 </table>
 <p><small><em>Provenance: as Table 8a; snapshot 2026-09-20; seeds 1 of
-5; evaluated 2026-09-20T21:37:56+00:00. BII rows as Table
+5; evaluated 2026-09-20T22:07:56+00:00. BII rows as Table
 8b.</em></small></p>
 <p><strong>Table 11′: Seed-level evidence for the paired claims in Table
 11.</strong> Seeds is the count finished; “fly better on every seed” is
@@ -2640,15 +2678,15 @@ over seeds for the primary family {a-b, a-c, a-e}, raw and Holm-adjusted
 <td>BII</td>
 <td>Wiring matters</td>
 <td>δ_b = MAE(shuffle) − MAE(connectome)</td>
-<td style="text-align: right;">awaiting run</td>
-<td></td>
-<td></td>
+<td class="nw" style="text-align: right;">1</td>
+<td>no</td>
+<td>n/a (one seed)</td>
 </tr>
 <tr>
 <td>BII</td>
 <td>Wiring matters</td>
 <td>δ_c = MAE(ER) − MAE(connectome)</td>
-<td style="text-align: right;">awaiting run</td>
+<td style="text-align: right;">not in this version</td>
 <td></td>
 <td></td>
 </tr>
@@ -2664,21 +2702,21 @@ over seeds for the primary family {a-b, a-c, a-e}, raw and Holm-adjusted
 <td>BII</td>
 <td>Fixed graph beats matched network (framing, descriptive)</td>
 <td>MAE(MLP) − MAE(connectome)</td>
-<td style="text-align: right;">awaiting run</td>
+<td style="text-align: right;">not in this version</td>
 <td></td>
 <td></td>
 </tr>
 </tbody>
 </table>
 <p><small><em>Provenance: as Table 8a; snapshot 2026-09-20; seeds 1 of
-5; evaluated 2026-09-20T21:37:56+00:00. BII rows as Table
+5; evaluated 2026-09-20T22:07:56+00:00. BII rows as Table
 8b.</em></small></p>
 <p>Wiring sentence (rule 22, one of three pre-written strings):
 <strong>not yet sayable (1 of 5 seeds)</strong>.</p>
 <p>Pilot rule (Section 3.9): seeds with both the fly and the shuffle
-finished on DTI = {1}; s_seed of the shuffle-minus-fly difference =
-awaiting run points; verdict: <strong>AWAITING RUN (needs connectome and
-shuffle on ≥ 2 seeds)</strong>.</p>
+finished on DTI = {1}; s_seed of the shuffle-minus-fly difference = not
+in this version points; verdict: <strong>NOT IN THIS VERSION (needs
+connectome and shuffle on ≥ 2 seeds)</strong>.</p>
 <hr />
 <h2 id="limitations">5. Limitations</h2>
 <p><strong>A digital simulation of an analog object.</strong> The fly’s
@@ -2870,22 +2908,23 @@ person’s data was used.</p>
 <hr />
 <h2 id="data-and-code-availability">Data and Code Availability</h2>
 <p>Code: MIT license,
-https://github.com/evil-robot/supertruth-connectome. Derived graph: CC
-BY 4.0, adapted from MaleCNS v1.0 (see Connectome Attribution). Dataset:
-Zenodo [DATASET DOI], CC BY 4.0, holding all 20,000 synthetic DTI
-records (the text the engine read, the scoring context, the generator
-knobs, the 65-float feature vector), the deployed DTI engine’s labels
-for all 20,000 records (eight dimensions, composite, tier, flags), the
-train/validation/test split, a flag on the 300 records scored by the
-language-model arms, the DTI-trained parameters of the five finished
-seed-1 arms, and all 20,000 synthetic BII event windows with their
-events, 58-float feature vectors and split. Also released: the DTI input
-feature specification, the pre-registered protocol, the decision rules,
-and every run manifest. Held: the BII scores and gates, the BII-trained
-parameters, and the BII feature specification, because the Behavioral
-Integrity Index scorer is unpublished work; its outputs and the models
-trained on them are held until it is. The DTI and BII teacher engines
-are not released. The published DTI framework is available at
+https://github.com/evil-robot/supertruth-connectome-public. Derived
+graph: CC BY 4.0, adapted from MaleCNS v1.0 (see Connectome
+Attribution). Dataset: Zenodo https://doi.org/10.5281/zenodo.22865020,
+CC BY 4.0, holding all 20,000 synthetic DTI records (the text the engine
+read, the scoring context, the generator knobs, the 65-float feature
+vector), the deployed DTI engine’s labels for all 20,000 records (eight
+dimensions, composite, tier, flags), the train/validation/test split, a
+flag on the 300 records scored by the language-model arms, the
+DTI-trained parameters of the five finished seed-1 arms, and all 20,000
+synthetic BII event windows with their events, 58-float feature vectors
+and split. Also released: the DTI input feature specification, the
+pre-registered protocol, the decision rules, and every run manifest.
+Held: the BII scores and gates, the BII-trained parameters, and the BII
+feature specification, because the Behavioral Integrity Index scorer is
+unpublished work; its outputs and the models trained on them are held
+until it is. The DTI and BII teacher engines are not released. The
+published DTI framework is available at
 https://doi.org/10.5281/zenodo.19601616. We have released everything
 from this study that does not expose SuperTruth’s intellectual property:
 the code, the derived graph, the synthetic records, the DTI feature
@@ -2915,9 +2954,9 @@ licensors have not endorsed SuperTruth or this work.</p>
 product of OpenAI, Grok 4 of xAI, and Gemini 3 Flash of Google LLC; each
 name is the property of its owner. Anthropic, OpenAI, xAI and Google are
 named so readers can see what was tested. Maxime Labonne and the New
-York Post are named so readers can follow the public story. None is
-affiliated with SuperTruth and none has reviewed or endorsed this
-work.</p>
+York Post are named in the paper so readers can follow the public story.
+None is affiliated with SuperTruth and none has reviewed or endorsed
+this work.</p>
 <hr />
 <h2 id="about-the-author">About the Author</h2>
 <p><strong>Jason Alan Snyder</strong> is Co-Founder of SuperTruth

@@ -45,6 +45,11 @@
   .viz-root.narrow #stage.stacked { aspect-ratio: 4 / 5; }
   .viz-root.narrow #orient { max-width: 55%; }
   .viz-root.narrow #overlay .cell { font-size: 0.6rem; }
+  /* under 480 px of stage width the scale bar and the orientation caption leave the canvas for a row beneath it */
+  .understage { display: none; }
+  .viz-root.tight .understage { display: flex; justify-content: space-between; align-items: flex-end; gap: 12px; padding: 8px 0 0; }
+  .viz-root.tight #scalebar, .viz-root.tight #orient { position: static; max-width: none; }
+  .viz-root.tight #orient { max-width: 62%; }
   #overlay .strip { position: absolute; left: 0; right: 0; border-top: 1px solid var(--hairline); }
   #overlay .cell { position: absolute; text-align: center; font-size: 0.72rem; color: var(--ink-2); padding-top: 2px; line-height: 1.25; }
   #overlay .cell.current { outline: 1px solid var(--ink); outline-offset: -1px; }
@@ -84,7 +89,7 @@
     <fieldset class="seg" id="views">
       <legend>View</legend>
       <input type="radio" name="view" id="v-roles" value="roles" checked><label for="v-roles">Roles in the model</label>
-      <input type="radio" name="view" id="v-activity" value="activity"><label for="v-activity">A record enters (placeholder run)</label>
+      <input type="radio" name="view" id="v-activity" value="activity"><label for="v-activity">A record enters (unit gains, not the trained run)</label>
       <input type="radio" name="view" id="v-nt" value="nt"><label for="v-nt">Excitatory vs inhibitory</label>
     </fieldset>
     <fieldset id="cams">
@@ -111,6 +116,7 @@
       <div id="scalebar" class="hidden"><i id="scalebarLine"></i><span id="scalebarText"></span></div>
       <div id="orient" class="hidden"></div>
     </div>
+    <div class="understage" id="understage"></div>
     <figcaption id="caption"></figcaption>
     <p class="note alert hidden" id="perfnote"></p>
     <div class="legend" id="legend" aria-live="polite"></div>
@@ -342,6 +348,8 @@ function setCam(name) {
 const NARROW = 560;                                   // stage width below which the header compacts and the E/I halves stack
 const narrow = () => stage.clientWidth < NARROW;
 const stacked = () => view === 'nt' && narrow();
+const TIGHT = 480;                                    // stage width below which the scale bar and orientation caption move under the canvas
+const tight = () => stage.clientWidth < TIGHT;
 layoutClasses();                                      // compact the header before the data arrives
 function mainViewport() {
   const w = stage.clientWidth, h = stage.clientHeight;
@@ -357,14 +365,26 @@ function scalebar() {
   const um = choices.reduce((a, b) => (b * pxPerUm <= maxPx ? b : a), 10);
   $('scalebarLine').style.width = (um * pxPerUm).toFixed(0) + 'px';
   $('scalebarText').textContent = um + ' µm';
-  $('scalebar').style.bottom = (stage.clientHeight - vp.y - vp.h + 12 + (view === 'activity' ? vp.y : 0)) + 'px';
-  $('scalebar').style.bottom = (vp.y + 12) + 'px';
-  $('orient').style.bottom = (vp.y + 12) + 'px';
+  const bottom = tight() ? '' : (vp.y + 12) + 'px';
+  $('scalebar').style.bottom = bottom;
+  $('orient').style.bottom = bottom;
 }
 function layoutClasses() {
   root.classList.toggle('narrow', narrow());
+  root.classList.toggle('tight', tight());
   stage.classList.toggle('stacked', stacked());   // changes the stage height, so it runs before anything measures it
+  const home = tight() ? $('understage') : stage;
+  if ($('scalebar').parentElement !== home) { home.appendChild($('scalebar')); home.appendChild($('orient')); }
 }
+// Adaptive frame height: the parent page (viewer-embed.tsx) sets the iframe's height from this message, so nothing is
+// clipped on a phone and no grey remains under the footer on a wide screen. Only a number leaves the frame.
+function postHeight() {
+  if (window.parent === window) return;
+  const h = Math.ceil(root.getBoundingClientRect().height);
+  window.parent.postMessage({ type: 'connectome-viewer-height', height: h }, '*');
+}
+new ResizeObserver(postHeight).observe(root);
+postHeight();
 function resize() {
   layoutClasses();
   const w = stage.clientWidth, h = stage.clientHeight;

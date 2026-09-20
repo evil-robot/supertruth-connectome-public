@@ -1,6 +1,6 @@
 # Synthetic health records and agent event windows for 'Intelligence Is Structure, Not Scale' (connectome substrate study)
 
-Version 1.0, packaged 2026-09-20 from https://github.com/evil-robot/supertruth-connectome at commit `9f6a3dc49366123b877c199d46439aba2b28d1c4`. License: CC BY 4.0.
+Version 1.0, packaged 2026-09-20 from https://github.com/evil-robot/supertruth-connectome at commit `a51ea4490370df7328ee06ea6239fc465a1697e2`. License: CC BY 4.0.
 
 We have released everything from this study that does not expose SuperTruth's intellectual property. Released here:
 all 20,000 synthetic Data Trust Index (DTI) records with the text the engine read, the scoring context, the
@@ -297,7 +297,7 @@ predicted dimensions with the engine's weights and rounding (`scripts/run_arm.py
 
 ## Citation
 
-Dataset: Snyder, J. A. (2026). Synthetic health records and agent event windows for 'Intelligence Is Structure, Not Scale' (connectome substrate study) [Data set]. Zenodo. [DATASET DOI]
+Dataset: Snyder, J. A. (2026). Synthetic health records and agent event windows for 'Intelligence Is Structure, Not Scale' (connectome substrate study) [Data set]. Zenodo. https://doi.org/10.5281/zenodo.22865020
 
 Paper: Snyder, J. A. (2026). Intelligence Is Structure, Not Scale: A Whole Central Nervous System Connectome as a Fixed Substrate for Scoring Health Data Trust. Zenodo. [PAPER DOI]
 

@@ -16,6 +16,12 @@ with tonight's and changes nothing else.
       wrapped as <!-- RUN: key -->value<!-- /RUN --> so it is recomputed on every run; a key with no evidence stays [RUN: key].
   (e) a report of every substitution, the literal numbers in Section 3 checked against their files, and the [RUN: ...]
       placeholders that remain.
+  (f) --dataset-doi <doi>: the [DATASET DOI] placeholder <- the Zenodo dataset DOI, in paper/paper.md, README.md, dataset/README.md,
+      dataset/zenodo-dataset.json (metadata.doi) and paper/zenodo.json (related_identifiers, isSupplementedBy) in one go; without
+      the flag the placeholder stays.
+
+Version mode: when results/render_manifest.json carries a "version" (render_results.py --version), every fill that would say
+"awaiting run" says "not in this version" instead, so the paper and Section 4 use one phrase.
 
 Nothing here is estimated: a value with no file behind it is not written.
 """
@@ -34,7 +40,13 @@ SEC4 = ROOT / "paper" / "results" / "section4.md"
 ABSTRACT = ROOT / "paper" / "results" / "abstract_sentences.md"
 PAGE_SENTENCES = ROOT / "paper" / "results" / "page_sentences.json"
 RESULTS = ROOT / "results" / "results.json"
+REACH = ROOT / "results" / "reachability.json"
+MANIFEST = ROOT / "results" / "render_manifest.json"
 LLM_RUNS = ROOT / "llm_arm" / "llm_runs"
+DOI_FILES = [ROOT / "README.md", ROOT / "dataset" / "README.md"]          # prose files with the [DATASET DOI] placeholder besides paper.md
+DOI_JSON_DATASET = ROOT / "dataset" / "zenodo-dataset.json"
+DOI_JSON_PAPER = ROOT / "paper" / "zenodo.json"
+DOI_PLACEHOLDER = "[DATASET DOI]"
 SITE_DEFAULT = Path("/Users/jas/Projects/st-connectome")
 PAGE_TSX = Path("src/app/research/connectome/page.tsx")
 PAGE_DATA = Path("src/data/connectome-paper.ts")
@@ -275,6 +287,24 @@ def fill_degenerate(results: dict | None) -> str | None:
     return (" and ".join(found) + " (results/results.json dataset health lines; splits/qa_report.json)") if found else None
 
 
+def fill_reachability() -> str | None:
+    """rule 13: readout neurons reachable from the sensory set within T hops (results/reachability.json, scripts/reachability.py)"""
+    r = load(REACH)
+    if not r:
+        return None
+    ro, al, T = r["readout"], r["all_neurons"], r["T"]
+    k = ro["count_within_hops"][str(T)]
+    unreach_ro = ro["count_at_hop"]["unreachable"]
+    by_hop = ", ".join(f"{c:,} at {h}" for h, c in ro["count_at_hop"].items() if h != "unreachable" and c > 0)
+    med = ro["median_hops_reachable"]
+    return (f"{ro['share_within_T']:.4f}: {k:,} of the {ro['n']:,} descending and motor neurons lie within {T} directed hops of a sensory neuron, "
+            f"and the other {unreach_ro} have no path from the sensory set at any length; {al['count_within_hops'][str(T)]:,} of all {al['n']:,} neurons "
+            f"({al['share_within_T']:.4f}) are within {T} hops and {al['count_at_hop']['unreachable']} are unreachable. The median shortest path from the sensory set to a "
+            f"readout neuron is {med:.0f} hop{'' if med == 1 else 's'} and the longest {ro['max_hops_reachable']} (readout neurons by hop count: {by_hop}). "
+            f"The synchronous update delivers input to a neuron d hops away at step d + 1, so the readout after T = {T} steps carries input from every neuron "
+            f"within {T - 1} hops, the same {ro['share_within_T_minus_1']:.4f} (scripts/reachability.py, results/reachability.json)")
+
+
 def fill_pilot(results: dict | None) -> str | None:
     if not results:
         return None
@@ -303,7 +333,7 @@ def model_runs(results: dict | None) -> dict[str, dict]:
         if not prov:
             continue
         n, k = s["input"]["n_records"], s["input"]["k"]
-        complete = s["input"]["n_requested"] >= 300 and s["counts"]["calls_parsed_ok"] == n * k
+        complete = s["input"]["n_requested"] >= 300 and s["counts"]["calls_total"] == n * k   # every call made; parse failures are printed in the cell
         cur = chosen.get(prov)
         if cur is None or complete or not cur["complete"]:
             chosen[prov] = {"run": d.name, "summary": s, "how": how.read_text(), "prices": prices, "complete": complete, "n": n, "k": k}
@@ -350,7 +380,8 @@ def fill_how_table(results: dict | None) -> str | None:
         when = f"{rid[0:4]}-{rid[4:6]}-{rid[6:8]} {rid[9:11]}:{rid[11:13]}"
         cnt = c["summary"]["counts"]
         if c["complete"]:
-            nk = f"{c['n']} × {c['k']} ({cnt['calls_total']} calls, {cnt['errors']} errors)"
+            pf = cnt.get("parse_failures", 0)
+            nk = f"{c['n']} × {c['k']} ({cnt['calls_total']} calls, {cnt['errors']} errors" + (f", {pf} parse failure{'s' if pf != 1 else ''}" if pf else "") + ")"
         else:
             nk = f"awaiting run (protocol N = 300, k = 3); probe of {c['n']} × {c['k']} on this date recorded the served model"
         pr = c["prices"] or {}
@@ -368,21 +399,28 @@ def fill_how_table(results: dict | None) -> str | None:
     return "\n".join(rows) + "\n\n" + tail + " Run ids are the llm_arm/llm_runs/ directory names; each holds HOW_WE_RAN_THIS.md, prices.json, system_prompt.txt, calls.jsonl, and summary.json."
 
 
+def paper_version() -> str | None:
+    m = load(MANIFEST)
+    return (m or {}).get("version")
+
+
 def fills(results: dict | None, runs: list[dict]) -> dict[str, str | None]:
     long_count, short_count = fill_count_params(runs)
-    return {
+    # the live spot check, the window-cap parity check and the floor-edit list are resolved in the Methods text itself
+    # (SKIPPED with reason / None), not filled here
+    out = {
         "count_params() per arm and task": long_count,
         "count_params()": short_count,
         "B from runs/batch_choice.json": fill_batch(),
         "realized epochs and best checkpoint per finished run": fill_epochs(runs),
-        "readout reachable share within T": None,                    # no measurement file exists (DECISION_RULES rule 13, floor still 0.0)
-        "live spot check 50/50 or SKIPPED with reason": None,        # no spot-check record on disk
-        "window-cap parity 50/50 or SKIPPED": None,                  # no parity record on disk
+        "readout reachable share within T": fill_reachability(),
         "degenerate dimension list per corpus, or none": fill_degenerate(results),
-        "floor edits, expected none": None,                          # no baseline.json in the repo yet, so "none" cannot be shown
         "how we ran this table, one row per vendor": fill_how_table(results),
         "pilot s_seed and final seed count": fill_pilot(results),
     }
+    if paper_version():
+        out = {k: (v.replace("awaiting run", "not in this version").replace("AWAITING RUN", "NOT IN THIS VERSION") if v else v) for k, v in out.items()}
+    return out
 
 
 def apply_fills(paper: str, values: dict[str, str | None]) -> str:
@@ -410,6 +448,43 @@ def apply_fills(paper: str, values: dict[str, str | None]) -> str:
         say(f"(d) [RUN: {key}] -> {val.splitlines()[0][:110]}{'...' if len(val) > 110 or chr(10) in val else ''}")
         return wrap(key, val)
     paper = re.sub(r"\[RUN: ([^\]]+)\]", fill, paper)
+    return paper
+
+
+# ------------------------------------------------------------------ (f) dataset DOI
+def normalise_doi(doi: str) -> str:
+    doi = doi.strip()
+    for prefix in ("https://doi.org/", "http://doi.org/", "doi:"):
+        if doi.lower().startswith(prefix):
+            doi = doi[len(prefix):]
+    if not re.match(r"^10\.\d{4,9}/\S+$", doi):
+        sys.exit(f"--dataset-doi {doi!r} is not a DOI (expected 10.NNNN/...)")
+    return doi
+
+
+def fill_dataset_doi(paper: str, doi: str) -> str:
+    """[DATASET DOI] -> https://doi.org/<doi> in the prose files; the bare DOI into the two Zenodo metadata files"""
+    url = f"https://doi.org/{doi}"
+    n = paper.count(DOI_PLACEHOLDER)
+    paper = paper.replace(DOI_PLACEHOLDER, url)
+    say(f"(f) paper.md: {n} {DOI_PLACEHOLDER} -> {url}")
+    for p in DOI_FILES:
+        text = p.read_text()
+        n = text.count(DOI_PLACEHOLDER) + text.count("(Zenodo dataset, DOI in the paper)")
+        new = text.replace(DOI_PLACEHOLDER, url).replace("(Zenodo dataset, DOI in the paper)", f"(Zenodo dataset, {url})")
+        if new != text:
+            p.write_text(new)
+        say(f"(f) {p.relative_to(ROOT)}: {n} placeholder{'s' if n != 1 else ''} -> {url}")
+    ds = json.loads(DOI_JSON_DATASET.read_text())
+    ds["metadata"]["doi"] = doi
+    DOI_JSON_DATASET.write_text(json.dumps(ds, indent=2, ensure_ascii=False) + "\n")
+    say(f"(f) {DOI_JSON_DATASET.relative_to(ROOT)}: metadata.doi = {doi}")
+    pz = json.loads(DOI_JSON_PAPER.read_text())
+    rel = pz["metadata"].setdefault("related_identifiers", [])
+    entry = {"identifier": doi, "relation": "isSupplementedBy", "resource_type": "dataset", "scheme": "doi"}
+    rel[:] = [r for r in rel if not (r.get("relation") == "isSupplementedBy" and r.get("resource_type") == "dataset" and r.get("scheme") == "doi")] + [entry]
+    DOI_JSON_PAPER.write_text(json.dumps(pz, indent=2, ensure_ascii=False) + "\n")
+    say(f"(f) {DOI_JSON_PAPER.relative_to(ROOT)}: related_identifiers isSupplementedBy dataset {doi}")
     return paper
 
 
@@ -441,17 +516,20 @@ def verify_literals(paper: str, runs: list[dict]) -> None:
 def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--site", type=Path, default=SITE_DEFAULT, help="st-connectome checkout (page.tsx, connectome-paper.ts)")
+    ap.add_argument("--dataset-doi", default=None, help="Zenodo dataset DOI (10.5281/zenodo.NNN); fills [DATASET DOI] in the paper, READMEs and Zenodo metadata")
     a = ap.parse_args(argv)
 
     paper = PAPER.read_text()
     results = load(RESULTS)
     runs = run_jsons()
     say(f"splice_paper: {dt.datetime.now(dt.timezone.utc).isoformat(timespec='seconds')}; results.json status {results.get('status') if results else 'missing'}, "
-        f"seeds {results.get('seeds') if results else '?'}; {len(runs)} run.json files")
+        f"seeds {results.get('seeds') if results else '?'}; {len(runs)} run.json files; paper version {paper_version() or 'unset (no version mode)'}")
 
     paper = splice_section4(paper, SEC4.read_text())
     paper = splice_abstract(paper, ABSTRACT.read_text())
     paper = apply_fills(paper, fills(results, runs))
+    if a.dataset_doi:
+        paper = fill_dataset_doi(paper, normalise_doi(a.dataset_doi))
     no_dashes(paper.split("## 4. Results")[1].split("\n---")[0], "spliced Section 4")
     if paper != PAPER.read_text():
         PAPER.write_text(paper)
@@ -465,12 +543,14 @@ def main(argv=None):
         say(f"(c) site checkout not found at {a.site}; page not touched")
 
     verify_literals(paper, runs)
-    left = [k for k in re.findall(r"\[RUN: ([^\]]+)\]", paper) if k != "what is needed"]   # "what is needed" is the Methods' description of the form
+    left = re.findall(r"\[RUN: ([^\]]+)\]", paper)
     say(f"(e) [RUN: ...] placeholders remaining: {len(left)}")
     for k in left:
         say(f"      [RUN: {k}]")
-    say(f"(e) em dashes in paper.md: {paper.count(chr(0x2014))}; en dashes: {paper.count(chr(0x2013))} "
-        f"(en dashes sit in the STATUS comment and two citation page ranges, none in spliced text)")
+    say(f"(e) {DOI_PLACEHOLDER} in paper.md: {paper.count(DOI_PLACEHOLDER)} (expected 1, in Data and Code Availability, until --dataset-doi is given)")
+    say(f"(e) \"awaiting run\" in paper.md: {paper.lower().count('awaiting run')}")
+    en_lines = [i for i, ln in enumerate(paper.splitlines(), 1) if chr(0x2013) in ln]
+    say(f"(e) em dashes in paper.md: {paper.count(chr(0x2014))}; en dashes: {paper.count(chr(0x2013))} on lines {en_lines} (citation page ranges)")
 
 
 if __name__ == "__main__":

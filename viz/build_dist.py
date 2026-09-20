@@ -71,6 +71,7 @@ if __name__ == "__main__":
           "trained run replaces this file, same layout, or point data-frames on <main> at a new path), sample40k.bin (stratified 40,000 "
           "fallback), points_meta.json (counts, offsets, provenance). Address parameters for deep links and QA: ?view=roles|activity|nt, "
           "?cam=dorsal|lateral|front|reset, ?step=1..8, ?sample=1 (force the 40,000 sample), ?full=1 (force the full set). Under 560 px "
-          "of stage width the header compacts and the excitatory/inhibitory halves stack top and bottom.")
+          "of stage width the header compacts and the excitatory/inhibitory halves stack top and bottom; under 480 px the scale bar and "
+          "orientation caption move under the canvas. The page posts its content height to the parent frame (connectome-viewer-height).")
     build("results", RESULTS, "The arms-comparison page. results_charts.html reads results.sample.json (all null: 'awaiting run') until "
           "results.json from the run is dropped beside it and data-results on <main> (or ?results=) points to it. Schema: results.schema.json.")

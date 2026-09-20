@@ -25,7 +25,7 @@ the exact teacher commands and pins; `docs/PROTOCOL.md` the design; `scripts/run
 `scripts/render_results.py` and `scripts/splice_paper.py` rebuild Section 4 and the page sentences from `runs/`.
 
 **Licenses and release.** Code MIT. Derived graph, paper, and dataset CC BY 4.0 with the attribution in the paper. Released:
-all synthetic records and features, all DTI engine labels, the DTI-trained parameters (Zenodo dataset, DOI in the paper).
+all synthetic records and features, all DTI engine labels, the DTI-trained parameters (Zenodo dataset, https://doi.org/10.5281/zenodo.22865020).
 Held: BII scores, BII-trained parameters, and the BII feature specification (unpublished work), and the teacher engines.
 We have released everything that does not expose SuperTruth's intellectual property; write to jas@supertruth.ai about the
 rest. See `LICENSE`.

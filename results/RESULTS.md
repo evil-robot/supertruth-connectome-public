@@ -1,6 +1,6 @@
 # Results: connectome distillation study
 
-Status: **partial**. Generated 2026-09-20T21:37:56+00:00 from git 6ff6672249fa. CI: 95% t-interval over seeds (null when fewer than 2 seeds); language-model arms: Wilson over records.
+Status: **partial**. Generated 2026-09-20T22:07:56+00:00 from git a2054b4cfb43. CI: 95% t-interval over seeds (null when fewer than 2 seeds); language-model arms: Wilson over records.
 Every number below is read from a run's metrics.json or the LLM run's summary.json; a cell that says "awaiting run" has no run behind it. SYNTHETIC data, zero PHI. Trainer settings for the pilot: AdamW lr 1e-3 cosine, batch 64 (measured choice), T=8, patience 3 on VAL loss, max 20 epochs, identical across gradient arms; shuffle swaps_per_edge=10; ridge closed form (lambda by VAL loss). These differ from PROTOCOL 5 (patience 10, max 200, lr 1e-4 on edge gains) and are the pilot's settings.
 
 ## DTI arms (TEST)
@@ -16,6 +16,10 @@ Every number below is read from a run's metrics.json or the LLM run's summary.js
 | GPT-5 given the DTI paper | 16.07 (n=300) | 15.99 (n=300) | 0.293 [0.245, 0.347] (n=300) | 0.215 | not applicable | 900 calls | 15+ min (API) | unknown |
 | Grok 4 given the DTI paper | 17.14 (n=300) | 17.11 (n=300) | 0.277 [0.229, 0.330] (n=300) | 0.202 | not applicable | 900 calls | 15+ min (API) | unknown |
 | Gemini 3 Flash given the DTI paper | 9.40 (n=300) | 9.36 (n=300) | 0.447 [0.391, 0.503] (n=300) | 0.429 | not applicable | 900 calls | 15+ min (API) | unknown |
+| Claude Opus 5 given the DTI paper and scored examples | awaiting run | | | | | | | |
+| GPT-5 given the DTI paper and scored examples | awaiting run | | | | | | | |
+| Grok 4 given the DTI paper and scored examples | awaiting run | | | | | | | |
+| Gemini 3 Flash given the DTI paper and scored examples | awaiting run | | | | | | | |
 
 ```
 Source: MaleCNS v1.0 (gs://flyem-male-cns/v1.0/...; sha256 in data/README.md; CC-BY 4.0; Berg et al. 2026)
@@ -23,7 +27,7 @@ Source: MaleCNS v1.0 (gs://flyem-male-cns/v1.0/...; sha256 in data/README.md; CC
  | Teacher: pipeline.ts commit e4785726e225e55b1dbdad201758f861f4588ebc, clock frozen at 2026-09-20T00:00:00Z
  | Data: teachers/dti_teacher.jsonl (gen_dti.ts) sha256 2aa26f37b1be93f7af42c4eebfb8f8b03a92839fc433d0e11a0df928936c4b22, run_seed 20260920, 13999/2000/4001 records, split sha256 cb23989c5192e687b635aada79e3a01ee1a645484a16d6b8eb0880cce35aa864, SYNTHETIC, zero PHI
  | Coverage: TEST only, 4001 records, 1 seeds {1} of protocol {1..5}; teacher dimensions excluded as degenerate: none (splits/qa_report.json)
- | Feature spec 3d57b09155d4dd58a2c75eba0fa7fe2e84882320f218fb2f4ad07f1a81e52909 | Evaluated 2026-09-20T21:37:56+00:00 | Language-model arms: claude-opus-5 (served as claude-opus-5), adaptive, effort high, max_tokens 16000, temperature not settable under adaptive thinking (not sent), k=3, N=300, prompt sha256 5e7f42957795, prices from claude-api bundled skill, Claude Code 2.1.278 retrieved 2026-09-20; gpt-5 (served as gpt-5-2025-08-07), reasoning_effort high, effort high, max_tokens 16000, temperature 0.0 requested, accepted False, k=3, N=300, prompt sha256 5e7f42957795, prices from developers.openai.com pricing and model pages retrieved 2026-09-20; grok-4 (served as grok-4.3), reasoning_effort high, effort high, max_tokens 16000, temperature 0.0 requested, accepted True, k=3, N=300, prompt sha256 5e7f42957795, prices from docs.x.ai models page and the API's language-models endpoint retrieved 2026-09-20; gemini-3-flash-preview (served as gemini-3-flash-preview), thinking_level high, effort high, max_tokens 16000, temperature 0.0 requested, accepted True, k=3, N=300, prompt sha256 5e7f42957795, prices from ai.google.dev pricing page retrieved 2026-09-20
+ | Feature spec 3d57b09155d4dd58a2c75eba0fa7fe2e84882320f218fb2f4ad07f1a81e52909 | Evaluated 2026-09-20T22:07:56+00:00 | Language-model arms: claude-opus-5 (served as claude-opus-5), adaptive, effort high, max_tokens 16000, temperature not settable under adaptive thinking (not sent), k=3, N=300, prompt sha256 5e7f42957795, prices from claude-api bundled skill, Claude Code 2.1.278 retrieved 2026-09-20; gpt-5 (served as gpt-5-2025-08-07), reasoning_effort high, effort high, max_tokens 16000, temperature 0.0 requested, accepted False, k=3, N=300, prompt sha256 5e7f42957795, prices from developers.openai.com pricing and model pages retrieved 2026-09-20; grok-4 (served as grok-4.3), reasoning_effort high, effort high, max_tokens 16000, temperature 0.0 requested, accepted True, k=3, N=300, prompt sha256 5e7f42957795, prices from docs.x.ai models page and the API's language-models endpoint retrieved 2026-09-20; gemini-3-flash-preview (served as gemini-3-flash-preview), thinking_level high, effort high, max_tokens 16000, temperature 0.0 requested, accepted True, k=3, N=300, prompt sha256 5e7f42957795, prices from ai.google.dev pricing page retrieved 2026-09-20
 ```
 
 ### DTI per-dimension MAE (points, TEST; no dimension is degenerate, all SD >= 12.4)
@@ -39,6 +43,10 @@ Source: MaleCNS v1.0 (gs://flyem-male-cns/v1.0/...; sha256 in data/README.md; CC
 | GPT-5 given the DTI paper | 34.90 | 22.59 | 19.61 | 16.61 | 23.37 | 16.82 | 15.72 | 24.87 |
 | Grok 4 given the DTI paper | 38.53 | 21.30 | 16.56 | 17.35 | 13.36 | 15.16 | 16.16 | 28.24 |
 | Gemini 3 Flash given the DTI paper | 20.22 | 17.16 | 17.89 | 14.18 | 12.44 | 21.91 | 15.20 | 14.84 |
+| Claude Opus 5 given the DTI paper and scored examples | awaiting run | awaiting run | awaiting run | awaiting run | awaiting run | awaiting run | awaiting run | awaiting run |
+| GPT-5 given the DTI paper and scored examples | awaiting run | awaiting run | awaiting run | awaiting run | awaiting run | awaiting run | awaiting run | awaiting run |
+| Grok 4 given the DTI paper and scored examples | awaiting run | awaiting run | awaiting run | awaiting run | awaiting run | awaiting run | awaiting run | awaiting run |
+| Gemini 3 Flash given the DTI paper and scored examples | awaiting run | awaiting run | awaiting run | awaiting run | awaiting run | awaiting run | awaiting run | awaiting run |
 
 ```
 Source: MaleCNS v1.0 (gs://flyem-male-cns/v1.0/...; sha256 in data/README.md; CC-BY 4.0; Berg et al. 2026)
@@ -46,7 +54,7 @@ Source: MaleCNS v1.0 (gs://flyem-male-cns/v1.0/...; sha256 in data/README.md; CC
  | Teacher: pipeline.ts commit e4785726e225e55b1dbdad201758f861f4588ebc, clock frozen at 2026-09-20T00:00:00Z
  | Data: teachers/dti_teacher.jsonl (gen_dti.ts) sha256 2aa26f37b1be93f7af42c4eebfb8f8b03a92839fc433d0e11a0df928936c4b22, run_seed 20260920, 13999/2000/4001 records, split sha256 cb23989c5192e687b635aada79e3a01ee1a645484a16d6b8eb0880cce35aa864, SYNTHETIC, zero PHI
  | Coverage: TEST only, 4001 records, 1 seeds {1} of protocol {1..5}; teacher dimensions excluded as degenerate: none (splits/qa_report.json)
- | Feature spec 3d57b09155d4dd58a2c75eba0fa7fe2e84882320f218fb2f4ad07f1a81e52909 | Evaluated 2026-09-20T21:37:56+00:00 | Language-model arms: claude-opus-5 (served as claude-opus-5), adaptive, effort high, max_tokens 16000, temperature not settable under adaptive thinking (not sent), k=3, N=300, prompt sha256 5e7f42957795, prices from claude-api bundled skill, Claude Code 2.1.278 retrieved 2026-09-20; gpt-5 (served as gpt-5-2025-08-07), reasoning_effort high, effort high, max_tokens 16000, temperature 0.0 requested, accepted False, k=3, N=300, prompt sha256 5e7f42957795, prices from developers.openai.com pricing and model pages retrieved 2026-09-20; grok-4 (served as grok-4.3), reasoning_effort high, effort high, max_tokens 16000, temperature 0.0 requested, accepted True, k=3, N=300, prompt sha256 5e7f42957795, prices from docs.x.ai models page and the API's language-models endpoint retrieved 2026-09-20; gemini-3-flash-preview (served as gemini-3-flash-preview), thinking_level high, effort high, max_tokens 16000, temperature 0.0 requested, accepted True, k=3, N=300, prompt sha256 5e7f42957795, prices from ai.google.dev pricing page retrieved 2026-09-20
+ | Feature spec 3d57b09155d4dd58a2c75eba0fa7fe2e84882320f218fb2f4ad07f1a81e52909 | Evaluated 2026-09-20T22:07:56+00:00 | Language-model arms: claude-opus-5 (served as claude-opus-5), adaptive, effort high, max_tokens 16000, temperature not settable under adaptive thinking (not sent), k=3, N=300, prompt sha256 5e7f42957795, prices from claude-api bundled skill, Claude Code 2.1.278 retrieved 2026-09-20; gpt-5 (served as gpt-5-2025-08-07), reasoning_effort high, effort high, max_tokens 16000, temperature 0.0 requested, accepted False, k=3, N=300, prompt sha256 5e7f42957795, prices from developers.openai.com pricing and model pages retrieved 2026-09-20; grok-4 (served as grok-4.3), reasoning_effort high, effort high, max_tokens 16000, temperature 0.0 requested, accepted True, k=3, N=300, prompt sha256 5e7f42957795, prices from docs.x.ai models page and the API's language-models endpoint retrieved 2026-09-20; gemini-3-flash-preview (served as gemini-3-flash-preview), thinking_level high, effort high, max_tokens 16000, temperature 0.0 requested, accepted True, k=3, N=300, prompt sha256 5e7f42957795, prices from ai.google.dev pricing page retrieved 2026-09-20
 ```
 
 ## BII arms (TEST)
@@ -54,7 +62,7 @@ Source: MaleCNS v1.0 (gs://flyem-male-cns/v1.0/...; sha256 in data/README.md; CC
 | arm | BII MAE (0-1) | gate accuracy | macro-F1 (support>=30) | ECE | epochs run | wall min / seed | params |
 |---|---|---|---|---|---|---|---|
 | Connectome (MaleCNS wiring, fixed) | 0.0288 (n=1) | 0.914 (n=1) | 0.906 (n=1) | 0.012 (n=1) | [16] | 81.6 | 7811162 |
-| Degree-preserving shuffle | awaiting run | | | | | | |
+| Degree-preserving shuffle | 0.0258 (n=1) | 0.912 (n=1) | 0.904 (n=1) | 0.010 (n=1) | [16] | 81.9 | 7811162 |
 | Random graph, matched density | awaiting run | | | | | | |
 | MLP, matched parameters | awaiting run | | | | | | |
 | Linear readout | 0.0724 (n=1) | 0.597 (n=1) | 0.426 (n=1) | 0.307 (n=1) | [1] | 0.0 | 295 (closed form) |
@@ -62,6 +70,10 @@ Source: MaleCNS v1.0 (gs://flyem-male-cns/v1.0/...; sha256 in data/README.md; CC
 | GPT-5 given the DTI paper | awaiting run | | | | | | | |
 | Grok 4 given the DTI paper | awaiting run | | | | | | | |
 | Gemini 3 Flash given the DTI paper | awaiting run | | | | | | | |
+| Claude Opus 5 given the DTI paper and scored examples | awaiting run | | | | | | | |
+| GPT-5 given the DTI paper and scored examples | awaiting run | | | | | | | |
+| Grok 4 given the DTI paper and scored examples | awaiting run | | | | | | | |
+| Gemini 3 Flash given the DTI paper and scored examples | awaiting run | | | | | | | |
 
 ```
 Source: MaleCNS v1.0 (gs://flyem-male-cns/v1.0/...; sha256 in data/README.md; CC-BY 4.0; Berg et al. 2026)
@@ -69,7 +81,7 @@ Source: MaleCNS v1.0 (gs://flyem-male-cns/v1.0/...; sha256 in data/README.md; CC
  | Teacher: VIGIL commit 1cffd016b7bfa4e6ddc0dcd71a81f281fcd40031 + policy digest 5d8db364...8573859, clock frozen at 2026-09-20T00:00:00Z
  | Data: teachers/bii_teacher.jsonl (gen_bii.py) sha256 c43bb314823f19f35bd993d9860bd444663137bae48c4c836826e7cd7372f67b, run_seed 20260920, 14000/2000/4000 records, split sha256 c42920804158f4b9a3e5779cf1563f99f86818f53fe3083b0e2ca39acbf29127, SYNTHETIC, zero PHI
  | Coverage: TEST only, 4000 records, 1 seeds {1} of protocol {1..5}; teacher dimensions excluded as degenerate: none (splits/qa_report.json)
- | Feature spec 20a2cd2c28bcb3b5ed6728d64eaa9fce7c8ec681c57fb6018beaa855c2dea409 | Evaluated 2026-09-20T21:37:56+00:00 | Language-model arms: not run for this task
+ | Feature spec 20a2cd2c28bcb3b5ed6728d64eaa9fce7c8ec681c57fb6018beaa855c2dea409 | Evaluated 2026-09-20T22:07:56+00:00 | Language-model arms: not run for this task
 ```
 
 ## Latency, cost, determinism (same records where measured)
@@ -85,6 +97,10 @@ Source: MaleCNS v1.0 (gs://flyem-male-cns/v1.0/...; sha256 in data/README.md; CC
 | GPT-5 given the DTI paper | 73221.70 (n=900), p95 102866 | 0.2647 (20260920T200058Z/prices.json (developers.openai.com pricing and model pages, retrieved 2026-09-20)) | 0.673 [0.618, 0.724] (n=300) (share of records with identical tier across k repeats) |
 | Grok 4 given the DTI paper | 41579.50 (n=900), p95 64232 | 0.0420 (20260920T185412Z/prices.json (docs.x.ai models page and the API's language-models endpoint, retrieved 2026-09-20)) | 0.723 [0.670, 0.771] (n=300) (share of records with identical tier across k repeats) |
 | Gemini 3 Flash given the DTI paper | 26712.80 (n=900), p95 60593 | 0.0821 (20260920T185415Z/prices.json (ai.google.dev pricing page, retrieved 2026-09-20)) | 0.840 [0.794, 0.877] (n=300) (share of records with identical tier across k repeats) |
+| Claude Opus 5 given the DTI paper and scored examples | awaiting run | awaiting run | awaiting run |
+| GPT-5 given the DTI paper and scored examples | awaiting run | awaiting run | awaiting run |
+| Grok 4 given the DTI paper and scored examples | awaiting run | awaiting run | awaiting run |
+| Gemini 3 Flash given the DTI paper and scored examples | awaiting run | awaiting run | awaiting run |
 
 ```
 Source: MaleCNS v1.0 (gs://flyem-male-cns/v1.0/...; sha256 in data/README.md; CC-BY 4.0; Berg et al. 2026)
@@ -92,7 +108,7 @@ Source: MaleCNS v1.0 (gs://flyem-male-cns/v1.0/...; sha256 in data/README.md; CC
  | Teacher: pipeline.ts commit e4785726e225e55b1dbdad201758f861f4588ebc, clock frozen at 2026-09-20T00:00:00Z
  | Data: teachers/dti_teacher.jsonl (gen_dti.ts) sha256 2aa26f37b1be93f7af42c4eebfb8f8b03a92839fc433d0e11a0df928936c4b22, run_seed 20260920, 13999/2000/4001 records, split sha256 cb23989c5192e687b635aada79e3a01ee1a645484a16d6b8eb0880cce35aa864, SYNTHETIC, zero PHI
  | Coverage: TEST only, 4001 records, 1 seeds {1} of protocol {1..5}; teacher dimensions excluded as degenerate: none (splits/qa_report.json)
- | Feature spec 3d57b09155d4dd58a2c75eba0fa7fe2e84882320f218fb2f4ad07f1a81e52909 | Evaluated 2026-09-20T21:37:56+00:00 | Language-model arms: claude-opus-5 (served as claude-opus-5), adaptive, effort high, max_tokens 16000, temperature not settable under adaptive thinking (not sent), k=3, N=300, prompt sha256 5e7f42957795, prices from claude-api bundled skill, Claude Code 2.1.278 retrieved 2026-09-20; gpt-5 (served as gpt-5-2025-08-07), reasoning_effort high, effort high, max_tokens 16000, temperature 0.0 requested, accepted False, k=3, N=300, prompt sha256 5e7f42957795, prices from developers.openai.com pricing and model pages retrieved 2026-09-20; grok-4 (served as grok-4.3), reasoning_effort high, effort high, max_tokens 16000, temperature 0.0 requested, accepted True, k=3, N=300, prompt sha256 5e7f42957795, prices from docs.x.ai models page and the API's language-models endpoint retrieved 2026-09-20; gemini-3-flash-preview (served as gemini-3-flash-preview), thinking_level high, effort high, max_tokens 16000, temperature 0.0 requested, accepted True, k=3, N=300, prompt sha256 5e7f42957795, prices from ai.google.dev pricing page retrieved 2026-09-20
+ | Feature spec 3d57b09155d4dd58a2c75eba0fa7fe2e84882320f218fb2f4ad07f1a81e52909 | Evaluated 2026-09-20T22:07:56+00:00 | Language-model arms: claude-opus-5 (served as claude-opus-5), adaptive, effort high, max_tokens 16000, temperature not settable under adaptive thinking (not sent), k=3, N=300, prompt sha256 5e7f42957795, prices from claude-api bundled skill, Claude Code 2.1.278 retrieved 2026-09-20; gpt-5 (served as gpt-5-2025-08-07), reasoning_effort high, effort high, max_tokens 16000, temperature 0.0 requested, accepted False, k=3, N=300, prompt sha256 5e7f42957795, prices from developers.openai.com pricing and model pages retrieved 2026-09-20; grok-4 (served as grok-4.3), reasoning_effort high, effort high, max_tokens 16000, temperature 0.0 requested, accepted True, k=3, N=300, prompt sha256 5e7f42957795, prices from docs.x.ai models page and the API's language-models endpoint retrieved 2026-09-20; gemini-3-flash-preview (served as gemini-3-flash-preview), thinking_level high, effort high, max_tokens 16000, temperature 0.0 requested, accepted True, k=3, N=300, prompt sha256 5e7f42957795, prices from ai.google.dev pricing page retrieved 2026-09-20
 ```
 
 ## Decision rules (PROTOCOL 8.1), evaluated
@@ -116,7 +132,7 @@ Source: MaleCNS v1.0 (gs://flyem-male-cns/v1.0/...; sha256 in data/README.md; CC
 | dti | same, directly predicted composite head (descriptive) | delta_c, direct head | as above | 1.1990 |  | 1 | **descriptive** |
 | dti | same, directly predicted composite head (descriptive) | MAE(ridge) - MAE(connectome), direct head | as above | 1.5290 |  | 1 | **descriptive** |
 | dti | same, directly predicted composite head (descriptive) | MAE(MLP) - MAE(connectome), direct head | as above | 1.9597 |  | 1 | **descriptive** |
-| bii | Wiring matters | delta_b = MAE(shuffle) - MAE(connectome) | >= 0.015, CI lower > 0, connectome better on every seed | awaiting run |  | awaiting run | **AWAITING RUN** |
+| bii | Wiring matters | delta_b = MAE(shuffle) - MAE(connectome) | >= 0.015, CI lower > 0, connectome better on every seed | -0.0030 |  | 1 | **INSUFFICIENT SEEDS (1/5; point estimate misses the bar)** |
 | bii | Wiring matters | delta_c = MAE(ER) - MAE(connectome) | >= 0.015, CI lower > 0, connectome better on every seed | awaiting run |  | awaiting run | **AWAITING RUN** |
 | bii | Fly beats the floor | MAE(ridge) - MAE(connectome) | > 0, CI lower > 0 | 0.0436 |  | 1 | **INSUFFICIENT SEEDS (1/5; point estimate meets the bar)** |
 | bii | Fixed graph beats matched network (framing, descriptive) | MAE(MLP) - MAE(connectome) | >= 0.015, CI lower > 0, connectome better on every seed (same margin as the wiring rule; not pre-registered) | awaiting run |  | awaiting run | **AWAITING RUN** |
@@ -139,7 +155,7 @@ Source: MaleCNS v1.0 (gs://flyem-male-cns/v1.0/...; sha256 in data/README.md; CC
  | Teacher: pipeline.ts commit e4785726e225e55b1dbdad201758f861f4588ebc, clock frozen at 2026-09-20T00:00:00Z
  | Data: teachers/dti_teacher.jsonl (gen_dti.ts) sha256 2aa26f37b1be93f7af42c4eebfb8f8b03a92839fc433d0e11a0df928936c4b22, run_seed 20260920, 13999/2000/4001 records, split sha256 cb23989c5192e687b635aada79e3a01ee1a645484a16d6b8eb0880cce35aa864, SYNTHETIC, zero PHI
  | Coverage: TEST only, 4001 records, 1 seeds {1} of protocol {1..5}; teacher dimensions excluded as degenerate: none (splits/qa_report.json)
- | Feature spec 3d57b09155d4dd58a2c75eba0fa7fe2e84882320f218fb2f4ad07f1a81e52909 | Evaluated 2026-09-20T21:37:56+00:00 | Language-model arms: claude-opus-5 (served as claude-opus-5), adaptive, effort high, max_tokens 16000, temperature not settable under adaptive thinking (not sent), k=3, N=300, prompt sha256 5e7f42957795, prices from claude-api bundled skill, Claude Code 2.1.278 retrieved 2026-09-20; gpt-5 (served as gpt-5-2025-08-07), reasoning_effort high, effort high, max_tokens 16000, temperature 0.0 requested, accepted False, k=3, N=300, prompt sha256 5e7f42957795, prices from developers.openai.com pricing and model pages retrieved 2026-09-20; grok-4 (served as grok-4.3), reasoning_effort high, effort high, max_tokens 16000, temperature 0.0 requested, accepted True, k=3, N=300, prompt sha256 5e7f42957795, prices from docs.x.ai models page and the API's language-models endpoint retrieved 2026-09-20; gemini-3-flash-preview (served as gemini-3-flash-preview), thinking_level high, effort high, max_tokens 16000, temperature 0.0 requested, accepted True, k=3, N=300, prompt sha256 5e7f42957795, prices from ai.google.dev pricing page retrieved 2026-09-20
+ | Feature spec 3d57b09155d4dd58a2c75eba0fa7fe2e84882320f218fb2f4ad07f1a81e52909 | Evaluated 2026-09-20T22:07:56+00:00 | Language-model arms: claude-opus-5 (served as claude-opus-5), adaptive, effort high, max_tokens 16000, temperature not settable under adaptive thinking (not sent), k=3, N=300, prompt sha256 5e7f42957795, prices from claude-api bundled skill, Claude Code 2.1.278 retrieved 2026-09-20; gpt-5 (served as gpt-5-2025-08-07), reasoning_effort high, effort high, max_tokens 16000, temperature 0.0 requested, accepted False, k=3, N=300, prompt sha256 5e7f42957795, prices from developers.openai.com pricing and model pages retrieved 2026-09-20; grok-4 (served as grok-4.3), reasoning_effort high, effort high, max_tokens 16000, temperature 0.0 requested, accepted True, k=3, N=300, prompt sha256 5e7f42957795, prices from docs.x.ai models page and the API's language-models endpoint retrieved 2026-09-20; gemini-3-flash-preview (served as gemini-3-flash-preview), thinking_level high, effort high, max_tokens 16000, temperature 0.0 requested, accepted True, k=3, N=300, prompt sha256 5e7f42957795, prices from ai.google.dev pricing page retrieved 2026-09-20
 ```
 
 ## Dataset health (splits/qa_report.json, DECISION_RULES checklist)
@@ -153,6 +169,6 @@ Source: MaleCNS v1.0 (gs://flyem-male-cns/v1.0/...; sha256 in data/README.md; CC
  | Teacher: pipeline.ts commit e4785726e225e55b1dbdad201758f861f4588ebc, clock frozen at 2026-09-20T00:00:00Z
  | Data: teachers/dti_teacher.jsonl (gen_dti.ts) sha256 2aa26f37b1be93f7af42c4eebfb8f8b03a92839fc433d0e11a0df928936c4b22, run_seed 20260920, 13999/2000/4001 records, split sha256 cb23989c5192e687b635aada79e3a01ee1a645484a16d6b8eb0880cce35aa864, SYNTHETIC, zero PHI
  | Coverage: TEST only, 4001 records, 1 seeds {1} of protocol {1..5}; teacher dimensions excluded as degenerate: none (splits/qa_report.json)
- | Feature spec 3d57b09155d4dd58a2c75eba0fa7fe2e84882320f218fb2f4ad07f1a81e52909 | Evaluated 2026-09-20T21:37:56+00:00 | Language-model arms: claude-opus-5 (served as claude-opus-5), adaptive, effort high, max_tokens 16000, temperature not settable under adaptive thinking (not sent), k=3, N=300, prompt sha256 5e7f42957795, prices from claude-api bundled skill, Claude Code 2.1.278 retrieved 2026-09-20; gpt-5 (served as gpt-5-2025-08-07), reasoning_effort high, effort high, max_tokens 16000, temperature 0.0 requested, accepted False, k=3, N=300, prompt sha256 5e7f42957795, prices from developers.openai.com pricing and model pages retrieved 2026-09-20; grok-4 (served as grok-4.3), reasoning_effort high, effort high, max_tokens 16000, temperature 0.0 requested, accepted True, k=3, N=300, prompt sha256 5e7f42957795, prices from docs.x.ai models page and the API's language-models endpoint retrieved 2026-09-20; gemini-3-flash-preview (served as gemini-3-flash-preview), thinking_level high, effort high, max_tokens 16000, temperature 0.0 requested, accepted True, k=3, N=300, prompt sha256 5e7f42957795, prices from ai.google.dev pricing page retrieved 2026-09-20
+ | Feature spec 3d57b09155d4dd58a2c75eba0fa7fe2e84882320f218fb2f4ad07f1a81e52909 | Evaluated 2026-09-20T22:07:56+00:00 | Language-model arms: claude-opus-5 (served as claude-opus-5), adaptive, effort high, max_tokens 16000, temperature not settable under adaptive thinking (not sent), k=3, N=300, prompt sha256 5e7f42957795, prices from claude-api bundled skill, Claude Code 2.1.278 retrieved 2026-09-20; gpt-5 (served as gpt-5-2025-08-07), reasoning_effort high, effort high, max_tokens 16000, temperature 0.0 requested, accepted False, k=3, N=300, prompt sha256 5e7f42957795, prices from developers.openai.com pricing and model pages retrieved 2026-09-20; grok-4 (served as grok-4.3), reasoning_effort high, effort high, max_tokens 16000, temperature 0.0 requested, accepted True, k=3, N=300, prompt sha256 5e7f42957795, prices from docs.x.ai models page and the API's language-models endpoint retrieved 2026-09-20; gemini-3-flash-preview (served as gemini-3-flash-preview), thinking_level high, effort high, max_tokens 16000, temperature 0.0 requested, accepted True, k=3, N=300, prompt sha256 5e7f42957795, prices from ai.google.dev pricing page retrieved 2026-09-20
 ```
 

@@ -611,7 +611,7 @@ z
   <g id="text_40">
    <text style="font-size: 6.2px; font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'DejaVu Sans', sans-serif; fill: #52514e" transform="translate(10.368 251.437338)">Source: MaleCNS v1.0 (HHMI Janelia, Cambridge, MRC LMB, Google Research), CC BY 4.0, released 8 Jun 2026; edges ≥5 synapses; built 20 Sep 2026.</text>
    <text style="font-size: 6.2px; font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'DejaVu Sans', sans-serif; fill: #52514e" transform="translate(10.368 261.225684)">Snapshot 2026-09-20; seeds 1/5; TEST split, 4,001 SYNTHETIC records, zero PHI; teacher pipeline.ts commit e4785726e225e55b1dbdad201758f861f4588ebc;</text>
-   <text style="font-size: 6.2px; font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'DejaVu Sans', sans-serif; fill: #52514e" transform="translate(10.368 270.976734)">evaluated 2026-09-20T21:37:56Z. Full provenance (PROTOCOL 13): Section 4, under Table 8a.</text>
+   <text style="font-size: 6.2px; font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'DejaVu Sans', sans-serif; fill: #52514e" transform="translate(10.368 270.976734)">evaluated 2026-09-20T22:07:56Z. Full provenance (PROTOCOL 13): Section 4, under Table 8a.</text>
   </g>
  </g>
  <defs>

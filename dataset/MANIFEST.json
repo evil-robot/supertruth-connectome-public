@@ -2,9 +2,9 @@
   "title": "Synthetic health records and agent event windows for 'Intelligence Is Structure, Not Scale' (connectome substrate study)",
   "version": "1.0",
   "license": "CC-BY-4.0",
-  "generated_utc": "2026-09-20T22:01:17+00:00",
+  "generated_utc": "2026-09-20T22:35:08+00:00",
   "repo": "https://github.com/evil-robot/supertruth-connectome",
-  "repo_commit": "9f6a3dc49366123b877c199d46439aba2b28d1c4",
+  "repo_commit": "a51ea4490370df7328ee06ea6239fc465a1697e2",
   "generator_commits": {
     "gen_dti.ts": "c60deb39e274557b5bd5d4c20e2e588977f5a777",
     "gen_bii.py": "c60deb39e274557b5bd5d4c20e2e588977f5a777"
@@ -117,12 +117,13 @@
       "sha256": "402129742ca15531c36c977066534841bcd833a998003cec25aeedc95c6bf42d"
     },
     "README.md": {
-      "bytes": 19869,
-      "sha256": "681d576f0047e6a35a42a7442ad2dd27949e8c240e4605f2c081c2cc80e30119"
+      "bytes": 19895,
+      "sha256": "2ced106ad40dfa1c1ddaa85e9969aa8943343636d68393b602d96af0c5411643"
     },
     "zenodo-dataset.json": {
       "bytes": 3515,
       "sha256": "f5617932e70064ad9fb264e978d77535978a0d773af4d05d3f04642b9c69a07c"
     }
-  }
+  },
+  "dataset_doi": "10.5281/zenodo.22865020"
 }

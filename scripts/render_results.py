@@ -7,7 +7,8 @@ Steps (idempotent; rerun as seeds land):
      torch for the flytrust imports; this script itself runs in ds-lab for matplotlib and scipy)
   2. read results/results.json only (one assembly path per figure: every number below comes from that file)
   3. write paper/results/section4.md  (Tables 8-11, Figure 3 and 4 captions, prose that follows the DECISIONS.md framing rule)
-  4. write paper/results/abstract_sentences.md and paper/results/page_sentences.json (four sentences, each <= 240 chars)
+  4. write paper/results/abstract_sentences.md and paper/results/page_sentences.json (four sentences, each <= 300 chars;
+     each restates what it compares so it stands alone when lifted off the page)
   5. render paper/figures/fig3_paired_differences.{png,svg} and fig4_dimension_mae.{png,svg} at 300 dpi
   6. copy results/results.json to viz/dist/results/results.json and validate it against viz/results.schema.json
 
@@ -16,12 +17,18 @@ Statistics: mean over finished seeds with a two-sided 95% t-interval when n_seed
 per-record errors that evaluate.py does not yet write; until it does, the seed-level t-interval is what is printed and
 the text says so. Paired differences are oriented so that a positive value means the connectome did better.
 Nothing here is estimated: a cell with no run behind it says "awaiting run".
+
+Version mode (--version 1.0): a published snapshot. Every "awaiting run" cell or sentence says "not in this version" instead,
+one sentence in the Section 4 status paragraph names what the version holds and where the rest will appear, and the post-hoc
+g2 block is labelled as running with results in the next version. No number changes. The version is written to
+results/render_manifest.json so scripts/splice_paper.py uses the same phrase in its fills.
 """
 from __future__ import annotations
 
 import argparse
 import hashlib
 import json
+import re
 import shutil
 import subprocess
 import sys
@@ -52,7 +59,31 @@ DISCLOSURE = ("Composite head, disclosed: two composite estimates exist per arm,
               "tier agreement or the per-dimension errors, which are the primary evidence (docs/DECISIONS.md, row \"composite head\").")
 MARGIN_BII = 0.015
 N_SEEDS_PROTOCOL = 5
-PAGE_SENTENCE_MAX = 240
+N_NEURONS_LABEL = "166,700"  # neurons kept (graph_meta.json, Table 1); named in the page sentences so each stands alone
+PAGE_SENTENCE_MAX = 300  # raised from 240 on 20 Sep 2026 so each sentence names both compared objects and the fly clause is a full sentence
+VERSION: str | None = None          # set by --version; None renders the working draft
+
+
+def next_version(v: str) -> str:
+    major, minor = v.split(".")[:2]
+    return f"{major}.{int(minor) + 1}"
+
+
+def version_sentence() -> str:
+    return (f"Version {VERSION} reports seed 1 of the pre-registered five for every arm that has finished; the BII random-graph and matched-network "
+            f"controls, the post-hoc examples arm (g2), and seeds 2 to 5 are running at the time of writing and will appear in version "
+            f"{next_version(VERSION)} at the same DOI.")
+
+
+def g2_running_label() -> str:
+    return f"post-hoc arm g2-examples: running; results in version {next_version(VERSION)}"
+
+
+def versioned(text: str) -> str:
+    """the published phrase for a cell with no run behind it; numbers are untouched"""
+    if not VERSION:
+        return text
+    return text.replace("awaiting run", "not in this version").replace("AWAITING RUN", "NOT IN THIS VERSION")
 
 LOCAL = [("connectome", "Fly wiring (a)"), ("shuffled", "Degree-preserving shuffle (b)"), ("random", "Random graph, matched density (c)"),
          ("mlp", "Matched-parameter network (d)"), ("linear", "Linear floor, ridge (e)")]
@@ -392,6 +423,8 @@ def prose_examples(D: Data) -> str:
             "local arms, saw the engine's outputs and not only its published description. It is post-hoc: it changes no pre-registered rule and no headline, "
             "and it is reported beside arm g, not in place of it.")
     if not have:
+        if VERSION:
+            return head + f" {g2_running_label()[0].upper()}{g2_running_label()[1:]}, beside arm g in Table 9."
         return head + " Its runs are awaiting completion; Table 9 will carry them beside arm g."
     e0 = have[0][1]["examples"]
     split_rel = "/".join(e0["source_split"].split(":")[0].split("/")[-2:]) + ":train"   # splits/dti_seed1.json:train, not the absolute path
@@ -670,6 +703,8 @@ def table9_examples(D: Data) -> list[str]:
     """Arm g and the post-hoc arm g2-examples side by side per vendor, with the gain from the examples as a paired difference over the same records."""
     live = [v for v in VENDORS if D.frontier.get(EX[v])]
     if not live:
+        if VERSION:
+            return ["", f"*{g2_running_label()[0].upper()}{g2_running_label()[1:]} (amendment 1, row 17); it will show arm g and arm g2 side by side per vendor with the gain from the examples.*"]
         return ["", "*Post-hoc block (arm g2-examples, amendment 1, row 17): awaiting run; it will show arm g and arm g2 side by side per vendor with the gain from the examples.*"]
     e0 = D.frontier[EX[live[0]]]["examples"]
     L = ["", f"*Post-hoc block: arm g (paper only) and arm g2-examples (paper plus E = {e0['E']} engine-scored training records in the cached prefix, "
@@ -805,7 +840,7 @@ def section4(D: Data, F: dict) -> str:
          f"Status **{st}**: {D.doc['runs_completed']} of {D.doc['runs_expected_full_protocol']} local runs finished (seeds {{{', '.join(map(str, D.seeds)) or 'none'}}} of the protocol's "
          f"{{1..{N_SEEDS_PROTOCOL}}}); language-model arms complete: {', '.join(k for k, v in D.frontier.items() if v.get('complete')) or 'none'}. "
          f"Every number in this section is read from results/results.json, regenerated by scripts/render_results.py on {D.doc['generated']} from git "
-         f"{D.doc['git_sha'][:12]}; a cell that says \"awaiting run\" has no run behind it. Means are over finished seeds with a two-sided 95% t-interval "
+         f"{D.doc['git_sha'][:12]}; a cell that says \"awaiting run\" has no run behind it. {version_sentence() + ' ' if VERSION else ''}Means are over finished seeds with a two-sided 95% t-interval "
          f"when two or more seeds exist; a single seed is a point marked as such. Paired differences are control minus fly on the same test records, so a "
          f"positive difference means the fly did better. The dataset health report (splits/qa_report.json) passed every line for both tasks before "
          f"any score below was computed. All records are SYNTHETIC; zero PHI.", "",
@@ -818,7 +853,7 @@ def section4(D: Data, F: dict) -> str:
           "### 4.4 The language-model arms", ""] + table9(D) + ["",
           "### 4.5 Work per record", ""] + table10(D) + ["",
           "### 4.6 Decision rules", ""] + table11(D) + [""]
-    return "\n".join(L) + "\n"
+    return versioned("\n".join(L)) + "\n"
 
 
 # ------------------------------------------------------------------ abstract + page sentences
@@ -878,37 +913,51 @@ def page_sentences(D: Data, F: dict) -> dict:
     a = D.m("connectome", "dti_mae"); b = D.m("shuffled", "dti_mae"); c = D.m("random", "dti_mae"); d = D.m("mlp", "dti_mae")
     at = D.m("connectome", "dti_tier_accuracy"); bt = D.m("shuffled", "dti_tier_accuracy"); ct = D.m("random", "dti_tier_accuracy"); dt = D.m("mlp", "dti_tier_accuracy")
     db = D.pair("dti", "shuffled", HEAD); dc = D.pair("dti", "random", HEAD)
-    seeds = f"the first of {N_SEEDS_PROTOCOL} seeds" if n == 1 else (f"{n} of {N_SEEDS_PROTOCOL} seeds" if n < N_SEEDS_PROTOCOL else f"{n} seeds")
+    seeds = f"seed 1 of {N_SEEDS_PROTOCOL}" if n == 1 else (f"{n} of {N_SEEDS_PROTOCOL} seeds" if n < N_SEEDS_PROTOCOL else f"{n} seeds")
     ci = lambda r: f", 95% CI {r['ci_low']:+.2f} to {r['ci_high']:+.2f}" if r.get("ci_low") is not None else ""
+    # The difference a reader can check is the one between the two printed (rounded) values: "1.58 vs 1.53" prints "difference 0.05",
+    # never the unrounded 0.06 that the paired table carries to more places; unsigned, since the sentence already says which is which.
+    shown_diff = abs(round(b["mean"], 2) - round(a["mean"], 2))
     if F["case"] == "awaiting":
         s1 = "Wiring against its shuffle: awaiting run."; s2 = "Wiring against the random graph and the matched network: awaiting run."
     else:
         if db["mean"] < MARGIN_DTI:
-            s1 = (f"On {seeds}, the fly's wiring and its degree-preserving shuffle reproduced the DTI engine equally well: composite error {a['mean']:.2f} vs "
-                  f"{b['mean']:.2f} points (difference {db['mean']:+.2f}{ci(db)}), tier agreement {at['mean']:.3f} vs {bt['mean']:.3f}.")
+            s1 = (f"On {seeds}, the fly's {N_NEURONS_LABEL}-neuron wiring and its degree-preserving shuffle reproduced SuperTruth's Data Trust Index engine equally well: "
+                  f"composite error {a['mean']:.2f} vs {b['mean']:.2f} points (difference {shown_diff:.2f}{ci(db)}), tier agreement {at['mean']:.3f} vs {bt['mean']:.3f}.")
         else:
-            s1 = (f"On {seeds}, the fly's wiring beat its degree-preserving shuffle at reproducing the DTI engine by {db['mean']:.2f} points of composite error"
-                  f"{ci(db)} ({a['mean']:.2f} vs {b['mean']:.2f}); tier agreement {at['mean']:.3f} vs {bt['mean']:.3f}.")
-        c_part = (f"matched the fly on tier agreement ({ct['mean']:.3f} vs {at['mean']:.3f})" + (f" and trailed by {dc['mean']:.1f} points of composite error"
-                  if dc["mean"] >= MARGIN_DTI else f" and composite error ({c['mean']:.2f} vs {a['mean']:.2f} points)"))
-        s2 = (f"The random graph at matched density {c_part}; all three fixed graphs beat the same-size trained network ({d['mean']:.2f} points, {dt['mean']:.3f}).")
+            s1 = (f"On {seeds}, the fly's {N_NEURONS_LABEL}-neuron wiring beat its degree-preserving shuffle at reproducing SuperTruth's Data Trust Index engine by "
+                  f"{db['mean']:.2f} points of composite error{ci(db)} ({a['mean']:.2f} vs {b['mean']:.2f}); tier agreement {at['mean']:.3f} vs {bt['mean']:.3f}.")
+        # "matched" only when the printed values agree: tier agreement within 0.01, composite error within 0.10 points; a wider gap
+        # under the pre-registered margin is "came within {gap} points of", and a gap at or over the margin "trailed by".
+        tier_gap = abs(ct["mean"] - at["mean"]); comp_gap = abs(c["mean"] - a["mean"])
+        tier_part = (f"matched the fly's wiring on tier agreement ({ct['mean']:.3f} vs {at['mean']:.3f})" if tier_gap < 0.01
+                     else f"came within {tier_gap:.3f} of the fly's wiring on tier agreement ({ct['mean']:.3f} vs {at['mean']:.3f})")
+        if dc["mean"] >= MARGIN_DTI:
+            comp_part = f" and trailed by {dc['mean']:.1f} points of composite error"
+        elif comp_gap < 0.10:
+            comp_part = f" and matched it on composite error ({c['mean']:.2f} vs {a['mean']:.2f} points)"
+        else:
+            comp_part = f" and came within {comp_gap:.2f} points of it on composite error ({c['mean']:.2f} vs {a['mean']:.2f})"
+        s2 = (f"A random graph at the fly's density {tier_part}{comp_part}; all three fixed graphs beat a same-size trained network at reproducing the DTI engine "
+              f"({d['mean']:.2f} points, {dt['mean']:.3f}).")
     rows = model_rows(D)
     if rows:
         lat = D.m("connectome", "latency_ms"); sub = D.ex("connectome", "dti", "subset300")
-        fly_t, where = (sub["tier_acc"]["mean"], "same records") if sub else (at["mean"], "full test split")
+        fly_t, where = (sub["tier_acc"]["mean"], "the same {n} records") if sub else (at["mean"], "the full test split")
         lo, hi = rows[-1], rows[0]
         n_rec = hi["fx"]["n_records"]
         count = {1: "One model", 2: "Two models", 3: "Three models", 4: "Four models"}[len(rows)]
         tier = f"{lo['tier']:.0%} ({lo['name']}) to {hi['tier']:.0%} ({hi['name']})" if len(rows) > 1 else f"{hi['tier']:.0%} ({hi['name']})"
         s3 = (f"{count} given the DTI paper and {n_rec} of the same records matched the engine's tier on {tier}, at {span(rows, 'lat_s', lat_fmt)} and "
-              f"{span(rows, 'usd', lambda x: f'${x:.2f}')} per record. The fly, {where}: {fly_t:.0%}, {lat['mean']:.0f} ms, $0 marginal.")
+              f"{span(rows, 'usd', lambda x: f'${x:.2f}')} per record. The fly's wiring matched the engine's tier on {fly_t:.0%} of {where.format(n=n_rec)}, "
+              f"in {lat['mean']:.0f} ms and at $0 marginal cost per record.")
     else:
         s3 = "Language-model arms: awaiting run."
     bii = D.m("connectome", "bii_mae")
     if bii["mean"] is not None:
         bb = D.pair("bii", "shuffled", "bii_mae")
-        s4 = (f"BII, under the seed policy with empty registries: the fly's score error {bii['mean']:.4f} and gate agreement {D.m('connectome', 'bii_gate_accuracy')['mean']:.3f} "
-              f"on 4,000 synthetic windows" + (f"; shuffle minus fly {bb['mean']:+.4f}{ci(bb)}" if bb else "") + ".")
+        s4 = (f"On VIGIL's Behavioral Integrity Index (BII), under the seed policy with empty registries, the fly's wiring reached score error {bii['mean']:.4f} and gate agreement "
+              f"{D.m('connectome', 'bii_gate_accuracy')['mean']:.3f} on 4,000 synthetic windows" + (f"; shuffle minus fly {bb['mean']:+.4f}{ci(bb)}" if bb else "") + ".")
     else:
         lin = D.m("linear", "bii_mae")
         s4 = ("BII task: the fly's run has not finished." + (f" Linear floor so far: score error {lin['mean']:.3f}, gate agreement "
@@ -966,7 +1015,7 @@ def fig3(D: Data, F: dict):
             y = len(rows) - 1 - i
             r = D.pair("dti", aid, key)
             if not r:
-                ax.text(0, y, "awaiting run", fontsize=6.5, color=C["muted"], va="center", ha="left"); continue
+                ax.text(0, y, versioned("awaiting run"), fontsize=6.5, color=C["muted"], va="center", ha="left"); continue
             xs = list(r["per_seed"].values()); seeds = list(r["per_seed"].keys())
             if r.get("ci_low") is not None:
                 ax.plot([r["ci_low"], r["ci_high"]], [y, y], color=C["ink2"], lw=1.4, solid_capstyle="butt", zorder=2)
@@ -1042,7 +1091,7 @@ def fig4(D: Data):
             y = len(arms) - 1 - i
             pdm = D.m(aid, "dti_dim_mae")["per_dimension"]
             if not pdm or pdm[k].get("mean") is None:
-                ax.text(0.3, y, "awaiting run", fontsize=5.8, color=C["muted"], va="center"); continue
+                ax.text(0.3, y, versioned("awaiting run"), fontsize=5.8, color=C["muted"], va="center"); continue
             r = pdm[k]
             col = C["fly"] if aid == "connectome" else C["ctl"]
             per_seed = D.local.get(aid, {}).get("dti", {}).get("dims_mae_per_seed", {}).get(dim, [])
@@ -1106,15 +1155,21 @@ def fig4(D: Data):
 def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--no-refresh", action="store_true", help="skip collect_results (use the results.json on disk)")
+    ap.add_argument("--version", default=None, help="publish as this version (e.g. 1.0): 'awaiting run' reads 'not in this version'; numbers untouched")
     args = ap.parse_args(argv)
+    global VERSION
+    VERSION = args.version
+    if VERSION and not re.match(r"^\d+\.\d+$", VERSION):
+        sys.exit(f"--version {VERSION!r}: expected major.minor, e.g. 1.0")
     if not args.no_refresh:
         subprocess.run([str(ROOT / ".venv" / "bin" / "python"), str(ROOT / "scripts" / "collect_results.py")], check=True, cwd=ROOT)
     D = Data(json.loads(RESULTS.read_text()))
     F = framing(D)
     OUT_MD.mkdir(parents=True, exist_ok=True)
     (OUT_MD / "section4.md").write_text(section4(D, F))
-    (OUT_MD / "abstract_sentences.md").write_text(abstract_sentences(D, F))
+    (OUT_MD / "abstract_sentences.md").write_text(versioned(abstract_sentences(D, F)))
     ps = page_sentences(D, F)
+    ps["sentences"] = {k: versioned(v) for k, v in ps["sentences"].items()}
     (OUT_MD / "page_sentences.json").write_text(json.dumps(ps, indent=2, ensure_ascii=False) + "\n")
     fig3(D, F); fig4(D)
     DIST.parent.mkdir(parents=True, exist_ok=True)
@@ -1123,10 +1178,10 @@ def main(argv=None):
     jsonschema.validate(json.loads(DIST.read_text()), json.loads((ROOT / "viz" / "results.schema.json").read_text()))
     outputs = [OUT_MD / "section4.md", OUT_MD / "abstract_sentences.md", OUT_MD / "page_sentences.json",
                OUT_FIG / "fig3_paired_differences.png", OUT_FIG / "fig3_paired_differences.svg", OUT_FIG / "fig4_dimension_mae.png", OUT_FIG / "fig4_dimension_mae.svg", DIST]
-    manifest = {"generated": D.doc["generated"], "status": D.doc["status"], "seeds": D.seeds, "framing": F,
+    manifest = {"generated": D.doc["generated"], "status": D.doc["status"], "seeds": D.seeds, "version": VERSION, "framing": F,
                 "outputs": {str(p.relative_to(ROOT)): sha(p) for p in outputs}}
     (ROOT / "results" / "render_manifest.json").write_text(json.dumps(manifest, indent=2) + "\n")
-    print(f"{D.doc['status']}: seeds {D.seeds}; framing {F['case']} (n={F['n']}, provisional={F['provisional']}); wrote {len(outputs)} files + results/render_manifest.json")
+    print(f"{D.doc['status']}: seeds {D.seeds}; version {VERSION or 'draft'}; framing {F['case']} (n={F['n']}, provisional={F['provisional']}); wrote {len(outputs)} files + results/render_manifest.json")
     for k, v in ps["sentences"].items():
         print(f"  [{len(v):3d}] {k}: {v}")
 

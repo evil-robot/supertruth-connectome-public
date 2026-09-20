@@ -23,3 +23,11 @@ scoring), not the substrate; other projects already use MaleCNS as a computing s
 Repeat 1–3, save the outputs beside this file with the date, and move the "as of" date on paper, page, press entry, and
 release to the re-run date. If a prior health-data application is found, the sentence is withdrawn and the paper amended
 with a dated note.
+
+## Re-run 21 September 2026 (≈01:15 UTC 22 Sep), before publication
+1. cobanov/awesome-fly re-fetched: about 65 projects, community entries reviewed 12 September 2026; none applies a fly
+   connectome to health data, medical records, clinical data, EHR, patient data, trust scoring, provenance, or data quality.
+2. Web search (US index): "fruit fly connectome 'health data' OR 'medical records' OR 'clinical' OR 'EHR' OR 'trust score'
+   model 2026": results are connectome-mapping news (Center for Data Innovation Sep 2026, ScienceDaily Jun 2026, NIH, HMS),
+   locomotion-control and projectome papers, Wikipedia history. No health-data application.
+Result: the sentence stands with "as of 21 September 2026".
