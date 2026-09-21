@@ -1,9 +1,10 @@
 {
   "status": "partial",
-  "generated": "2026-09-20T22:07:56+00:00",
+  "generated": "2026-09-21T05:31:37+00:00",
   "run_manifest": "runs/*/*/seed*/run.json; runs/eval_ledger.jsonl",
   "seeds": [
-    1
+    1,
+    2
   ],
   "ci": "95% t-interval over seeds (null when fewer than 2 seeds); language-model arms: Wilson over records",
   "teacher": {
@@ -76,7 +77,7 @@
     },
     {
       "id": "anthropic_ex",
-      "label": "Claude Opus 5 given the DTI paper and scored examples",
+      "label": "Claude Opus 5 given the DTI paper and 100 scored examples",
       "provider": "anthropic",
       "model": "claude-opus-5",
       "arm": "g2-examples",
@@ -85,7 +86,7 @@
     },
     {
       "id": "openai_ex",
-      "label": "GPT-5 given the DTI paper and scored examples",
+      "label": "GPT-5 given the DTI paper and 100 scored examples",
       "provider": "openai",
       "model": "gpt-5",
       "arm": "g2-examples",
@@ -94,7 +95,7 @@
     },
     {
       "id": "xai_ex",
-      "label": "Grok 4 given the DTI paper and scored examples",
+      "label": "Grok 4 given the DTI paper and 100 scored examples",
       "provider": "xai",
       "model": "grok-4",
       "arm": "g2-examples",
@@ -103,7 +104,7 @@
     },
     {
       "id": "gemini_ex",
-      "label": "Gemini 3 Flash given the DTI paper and scored examples",
+      "label": "Gemini 3 Flash given the DTI paper and 100 scored examples",
       "provider": "gemini",
       "model": "gemini-3-flash-preview",
       "arm": "g2-examples",
@@ -216,101 +217,119 @@
   "results": {
     "connectome": {
       "dti_mae": {
-        "mean": 1.5818545363659084,
-        "ci_low": null,
-        "ci_high": null,
-        "n": 1,
+        "mean": 1.571482129467633,
+        "ci_low": 1.439688203811236,
+        "ci_high": 1.7032760551240302,
+        "n": 2,
+        "sd": 0.014668798509993239,
         "per_seed": {
-          "1": 1.5818545363659084
+          "1": 1.5818545363659084,
+          "2": 1.5611097225693578
         }
       },
       "dti_mae_direct": {
-        "mean": 1.5866937637329102,
-        "ci_low": null,
-        "ci_high": null,
-        "n": 1,
+        "mean": 1.6034024357795715,
+        "ci_low": 1.391098627885093,
+        "ci_high": 1.81570624367405,
+        "n": 2,
+        "sd": 0.02362963061763274,
         "per_seed": {
-          "1": 1.5866937637329102
+          "1": 1.5866937637329102,
+          "2": 1.620111107826233
         }
       },
       "dti_dim_mae": {
         "per_dimension": [
           {
-            "mean": 2.4398539066314697,
-            "ci_low": null,
-            "ci_high": null,
-            "n": 1
+            "mean": 2.399180769920349,
+            "ci_low": 1.8823795676064279,
+            "ci_high": 2.9159819722342704,
+            "n": 2,
+            "sd": 0.05752050156112178
           },
           {
-            "mean": 4.580460071563721,
-            "ci_low": null,
-            "ci_high": null,
-            "n": 1
+            "mean": 4.731328248977661,
+            "ci_low": 2.8143662985826072,
+            "ci_high": 6.648290199372715,
+            "n": 2,
+            "sd": 0.2133598226293048
           },
           {
-            "mean": 5.623205184936523,
-            "ci_low": null,
-            "ci_high": null,
-            "n": 1
+            "mean": 6.1813132762908936,
+            "ci_low": -0.9101223973734216,
+            "ci_high": 13.272748949955208,
+            "n": 2,
+            "sd": 0.7892840320635125
           },
           {
-            "mean": 2.7859787940979004,
-            "ci_low": null,
-            "ci_high": null,
-            "n": 1
+            "mean": 2.805119752883911,
+            "ci_low": 2.5619108117021767,
+            "ci_high": 3.0483286940656455,
+            "n": 2,
+            "sd": 0.027069403512000843
           },
           {
-            "mean": 3.770552635192871,
-            "ci_low": null,
-            "ci_high": null,
-            "n": 1
+            "mean": 3.9904122352600098,
+            "ci_low": 1.1968311435934584,
+            "ci_high": 6.783993326926561,
+            "n": 2,
+            "sd": 0.31092842823287214
           },
           {
-            "mean": 3.530837297439575,
-            "ci_low": null,
-            "ci_high": null,
-            "n": 1
+            "mean": 3.667029619216919,
+            "ci_low": 1.9365420952190062,
+            "ci_high": 5.397517143214832,
+            "n": 2,
+            "sd": 0.19260502854860015
           },
           {
-            "mean": 4.851931095123291,
-            "ci_low": null,
-            "ci_high": null,
-            "n": 1
+            "mean": 5.172499179840088,
+            "ci_low": 1.0992954635450731,
+            "ci_high": 9.245702896135104,
+            "n": 2,
+            "sd": 0.45335173307046145
           },
           {
-            "mean": 3.1656086444854736,
-            "ci_low": null,
-            "ci_high": null,
-            "n": 1
+            "mean": 3.1148959398269653,
+            "ci_low": 2.4705299317107987,
+            "ci_high": 3.759261947943132,
+            "n": 2,
+            "sd": 0.07171859471268367
           }
         ],
-        "n": 1
+        "n": 2
       },
       "dti_tier_accuracy": {
-        "mean": 0.8797800540924072,
-        "ci_low": null,
-        "ci_high": null,
-        "n": 1,
+        "mean": 0.8772806823253632,
+        "ci_low": 0.8455231529414865,
+        "ci_high": 0.9090382117092398,
+        "n": 2,
+        "sd": 0.003534645450366128,
         "per_seed": {
-          "1": 0.8797800540924072
+          "1": 0.8797800540924072,
+          "2": 0.8747813105583191
         }
       },
       "bii_mae": {
-        "mean": 0.02875569835305214,
-        "ci_low": null,
-        "ci_high": null,
-        "n": 1,
+        "mean": 0.028440333902835846,
+        "ci_low": 0.02443324863187645,
+        "ci_high": 0.03244741917379524,
+        "n": 2,
+        "sd": 0.0004459926825862168,
         "per_seed": {
-          "1": 0.02875569835305214
+          "1": 0.02875569835305214,
+          "2": 0.028124969452619553
         }
       },
       "bii_gate_accuracy": {
-        "mean": 0.9137499928474426,
-        "ci_low": null,
-        "ci_high": null,
-        "n": 1,
+        "mean": 0.9163750112056732,
+        "ci_low": 0.8830209905097781,
+        "ci_high": 0.9497290319015683,
+        "n": 2,
+        "sd": 0.0037123365636880573,
         "per_seed": {
-          "1": 0.9137499928474426
+          "1": 0.9137499928474426,
+          "2": 0.9190000295639038
         }
       },
       "latency_ms": {
@@ -332,107 +351,125 @@
         "mean": 1.0,
         "ci_low": null,
         "ci_high": null,
-        "n": 64,
+        "n": 128,
         "method": "two forward passes on one TEST batch per seed, bitwise equal (torch.equal)"
       }
     },
     "shuffled": {
       "dti_mae": {
-        "mean": 1.5261184703824044,
-        "ci_low": null,
-        "ci_high": null,
-        "n": 1,
+        "mean": 1.5679830042489378,
+        "ci_low": 1.0360436657562462,
+        "ci_high": 2.099922342741629,
+        "n": 2,
+        "sd": 0.05920539157647918,
         "per_seed": {
-          "1": 1.5261184703824044
+          "1": 1.5261184703824044,
+          "2": 1.609847538115471
         }
       },
       "dti_mae_direct": {
-        "mean": 1.557420253753662,
-        "ci_low": null,
-        "ci_high": null,
-        "n": 1,
+        "mean": 1.6121415495872498,
+        "ci_low": 0.9168415612969019,
+        "ci_high": 2.3074415378775974,
+        "n": 2,
+        "sd": 0.07738759871848999,
         "per_seed": {
-          "1": 1.557420253753662
+          "1": 1.557420253753662,
+          "2": 1.6668628454208374
         }
       },
       "dti_dim_mae": {
         "per_dimension": [
           {
-            "mean": 2.296058416366577,
-            "ci_low": null,
-            "ci_high": null,
-            "n": 1
+            "mean": 2.3056490421295166,
+            "ci_low": 2.183788587637576,
+            "ci_high": 2.427509496621457,
+            "n": 2,
+            "sd": 0.013563193025593787
           },
           {
-            "mean": 4.091457843780518,
-            "ci_low": null,
-            "ci_high": null,
-            "n": 1
+            "mean": 4.196375846862793,
+            "ci_low": 2.8632662191887945,
+            "ci_high": 5.529485474536791,
+            "n": 2,
+            "sd": 0.14837646289605605
           },
           {
-            "mean": 4.755247592926025,
-            "ci_low": null,
-            "ci_high": null,
-            "n": 1
+            "mean": 4.9330363273620605,
+            "ci_low": 2.6740162678324055,
+            "ci_high": 7.192056386891716,
+            "n": 2,
+            "sd": 0.25143123947658946
           },
           {
-            "mean": 2.6026296615600586,
-            "ci_low": null,
-            "ci_high": null,
-            "n": 1
+            "mean": 2.6858134269714355,
+            "ci_low": 1.6288634729285532,
+            "ci_high": 3.742763381014318,
+            "n": 2,
+            "sd": 0.11763960921403124
           },
           {
-            "mean": 3.5299415588378906,
-            "ci_low": null,
-            "ci_high": null,
-            "n": 1
+            "mean": 3.9483869075775146,
+            "ci_low": -1.3684653644081672,
+            "ci_high": 9.265239179563196,
+            "n": 2,
+            "sd": 0.5917710872995158
           },
           {
-            "mean": 2.9664504528045654,
-            "ci_low": null,
-            "ci_high": null,
-            "n": 1
+            "mean": 3.0266921520233154,
+            "ci_low": 2.261248788094823,
+            "ci_high": 3.792135515951808,
+            "n": 2,
+            "sd": 0.08519462805555693
           },
           {
-            "mean": 4.495687484741211,
-            "ci_low": null,
-            "ci_high": null,
-            "n": 1
+            "mean": 4.59366250038147,
+            "ci_low": 3.3487718926264236,
+            "ci_high": 5.838553108136516,
+            "n": 2,
+            "sd": 0.1385575958921701
           },
           {
-            "mean": 2.7715003490448,
-            "ci_low": null,
-            "ci_high": null,
-            "n": 1
+            "mean": 2.8848824501037598,
+            "ci_low": 1.444226260630965,
+            "ci_high": 4.325538639576554,
+            "n": 2,
+            "sd": 0.16034650504793804
           }
         ],
-        "n": 1
+        "n": 2
       },
       "dti_tier_accuracy": {
-        "mean": 0.8757810592651367,
-        "ci_low": null,
-        "ci_high": null,
-        "n": 1,
+        "mean": 0.8734066486358643,
+        "ci_low": 0.843236901052579,
+        "ci_high": 0.9035763962191495,
+        "n": 2,
+        "sd": 0.0033579237145599495,
         "per_seed": {
-          "1": 0.8757810592651367
+          "1": 0.8757810592651367,
+          "2": 0.8710322380065918
         }
       },
       "bii_mae": {
-        "mean": 0.02577618509531021,
-        "ci_low": null,
-        "ci_high": null,
-        "n": 1,
+        "mean": 0.025927498936653137,
+        "ci_low": 0.024004874289132866,
+        "ci_high": 0.02785012358417341,
+        "n": 2,
+        "sd": 0.00021399008660193672,
         "per_seed": {
-          "1": 0.02577618509531021
+          "1": 0.02577618509531021,
+          "2": 0.026078812777996063
         }
       },
       "bii_gate_accuracy": {
-        "mean": 0.9117500185966492,
-        "ci_low": null,
-        "ci_high": null,
-        "n": 1,
+        "mean": 0.9144999980926514,
+        "ci_low": 0.879558195596165,
+        "ci_high": 0.9494418005891377,
+        "n": 2,
+        "sd": 0.0038890582994942358,
         "per_seed": {
-          "1": 0.9117500185966492
+          "1": 0.9117500185966492,
+          "2": 0.9172499775886536
         }
       },
       "latency_ms": {
@@ -452,102 +489,126 @@
         "mean": 1.0,
         "ci_low": null,
         "ci_high": null,
-        "n": 64,
+        "n": 128,
         "method": "two forward passes on one TEST batch per seed, bitwise equal (torch.equal)"
       }
     },
     "random": {
       "dti_mae": {
-        "mean": 1.820294926268433,
-        "ci_low": null,
-        "ci_high": null,
-        "n": 1,
+        "mean": 1.7971757060734816,
+        "ci_low": 1.503418160935726,
+        "ci_high": 2.0909332512112373,
+        "n": 2,
+        "sd": 0.03269551475119004,
         "per_seed": {
-          "1": 1.820294926268433
+          "1": 1.820294926268433,
+          "2": 1.7740564858785304
         }
       },
       "dti_mae_direct": {
-        "mean": 2.78574275970459,
-        "ci_low": null,
-        "ci_high": null,
-        "n": 1,
+        "mean": 2.300270140171051,
+        "ci_low": -3.868244357429135,
+        "ci_high": 8.468784637771236,
+        "n": 2,
+        "sd": 0.6865619627051242,
         "per_seed": {
-          "1": 2.78574275970459
+          "1": 2.78574275970459,
+          "2": 1.8147975206375122
         }
       },
       "dti_dim_mae": {
         "per_dimension": [
           {
-            "mean": 2.5641868114471436,
-            "ci_low": null,
-            "ci_high": null,
-            "n": 1
+            "mean": 2.5933300256729126,
+            "ci_low": 2.2230303790500923,
+            "ci_high": 2.963629672295733,
+            "n": 2,
+            "sd": 0.0412147288092271
           },
           {
-            "mean": 4.599240303039551,
-            "ci_low": null,
-            "ci_high": null,
-            "n": 1
+            "mean": 4.649699449539185,
+            "ci_low": 4.008555203302205,
+            "ci_high": 5.290843695776164,
+            "n": 2,
+            "sd": 0.07136000932555299
           },
           {
-            "mean": 5.344242095947266,
-            "ci_low": null,
-            "ci_high": null,
-            "n": 1
+            "mean": 5.427485942840576,
+            "ci_low": 4.369772581187393,
+            "ci_high": 6.48519930449376,
+            "n": 2,
+            "sd": 0.11772457726062921
           },
           {
-            "mean": 2.8467588424682617,
-            "ci_low": null,
-            "ci_high": null,
-            "n": 1
+            "mean": 2.7900402545928955,
+            "ci_low": 2.069362264701777,
+            "ci_high": 3.510718244484014,
+            "n": 2,
+            "sd": 0.08021219621199309
           },
           {
-            "mean": 3.5570569038391113,
-            "ci_low": null,
-            "ci_high": null,
-            "n": 1
+            "mean": 3.5090023279190063,
+            "ci_low": 2.898411047768102,
+            "ci_high": 4.119593608069911,
+            "n": 2,
+            "sd": 0.06795943300030001
           },
           {
-            "mean": 3.2508537769317627,
-            "ci_low": null,
-            "ci_high": null,
-            "n": 1
+            "mean": 3.310907483100891,
+            "ci_low": 2.547852797349868,
+            "ci_high": 4.073962168851914,
+            "n": 2,
+            "sd": 0.08492876573515022
           },
           {
-            "mean": 4.2285966873168945,
-            "ci_low": null,
-            "ci_high": null,
-            "n": 1
+            "mean": 4.670440673828125,
+            "ci_low": -0.943719480231179,
+            "ci_high": 10.284600827887429,
+            "n": 2,
+            "sd": 0.624861758177177
           },
           {
-            "mean": 2.974362850189209,
-            "ci_low": null,
-            "ci_high": null,
-            "n": 1
+            "mean": 2.864288330078125,
+            "ci_low": 1.4656589413105132,
+            "ci_high": 4.262917718845737,
+            "n": 2,
+            "sd": 0.15566887921280498
           }
         ],
-        "n": 1
+        "n": 2
       },
       "dti_tier_accuracy": {
-        "mean": 0.8745313882827759,
-        "ci_low": null,
-        "ci_high": null,
-        "n": 1,
+        "mean": 0.8707823157310486,
+        "ci_low": 0.8231458323180287,
+        "ci_high": 0.9184187991440684,
+        "n": 2,
+        "sd": 0.005301989248973448,
         "per_seed": {
-          "1": 0.8745313882827759
+          "1": 0.8745313882827759,
+          "2": 0.8670332431793213
         }
       },
       "bii_mae": {
-        "mean": null,
-        "ci_low": null,
-        "ci_high": null,
-        "n": null
+        "mean": 0.02576705813407898,
+        "ci_low": 0.009175060191147617,
+        "ci_high": 0.04235905607701034,
+        "n": 2,
+        "sd": 0.001846706314353333,
+        "per_seed": {
+          "1": 0.02446123957633972,
+          "2": 0.027072876691818237
+        }
       },
       "bii_gate_accuracy": {
-        "mean": null,
-        "ci_low": null,
-        "ci_high": null,
-        "n": null
+        "mean": 0.9105000197887421,
+        "ci_low": 0.8628517974690162,
+        "ci_high": 0.9581482421084679,
+        "n": 2,
+        "sd": 0.005303295801277285,
+        "per_seed": {
+          "1": 0.9067500233650208,
+          "2": 0.9142500162124634
+        }
       },
       "latency_ms": {
         "mean": null,
@@ -559,109 +620,133 @@
         "mean": 0.0,
         "ci_low": null,
         "ci_high": null,
-        "n": 4001,
+        "n": 4000,
         "note": "marginal API spend; hardware power not measured (protocol 6)"
       },
       "determinism": {
         "mean": 1.0,
         "ci_low": null,
         "ci_high": null,
-        "n": 64,
+        "n": 128,
         "method": "two forward passes on one TEST batch per seed, bitwise equal (torch.equal)"
       }
     },
     "mlp": {
       "dti_mae": {
-        "mean": 3.7320669832541866,
-        "ci_low": null,
-        "ci_high": null,
-        "n": 1,
+        "mean": 3.5572356910772305,
+        "ci_low": 1.3357934983868516,
+        "ci_high": 5.778677883767609,
+        "n": 2,
+        "sd": 0.24724878452386426,
         "per_seed": {
-          "1": 3.7320669832541866
+          "1": 3.7320669832541866,
+          "2": 3.3824043989002748
         }
       },
       "dti_mae_direct": {
-        "mean": 3.546410322189331,
-        "ci_low": null,
-        "ci_high": null,
-        "n": 1,
+        "mean": 3.683555245399475,
+        "ci_low": 1.9409637725644284,
+        "ci_high": 5.426146718234522,
+        "n": 2,
+        "sd": 0.19395221041440236,
         "per_seed": {
-          "1": 3.546410322189331
+          "1": 3.546410322189331,
+          "2": 3.820700168609619
         }
       },
       "dti_dim_mae": {
         "per_dimension": [
           {
-            "mean": 5.403756141662598,
-            "ci_low": null,
-            "ci_high": null,
-            "n": 1
+            "mean": 5.240100383758545,
+            "ci_low": 3.160656817575811,
+            "ci_high": 7.319543949941279,
+            "n": 2,
+            "sd": 0.23144419238835923
           },
           {
-            "mean": 6.411627769470215,
-            "ci_low": null,
-            "ci_high": null,
-            "n": 1
+            "mean": 6.246039390563965,
+            "ci_low": 4.142039546249881,
+            "ci_high": 8.350039234878048,
+            "n": 2,
+            "sd": 0.23417733122059367
           },
           {
-            "mean": 7.471645832061768,
-            "ci_low": null,
-            "ci_high": null,
-            "n": 1
+            "mean": 7.060891151428223,
+            "ci_low": 1.8417580829563507,
+            "ci_high": 12.280024219900096,
+            "n": 2,
+            "sd": 0.5808948401601886
           },
           {
-            "mean": 5.846202373504639,
-            "ci_low": null,
-            "ci_high": null,
-            "n": 1
+            "mean": 6.321186542510986,
+            "ci_low": 0.28594044467453017,
+            "ci_high": 12.356432640347442,
+            "n": 2,
+            "sd": 0.6717290537212912
           },
           {
-            "mean": 5.492297172546387,
-            "ci_low": null,
-            "ci_high": null,
-            "n": 1
+            "mean": 5.611799478530884,
+            "ci_low": 4.09337871224687,
+            "ci_high": 7.130220244814898,
+            "n": 2,
+            "sd": 0.16900178185813525
           },
           {
-            "mean": 5.152433395385742,
-            "ci_low": null,
-            "ci_high": null,
-            "n": 1
+            "mean": 5.340182542800903,
+            "ci_low": 2.9546034367016225,
+            "ci_high": 7.725761648900184,
+            "n": 2,
+            "sd": 0.2655173905985064
           },
           {
-            "mean": 5.603107452392578,
-            "ci_low": null,
-            "ci_high": null,
-            "n": 1
+            "mean": 6.175215005874634,
+            "ci_low": -1.0941006997803786,
+            "ci_high": 13.444530711529646,
+            "n": 2,
+            "sd": 0.8090822612704139
           },
           {
-            "mean": 5.292592525482178,
-            "ci_low": null,
-            "ci_high": null,
-            "n": 1
+            "mean": 5.811091184616089,
+            "ci_low": -0.77705893377144,
+            "ci_high": 12.399241303003617,
+            "n": 2,
+            "sd": 0.7332678358194415
           }
         ],
-        "n": 1
+        "n": 2
       },
       "dti_tier_accuracy": {
-        "mean": 0.8420394659042358,
-        "ci_low": null,
-        "ci_high": null,
-        "n": 1,
+        "mean": 0.8525368571281433,
+        "ci_low": 0.7191548550414515,
+        "ci_high": 0.9859188592148351,
+        "n": 2,
+        "sd": 0.014845553038386248,
         "per_seed": {
-          "1": 0.8420394659042358
+          "1": 0.8420394659042358,
+          "2": 0.8630342483520508
         }
       },
       "bii_mae": {
-        "mean": null,
-        "ci_low": null,
-        "ci_high": null,
-        "n": null
+        "mean": 0.04375496879220009,
+        "ci_low": -0.05325346285428097,
+        "ci_high": 0.14076340043868113,
+        "n": 2,
+        "sd": 0.010797137504672321,
+        "per_seed": {
+          "1": 0.051389697939157486,
+          "2": 0.03612023964524269
+        }
       },
       "bii_gate_accuracy": {
-        "mean": null,
-        "ci_low": null,
-        "ci_high": null,
-        "n": null
+        "mean": 0.9051249921321869,
+        "ci_low": 0.8177697285421511,
+        "ci_high": 0.9924802557222226,
+        "n": 2,
+        "sd": 0.009722730042432612,
+        "per_seed": {
+          "1": 0.8982499837875366,
+          "2": 0.9120000004768372
+        }
       },
       "latency_ms": {
         "mean": null,
@@ -673,114 +758,132 @@
         "mean": 0.0,
         "ci_low": null,
         "ci_high": null,
-        "n": 4001,
+        "n": 4000,
         "note": "marginal API spend; hardware power not measured (protocol 6)"
       },
       "determinism": {
         "mean": 1.0,
         "ci_low": null,
         "ci_high": null,
-        "n": 64,
+        "n": 128,
         "method": "two forward passes on one TEST batch per seed, bitwise equal (torch.equal)"
       }
     },
     "linear": {
       "dti_mae": {
         "mean": 3.0729817545613596,
-        "ci_low": null,
-        "ci_high": null,
-        "n": 1,
+        "ci_low": 3.0729817545613596,
+        "ci_high": 3.0729817545613596,
+        "n": 2,
+        "sd": 0.0,
         "per_seed": {
-          "1": 3.0729817545613596
+          "1": 3.0729817545613596,
+          "2": 3.0729817545613596
         }
       },
       "dti_mae_direct": {
         "mean": 3.1157171726226807,
-        "ci_low": null,
-        "ci_high": null,
-        "n": 1,
+        "ci_low": 3.1157171726226807,
+        "ci_high": 3.1157171726226807,
+        "n": 2,
+        "sd": 0.0,
         "per_seed": {
-          "1": 3.1157171726226807
+          "1": 3.1157171726226807,
+          "2": 3.1157171726226807
         }
       },
       "dti_dim_mae": {
         "per_dimension": [
           {
             "mean": 4.882352352142334,
-            "ci_low": null,
-            "ci_high": null,
-            "n": 1
+            "ci_low": 4.882352352142334,
+            "ci_high": 4.882352352142334,
+            "n": 2,
+            "sd": 0.0
           },
           {
             "mean": 9.133620262145996,
-            "ci_low": null,
-            "ci_high": null,
-            "n": 1
+            "ci_low": 9.133620262145996,
+            "ci_high": 9.133620262145996,
+            "n": 2,
+            "sd": 0.0
           },
           {
             "mean": 11.656644821166992,
-            "ci_low": null,
-            "ci_high": null,
-            "n": 1
+            "ci_low": 11.656644821166992,
+            "ci_high": 11.656644821166992,
+            "n": 2,
+            "sd": 0.0
           },
           {
             "mean": 2.431978225708008,
-            "ci_low": null,
-            "ci_high": null,
-            "n": 1
+            "ci_low": 2.431978225708008,
+            "ci_high": 2.431978225708008,
+            "n": 2,
+            "sd": 0.0
           },
           {
             "mean": 3.8202860355377197,
-            "ci_low": null,
-            "ci_high": null,
-            "n": 1
+            "ci_low": 3.8202860355377197,
+            "ci_high": 3.8202860355377197,
+            "n": 2,
+            "sd": 0.0
           },
           {
             "mean": 6.090055465698242,
-            "ci_low": null,
-            "ci_high": null,
-            "n": 1
+            "ci_low": 6.090055465698242,
+            "ci_high": 6.090055465698242,
+            "n": 2,
+            "sd": 0.0
           },
           {
             "mean": 5.091188430786133,
-            "ci_low": null,
-            "ci_high": null,
-            "n": 1
+            "ci_low": 5.091188430786133,
+            "ci_high": 5.091188430786133,
+            "n": 2,
+            "sd": 0.0
           },
           {
             "mean": 1.8238887786865234,
-            "ci_low": null,
-            "ci_high": null,
-            "n": 1
+            "ci_low": 1.8238887786865234,
+            "ci_high": 1.8238887786865234,
+            "n": 2,
+            "sd": 0.0
           }
         ],
-        "n": 1
+        "n": 2
       },
       "dti_tier_accuracy": {
         "mean": 0.5833541750907898,
-        "ci_low": null,
-        "ci_high": null,
-        "n": 1,
+        "ci_low": 0.5833541750907898,
+        "ci_high": 0.5833541750907898,
+        "n": 2,
+        "sd": 0.0,
         "per_seed": {
-          "1": 0.5833541750907898
+          "1": 0.5833541750907898,
+          "2": 0.5833541750907898
         }
       },
       "bii_mae": {
         "mean": 0.07238268852233887,
-        "ci_low": null,
-        "ci_high": null,
-        "n": 1,
+        "ci_low": 0.07238268852233887,
+        "ci_high": 0.07238268852233887,
+        "n": 2,
+        "sd": 0.0,
         "per_seed": {
-          "1": 0.07238268852233887
+          "1": 0.07238268852233887,
+          "2": 0.07238268852233887
         }
       },
       "bii_gate_accuracy": {
         "mean": 0.5972499847412109,
-        "ci_low": null,
-        "ci_high": null,
-        "n": 1,
+        "ci_low": 0.5972499847412109,
+        "ci_high": 0.5972499847412109,
+        "n": 2,
+        "sd": 0.0,
         "per_seed": {
-          "1": 0.5972499847412109
+          "1": 0.5972499847412109,
+          "2": 0.5972499847412109
         }
       },
       "latency_ms": {
@@ -800,7 +903,7 @@
         "mean": 1.0,
         "ci_low": null,
         "ci_high": null,
-        "n": 64,
+        "n": 128,
         "method": "two forward passes on one TEST batch per seed, bitwise equal (torch.equal)"
       }
     },
@@ -1230,25 +1333,73 @@
     },
     "anthropic_ex": {
       "dti_mae": {
-        "mean": null,
+        "mean": 3.29,
         "ci_low": null,
         "ci_high": null,
-        "n": null
+        "n": 300,
+        "basis": "per-record mean over parsed repeats; tier by majority vote",
+        "run_1_only": 3.436241610738255
       },
       "dti_mae_direct": {
-        "mean": null,
+        "mean": 3.3533333333333335,
         "ci_low": null,
         "ci_high": null,
-        "n": null
+        "n": 300,
+        "basis": "per-record mean over parsed repeats; tier by majority vote",
+        "run_1_only": 3.4966442953020134
       },
       "dti_dim_mae": {
-        "per_dimension": []
+        "per_dimension": [
+          {
+            "mean": 5.713333333333333,
+            "ci_low": null,
+            "ci_high": null
+          },
+          {
+            "mean": 4.69,
+            "ci_low": null,
+            "ci_high": null
+          },
+          {
+            "mean": 4.973333333333334,
+            "ci_low": null,
+            "ci_high": null
+          },
+          {
+            "mean": 7.573333333333333,
+            "ci_low": null,
+            "ci_high": null
+          },
+          {
+            "mean": 2.7133333333333334,
+            "ci_low": null,
+            "ci_high": null
+          },
+          {
+            "mean": 9.763333333333334,
+            "ci_low": null,
+            "ci_high": null
+          },
+          {
+            "mean": 12.653333333333334,
+            "ci_low": null,
+            "ci_high": null
+          },
+          {
+            "mean": 5.1466666666666665,
+            "ci_low": null,
+            "ci_high": null
+          }
+        ],
+        "n": 300
       },
       "dti_tier_accuracy": {
-        "mean": null,
-        "ci_low": null,
-        "ci_high": null,
-        "n": null
+        "mean": 0.7566666666666667,
+        "ci_low": 0.7050648155932666,
+        "ci_high": 0.801778459077042,
+        "n": 300,
+        "ci_method": "Wilson over records",
+        "run_1_only": 0.7449664429530202
       },
       "bii_mae": {
         "mean": null,
@@ -1263,45 +1414,98 @@
         "n": null
       },
       "latency_ms": {
-        "mean": null,
+        "mean": 23813.5,
         "ci_low": null,
         "ci_high": null,
-        "n": null
+        "n": 900,
+        "p95": 104127.9,
+        "method": "median wall clock per call"
       },
       "usd_per_record": {
-        "mean": null,
+        "mean": 0.433352,
         "ci_low": null,
         "ci_high": null,
-        "n": null
+        "n": 300,
+        "price_source": "20260920T215515Z-examples/prices.json (claude-api bundled skill, Claude Code 2.1.278, retrieved 2026-09-20)"
       },
       "determinism": {
-        "mean": null,
-        "ci_low": null,
-        "ci_high": null,
-        "n": null
+        "mean": 0.782608695652174,
+        "ci_low": 0.7324306260733939,
+        "ci_high": 0.8256171413105378,
+        "n": 299,
+        "composite_range_mean": 2.6220735785953178,
+        "method": "share of records with identical tier across k repeats"
       }
     },
     "openai_ex": {
       "dti_mae": {
-        "mean": null,
+        "mean": 6.14,
         "ci_low": null,
         "ci_high": null,
-        "n": null
+        "n": 300,
+        "basis": "per-record mean over parsed repeats; tier by majority vote",
+        "run_1_only": 6.183333333333334
       },
       "dti_mae_direct": {
-        "mean": null,
+        "mean": 6.166666666666667,
         "ci_low": null,
         "ci_high": null,
-        "n": null
+        "n": 300,
+        "basis": "per-record mean over parsed repeats; tier by majority vote",
+        "run_1_only": 6.183333333333334
       },
       "dti_dim_mae": {
-        "per_dimension": []
+        "per_dimension": [
+          {
+            "mean": 7.833333333333333,
+            "ci_low": null,
+            "ci_high": null
+          },
+          {
+            "mean": 9.513333333333334,
+            "ci_low": null,
+            "ci_high": null
+          },
+          {
+            "mean": 12.743333333333334,
+            "ci_low": null,
+            "ci_high": null
+          },
+          {
+            "mean": 9.606666666666667,
+            "ci_low": null,
+            "ci_high": null
+          },
+          {
+            "mean": 6.543333333333333,
+            "ci_low": null,
+            "ci_high": null
+          },
+          {
+            "mean": 10.18,
+            "ci_low": null,
+            "ci_high": null
+          },
+          {
+            "mean": 13.833333333333334,
+            "ci_low": null,
+            "ci_high": null
+          },
+          {
+            "mean": 7.19,
+            "ci_low": null,
+            "ci_high": null
+          }
+        ],
+        "n": 300
       },
       "dti_tier_accuracy": {
-        "mean": null,
-        "ci_low": null,
-        "ci_high": null,
-        "n": null
+        "mean": 0.5366666666666666,
+        "ci_low": 0.48013206479514653,
+        "ci_high": 0.5922741173006116,
+        "n": 300,
+        "ci_method": "Wilson over records",
+        "run_1_only": 0.5233333333333333
       },
       "bii_mae": {
         "mean": null,
@@ -1316,45 +1520,98 @@
         "n": null
       },
       "latency_ms": {
-        "mean": null,
+        "mean": 58637.8,
         "ci_low": null,
         "ci_high": null,
-        "n": null
+        "n": 900,
+        "p95": 81323.9,
+        "method": "median wall clock per call"
       },
       "usd_per_record": {
-        "mean": null,
+        "mean": 0.208643,
         "ci_low": null,
         "ci_high": null,
-        "n": null
+        "n": 300,
+        "price_source": "20260920T215517Z-examples/prices.json (developers.openai.com pricing and model pages, retrieved 2026-09-20)"
       },
       "determinism": {
-        "mean": null,
-        "ci_low": null,
-        "ci_high": null,
-        "n": null
+        "mean": 0.6733333333333333,
+        "ci_low": 0.6183622084778602,
+        "ci_high": 0.7239215614293613,
+        "n": 300,
+        "composite_range_mean": 4.013333333333334,
+        "method": "share of records with identical tier across k repeats"
       }
     },
     "xai_ex": {
       "dti_mae": {
-        "mean": null,
+        "mean": 5.456666666666667,
         "ci_low": null,
         "ci_high": null,
-        "n": null
+        "n": 300,
+        "basis": "per-record mean over parsed repeats; tier by majority vote",
+        "run_1_only": 5.786666666666667
       },
       "dti_mae_direct": {
-        "mean": null,
+        "mean": 5.48,
         "ci_low": null,
         "ci_high": null,
-        "n": null
+        "n": 300,
+        "basis": "per-record mean over parsed repeats; tier by majority vote",
+        "run_1_only": 5.78
       },
       "dti_dim_mae": {
-        "per_dimension": []
+        "per_dimension": [
+          {
+            "mean": 8.283333333333333,
+            "ci_low": null,
+            "ci_high": null
+          },
+          {
+            "mean": 13.006666666666666,
+            "ci_low": null,
+            "ci_high": null
+          },
+          {
+            "mean": 13.996666666666666,
+            "ci_low": null,
+            "ci_high": null
+          },
+          {
+            "mean": 12.06,
+            "ci_low": null,
+            "ci_high": null
+          },
+          {
+            "mean": 10.676666666666666,
+            "ci_low": null,
+            "ci_high": null
+          },
+          {
+            "mean": 12.923333333333334,
+            "ci_low": null,
+            "ci_high": null
+          },
+          {
+            "mean": 14.603333333333333,
+            "ci_low": null,
+            "ci_high": null
+          },
+          {
+            "mean": 8.923333333333334,
+            "ci_low": null,
+            "ci_high": null
+          }
+        ],
+        "n": 300
       },
       "dti_tier_accuracy": {
-        "mean": null,
-        "ci_low": null,
-        "ci_high": null,
-        "n": null
+        "mean": 0.5533333333333333,
+        "ci_low": 0.4967552375839196,
+        "ci_high": 0.6085628454644562,
+        "n": 300,
+        "ci_method": "Wilson over records",
+        "run_1_only": 0.55
       },
       "bii_mae": {
         "mean": null,
@@ -1369,45 +1626,98 @@
         "n": null
       },
       "latency_ms": {
-        "mean": null,
+        "mean": 24836.0,
         "ci_low": null,
         "ci_high": null,
-        "n": null
+        "n": 900,
+        "p95": 36737.0,
+        "method": "median wall clock per call"
       },
       "usd_per_record": {
-        "mean": null,
+        "mean": 0.089812,
         "ci_low": null,
         "ci_high": null,
-        "n": null
+        "n": 300,
+        "price_source": "20260920T215519Z-examples/prices.json (docs.x.ai models page and the API's language-models endpoint, retrieved 2026-09-20)"
       },
       "determinism": {
-        "mean": null,
-        "ci_low": null,
-        "ci_high": null,
-        "n": null
+        "mean": 0.6666666666666666,
+        "ci_low": 0.6115124564374689,
+        "ci_high": 0.7176065530887056,
+        "n": 300,
+        "composite_range_mean": 4.58,
+        "method": "share of records with identical tier across k repeats"
       }
     },
     "gemini_ex": {
       "dti_mae": {
-        "mean": null,
+        "mean": 5.16,
         "ci_low": null,
         "ci_high": null,
-        "n": null
+        "n": 300,
+        "basis": "per-record mean over parsed repeats; tier by majority vote",
+        "run_1_only": 5.076666666666667
       },
       "dti_mae_direct": {
-        "mean": null,
+        "mean": 5.15,
         "ci_low": null,
         "ci_high": null,
-        "n": null
+        "n": 300,
+        "basis": "per-record mean over parsed repeats; tier by majority vote",
+        "run_1_only": 5.07
       },
       "dti_dim_mae": {
-        "per_dimension": []
+        "per_dimension": [
+          {
+            "mean": 7.993333333333333,
+            "ci_low": null,
+            "ci_high": null
+          },
+          {
+            "mean": 8.99,
+            "ci_low": null,
+            "ci_high": null
+          },
+          {
+            "mean": 9.783333333333333,
+            "ci_low": null,
+            "ci_high": null
+          },
+          {
+            "mean": 8.703333333333333,
+            "ci_low": null,
+            "ci_high": null
+          },
+          {
+            "mean": 4.97,
+            "ci_low": null,
+            "ci_high": null
+          },
+          {
+            "mean": 9.163333333333334,
+            "ci_low": null,
+            "ci_high": null
+          },
+          {
+            "mean": 13.956666666666667,
+            "ci_low": null,
+            "ci_high": null
+          },
+          {
+            "mean": 6.543333333333333,
+            "ci_low": null,
+            "ci_high": null
+          }
+        ],
+        "n": 300
       },
       "dti_tier_accuracy": {
-        "mean": null,
-        "ci_low": null,
-        "ci_high": null,
-        "n": null
+        "mean": 0.6333333333333333,
+        "ci_low": 0.5774367137328146,
+        "ci_high": 0.6858584938881248,
+        "n": 300,
+        "ci_method": "Wilson over records",
+        "run_1_only": 0.6266666666666667
       },
       "bii_mae": {
         "mean": null,
@@ -1422,27 +1732,32 @@
         "n": null
       },
       "latency_ms": {
-        "mean": null,
+        "mean": 51821.4,
         "ci_low": null,
         "ci_high": null,
-        "n": null
+        "n": 900,
+        "p95": 58561.6,
+        "method": "median wall clock per call"
       },
       "usd_per_record": {
-        "mean": null,
+        "mean": 0.118173,
         "ci_low": null,
         "ci_high": null,
-        "n": null
+        "n": 300,
+        "price_source": "20260920T215521Z-examples/prices.json (ai.google.dev pricing page, retrieved 2026-09-20)"
       },
       "determinism": {
-        "mean": null,
-        "ci_low": null,
-        "ci_high": null,
-        "n": null
+        "mean": 0.8033333333333333,
+        "ci_low": 0.7546412312433717,
+        "ci_high": 0.8443553660942658,
+        "n": 300,
+        "composite_range_mean": 2.3333333333333335,
+        "method": "share of records with identical tier across k repeats"
       }
     }
   },
-  "git_sha": "a2054b4cfb43e9bf4ab6874784a08a4edfff18a4",
-  "runs_completed": 8,
+  "git_sha": "92ee71f3a5f9711544a34b0fe05b344386d39901",
+  "runs_completed": 20,
   "runs_expected_full_protocol": 50,
   "decision_rules": [
     {
@@ -1450,190 +1765,190 @@
       "claim": "Fly recovers the DTI engine",
       "metric": "composite MAE, recomputed from predicted dims (headline; TEST, mean over seeds)",
       "threshold": "<= 2.5 and CI upper <= 3.0",
-      "value": 1.5818545363659084,
+      "value": 1.571482129467633,
       "ci": [
-        null,
-        null
+        1.439688203811236,
+        1.7032760551240302
       ],
-      "n_seeds": 1,
-      "verdict": "INSUFFICIENT SEEDS (1/5; point estimate meets the bar)"
+      "n_seeds": 2,
+      "verdict": "INSUFFICIENT SEEDS (2/5; point estimate meets the bar)"
     },
     {
       "task": "dti",
       "claim": "same",
       "metric": "tier accuracy",
       "threshold": ">= 0.90, Wilson lower >= 0.88 (n = TEST records)",
-      "value": 0.8797800540924072,
+      "value": 0.8772806823253632,
       "ci": [
-        0.8693368335782922,
-        0.8894947017145808
+        0.8667503050249487,
+        0.8870872815472991
       ],
-      "n_seeds": 1,
-      "verdict": "INSUFFICIENT SEEDS (1/5; point estimate misses the bar)"
+      "n_seeds": 2,
+      "verdict": "INSUFFICIENT SEEDS (2/5; point estimate misses the bar)"
     },
     {
       "task": "dti",
       "claim": "same",
       "metric": "macro-F1 (tiers with support >= 30)",
       "threshold": ">= 0.85",
-      "value": 0.8799218568101292,
+      "value": 0.8762427343510479,
       "ci": [
-        null,
-        null
+        0.8294950511365017,
+        0.9229904175655942
       ],
-      "n_seeds": 1,
-      "verdict": "INSUFFICIENT SEEDS (1/5; point estimate meets the bar)"
+      "n_seeds": 2,
+      "verdict": "INSUFFICIENT SEEDS (2/5; point estimate meets the bar)"
     },
     {
       "task": "dti",
       "claim": "same",
       "metric": "ECE (10 equal-mass bins)",
       "threshold": "<= 0.05",
-      "value": 0.028677779550821708,
+      "value": 0.02941936849653944,
       "ci": [
-        null,
-        null
+        0.019996587522166008,
+        0.03884214947091287
       ],
-      "n_seeds": 1,
-      "verdict": "INSUFFICIENT SEEDS (1/5; point estimate meets the bar)"
+      "n_seeds": 2,
+      "verdict": "INSUFFICIENT SEEDS (2/5; point estimate meets the bar)"
     },
     {
       "task": "dti",
       "claim": "same",
       "metric": "per-dimension MAE, worst of 8 (no dimension is degenerate)",
       "threshold": "<= 5.0 each",
-      "value": 5.623205184936523,
+      "value": 6.1813132762908936,
       "ci": [
         null,
         null
       ],
-      "n_seeds": 1,
-      "verdict": "INSUFFICIENT SEEDS (1/5; point estimate misses the bar)"
+      "n_seeds": 2,
+      "verdict": "INSUFFICIENT SEEDS (2/5; point estimate misses the bar)"
     },
     {
       "task": "bii",
       "claim": "Fly recovers the BII scorer",
       "metric": "BII MAE (0-1)",
       "threshold": "<= 0.0375 and CI upper <= 0.045",
-      "value": 0.02875569835305214,
+      "value": 0.028440333902835846,
       "ci": [
-        null,
-        null
+        0.02443324863187645,
+        0.03244741917379524
       ],
-      "n_seeds": 1,
-      "verdict": "INSUFFICIENT SEEDS (1/5; point estimate meets the bar)"
+      "n_seeds": 2,
+      "verdict": "INSUFFICIENT SEEDS (2/5; point estimate meets the bar)"
     },
     {
       "task": "bii",
       "claim": "same",
       "metric": "gate accuracy",
       "threshold": ">= 0.90",
-      "value": 0.9137499928474426,
+      "value": 0.9163750112056732,
       "ci": [
-        null,
-        null
+        0.8830209905097781,
+        0.9497290319015683
       ],
-      "n_seeds": 1,
-      "verdict": "INSUFFICIENT SEEDS (1/5; point estimate meets the bar)"
+      "n_seeds": 2,
+      "verdict": "INSUFFICIENT SEEDS (2/5; point estimate meets the bar)"
     },
     {
       "task": "bii",
       "claim": "same",
       "metric": "gate macro-F1",
       "threshold": ">= 0.85",
-      "value": 0.9060899866407472,
+      "value": 0.9089970939318809,
       "ci": [
         null,
         null
       ],
-      "n_seeds": 1,
-      "verdict": "INSUFFICIENT SEEDS (1/5; point estimate meets the bar)"
+      "n_seeds": 2,
+      "verdict": "INSUFFICIENT SEEDS (2/5; point estimate meets the bar)"
     },
     {
       "task": "bii",
       "claim": "same",
       "metric": "ECE",
       "threshold": "<= 0.05",
-      "value": 0.012267714738845824,
+      "value": 0.01244029402732849,
       "ci": [
         null,
         null
       ],
-      "n_seeds": 1,
-      "verdict": "INSUFFICIENT SEEDS (1/5; point estimate meets the bar)"
+      "n_seeds": 2,
+      "verdict": "INSUFFICIENT SEEDS (2/5; point estimate meets the bar)"
     },
     {
       "task": "dti",
       "claim": "Wiring matters",
       "metric": "delta_b = MAE(shuffle) - MAE(connectome)",
       "threshold": ">= 1.0, CI lower > 0, connectome better on every seed",
-      "value": -0.055736065983504,
+      "value": -0.0034991252186953314,
       "ci": [
-        null,
-        null
+        -0.6672323893677842,
+        0.6602341389303935
       ],
-      "n_seeds": 1,
+      "n_seeds": 2,
       "per_seed_connectome_better": false,
-      "verdict": "INSUFFICIENT SEEDS (1/5; point estimate misses the bar)",
-      "p_raw_one_sided": null,
-      "p_holm": null
+      "verdict": "INSUFFICIENT SEEDS (2/5; point estimate misses the bar)",
+      "p_raw_one_sided": 0.5212903874788601,
+      "p_holm": 0.5212903874788601
     },
     {
       "task": "dti",
       "claim": "Wiring matters",
       "metric": "delta_c = MAE(ER) - MAE(connectome)",
       "threshold": ">= 1.0, CI lower > 0, connectome better on every seed",
-      "value": 0.23844038990252447,
+      "value": 0.22569357660584854,
       "ci": [
-        null,
-        null
+        0.06372995712449031,
+        0.3876571960872068
       ],
-      "n_seeds": 1,
+      "n_seeds": 2,
       "per_seed_connectome_better": true,
-      "verdict": "INSUFFICIENT SEEDS (1/5; point estimate misses the bar)",
-      "p_raw_one_sided": null,
-      "p_holm": null
+      "verdict": "INSUFFICIENT SEEDS (2/5; point estimate misses the bar)",
+      "p_raw_one_sided": 0.017958556187477177,
+      "p_holm": 0.03591711237495435
     },
     {
       "task": "dti",
       "claim": "Fly beats the floor",
       "metric": "MAE(ridge) - MAE(connectome)",
       "threshold": "> 0, CI lower > 0",
-      "value": 1.4911272181954511,
+      "value": 1.5014996250937265,
       "ci": [
-        null,
-        null
+        1.3697056994373293,
+        1.6332935507501236
       ],
-      "n_seeds": 1,
-      "verdict": "INSUFFICIENT SEEDS (1/5; point estimate meets the bar)",
-      "p_raw_one_sided": null,
-      "p_holm": null
+      "n_seeds": 2,
+      "verdict": "INSUFFICIENT SEEDS (2/5; point estimate meets the bar)",
+      "p_raw_one_sided": 0.00219885978424173,
+      "p_holm": 0.006596579352725191
     },
     {
       "task": "dti",
       "claim": "Fixed graph beats matched network (framing, descriptive)",
       "metric": "MAE(MLP) - MAE(connectome)",
       "threshold": ">= 1.0, CI lower > 0, connectome better on every seed (same margin as the wiring rule; not pre-registered)",
-      "value": 2.150212446888278,
+      "value": 1.9857535616095976,
       "ci": [
-        null,
-        null
+        -0.10389470542438439,
+        4.07540182864358
       ],
-      "n_seeds": 1,
+      "n_seeds": 2,
       "per_seed_connectome_better": true,
-      "verdict": "INSUFFICIENT SEEDS (1/5; point estimate meets the bar)"
+      "verdict": "INSUFFICIENT SEEDS (2/5; point estimate meets the bar)"
     },
     {
       "task": "dti",
       "claim": "same, directly predicted composite head (descriptive)",
       "metric": "delta_b, direct head",
       "threshold": "as above",
-      "value": -0.029273509979248047,
+      "value": 0.008739113807678223,
       "ci": [
-        null,
-        null
+        -0.4742570665881911,
+        0.49173529420354756
       ],
-      "n_seeds": 1,
+      "n_seeds": 2,
       "per_seed_connectome_better": false,
       "verdict": "descriptive"
     },
@@ -1642,12 +1957,12 @@
       "claim": "same, directly predicted composite head (descriptive)",
       "metric": "delta_c, direct head",
       "threshold": "as above",
-      "value": 1.1990489959716797,
+      "value": 0.6968677043914795,
       "ci": [
-        null,
-        null
+        -5.683950601103184,
+        7.077686009886143
       ],
-      "n_seeds": 1,
+      "n_seeds": 2,
       "per_seed_connectome_better": true,
       "verdict": "descriptive"
     },
@@ -1656,12 +1971,12 @@
       "claim": "same, directly predicted composite head (descriptive)",
       "metric": "MAE(ridge) - MAE(connectome), direct head",
       "threshold": "as above",
-      "value": 1.5290234088897705,
+      "value": 1.5123147368431091,
       "ci": [
-        null,
-        null
+        1.3000109289486306,
+        1.7246185447375877
       ],
-      "n_seeds": 1,
+      "n_seeds": 2,
       "per_seed_connectome_better": true,
       "verdict": "descriptive"
     },
@@ -1670,12 +1985,12 @@
       "claim": "same, directly predicted composite head (descriptive)",
       "metric": "MAE(MLP) - MAE(connectome), direct head",
       "threshold": "as above",
-      "value": 1.959716558456421,
+      "value": 2.0801528096199036,
       "ci": [
-        null,
-        null
+        0.5498651446793352,
+        3.610440474560472
       ],
-      "n_seeds": 1,
+      "n_seeds": 2,
       "per_seed_connectome_better": true,
       "verdict": "descriptive"
     },
@@ -1684,61 +1999,61 @@
       "claim": "Wiring matters",
       "metric": "delta_b = MAE(shuffle) - MAE(connectome)",
       "threshold": ">= 0.015, CI lower > 0, connectome better on every seed",
-      "value": -0.002979513257741928,
+      "value": -0.0025128349661827087,
       "ci": [
-        null,
-        null
+        -0.008442544884662378,
+        0.0034168749522969595
       ],
-      "n_seeds": 1,
+      "n_seeds": 2,
       "per_seed_connectome_better": false,
-      "verdict": "INSUFFICIENT SEEDS (1/5; point estimate misses the bar)",
-      "p_raw_one_sided": null,
-      "p_holm": null
+      "verdict": "INSUFFICIENT SEEDS (2/5; point estimate misses the bar)",
+      "p_raw_one_sided": 0.9415501034657158,
+      "p_holm": 1.0
     },
     {
       "task": "bii",
       "claim": "Wiring matters",
       "metric": "delta_c = MAE(ER) - MAE(connectome)",
       "threshold": ">= 0.015, CI lower > 0, connectome better on every seed",
-      "value": null,
+      "value": -0.0026732757687568665,
       "ci": [
-        null,
-        null
+        -0.023272358982647626,
+        0.017925807445133893
       ],
-      "n_seeds": null,
-      "per_seed_connectome_better": null,
-      "verdict": "AWAITING RUN",
-      "p_raw_one_sided": null,
-      "p_holm": null
+      "n_seeds": 2,
+      "per_seed_connectome_better": false,
+      "verdict": "INSUFFICIENT SEEDS (2/5; point estimate misses the bar)",
+      "p_raw_one_sided": 0.8264759772568517,
+      "p_holm": 1.0
     },
     {
       "task": "bii",
       "claim": "Fly beats the floor",
       "metric": "MAE(ridge) - MAE(connectome)",
       "threshold": "> 0, CI lower > 0",
-      "value": 0.04362699016928673,
+      "value": 0.04394235461950302,
       "ci": [
-        null,
-        null
+        0.03993526934854363,
+        0.047949439890462416
       ],
-      "n_seeds": 1,
-      "verdict": "INSUFFICIENT SEEDS (1/5; point estimate meets the bar)",
-      "p_raw_one_sided": null,
-      "p_holm": null
+      "n_seeds": 2,
+      "verdict": "INSUFFICIENT SEEDS (2/5; point estimate meets the bar)",
+      "p_raw_one_sided": 0.0022843996349380356,
+      "p_holm": 0.006853198904814107
     },
     {
       "task": "bii",
       "claim": "Fixed graph beats matched network (framing, descriptive)",
       "metric": "MAE(MLP) - MAE(connectome)",
       "threshold": ">= 0.015, CI lower > 0, connectome better on every seed (same margin as the wiring rule; not pre-registered)",
-      "value": null,
+      "value": 0.015314634889364243,
       "ci": [
-        null,
-        null
+        -0.07768671148615743,
+        0.10831598126488591
       ],
-      "n_seeds": null,
-      "per_seed_connectome_better": null,
-      "verdict": "AWAITING RUN"
+      "n_seeds": 2,
+      "per_seed_connectome_better": true,
+      "verdict": "INSUFFICIENT SEEDS (2/5; point estimate meets the bar)"
     },
     {
       "task": "dti",
@@ -1860,76 +2175,95 @@
   "wiring_sentence": null,
   "pilot_rule": {
     "seeds_with_both_a_and_b": [
-      1
+      1,
+      2
     ],
-    "s_seed_points": null,
-    "verdict": "AWAITING RUN (needs connectome and shuffle on >= 2 seeds)"
+    "s_seed_points": 0.07387419008647242,
+    "verdict": "5 seeds stand",
+    "per_seed_delta_b": {
+      "1": -0.055736065983504,
+      "2": 0.04873781554611334
+    },
+    "min_detectable_margin_at_5_seeds_points": 1.0916039957072259
   },
   "extra": {
     "local": {
       "connectome": {
         "dti": {
           "seeds": [
-            1
+            1,
+            2
           ],
           "trainable_params": 7955909,
           "fitted_params": 7955909,
           "epochs_run": [
-            16
+            16,
+            14
           ],
           "best_epoch": [
-            12
+            12,
+            10
           ],
           "wall_seconds_total": [
-            4218.753348207974
+            4218.753348207974,
+            3552.8252335000143
           ],
           "peak_device_gb": [
-            12.96
+            12.96,
+            14.04
           ],
           "deterministic_test_forward": [
+            true,
             true
           ],
           "macro_f1": {
-            "mean": 0.8799218568101292,
-            "ci_low": null,
-            "ci_high": null,
-            "n": 1
+            "mean": 0.8762427343510479,
+            "ci_low": 0.8294950511365017,
+            "ci_high": 0.9229904175655942,
+            "n": 2,
+            "sd": 0.005203064879264316
           },
           "ece": {
-            "mean": 0.028677779550821708,
-            "ci_low": null,
-            "ci_high": null,
-            "n": 1
+            "mean": 0.02941936849653944,
+            "ci_low": 0.019996587522166008,
+            "ci_high": 0.03884214947091287,
+            "n": 2,
+            "sd": 0.0010487651447399803
           },
           "brier": {
-            "mean": 0.17909374833106995,
-            "ci_low": null,
-            "ci_high": null,
-            "n": 1
+            "mean": 0.18166179955005646,
+            "ci_low": 0.14903161498863085,
+            "ci_high": 0.21429198411148206,
+            "n": 2,
+            "sd": 0.0036317728627594833
           },
           "mean_confidence": {
-            "mean": 0.9051465392112732,
-            "ci_low": null,
-            "ci_high": null,
-            "n": 1
+            "mean": 0.9050249755382538,
+            "ci_low": 0.9034803626203878,
+            "ci_high": 0.9065695884561198,
+            "n": 2,
+            "sd": 0.00017191699507593675
           },
           "test_loss": {
-            "mean": 0.2984637472545728,
-            "ci_low": null,
-            "ci_high": null,
-            "n": 1
+            "mean": 0.3028471506841015,
+            "ci_low": 0.24715072926725956,
+            "ci_high": 0.35854357210094345,
+            "n": 2,
+            "sd": 0.006199068579392223
           },
           "composite_mae_recomputed_from_dims": {
-            "mean": 1.5818545363659084,
-            "ci_low": null,
-            "ci_high": null,
-            "n": 1
+            "mean": 1.571482129467633,
+            "ci_low": 1.439688203811236,
+            "ci_high": 1.7032760551240302,
+            "n": 2,
+            "sd": 0.014668798509993239
           },
           "composite_mae_direct": {
-            "mean": 1.5866937637329102,
-            "ci_low": null,
-            "ci_high": null,
-            "n": 1
+            "mean": 1.6034024357795715,
+            "ci_low": 1.391098627885093,
+            "ci_high": 1.81570624367405,
+            "n": 2,
+            "sd": 0.02362963061763274
           },
           "subset300": {
             "seeds": [
@@ -1980,147 +2314,179 @@
           },
           "dims_mae_per_seed": {
             "provenance": [
-              2.4398539066314697
+              2.4398539066314697,
+              2.3585076332092285
             ],
             "consent": [
-              4.580460071563721
+              4.580460071563721,
+              4.882196426391602
             ],
             "recency": [
-              5.623205184936523
+              5.623205184936523,
+              6.739421367645264
             ],
             "quality": [
-              2.7859787940979004
+              2.7859787940979004,
+              2.824260711669922
             ],
             "concordance": [
-              3.770552635192871
+              3.770552635192871,
+              4.210271835327148
             ],
             "validation": [
-              3.530837297439575
+              3.530837297439575,
+              3.8032219409942627
             ],
             "breadth": [
-              4.851931095123291
+              4.851931095123291,
+              5.493067264556885
             ],
             "stability": [
-              3.1656086444854736
+              3.1656086444854736,
+              3.064183235168457
             ]
           }
         },
         "bii": {
           "seeds": [
-            1
+            1,
+            2
           ],
           "trainable_params": 7811162,
           "fitted_params": 7811162,
           "epochs_run": [
+            16,
             16
           ],
           "best_epoch": [
+            12,
             12
           ],
           "wall_seconds_total": [
-            4894.54757825
+            4894.54757825,
+            3723.3362012080033
           ],
           "peak_device_gb": [
-            14.04
+            14.04,
+            15.11
           ],
           "deterministic_test_forward": [
+            true,
             true
           ],
           "macro_f1": {
-            "mean": 0.9060899866407472,
-            "ci_low": null,
-            "ci_high": null,
-            "n": 1
+            "mean": 0.9089970939318809,
+            "ci_low": 0.8720587935007107,
+            "ci_high": 0.9459353943630511,
+            "n": 2,
+            "sd": 0.004111270558394899
           },
           "ece": {
-            "mean": 0.012267714738845824,
-            "ci_low": null,
-            "ci_high": null,
-            "n": 1
+            "mean": 0.01244029402732849,
+            "ci_low": 0.010247466254644384,
+            "ci_high": 0.014633121800012595,
+            "n": 2,
+            "sd": 0.00024406397035688467
           },
           "brier": {
-            "mean": 0.12451910972595215,
-            "ci_low": null,
-            "ci_high": null,
-            "n": 1
+            "mean": 0.12019579485058784,
+            "ci_low": 0.06526287090525942,
+            "ci_high": 0.17512871879591627,
+            "n": 2,
+            "sd": 0.006114090531149545
           },
           "mean_confidence": {
-            "mean": 0.9260123372077942,
-            "ci_low": null,
-            "ci_high": null,
-            "n": 1
+            "mean": 0.9288114309310913,
+            "ci_low": 0.8932455730071366,
+            "ci_high": 0.964377288855046,
+            "n": 2,
+            "sd": 0.00395851630584019
           },
           "test_loss": {
-            "mean": 0.20940525678452104,
-            "ci_low": null,
-            "ci_high": null,
-            "n": 1
+            "mean": 0.20334428432397544,
+            "ci_low": 0.12633232733996658,
+            "ci_high": 0.2803562413079843,
+            "n": 2,
+            "sd": 0.008571509454873415
           }
         }
       },
       "shuffled": {
         "dti": {
           "seeds": [
-            1
+            1,
+            2
           ],
           "trainable_params": 7955909,
           "fitted_params": 7955909,
           "epochs_run": [
-            16
+            16,
+            14
           ],
           "best_epoch": [
-            12
+            12,
+            10
           ],
           "wall_seconds_total": [
-            3968.43691679099
+            3968.43691679099,
+            3408.076524709002
           ],
           "peak_device_gb": [
-            12.96
+            12.96,
+            14.04
           ],
           "deterministic_test_forward": [
+            true,
             true
           ],
           "macro_f1": {
-            "mean": 0.8754709168426882,
-            "ci_low": null,
-            "ci_high": null,
-            "n": 1
+            "mean": 0.8726261688884531,
+            "ci_low": 0.836480218959129,
+            "ci_high": 0.9087721188177772,
+            "n": 2,
+            "sd": 0.004023081138412261
           },
           "ece": {
-            "mean": 0.028039440441894343,
-            "ci_low": null,
-            "ci_high": null,
-            "n": 1
+            "mean": 0.02694709753579004,
+            "ci_low": 0.013067564928720746,
+            "ci_high": 0.04082663014285934,
+            "n": 2,
+            "sd": 0.0015448061525747423
           },
           "brier": {
-            "mean": 0.18347208201885223,
-            "ci_low": null,
-            "ci_high": null,
-            "n": 1
+            "mean": 0.1857142671942711,
+            "ci_low": 0.15722460329898336,
+            "ci_high": 0.21420393108955882,
+            "n": 2,
+            "sd": 0.0031709286844292402
           },
           "mean_confidence": {
-            "mean": 0.9038205742835999,
-            "ci_low": null,
-            "ci_high": null,
-            "n": 1
+            "mean": 0.9003537893295288,
+            "ci_low": 0.8563041099268122,
+            "ci_high": 0.9444034687322455,
+            "n": 2,
+            "sd": 0.004902774299878259
           },
           "test_loss": {
-            "mean": 0.3076846045150887,
-            "ci_low": null,
-            "ci_high": null,
-            "n": 1
+            "mean": 0.3106971506640548,
+            "ci_low": 0.27241912251811734,
+            "ci_high": 0.34897517880999224,
+            "n": 2,
+            "sd": 0.00426038362114265
           },
           "composite_mae_recomputed_from_dims": {
-            "mean": 1.5261184703824044,
-            "ci_low": null,
-            "ci_high": null,
-            "n": 1
+            "mean": 1.5679830042489378,
+            "ci_low": 1.0360436657562462,
+            "ci_high": 2.099922342741629,
+            "n": 2,
+            "sd": 0.05920539157647918
           },
           "composite_mae_direct": {
-            "mean": 1.557420253753662,
-            "ci_low": null,
-            "ci_high": null,
-            "n": 1
+            "mean": 1.6121415495872498,
+            "ci_low": 0.9168415612969019,
+            "ci_high": 2.3074415378775974,
+            "n": 2,
+            "sd": 0.07738759871848999
           },
           "subset300": {
             "seeds": [
@@ -2171,147 +2537,179 @@
           },
           "dims_mae_per_seed": {
             "provenance": [
-              2.296058416366577
+              2.296058416366577,
+              2.315239667892456
             ],
             "consent": [
-              4.091457843780518
+              4.091457843780518,
+              4.301293849945068
             ],
             "recency": [
-              4.755247592926025
+              4.755247592926025,
+              5.110825061798096
             ],
             "quality": [
-              2.6026296615600586
+              2.6026296615600586,
+              2.7689971923828125
             ],
             "concordance": [
-              3.5299415588378906
+              3.5299415588378906,
+              4.366832256317139
             ],
             "validation": [
-              2.9664504528045654
+              2.9664504528045654,
+              3.0869338512420654
             ],
             "breadth": [
-              4.495687484741211
+              4.495687484741211,
+              4.6916375160217285
             ],
             "stability": [
-              2.7715003490448
+              2.7715003490448,
+              2.9982645511627197
             ]
           }
         },
         "bii": {
           "seeds": [
-            1
+            1,
+            2
           ],
           "trainable_params": 7811162,
           "fitted_params": 7811162,
           "epochs_run": [
+            16,
             16
           ],
           "best_epoch": [
+            12,
             12
           ],
           "wall_seconds_total": [
-            4912.328148083005
+            4912.328148083005,
+            3856.5056496250036
           ],
           "peak_device_gb": [
+            12.96,
             12.96
           ],
           "deterministic_test_forward": [
+            true,
             true
           ],
           "macro_f1": {
-            "mean": 0.9037735054107762,
-            "ci_low": null,
-            "ci_high": null,
-            "n": 1
+            "mean": 0.9067044547178078,
+            "ci_low": 0.8694632127513152,
+            "ci_high": 0.9439456966843004,
+            "n": 2,
+            "sd": 0.004144988260632089
           },
           "ece": {
-            "mean": 0.01015947461128235,
-            "ci_low": null,
-            "ci_high": null,
-            "n": 1
+            "mean": 0.007935211062431335,
+            "ci_low": -0.020326736976480145,
+            "ci_high": 0.036197159101342816,
+            "n": 2,
+            "sd": 0.0031455836770772146
           },
           "brier": {
-            "mean": 0.12233679741621017,
-            "ci_low": null,
-            "ci_high": null,
-            "n": 1
+            "mean": 0.12043218687176704,
+            "ci_low": 0.09623181535139548,
+            "ci_high": 0.14463255839213862,
+            "n": 2,
+            "sd": 0.0026935260629902796
           },
           "mean_confidence": {
-            "mean": 0.9201475977897644,
-            "ci_low": null,
-            "ci_high": null,
-            "n": 1
+            "mean": 0.9200442433357239,
+            "ci_low": 0.9187310004822894,
+            "ci_high": 0.9213574861891584,
+            "n": 2,
+            "sd": 0.0001461652706357805
           },
           "test_loss": {
-            "mean": 0.20504834153689444,
-            "ci_low": null,
-            "ci_high": null,
-            "n": 1
+            "mean": 0.20240861625643447,
+            "ci_low": 0.16886772639565392,
+            "ci_high": 0.23594950611721502,
+            "n": 2,
+            "sd": 0.0037331352925656118
           }
         }
       },
       "random": {
         "dti": {
           "seeds": [
-            1
+            1,
+            2
           ],
           "trainable_params": 7955909,
           "fitted_params": 7955909,
           "epochs_run": [
-            13
+            13,
+            11
           ],
           "best_epoch": [
-            9
+            9,
+            7
           ],
           "wall_seconds_total": [
-            4120.060655832989
+            4120.060655832989,
+            2854.536631583993
           ],
           "peak_device_gb": [
+            14.36,
             14.36
           ],
           "deterministic_test_forward": [
+            true,
             true
           ],
           "macro_f1": {
-            "mean": 0.8763295207460546,
-            "ci_low": null,
-            "ci_high": null,
-            "n": 1
+            "mean": 0.8718197017438851,
+            "ci_low": 0.8145170181792283,
+            "ci_high": 0.929122385308542,
+            "n": 2,
+            "sd": 0.0063778471967160235
           },
           "ece": {
-            "mean": 0.037354188691196194,
-            "ci_low": null,
-            "ci_high": null,
-            "n": 1
+            "mean": 0.0316254228867462,
+            "ci_low": -0.04116544831019197,
+            "ci_high": 0.10441629408368436,
+            "n": 2,
+            "sd": 0.0081016982963124
           },
           "brier": {
-            "mean": 0.18637605011463165,
-            "ci_low": null,
-            "ci_high": null,
-            "n": 1
+            "mean": 0.18998092412948608,
+            "ci_low": 0.14417665684862963,
+            "ci_high": 0.23578519141034254,
+            "n": 2,
+            "sd": 0.005098061722453487
           },
           "mean_confidence": {
-            "mean": 0.9118856191635132,
-            "ci_low": null,
-            "ci_high": null,
-            "n": 1
+            "mean": 0.9024077951908112,
+            "ci_low": 0.7819806233402347,
+            "ci_high": 1.0228349670413877,
+            "n": 2,
+            "sd": 0.013403667203980053
           },
           "test_loss": {
-            "mean": 0.3171849566278979,
-            "ci_low": null,
-            "ci_high": null,
-            "n": 1
+            "mean": 0.3201346029236447,
+            "ci_low": 0.2826557931905867,
+            "ci_high": 0.3576134126567027,
+            "n": 2,
+            "sd": 0.004171429795648669
           },
           "composite_mae_recomputed_from_dims": {
-            "mean": 1.820294926268433,
-            "ci_low": null,
-            "ci_high": null,
-            "n": 1
+            "mean": 1.7971757060734816,
+            "ci_low": 1.503418160935726,
+            "ci_high": 2.0909332512112373,
+            "n": 2,
+            "sd": 0.03269551475119004
           },
           "composite_mae_direct": {
-            "mean": 2.78574275970459,
-            "ci_low": null,
-            "ci_high": null,
-            "n": 1
+            "mean": 2.300270140171051,
+            "ci_low": -3.868244357429135,
+            "ci_high": 8.468784637771236,
+            "n": 2,
+            "sd": 0.6865619627051242
           },
           "subset300": {
             "seeds": [
@@ -2362,95 +2760,179 @@
           },
           "dims_mae_per_seed": {
             "provenance": [
-              2.5641868114471436
+              2.5641868114471436,
+              2.6224732398986816
             ],
             "consent": [
-              4.599240303039551
+              4.599240303039551,
+              4.700158596038818
             ],
             "recency": [
-              5.344242095947266
+              5.344242095947266,
+              5.510729789733887
             ],
             "quality": [
-              2.8467588424682617
+              2.8467588424682617,
+              2.7333216667175293
             ],
             "concordance": [
-              3.5570569038391113
+              3.5570569038391113,
+              3.4609477519989014
             ],
             "validation": [
-              3.2508537769317627
+              3.2508537769317627,
+              3.3709611892700195
             ],
             "breadth": [
-              4.2285966873168945
+              4.2285966873168945,
+              5.1122846603393555
             ],
             "stability": [
-              2.974362850189209
+              2.974362850189209,
+              2.754213809967041
             ]
+          }
+        },
+        "bii": {
+          "seeds": [
+            1,
+            2
+          ],
+          "trainable_params": 7811162,
+          "fitted_params": 7811162,
+          "epochs_run": [
+            16,
+            16
+          ],
+          "best_epoch": [
+            12,
+            12
+          ],
+          "wall_seconds_total": [
+            4772.259981582989,
+            4145.834240541997
+          ],
+          "peak_device_gb": [
+            14.36,
+            14.36
+          ],
+          "deterministic_test_forward": [
+            true,
+            true
+          ],
+          "macro_f1": {
+            "mean": 0.9026275296608874,
+            "ci_low": 0.8492892957051325,
+            "ci_high": 0.9559657636166424,
+            "n": 2,
+            "sd": 0.005936599906855207
+          },
+          "ece": {
+            "mean": 0.025815314054489127,
+            "ci_low": -0.0242833103715155,
+            "ci_high": 0.07591393848049376,
+            "n": 2,
+            "sd": 0.005576028057991278
+          },
+          "brier": {
+            "mean": 0.1251588761806488,
+            "ci_low": 0.08099426909453611,
+            "ci_high": 0.1693234832667615,
+            "n": 2,
+            "sd": 0.0049155658684013155
+          },
+          "mean_confidence": {
+            "mean": 0.9362882971763611,
+            "ci_low": 0.9341715072251792,
+            "ci_high": 0.938405087127543,
+            "n": 2,
+            "sd": 0.00023560088317589763
+          },
+          "test_loss": {
+            "mean": 0.21140796376857907,
+            "ci_low": 0.16449193652508112,
+            "ci_high": 0.258323991012077,
+            "n": 2,
+            "sd": 0.005221801741595059
           }
         }
       },
       "mlp": {
         "dti": {
           "seeds": [
-            1
+            1,
+            2
           ],
           "trainable_params": 7953594,
           "fitted_params": 7953594,
           "epochs_run": [
+            8,
             8
           ],
           "best_epoch": [
+            4,
             4
           ],
           "wall_seconds_total": [
-            29.069387334020576
+            29.069387334020576,
+            28.320116374990903
           ],
           "peak_device_gb": [
+            1.1,
             1.1
           ],
           "deterministic_test_forward": [
+            true,
             true
           ],
           "macro_f1": {
-            "mean": 0.8322176774671745,
-            "ci_low": null,
-            "ci_high": null,
-            "n": 1
+            "mean": 0.8478699292449958,
+            "ci_low": 0.6489892135738439,
+            "ci_high": 1.0467506449161479,
+            "n": 2,
+            "sd": 0.02213562674587329
           },
           "ece": {
-            "mean": 0.05532586656490345,
-            "ci_low": null,
-            "ci_high": null,
-            "n": 1
+            "mean": 0.048555824472677166,
+            "ci_low": -0.037465716423670505,
+            "ci_high": 0.13457736536902484,
+            "n": 2,
+            "sd": 0.009574285344663138
           },
           "brier": {
-            "mean": 0.23001733422279358,
-            "ci_low": null,
-            "ci_high": null,
-            "n": 1
+            "mean": 0.21659809350967407,
+            "ci_low": 0.04609047360476673,
+            "ci_high": 0.38710571341458144,
+            "n": 2,
+            "sd": 0.01897767221324281
           },
           "mean_confidence": {
-            "mean": 0.8973652720451355,
-            "ci_low": null,
-            "ci_high": null,
-            "n": 1
+            "mean": 0.8999363481998444,
+            "ci_low": 0.8672677281858168,
+            "ci_high": 0.932604968213872,
+            "n": 2,
+            "sd": 0.003636050767883339
           },
           "test_loss": {
-            "mean": 0.39479653676971793,
-            "ci_low": null,
-            "ci_high": null,
-            "n": 1
+            "mean": 0.36982001760043204,
+            "ci_low": 0.05246325143849356,
+            "ci_high": 0.6871767837623706,
+            "n": 2,
+            "sd": 0.0353221321500757
           },
           "composite_mae_recomputed_from_dims": {
-            "mean": 3.7320669832541866,
-            "ci_low": null,
-            "ci_high": null,
-            "n": 1
+            "mean": 3.5572356910772305,
+            "ci_low": 1.3357934983868516,
+            "ci_high": 5.778677883767609,
+            "n": 2,
+            "sd": 0.24724878452386426
           },
           "composite_mae_direct": {
-            "mean": 3.546410322189331,
-            "ci_low": null,
-            "ci_high": null,
-            "n": 1
+            "mean": 3.683555245399475,
+            "ci_low": 1.9409637725644284,
+            "ci_high": 5.426146718234522,
+            "n": 2,
+            "sd": 0.19395221041440236
           },
           "subset300": {
             "seeds": [
@@ -2501,95 +2983,179 @@
           },
           "dims_mae_per_seed": {
             "provenance": [
-              5.403756141662598
+              5.403756141662598,
+              5.076444625854492
             ],
             "consent": [
-              6.411627769470215
+              6.411627769470215,
+              6.080451011657715
             ],
             "recency": [
-              7.471645832061768
+              7.471645832061768,
+              6.650136470794678
             ],
             "quality": [
-              5.846202373504639
+              5.846202373504639,
+              6.796170711517334
             ],
             "concordance": [
-              5.492297172546387
+              5.492297172546387,
+              5.731301784515381
             ],
             "validation": [
-              5.152433395385742
+              5.152433395385742,
+              5.5279316902160645
             ],
             "breadth": [
-              5.603107452392578
+              5.603107452392578,
+              6.7473225593566895
             ],
             "stability": [
-              5.292592525482178
+              5.292592525482178,
+              6.32958984375
             ]
+          }
+        },
+        "bii": {
+          "seeds": [
+            1,
+            2
+          ],
+          "trainable_params": 7813769,
+          "fitted_params": 7813769,
+          "epochs_run": [
+            11,
+            15
+          ],
+          "best_epoch": [
+            7,
+            11
+          ],
+          "wall_seconds_total": [
+            38.849291916994844,
+            49.548865332995774
+          ],
+          "peak_device_gb": [
+            1.09,
+            1.09
+          ],
+          "deterministic_test_forward": [
+            true,
+            true
+          ],
+          "macro_f1": {
+            "mean": 0.8978267412046743,
+            "ci_low": 0.8022327673351508,
+            "ci_high": 0.9934207150741978,
+            "n": 2,
+            "sd": 0.010639706909690454
+          },
+          "ece": {
+            "mean": 0.03772104978561401,
+            "ci_low": 0.008315467161449451,
+            "ci_high": 0.06712663240977856,
+            "n": 2,
+            "sd": 0.0032728713742649703
+          },
+          "brier": {
+            "mean": 0.14124232530593872,
+            "ci_low": 0.03486094466631731,
+            "ci_high": 0.24762370594556013,
+            "n": 2,
+            "sd": 0.011840356299013971
+          },
+          "mean_confidence": {
+            "mean": 0.9428450465202332,
+            "ci_low": 0.8260717040505071,
+            "ci_high": 1.0596183889899593,
+            "n": 2,
+            "sd": 0.012996992262698437
+          },
+          "test_loss": {
+            "mean": 0.26157392747700214,
+            "ci_low": 0.11924081377297929,
+            "ci_high": 0.403907041181025,
+            "n": 2,
+            "sd": 0.01584182090203127
           }
         }
       },
       "linear": {
         "dti": {
           "seeds": [
-            1
+            1,
+            2
           ],
           "trainable_params": 0,
           "fitted_params": 924,
           "epochs_run": [
+            1,
             1
           ],
           "best_epoch": [
+            0,
             0
           ],
           "wall_seconds_total": [
-            1.8678450000006706
+            1.8678450000006706,
+            1.4111129590019118
           ],
           "peak_device_gb": [
+            0.0,
             0.0
           ],
           "deterministic_test_forward": [
+            true,
             true
           ],
           "macro_f1": {
             "mean": 0.4281616191683539,
-            "ci_low": null,
-            "ci_high": null,
-            "n": 1
+            "ci_low": 0.4281616191683539,
+            "ci_high": 0.4281616191683539,
+            "n": 2,
+            "sd": 0.0
           },
           "ece": {
             "mean": 0.3169976184626455,
-            "ci_low": null,
-            "ci_high": null,
-            "n": 1
+            "ci_low": 0.3169976184626455,
+            "ci_high": 0.3169976184626455,
+            "n": 2,
+            "sd": 0.0
           },
           "brier": {
             "mean": 0.7136240601539612,
-            "ci_low": null,
-            "ci_high": null,
-            "n": 1
+            "ci_low": 0.7136240601539612,
+            "ci_high": 0.7136240601539612,
+            "n": 2,
+            "sd": 0.0
           },
           "mean_confidence": {
             "mean": 0.266356498003006,
-            "ci_low": null,
-            "ci_high": null,
-            "n": 1
+            "ci_low": 0.266356498003006,
+            "ci_high": 0.266356498003006,
+            "n": 2,
+            "sd": 0.0
           },
           "test_loss": {
             "mean": 1.411726244026795,
-            "ci_low": null,
-            "ci_high": null,
-            "n": 1
+            "ci_low": 1.411726244026795,
+            "ci_high": 1.411726244026795,
+            "n": 2,
+            "sd": 0.0
           },
           "composite_mae_recomputed_from_dims": {
             "mean": 3.0729817545613596,
-            "ci_low": null,
-            "ci_high": null,
-            "n": 1
+            "ci_low": 3.0729817545613596,
+            "ci_high": 3.0729817545613596,
+            "n": 2,
+            "sd": 0.0
           },
           "composite_mae_direct": {
             "mean": 3.1157171726226807,
-            "ci_low": null,
-            "ci_high": null,
-            "n": 1
+            "ci_low": 3.1157171726226807,
+            "ci_high": 3.1157171726226807,
+            "n": 2,
+            "sd": 0.0
           },
           "subset300": {
             "seeds": [
@@ -2640,81 +3206,100 @@
           },
           "dims_mae_per_seed": {
             "provenance": [
+              4.882352352142334,
               4.882352352142334
             ],
             "consent": [
+              9.133620262145996,
               9.133620262145996
             ],
             "recency": [
+              11.656644821166992,
               11.656644821166992
             ],
             "quality": [
+              2.431978225708008,
               2.431978225708008
             ],
             "concordance": [
+              3.8202860355377197,
               3.8202860355377197
             ],
             "validation": [
+              6.090055465698242,
               6.090055465698242
             ],
             "breadth": [
+              5.091188430786133,
               5.091188430786133
             ],
             "stability": [
+              1.8238887786865234,
               1.8238887786865234
             ]
           }
         },
         "bii": {
           "seeds": [
-            1
+            1,
+            2
           ],
           "trainable_params": 0,
           "fitted_params": 295,
           "epochs_run": [
+            1,
             1
           ],
           "best_epoch": [
+            0,
             0
           ],
           "wall_seconds_total": [
-            1.9662001249962486
+            1.9662001249962486,
+            1.7886639579955954
           ],
           "peak_device_gb": [
+            0.0,
             0.0
           ],
           "deterministic_test_forward": [
+            true,
             true
           ],
           "macro_f1": {
             "mean": 0.4263168553134459,
-            "ci_low": null,
-            "ci_high": null,
-            "n": 1
+            "ci_low": 0.4263168553134459,
+            "ci_high": 0.4263168553134459,
+            "n": 2,
+            "sd": 0.0
           },
           "ece": {
             "mean": 0.3073035284876824,
-            "ci_low": null,
-            "ci_high": null,
-            "n": 1
+            "ci_low": 0.3073035284876824,
+            "ci_high": 0.3073035284876824,
+            "n": 2,
+            "sd": 0.0
           },
           "brier": {
             "mean": 0.6340789794921875,
-            "ci_low": null,
-            "ci_high": null,
-            "n": 1
+            "ci_low": 0.6340789794921875,
+            "ci_high": 0.6340789794921875,
+            "n": 2,
+            "sd": 0.0
           },
           "mean_confidence": {
             "mean": 0.33778300881385803,
-            "ci_low": null,
-            "ci_high": null,
-            "n": 1
+            "ci_low": 0.33778300881385803,
+            "ci_high": 0.33778300881385803,
+            "n": 2,
+            "sd": 0.0
           },
           "test_loss": {
             "mean": 1.1839893907308578,
-            "ci_low": null,
-            "ci_high": null,
-            "n": 1
+            "ci_low": 1.1839893907308578,
+            "ci_high": 1.1839893907308578,
+            "n": 2,
+            "sd": 0.0
           }
         }
       }
@@ -3115,239 +3700,1388 @@
         "complete": true,
         "arm": "g",
         "post_hoc": false
+      },
+      "anthropic_ex": {
+        "determinism_exact_match_share": 0.030100334448160536,
+        "determinism_tier_identical_share": 0.782608695652174,
+        "determinism_records": 299,
+        "composite_range_mean": 2.6220735785953178,
+        "per_dimension_sd_mean": {
+          "breadth": 3.858737501668065,
+          "concordance": 1.0059606842321331,
+          "consent": 1.918991028147941,
+          "provenance": 2.050386260887374,
+          "quality": 2.3612763608123744,
+          "recency": 2.2151472284779667,
+          "stability": 2.5195677379976837,
+          "validation": 3.57443757488387
+        },
+        "latency_ms_median": 23813.5,
+        "latency_ms_p95": 104127.9,
+        "latency_calls": 900,
+        "tokens_per_record": {
+          "cache_creation": 0.0,
+          "cache_read": 420267.0,
+          "input": 3806.34,
+          "output": 8167.49,
+          "reasoning": 0.0
+        },
+        "usd_per_record": 0.433352,
+        "usd_per_call": 0.144451,
+        "run": "20260920T215515Z-examples",
+        "provider": "anthropic",
+        "model_requested": "claude-opus-5",
+        "response_models": {
+          "claude-opus-5": 900
+        },
+        "settings": {
+          "betas": [
+            "server-side-fallback-2026-07-01"
+          ],
+          "cache_control": "ephemeral (5m) on the system block",
+          "concurrency": 4,
+          "effort": "high",
+          "fallbacks": "default",
+          "max_tokens": 16000,
+          "sdk": "anthropic 1.7.0",
+          "structured_output": "output_config.format json_schema",
+          "temperature_requested": null,
+          "temperature_settable": false,
+          "temperature_settable_observed": [
+            "False"
+          ],
+          "thinking": {
+            "type": "adaptive"
+          }
+        },
+        "counts": {
+          "calls_parsed_ok": 889,
+          "calls_total": 900,
+          "errors": 0,
+          "fallback_calls": 0,
+          "finish_reasons": {
+            "end_turn": 889,
+            "max_tokens": 11
+          },
+          "parse_failures": 11,
+          "refusals": 0,
+          "stop_reasons": {
+            "end_turn": 889,
+            "max_tokens": 11
+          }
+        },
+        "cache": {
+          "cache_verified_from_second_call": true,
+          "calls_with_cache_read": 900,
+          "explicit_cache": null,
+          "first_call_cache_creation_input_tokens": 0,
+          "first_call_cache_read_input_tokens": 140089,
+          "later_calls": 899,
+          "later_calls_with_cache_read": 899,
+          "mechanism": "ephemeral (5m) on the system block"
+        },
+        "tokens": {
+          "cache_creation": 0,
+          "cache_read": 126080100,
+          "input": 1141902,
+          "output": 2450247,
+          "reasoning": 0
+        },
+        "cost_usd_total": 130.005731,
+        "prompt_sha256": "9a9186ec1c53fecdf61737eaab83deb1e2f861471929c85b8d39587feba92679",
+        "ids_source": {
+          "calls_file_sha256": "38ead99aa6c7710fc958f7b4a36f8f94d00b6a6073ab41fb62ba88b25cbf30e4",
+          "n_ids": 300,
+          "n_ids_used": 300,
+          "source_as_of": "2026-09-20T00:00:00.000Z",
+          "source_ids_source": {
+            "n_ids": 4001,
+            "spec": "splits/dti_seed1.json:test",
+            "split_file_sha256": "cb23989c5192e687b635aada79e3a01ee1a645484a16d6b8eb0880cce35aa864"
+          },
+          "source_prompt_sha256": "5e7f42957795615a5e16b61d9e0d1e7d11864d8aabfdde0233a1d06ee87bca71",
+          "source_run_id": "20260920T154525Z",
+          "spec": "ids-from-run:20260920T154525Z",
+          "split_file_sha256": "cb23989c5192e687b635aada79e3a01ee1a645484a16d6b8eb0880cce35aa864"
+        },
+        "macro_f1_mean_of_runs": 0.7525172958819218,
+        "n_records": 300,
+        "k": 3,
+        "complete": true,
+        "arm": "g2-examples",
+        "post_hoc": true,
+        "base_arm": "anthropic",
+        "examples": {
+          "E": 100,
+          "arm": "g2-examples",
+          "examples_block_in_prefix": true,
+          "leakage_check": {
+            "examples": 100,
+            "overlap_with_scored": 0,
+            "overlap_with_test_split": 0,
+            "scored_ids": 300,
+            "test_split_ids": 4001
+          },
+          "per_tier": {
+            "BELOW THRESHOLD": 20,
+            "BRONZE": 20,
+            "GOLD": 20,
+            "PLATINUM": 20,
+            "SILVER": 20
+          },
+          "prefix_token_counter": "POST /v1/messages/count_tokens, model claude-opus-5, prefix counted as one user turn",
+          "prefix_tokens_measured": {
+            "anthropic": 139555,
+            "gemini": 109437,
+            "openai": 94918,
+            "xai": 91737
+          },
+          "prefix_tokens_observed_first_call": 141043,
+          "record_ids": [
+            "SYN-DTI-013668",
+            "SYN-DTI-008364",
+            "SYN-DTI-009120",
+            "SYN-DTI-002945",
+            "SYN-DTI-005232",
+            "SYN-DTI-011350",
+            "SYN-DTI-003365",
+            "SYN-DTI-001482",
+            "SYN-DTI-016742",
+            "SYN-DTI-014401",
+            "SYN-DTI-007938",
+            "SYN-DTI-007153",
+            "SYN-DTI-001062",
+            "SYN-DTI-015443",
+            "SYN-DTI-000304",
+            "SYN-DTI-014497",
+            "SYN-DTI-003036",
+            "SYN-DTI-014838",
+            "SYN-DTI-010857",
+            "SYN-DTI-015916",
+            "SYN-DTI-011353",
+            "SYN-DTI-018415",
+            "SYN-DTI-004173",
+            "SYN-DTI-017114",
+            "SYN-DTI-010889",
+            "SYN-DTI-000628",
+            "SYN-DTI-014039",
+            "SYN-DTI-015174",
+            "SYN-DTI-000491",
+            "SYN-DTI-011986",
+            "SYN-DTI-004099",
+            "SYN-DTI-012691",
+            "SYN-DTI-014856",
+            "SYN-DTI-006891",
+            "SYN-DTI-015659",
+            "SYN-DTI-009587",
+            "SYN-DTI-015976",
+            "SYN-DTI-010642",
+            "SYN-DTI-018366",
+            "SYN-DTI-012266",
+            "SYN-DTI-016828",
+            "SYN-DTI-000831",
+            "SYN-DTI-010375",
+            "SYN-DTI-009553",
+            "SYN-DTI-007439",
+            "SYN-DTI-015433",
+            "SYN-DTI-003112",
+            "SYN-DTI-009098",
+            "SYN-DTI-003462",
+            "SYN-DTI-015281",
+            "SYN-DTI-013122",
+            "SYN-DTI-005653",
+            "SYN-DTI-016291",
+            "SYN-DTI-004148",
+            "SYN-DTI-016980",
+            "SYN-DTI-004005",
+            "SYN-DTI-019528",
+            "SYN-DTI-010932",
+            "SYN-DTI-002266",
+            "SYN-DTI-011126",
+            "SYN-DTI-002194",
+            "SYN-DTI-009792",
+            "SYN-DTI-003277",
+            "SYN-DTI-002355",
+            "SYN-DTI-008490",
+            "SYN-DTI-006054",
+            "SYN-DTI-005405",
+            "SYN-DTI-013058",
+            "SYN-DTI-000887",
+            "SYN-DTI-018158",
+            "SYN-DTI-008197",
+            "SYN-DTI-007791",
+            "SYN-DTI-007178",
+            "SYN-DTI-006444",
+            "SYN-DTI-000065",
+            "SYN-DTI-014242",
+            "SYN-DTI-017468",
+            "SYN-DTI-012641",
+            "SYN-DTI-013770",
+            "SYN-DTI-011134",
+            "SYN-DTI-005922",
+            "SYN-DTI-014219",
+            "SYN-DTI-011183",
+            "SYN-DTI-005208",
+            "SYN-DTI-016460",
+            "SYN-DTI-012511",
+            "SYN-DTI-011092",
+            "SYN-DTI-006539",
+            "SYN-DTI-019981",
+            "SYN-DTI-004036",
+            "SYN-DTI-016227",
+            "SYN-DTI-017056",
+            "SYN-DTI-014199",
+            "SYN-DTI-000680",
+            "SYN-DTI-004056",
+            "SYN-DTI-015605",
+            "SYN-DTI-004120",
+            "SYN-DTI-001029",
+            "SYN-DTI-015159",
+            "SYN-DTI-005401"
+          ],
+          "record_ids_sha256": "8fc40296111737cc8497baafbdbfd8b638f35e8e0cc4975276a6910d47e4094a",
+          "selection_seed": 20260920,
+          "source_split": "/Users/jas/Projects/supertruth-connectome/splits/dti_seed1.json:train",
+          "split_file_sha256": "cb23989c5192e687b635aada79e3a01ee1a645484a16d6b8eb0880cce35aa864"
+        },
+        "base_prompt_sha256": "5e7f42957795615a5e16b61d9e0d1e7d11864d8aabfdde0233a1d06ee87bca71",
+        "cost_usd_cache_storage": 0.0,
+        "cache_hit_share": 1.0,
+        "gain_vs_g": {
+          "n_records": 300,
+          "orientation": "positive = examples helped (g minus g2 on error; g2 minus g on agreement)",
+          "composite_mae_gain": {
+            "mean": 22.586666666666666,
+            "ci_low": 21.68912506839559,
+            "ci_high": 23.48420826493774,
+            "n": 300,
+            "sd": 7.899609800842959
+          },
+          "composite_mae_direct_gain": {
+            "mean": 22.506666666666668,
+            "ci_low": 21.60743727812025,
+            "ci_high": 23.405896055213084,
+            "n": 300,
+            "sd": 7.914464694060743
+          },
+          "tier_acc_gain": {
+            "mean": 0.5566666666666666,
+            "g": 0.2,
+            "g2": 0.7566666666666667,
+            "discordant_g2_only": 172,
+            "discordant_g_only": 5,
+            "mcnemar_exact_p": 1.4700021255051362e-44,
+            "method": "paired on records; exact McNemar (two-sided binomial on the discordant pairs)"
+          },
+          "g_run": "20260920T154525Z",
+          "g2_run": "20260920T215515Z-examples"
+        }
+      },
+      "openai_ex": {
+        "determinism_exact_match_share": 0.0033333333333333335,
+        "determinism_tier_identical_share": 0.6733333333333333,
+        "determinism_records": 300,
+        "composite_range_mean": 4.013333333333334,
+        "per_dimension_sd_mean": {
+          "breadth": 4.237448710883334,
+          "concordance": 3.5235493605874253,
+          "consent": 4.295388911497402,
+          "provenance": 2.6393744263993373,
+          "quality": 2.6266988213222477,
+          "recency": 3.1444743863916846,
+          "stability": 1.8882475836719705,
+          "validation": 3.936531803755343
+        },
+        "latency_ms_median": 58637.8,
+        "latency_ms_p95": 81323.9,
+        "latency_calls": 900,
+        "tokens_per_record": {
+          "cache_creation": 0.0,
+          "cache_read": 286239.5733333333,
+          "input": 1526.8166666666666,
+          "output": 17095.403333333332,
+          "reasoning": 16890.453333333335
+        },
+        "usd_per_record": 0.208643,
+        "usd_per_call": 0.069548,
+        "run": "20260920T215517Z-examples",
+        "provider": "openai",
+        "model_requested": "gpt-5",
+        "response_models": {
+          "gpt-5-2025-08-07": 900
+        },
+        "settings": {
+          "concurrency": 12,
+          "effort": "high",
+          "endpoint": "https://api.openai.com/v1/chat/completions",
+          "max_tokens": 16000,
+          "max_tokens_param": "max_completion_tokens",
+          "sdk": "openai 3.16.2",
+          "structured_output": "response_format json_schema strict=true",
+          "temperature_requested": 0.0,
+          "temperature_settable": false,
+          "temperature_settable_observed": [
+            "False"
+          ],
+          "thinking": {
+            "type": "reasoning_effort high"
+          }
+        },
+        "counts": {
+          "calls_parsed_ok": 900,
+          "calls_total": 900,
+          "errors": 0,
+          "fallback_calls": 0,
+          "finish_reasons": {
+            "stop": 900
+          },
+          "parse_failures": 0,
+          "refusals": 0,
+          "stop_reasons": {
+            "end_turn": 900
+          }
+        },
+        "cache": {
+          "cache_verified_from_second_call": false,
+          "calls_with_cache_read": 899,
+          "explicit_cache": null,
+          "first_call_cache_creation_input_tokens": null,
+          "first_call_cache_read_input_tokens": 95488,
+          "later_calls": 899,
+          "later_calls_with_cache_read": 898,
+          "mechanism": "vendor automatic prompt caching (cached tokens read from usage)"
+        },
+        "tokens": {
+          "cache_creation": 0,
+          "cache_read": 85871872,
+          "input": 458045,
+          "output": 5128621,
+          "reasoning": 5067136
+        },
+        "cost_usd_total": 62.592752,
+        "prompt_sha256": "9a9186ec1c53fecdf61737eaab83deb1e2f861471929c85b8d39587feba92679",
+        "ids_source": {
+          "calls_file_sha256": "38ead99aa6c7710fc958f7b4a36f8f94d00b6a6073ab41fb62ba88b25cbf30e4",
+          "n_ids": 300,
+          "n_ids_used": 300,
+          "source_as_of": "2026-09-20T00:00:00.000Z",
+          "source_ids_source": {
+            "n_ids": 4001,
+            "spec": "splits/dti_seed1.json:test",
+            "split_file_sha256": "cb23989c5192e687b635aada79e3a01ee1a645484a16d6b8eb0880cce35aa864"
+          },
+          "source_prompt_sha256": "5e7f42957795615a5e16b61d9e0d1e7d11864d8aabfdde0233a1d06ee87bca71",
+          "source_run_id": "20260920T154525Z",
+          "spec": "ids-from-run:20260920T154525Z",
+          "split_file_sha256": "cb23989c5192e687b635aada79e3a01ee1a645484a16d6b8eb0880cce35aa864"
+        },
+        "macro_f1_mean_of_runs": 0.5284768284259084,
+        "n_records": 300,
+        "k": 3,
+        "complete": true,
+        "arm": "g2-examples",
+        "post_hoc": true,
+        "base_arm": "openai",
+        "examples": {
+          "E": 100,
+          "arm": "g2-examples",
+          "examples_block_in_prefix": true,
+          "leakage_check": {
+            "examples": 100,
+            "overlap_with_scored": 0,
+            "overlap_with_test_split": 0,
+            "scored_ids": 300,
+            "test_split_ids": 4001
+          },
+          "per_tier": {
+            "BELOW THRESHOLD": 20,
+            "BRONZE": 20,
+            "GOLD": 20,
+            "PLATINUM": 20,
+            "SILVER": 20
+          },
+          "prefix_token_counter": "tiktoken o200k_base (tiktoken.encoding_for_model('gpt-5'))",
+          "prefix_tokens_measured": {
+            "anthropic": 139555,
+            "gemini": 109437,
+            "openai": 94918,
+            "xai": 91737
+          },
+          "prefix_tokens_observed_first_call": 95649,
+          "record_ids": [
+            "SYN-DTI-013668",
+            "SYN-DTI-008364",
+            "SYN-DTI-009120",
+            "SYN-DTI-002945",
+            "SYN-DTI-005232",
+            "SYN-DTI-011350",
+            "SYN-DTI-003365",
+            "SYN-DTI-001482",
+            "SYN-DTI-016742",
+            "SYN-DTI-014401",
+            "SYN-DTI-007938",
+            "SYN-DTI-007153",
+            "SYN-DTI-001062",
+            "SYN-DTI-015443",
+            "SYN-DTI-000304",
+            "SYN-DTI-014497",
+            "SYN-DTI-003036",
+            "SYN-DTI-014838",
+            "SYN-DTI-010857",
+            "SYN-DTI-015916",
+            "SYN-DTI-011353",
+            "SYN-DTI-018415",
+            "SYN-DTI-004173",
+            "SYN-DTI-017114",
+            "SYN-DTI-010889",
+            "SYN-DTI-000628",
+            "SYN-DTI-014039",
+            "SYN-DTI-015174",
+            "SYN-DTI-000491",
+            "SYN-DTI-011986",
+            "SYN-DTI-004099",
+            "SYN-DTI-012691",
+            "SYN-DTI-014856",
+            "SYN-DTI-006891",
+            "SYN-DTI-015659",
+            "SYN-DTI-009587",
+            "SYN-DTI-015976",
+            "SYN-DTI-010642",
+            "SYN-DTI-018366",
+            "SYN-DTI-012266",
+            "SYN-DTI-016828",
+            "SYN-DTI-000831",
+            "SYN-DTI-010375",
+            "SYN-DTI-009553",
+            "SYN-DTI-007439",
+            "SYN-DTI-015433",
+            "SYN-DTI-003112",
+            "SYN-DTI-009098",
+            "SYN-DTI-003462",
+            "SYN-DTI-015281",
+            "SYN-DTI-013122",
+            "SYN-DTI-005653",
+            "SYN-DTI-016291",
+            "SYN-DTI-004148",
+            "SYN-DTI-016980",
+            "SYN-DTI-004005",
+            "SYN-DTI-019528",
+            "SYN-DTI-010932",
+            "SYN-DTI-002266",
+            "SYN-DTI-011126",
+            "SYN-DTI-002194",
+            "SYN-DTI-009792",
+            "SYN-DTI-003277",
+            "SYN-DTI-002355",
+            "SYN-DTI-008490",
+            "SYN-DTI-006054",
+            "SYN-DTI-005405",
+            "SYN-DTI-013058",
+            "SYN-DTI-000887",
+            "SYN-DTI-018158",
+            "SYN-DTI-008197",
+            "SYN-DTI-007791",
+            "SYN-DTI-007178",
+            "SYN-DTI-006444",
+            "SYN-DTI-000065",
+            "SYN-DTI-014242",
+            "SYN-DTI-017468",
+            "SYN-DTI-012641",
+            "SYN-DTI-013770",
+            "SYN-DTI-011134",
+            "SYN-DTI-005922",
+            "SYN-DTI-014219",
+            "SYN-DTI-011183",
+            "SYN-DTI-005208",
+            "SYN-DTI-016460",
+            "SYN-DTI-012511",
+            "SYN-DTI-011092",
+            "SYN-DTI-006539",
+            "SYN-DTI-019981",
+            "SYN-DTI-004036",
+            "SYN-DTI-016227",
+            "SYN-DTI-017056",
+            "SYN-DTI-014199",
+            "SYN-DTI-000680",
+            "SYN-DTI-004056",
+            "SYN-DTI-015605",
+            "SYN-DTI-004120",
+            "SYN-DTI-001029",
+            "SYN-DTI-015159",
+            "SYN-DTI-005401"
+          ],
+          "record_ids_sha256": "8fc40296111737cc8497baafbdbfd8b638f35e8e0cc4975276a6910d47e4094a",
+          "selection_seed": 20260920,
+          "source_split": "/Users/jas/Projects/supertruth-connectome/splits/dti_seed1.json:train",
+          "split_file_sha256": "cb23989c5192e687b635aada79e3a01ee1a645484a16d6b8eb0880cce35aa864"
+        },
+        "base_prompt_sha256": "5e7f42957795615a5e16b61d9e0d1e7d11864d8aabfdde0233a1d06ee87bca71",
+        "cost_usd_cache_storage": 0.0,
+        "cache_hit_share": 0.9988888888888889,
+        "gain_vs_g": {
+          "n_records": 300,
+          "orientation": "positive = examples helped (g minus g2 on error; g2 minus g on agreement)",
+          "composite_mae_gain": {
+            "mean": 9.933333333333334,
+            "ci_low": 8.607891253224139,
+            "ci_high": 11.258775413442528,
+            "n": 300,
+            "sd": 11.665726988753967
+          },
+          "composite_mae_direct_gain": {
+            "mean": 9.82,
+            "ci_low": 8.496683206283608,
+            "ci_high": 11.143316793716393,
+            "n": 300,
+            "sd": 11.64702152345796
+          },
+          "tier_acc_gain": {
+            "mean": 0.24333333333333335,
+            "g": 0.29333333333333333,
+            "g2": 0.5366666666666666,
+            "discordant_g2_only": 127,
+            "discordant_g_only": 54,
+            "mcnemar_exact_p": 5.8258797547913986e-08,
+            "method": "paired on records; exact McNemar (two-sided binomial on the discordant pairs)"
+          },
+          "g_run": "20260920T200058Z",
+          "g2_run": "20260920T215517Z-examples"
+        }
+      },
+      "xai_ex": {
+        "determinism_exact_match_share": 0.01,
+        "determinism_tier_identical_share": 0.6666666666666666,
+        "determinism_records": 300,
+        "composite_range_mean": 4.58,
+        "per_dimension_sd_mean": {
+          "breadth": 4.037298175153776,
+          "concordance": 2.776106768251815,
+          "consent": 5.350520792657708,
+          "provenance": 3.3659784410548603,
+          "quality": 3.16521110219339,
+          "recency": 4.146045572129687,
+          "stability": 2.5207147817587767,
+          "validation": 2.4819287278813262
+        },
+        "latency_ms_median": 24836.0,
+        "latency_ms_p95": 36737.0,
+        "latency_calls": 900,
+        "tokens_per_record": {
+          "cache_creation": 0.0,
+          "cache_read": 265947.7,
+          "input": 12838.24,
+          "output": 8229.866666666667,
+          "reasoning": 8010.833333333333
+        },
+        "usd_per_record": 0.089812,
+        "usd_per_call": 0.029937,
+        "run": "20260920T215519Z-examples",
+        "provider": "xai",
+        "model_requested": "grok-4",
+        "response_models": {
+          "grok-4.3": 900
+        },
+        "settings": {
+          "concurrency": 4,
+          "effort": "high",
+          "endpoint": "https://api.x.ai/v1/chat/completions",
+          "max_tokens": 16000,
+          "max_tokens_param": "max_tokens",
+          "sdk": "openai 3.16.2",
+          "structured_output": "response_format json_schema strict=true",
+          "temperature_requested": 0.0,
+          "temperature_settable": true,
+          "temperature_settable_observed": [
+            "True"
+          ],
+          "thinking": {
+            "type": "reasoning_effort high"
+          }
+        },
+        "counts": {
+          "calls_parsed_ok": 900,
+          "calls_total": 900,
+          "errors": 0,
+          "fallback_calls": 0,
+          "finish_reasons": {
+            "stop": 900
+          },
+          "parse_failures": 0,
+          "refusals": 0,
+          "stop_reasons": {
+            "end_turn": 900
+          }
+        },
+        "cache": {
+          "cache_verified_from_second_call": false,
+          "calls_with_cache_read": 897,
+          "explicit_cache": null,
+          "first_call_cache_creation_input_tokens": null,
+          "first_call_cache_read_input_tokens": 92032,
+          "later_calls": 899,
+          "later_calls_with_cache_read": 896,
+          "mechanism": "vendor automatic prompt caching (cached tokens read from usage)"
+        },
+        "tokens": {
+          "cache_creation": 0,
+          "cache_read": 79784310,
+          "input": 3851472,
+          "output": 2468960,
+          "reasoning": 2403250
+        },
+        "cost_usd_total": 26.943597,
+        "prompt_sha256": "9a9186ec1c53fecdf61737eaab83deb1e2f861471929c85b8d39587feba92679",
+        "ids_source": {
+          "calls_file_sha256": "38ead99aa6c7710fc958f7b4a36f8f94d00b6a6073ab41fb62ba88b25cbf30e4",
+          "n_ids": 300,
+          "n_ids_used": 300,
+          "source_as_of": "2026-09-20T00:00:00.000Z",
+          "source_ids_source": {
+            "n_ids": 4001,
+            "spec": "splits/dti_seed1.json:test",
+            "split_file_sha256": "cb23989c5192e687b635aada79e3a01ee1a645484a16d6b8eb0880cce35aa864"
+          },
+          "source_prompt_sha256": "5e7f42957795615a5e16b61d9e0d1e7d11864d8aabfdde0233a1d06ee87bca71",
+          "source_run_id": "20260920T154525Z",
+          "spec": "ids-from-run:20260920T154525Z",
+          "split_file_sha256": "cb23989c5192e687b635aada79e3a01ee1a645484a16d6b8eb0880cce35aa864"
+        },
+        "macro_f1_mean_of_runs": 0.543747898175779,
+        "n_records": 300,
+        "k": 3,
+        "complete": true,
+        "arm": "g2-examples",
+        "post_hoc": true,
+        "base_arm": "xai",
+        "examples": {
+          "E": 100,
+          "arm": "g2-examples",
+          "examples_block_in_prefix": true,
+          "leakage_check": {
+            "examples": 100,
+            "overlap_with_scored": 0,
+            "overlap_with_test_split": 0,
+            "scored_ids": 300,
+            "test_split_ids": 4001
+          },
+          "per_tier": {
+            "BELOW THRESHOLD": 20,
+            "BRONZE": 20,
+            "GOLD": 20,
+            "PLATINUM": 20,
+            "SILVER": 20
+          },
+          "prefix_token_counter": "POST https://api.x.ai/v1/tokenize-text, model grok-4",
+          "prefix_tokens_measured": {
+            "anthropic": 139555,
+            "gemini": 109437,
+            "openai": 94918,
+            "xai": 91737
+          },
+          "prefix_tokens_observed_first_call": 92658,
+          "record_ids": [
+            "SYN-DTI-013668",
+            "SYN-DTI-008364",
+            "SYN-DTI-009120",
+            "SYN-DTI-002945",
+            "SYN-DTI-005232",
+            "SYN-DTI-011350",
+            "SYN-DTI-003365",
+            "SYN-DTI-001482",
+            "SYN-DTI-016742",
+            "SYN-DTI-014401",
+            "SYN-DTI-007938",
+            "SYN-DTI-007153",
+            "SYN-DTI-001062",
+            "SYN-DTI-015443",
+            "SYN-DTI-000304",
+            "SYN-DTI-014497",
+            "SYN-DTI-003036",
+            "SYN-DTI-014838",
+            "SYN-DTI-010857",
+            "SYN-DTI-015916",
+            "SYN-DTI-011353",
+            "SYN-DTI-018415",
+            "SYN-DTI-004173",
+            "SYN-DTI-017114",
+            "SYN-DTI-010889",
+            "SYN-DTI-000628",
+            "SYN-DTI-014039",
+            "SYN-DTI-015174",
+            "SYN-DTI-000491",
+            "SYN-DTI-011986",
+            "SYN-DTI-004099",
+            "SYN-DTI-012691",
+            "SYN-DTI-014856",
+            "SYN-DTI-006891",
+            "SYN-DTI-015659",
+            "SYN-DTI-009587",
+            "SYN-DTI-015976",
+            "SYN-DTI-010642",
+            "SYN-DTI-018366",
+            "SYN-DTI-012266",
+            "SYN-DTI-016828",
+            "SYN-DTI-000831",
+            "SYN-DTI-010375",
+            "SYN-DTI-009553",
+            "SYN-DTI-007439",
+            "SYN-DTI-015433",
+            "SYN-DTI-003112",
+            "SYN-DTI-009098",
+            "SYN-DTI-003462",
+            "SYN-DTI-015281",
+            "SYN-DTI-013122",
+            "SYN-DTI-005653",
+            "SYN-DTI-016291",
+            "SYN-DTI-004148",
+            "SYN-DTI-016980",
+            "SYN-DTI-004005",
+            "SYN-DTI-019528",
+            "SYN-DTI-010932",
+            "SYN-DTI-002266",
+            "SYN-DTI-011126",
+            "SYN-DTI-002194",
+            "SYN-DTI-009792",
+            "SYN-DTI-003277",
+            "SYN-DTI-002355",
+            "SYN-DTI-008490",
+            "SYN-DTI-006054",
+            "SYN-DTI-005405",
+            "SYN-DTI-013058",
+            "SYN-DTI-000887",
+            "SYN-DTI-018158",
+            "SYN-DTI-008197",
+            "SYN-DTI-007791",
+            "SYN-DTI-007178",
+            "SYN-DTI-006444",
+            "SYN-DTI-000065",
+            "SYN-DTI-014242",
+            "SYN-DTI-017468",
+            "SYN-DTI-012641",
+            "SYN-DTI-013770",
+            "SYN-DTI-011134",
+            "SYN-DTI-005922",
+            "SYN-DTI-014219",
+            "SYN-DTI-011183",
+            "SYN-DTI-005208",
+            "SYN-DTI-016460",
+            "SYN-DTI-012511",
+            "SYN-DTI-011092",
+            "SYN-DTI-006539",
+            "SYN-DTI-019981",
+            "SYN-DTI-004036",
+            "SYN-DTI-016227",
+            "SYN-DTI-017056",
+            "SYN-DTI-014199",
+            "SYN-DTI-000680",
+            "SYN-DTI-004056",
+            "SYN-DTI-015605",
+            "SYN-DTI-004120",
+            "SYN-DTI-001029",
+            "SYN-DTI-015159",
+            "SYN-DTI-005401"
+          ],
+          "record_ids_sha256": "8fc40296111737cc8497baafbdbfd8b638f35e8e0cc4975276a6910d47e4094a",
+          "selection_seed": 20260920,
+          "source_split": "/Users/jas/Projects/supertruth-connectome/splits/dti_seed1.json:train",
+          "split_file_sha256": "cb23989c5192e687b635aada79e3a01ee1a645484a16d6b8eb0880cce35aa864"
+        },
+        "base_prompt_sha256": "5e7f42957795615a5e16b61d9e0d1e7d11864d8aabfdde0233a1d06ee87bca71",
+        "cost_usd_cache_storage": 0.0,
+        "cache_hit_share": 0.9966666666666667,
+        "gain_vs_g": {
+          "n_records": 300,
+          "orientation": "positive = examples helped (g minus g2 on error; g2 minus g on agreement)",
+          "composite_mae_gain": {
+            "mean": 11.683333333333334,
+            "ci_low": 10.792644431643922,
+            "ci_high": 12.574022235022746,
+            "n": 300,
+            "sd": 7.839296575045959
+          },
+          "composite_mae_direct_gain": {
+            "mean": 11.63,
+            "ci_low": 10.734452481718563,
+            "ci_high": 12.525547518281439,
+            "n": 300,
+            "sd": 7.882059133709348
+          },
+          "tier_acc_gain": {
+            "mean": 0.27666666666666667,
+            "g": 0.27666666666666667,
+            "g2": 0.5533333333333333,
+            "discordant_g2_only": 100,
+            "discordant_g_only": 17,
+            "mcnemar_exact_p": 1.726263257699955e-15,
+            "method": "paired on records; exact McNemar (two-sided binomial on the discordant pairs)"
+          },
+          "g_run": "20260920T185412Z",
+          "g2_run": "20260920T215519Z-examples"
+        }
+      },
+      "gemini_ex": {
+        "determinism_exact_match_share": 0.2833333333333333,
+        "determinism_tier_identical_share": 0.8033333333333333,
+        "determinism_records": 300,
+        "composite_range_mean": 2.3333333333333335,
+        "per_dimension_sd_mean": {
+          "breadth": 3.88749181254348,
+          "concordance": 1.9456704071690387,
+          "consent": 2.240119044455748,
+          "provenance": 1.7012587932120973,
+          "quality": 2.1804595166394867,
+          "recency": 1.8475208614068026,
+          "stability": 1.3471506281091268,
+          "validation": 2.636566229299291
+        },
+        "latency_ms_median": 51821.4,
+        "latency_ms_p95": 58561.6,
+        "latency_calls": 900,
+        "tokens_per_record": {
+          "cache_creation": 0.0,
+          "cache_read": 328311.0,
+          "input": 3027.98,
+          "output": 33101.75666666667,
+          "reasoning": 32875.75
+        },
+        "usd_per_record": 0.118173,
+        "usd_per_call": 0.039391,
+        "run": "20260920T215521Z-examples",
+        "provider": "gemini",
+        "model_requested": "gemini-3-flash-preview",
+        "response_models": {
+          "gemini-3-flash-preview": 900
+        },
+        "settings": {
+          "cache_control": "explicit CachedContent (caches.create with system_instruction, ttl 28800s, deleted at run end); generate_content passes cached_content",
+          "concurrency": 4,
+          "effort": "high",
+          "endpoint": "https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent",
+          "max_tokens": 16000,
+          "sdk": "google-genai 2.24.0",
+          "structured_output": "response_mime_type application/json + response_json_schema",
+          "temperature_requested": 0.0,
+          "temperature_settable": true,
+          "temperature_settable_observed": [
+            "True"
+          ],
+          "temperature_vendor_advice": "ai.google.dev/gemini-api/docs/gemini-3: 'we strongly recommend keeping the temperature parameter at its default value of 1.0'",
+          "thinking": {
+            "type": "thinking_level high"
+          }
+        },
+        "counts": {
+          "calls_parsed_ok": 900,
+          "calls_total": 900,
+          "errors": 0,
+          "fallback_calls": 0,
+          "finish_reasons": {
+            "MAX_TOKENS": 2,
+            "STOP": 898
+          },
+          "parse_failures": 0,
+          "refusals": 0,
+          "stop_reasons": {
+            "end_turn": 898,
+            "max_tokens": 2
+          }
+        },
+        "cache": {
+          "cache_verified_from_second_call": true,
+          "calls_with_cache_read": 900,
+          "explicit_cache": {
+            "created_utc": "2026-09-20T21:55:22+00:00",
+            "deleted_utc": "2026-09-21T00:29:39+00:00",
+            "expire_time": "2026-09-21 05:55:21.477053+00:00",
+            "hours_held": 2.5715,
+            "model": "models/gemini-3-flash-preview",
+            "name": "cachedContents/d4yylfyqijz0ecc0ilr4teyl6wyg2dgykq2ffapz",
+            "token_count": 109437,
+            "ttl_s": 28800
+          },
+          "first_call_cache_creation_input_tokens": null,
+          "first_call_cache_read_input_tokens": 109437,
+          "later_calls": 899,
+          "later_calls_with_cache_read": 899,
+          "mechanism": "explicit CachedContent (caches.create with system_instruction, ttl 28800s, deleted at run end); generate_content passes cached_content"
+        },
+        "tokens": {
+          "cache_creation": 0,
+          "cache_read": 98493300,
+          "input": 908394,
+          "output": 9930527,
+          "reasoning": 9862725
+        },
+        "cost_usd_total": 35.45177,
+        "prompt_sha256": "9a9186ec1c53fecdf61737eaab83deb1e2f861471929c85b8d39587feba92679",
+        "ids_source": {
+          "calls_file_sha256": "38ead99aa6c7710fc958f7b4a36f8f94d00b6a6073ab41fb62ba88b25cbf30e4",
+          "n_ids": 300,
+          "n_ids_used": 300,
+          "source_as_of": "2026-09-20T00:00:00.000Z",
+          "source_ids_source": {
+            "n_ids": 4001,
+            "spec": "splits/dti_seed1.json:test",
+            "split_file_sha256": "cb23989c5192e687b635aada79e3a01ee1a645484a16d6b8eb0880cce35aa864"
+          },
+          "source_prompt_sha256": "5e7f42957795615a5e16b61d9e0d1e7d11864d8aabfdde0233a1d06ee87bca71",
+          "source_run_id": "20260920T154525Z",
+          "spec": "ids-from-run:20260920T154525Z",
+          "split_file_sha256": "cb23989c5192e687b635aada79e3a01ee1a645484a16d6b8eb0880cce35aa864"
+        },
+        "macro_f1_mean_of_runs": 0.6187359360676157,
+        "n_records": 300,
+        "k": 3,
+        "complete": true,
+        "arm": "g2-examples",
+        "post_hoc": true,
+        "base_arm": "gemini",
+        "examples": {
+          "E": 100,
+          "arm": "g2-examples",
+          "examples_block_in_prefix": true,
+          "leakage_check": {
+            "examples": 100,
+            "overlap_with_scored": 0,
+            "overlap_with_test_split": 0,
+            "scored_ids": 300,
+            "test_split_ids": 4001
+          },
+          "per_tier": {
+            "BELOW THRESHOLD": 20,
+            "BRONZE": 20,
+            "GOLD": 20,
+            "PLATINUM": 20,
+            "SILVER": 20
+          },
+          "prefix_token_counter": "models.count_tokens gemini-3-flash-preview (Developer API counts contents; prefix counted as contents)",
+          "prefix_tokens_measured": {
+            "anthropic": 139555,
+            "gemini": 109437,
+            "openai": 94918,
+            "xai": 91737
+          },
+          "prefix_tokens_observed_first_call": 110111,
+          "record_ids": [
+            "SYN-DTI-013668",
+            "SYN-DTI-008364",
+            "SYN-DTI-009120",
+            "SYN-DTI-002945",
+            "SYN-DTI-005232",
+            "SYN-DTI-011350",
+            "SYN-DTI-003365",
+            "SYN-DTI-001482",
+            "SYN-DTI-016742",
+            "SYN-DTI-014401",
+            "SYN-DTI-007938",
+            "SYN-DTI-007153",
+            "SYN-DTI-001062",
+            "SYN-DTI-015443",
+            "SYN-DTI-000304",
+            "SYN-DTI-014497",
+            "SYN-DTI-003036",
+            "SYN-DTI-014838",
+            "SYN-DTI-010857",
+            "SYN-DTI-015916",
+            "SYN-DTI-011353",
+            "SYN-DTI-018415",
+            "SYN-DTI-004173",
+            "SYN-DTI-017114",
+            "SYN-DTI-010889",
+            "SYN-DTI-000628",
+            "SYN-DTI-014039",
+            "SYN-DTI-015174",
+            "SYN-DTI-000491",
+            "SYN-DTI-011986",
+            "SYN-DTI-004099",
+            "SYN-DTI-012691",
+            "SYN-DTI-014856",
+            "SYN-DTI-006891",
+            "SYN-DTI-015659",
+            "SYN-DTI-009587",
+            "SYN-DTI-015976",
+            "SYN-DTI-010642",
+            "SYN-DTI-018366",
+            "SYN-DTI-012266",
+            "SYN-DTI-016828",
+            "SYN-DTI-000831",
+            "SYN-DTI-010375",
+            "SYN-DTI-009553",
+            "SYN-DTI-007439",
+            "SYN-DTI-015433",
+            "SYN-DTI-003112",
+            "SYN-DTI-009098",
+            "SYN-DTI-003462",
+            "SYN-DTI-015281",
+            "SYN-DTI-013122",
+            "SYN-DTI-005653",
+            "SYN-DTI-016291",
+            "SYN-DTI-004148",
+            "SYN-DTI-016980",
+            "SYN-DTI-004005",
+            "SYN-DTI-019528",
+            "SYN-DTI-010932",
+            "SYN-DTI-002266",
+            "SYN-DTI-011126",
+            "SYN-DTI-002194",
+            "SYN-DTI-009792",
+            "SYN-DTI-003277",
+            "SYN-DTI-002355",
+            "SYN-DTI-008490",
+            "SYN-DTI-006054",
+            "SYN-DTI-005405",
+            "SYN-DTI-013058",
+            "SYN-DTI-000887",
+            "SYN-DTI-018158",
+            "SYN-DTI-008197",
+            "SYN-DTI-007791",
+            "SYN-DTI-007178",
+            "SYN-DTI-006444",
+            "SYN-DTI-000065",
+            "SYN-DTI-014242",
+            "SYN-DTI-017468",
+            "SYN-DTI-012641",
+            "SYN-DTI-013770",
+            "SYN-DTI-011134",
+            "SYN-DTI-005922",
+            "SYN-DTI-014219",
+            "SYN-DTI-011183",
+            "SYN-DTI-005208",
+            "SYN-DTI-016460",
+            "SYN-DTI-012511",
+            "SYN-DTI-011092",
+            "SYN-DTI-006539",
+            "SYN-DTI-019981",
+            "SYN-DTI-004036",
+            "SYN-DTI-016227",
+            "SYN-DTI-017056",
+            "SYN-DTI-014199",
+            "SYN-DTI-000680",
+            "SYN-DTI-004056",
+            "SYN-DTI-015605",
+            "SYN-DTI-004120",
+            "SYN-DTI-001029",
+            "SYN-DTI-015159",
+            "SYN-DTI-005401"
+          ],
+          "record_ids_sha256": "8fc40296111737cc8497baafbdbfd8b638f35e8e0cc4975276a6910d47e4094a",
+          "selection_seed": 20260920,
+          "source_split": "/Users/jas/Projects/supertruth-connectome/splits/dti_seed1.json:train",
+          "split_file_sha256": "cb23989c5192e687b635aada79e3a01ee1a645484a16d6b8eb0880cce35aa864"
+        },
+        "base_prompt_sha256": "5e7f42957795615a5e16b61d9e0d1e7d11864d8aabfdde0233a1d06ee87bca71",
+        "cost_usd_cache_storage": 0.281417,
+        "cache_hit_share": 1.0,
+        "gain_vs_g": {
+          "n_records": 300,
+          "orientation": "positive = examples helped (g minus g2 on error; g2 minus g on agreement)",
+          "composite_mae_gain": {
+            "mean": 4.236666666666666,
+            "ci_low": 3.328379447635132,
+            "ci_high": 5.1449538856982,
+            "n": 300,
+            "sd": 7.994186153893292
+          },
+          "composite_mae_direct_gain": {
+            "mean": 4.213333333333333,
+            "ci_low": 3.312440402781781,
+            "ci_high": 5.114226263884885,
+            "n": 300,
+            "sd": 7.929106168899566
+          },
+          "tier_acc_gain": {
+            "mean": 0.18666666666666668,
+            "g": 0.44666666666666666,
+            "g2": 0.6333333333333333,
+            "discordant_g2_only": 102,
+            "discordant_g_only": 46,
+            "mcnemar_exact_p": 4.805270754169295e-06,
+            "method": "paired on records; exact McNemar (two-sided binomial on the discordant pairs)"
+          },
+          "g_run": "20260920T185415Z",
+          "g2_run": "20260920T215521Z-examples"
+        }
       }
     },
     "paired": {
       "dti": {
         "shuffled": {
           "composite_mae_direct": {
-            "mean": -0.029273509979248047,
-            "ci_low": null,
-            "ci_high": null,
-            "n": 1,
+            "mean": 0.008739113807678223,
+            "ci_low": -0.4742570665881911,
+            "ci_high": 0.49173529420354756,
+            "n": 2,
+            "sd": 0.05375796810085725,
             "per_seed": {
-              "1": -0.029273509979248047
+              "1": -0.029273509979248047,
+              "2": 0.04675173759460449
             },
             "seeds": [
-              1
+              1,
+              2
             ],
-            "connectome_better_seeds": 0,
+            "connectome_better_seeds": 1,
             "orientation": "positive = connectome better"
           },
           "composite_mae_recomputed_from_dims": {
-            "mean": -0.055736065983504,
-            "ci_low": null,
-            "ci_high": null,
-            "n": 1,
+            "mean": -0.0034991252186953314,
+            "ci_low": -0.6672323893677842,
+            "ci_high": 0.6602341389303935,
+            "n": 2,
+            "sd": 0.07387419008647242,
             "per_seed": {
-              "1": -0.055736065983504
+              "1": -0.055736065983504,
+              "2": 0.04873781554611334
             },
             "seeds": [
-              1
+              1,
+              2
             ],
-            "connectome_better_seeds": 0,
+            "connectome_better_seeds": 1,
             "orientation": "positive = connectome better"
           },
           "dims_mae_mean": {
-            "mean": -0.40493178367614746,
-            "ci_low": null,
-            "ci_high": null,
-            "n": 1,
+            "mean": -0.43591004610061646,
+            "ci_low": -0.829526190836867,
+            "ci_high": -0.042293901364366004,
+            "n": 2,
+            "sd": 0.043809878859436886,
             "per_seed": {
-              "1": -0.40493178367614746
+              "1": -0.40493178367614746,
+              "2": -0.46688830852508545
             },
             "seeds": [
-              1
+              1,
+              2
             ],
             "connectome_better_seeds": 0,
             "orientation": "positive = connectome better"
           },
           "tier_acc": {
-            "mean": 0.003998994827270508,
-            "ci_low": null,
-            "ci_high": null,
-            "n": 1,
+            "mean": 0.0038740336894989014,
+            "ci_low": 0.002286251888907537,
+            "ci_high": 0.005461815490090265,
+            "n": 2,
+            "sd": 0.00017672173580617867,
             "per_seed": {
-              "1": 0.003998994827270508
+              "1": 0.003998994827270508,
+              "2": 0.003749072551727295
             },
             "seeds": [
-              1
+              1,
+              2
             ],
-            "connectome_better_seeds": 1,
+            "connectome_better_seeds": 2,
             "orientation": "positive = connectome better"
           }
         },
         "random": {
           "composite_mae_direct": {
-            "mean": 1.1990489959716797,
-            "ci_low": null,
-            "ci_high": null,
-            "n": 1,
+            "mean": 0.6968677043914795,
+            "ci_low": -5.683950601103184,
+            "ci_high": 7.077686009886143,
+            "n": 2,
+            "sd": 0.7101915933227568,
             "per_seed": {
-              "1": 1.1990489959716797
+              "1": 1.1990489959716797,
+              "2": 0.1946864128112793
             },
             "seeds": [
-              1
+              1,
+              2
             ],
-            "connectome_better_seeds": 1,
+            "connectome_better_seeds": 2,
             "orientation": "positive = connectome better"
           },
           "composite_mae_recomputed_from_dims": {
-            "mean": 0.23844038990252447,
-            "ci_low": null,
-            "ci_high": null,
-            "n": 1,
+            "mean": 0.22569357660584854,
+            "ci_low": 0.06372995712449031,
+            "ci_high": 0.3876571960872068,
+            "n": 2,
+            "sd": 0.0180267162411968,
             "per_seed": {
-              "1": 0.23844038990252447
+              "1": 0.23844038990252447,
+              "2": 0.21294676330917262
             },
             "seeds": [
-              1
+              1,
+              2
             ],
-            "connectome_better_seeds": 1,
+            "connectome_better_seeds": 2,
             "orientation": "positive = connectome better"
           },
           "dims_mae_mean": {
-            "mean": -0.17289116978645325,
-            "ci_low": null,
-            "ci_high": null,
-            "n": 1,
+            "mean": -0.28082306683063507,
+            "ci_low": -1.6522278482377375,
+            "ci_high": 1.0905817145764674,
+            "n": 2,
+            "sd": 0.1526387526125385,
             "per_seed": {
-              "1": -0.17289116978645325
+              "1": -0.17289116978645325,
+              "2": -0.3887549638748169
             },
             "seeds": [
-              1
+              1,
+              2
             ],
             "connectome_better_seeds": 0,
             "orientation": "positive = connectome better"
           },
           "tier_acc": {
-            "mean": 0.005248665809631348,
-            "ci_low": null,
-            "ci_high": null,
-            "n": 1,
+            "mean": 0.006498366594314575,
+            "ci_low": -0.009380587434828683,
+            "ci_high": 0.022377320623457833,
+            "n": 2,
+            "sd": 0.0017673437986073194,
             "per_seed": {
-              "1": 0.005248665809631348
+              "1": 0.005248665809631348,
+              "2": 0.007748067378997803
             },
             "seeds": [
-              1
+              1,
+              2
             ],
-            "connectome_better_seeds": 1,
+            "connectome_better_seeds": 2,
             "orientation": "positive = connectome better"
           }
         },
         "mlp": {
           "composite_mae_direct": {
-            "mean": 1.959716558456421,
-            "ci_low": null,
-            "ci_high": null,
-            "n": 1,
+            "mean": 2.0801528096199036,
+            "ci_low": 0.5498651446793352,
+            "ci_high": 3.610440474560472,
+            "n": 2,
+            "sd": 0.17032257979676962,
             "per_seed": {
-              "1": 1.959716558456421
+              "1": 1.959716558456421,
+              "2": 2.2005890607833862
             },
             "seeds": [
-              1
+              1,
+              2
             ],
-            "connectome_better_seeds": 1,
+            "connectome_better_seeds": 2,
             "orientation": "positive = connectome better"
           },
           "composite_mae_recomputed_from_dims": {
-            "mean": 2.150212446888278,
-            "ci_low": null,
-            "ci_high": null,
-            "n": 1,
+            "mean": 1.9857535616095976,
+            "ci_low": -0.10389470542438439,
+            "ci_high": 4.07540182864358,
+            "n": 2,
+            "sd": 0.23257998601387103,
             "per_seed": {
-              "1": 2.150212446888278
+              "1": 2.150212446888278,
+              "2": 1.821294676330917
             },
             "seeds": [
-              1
+              1,
+              2
             ],
-            "connectome_better_seeds": 1,
+            "connectome_better_seeds": 2,
             "orientation": "positive = connectome better"
           },
           "dims_mae_mean": {
-            "mean": 1.9906543791294098,
-            "ci_low": null,
-            "ci_high": null,
-            "n": 1,
+            "mean": 1.968090832233429,
+            "ci_low": 1.6813937857988175,
+            "ci_high": 2.2547878786680404,
+            "n": 2,
+            "sd": 0.03190967403553745,
             "per_seed": {
-              "1": 1.9906543791294098
+              "1": 1.9906543791294098,
+              "2": 1.9455272853374481
             },
             "seeds": [
-              1
+              1,
+              2
             ],
-            "connectome_better_seeds": 1,
+            "connectome_better_seeds": 2,
             "orientation": "positive = connectome better"
           },
           "tier_acc": {
-            "mean": 0.03774058818817139,
-            "ci_low": null,
-            "ci_high": null,
-            "n": 1,
+            "mean": 0.02474382519721985,
+            "ci_low": -0.14039570627334855,
+            "ci_high": 0.18988335666778824,
+            "n": 2,
+            "sd": 0.018380198488752376,
             "per_seed": {
-              "1": 0.03774058818817139
+              "1": 0.03774058818817139,
+              "2": 0.01174706220626831
             },
             "seeds": [
-              1
+              1,
+              2
             ],
-            "connectome_better_seeds": 1,
+            "connectome_better_seeds": 2,
             "orientation": "positive = connectome better"
           }
         },
         "linear": {
           "composite_mae_direct": {
-            "mean": 1.5290234088897705,
-            "ci_low": null,
-            "ci_high": null,
-            "n": 1,
+            "mean": 1.5123147368431091,
+            "ci_low": 1.3000109289486306,
+            "ci_high": 1.7246185447375877,
+            "n": 2,
+            "sd": 0.02362963061763274,
             "per_seed": {
-              "1": 1.5290234088897705
+              "1": 1.5290234088897705,
+              "2": 1.4956060647964478
             },
             "seeds": [
-              1
+              1,
+              2
             ],
-            "connectome_better_seeds": 1,
+            "connectome_better_seeds": 2,
             "orientation": "positive = connectome better"
           },
           "composite_mae_recomputed_from_dims": {
-            "mean": 1.4911272181954511,
-            "ci_low": null,
-            "ci_high": null,
-            "n": 1,
+            "mean": 1.5014996250937265,
+            "ci_low": 1.3697056994373293,
+            "ci_high": 1.6332935507501236,
+            "n": 2,
+            "sd": 0.014668798509993239,
             "per_seed": {
-              "1": 1.4911272181954511
+              "1": 1.4911272181954511,
+              "2": 1.5118720319920018
             },
             "seeds": [
-              1
+              1,
+              2
             ],
-            "connectome_better_seeds": 1,
+            "connectome_better_seeds": 2,
             "orientation": "positive = connectome better"
           },
           "dims_mae_mean": {
-            "mean": 1.7726983428001404,
-            "ci_low": null,
-            "ci_high": null,
-            "n": 1,
+            "mean": 1.608529418706894,
+            "ci_low": -0.47743454213941794,
+            "ci_high": 3.694493379553206,
+            "n": 2,
+            "sd": 0.23216991897286832,
             "per_seed": {
-              "1": 1.7726983428001404
+              "1": 1.7726983428001404,
+              "2": 1.4443604946136475
             },
             "seeds": [
-              1
+              1,
+              2
             ],
-            "connectome_better_seeds": 1,
+            "connectome_better_seeds": 2,
             "orientation": "positive = connectome better"
           },
           "tier_acc": {
-            "mean": 0.29642587900161743,
-            "ci_low": null,
-            "ci_high": null,
-            "n": 1,
+            "mean": 0.29392650723457336,
+            "ci_low": 0.2621689778506967,
+            "ci_high": 0.32568403661845,
+            "n": 2,
+            "sd": 0.003534645450366128,
             "per_seed": {
-              "1": 0.29642587900161743
+              "1": 0.29642587900161743,
+              "2": 0.2914271354675293
             },
             "seeds": [
-              1
+              1,
+              2
             ],
-            "connectome_better_seeds": 1,
+            "connectome_better_seeds": 2,
             "orientation": "positive = connectome better"
           }
         }
@@ -3355,61 +5089,145 @@
       "bii": {
         "shuffled": {
           "bii_mae": {
-            "mean": -0.002979513257741928,
-            "ci_low": null,
-            "ci_high": null,
-            "n": 1,
+            "mean": -0.0025128349661827087,
+            "ci_low": -0.008442544884662378,
+            "ci_high": 0.0034168749522969595,
+            "n": 2,
+            "sd": 0.0006599827691881535,
             "per_seed": {
-              "1": -0.002979513257741928
+              "1": -0.002979513257741928,
+              "2": -0.0020461566746234894
             },
             "seeds": [
-              1
+              1,
+              2
             ],
             "connectome_better_seeds": 0,
             "orientation": "positive = connectome better"
           },
           "gate_acc": {
-            "mean": 0.001999974250793457,
-            "ci_low": null,
-            "ci_high": null,
-            "n": 1,
+            "mean": 0.0018750131130218506,
+            "ci_low": 0.0002872313124304862,
+            "ci_high": 0.003462794913613215,
+            "n": 2,
+            "sd": 0.00017672173580617867,
             "per_seed": {
-              "1": 0.001999974250793457
+              "1": 0.001999974250793457,
+              "2": 0.0017500519752502441
             },
             "seeds": [
-              1
+              1,
+              2
             ],
-            "connectome_better_seeds": 1,
+            "connectome_better_seeds": 2,
+            "orientation": "positive = connectome better"
+          }
+        },
+        "random": {
+          "bii_mae": {
+            "mean": -0.0026732757687568665,
+            "ci_low": -0.023272358982647626,
+            "ci_high": 0.017925807445133893,
+            "n": 2,
+            "sd": 0.0022926989969395497,
+            "per_seed": {
+              "1": -0.004294458776712418,
+              "2": -0.0010520927608013153
+            },
+            "seeds": [
+              1,
+              2
+            ],
+            "connectome_better_seeds": 0,
+            "orientation": "positive = connectome better"
+          },
+          "gate_acc": {
+            "mean": 0.005874991416931152,
+            "ci_low": -0.008419210206899713,
+            "ci_high": 0.020169193040762017,
+            "n": 2,
+            "sd": 0.0015909592375892279,
+            "per_seed": {
+              "1": 0.006999969482421875,
+              "2": 0.00475001335144043
+            },
+            "seeds": [
+              1,
+              2
+            ],
+            "connectome_better_seeds": 2,
+            "orientation": "positive = connectome better"
+          }
+        },
+        "mlp": {
+          "bii_mae": {
+            "mean": 0.015314634889364243,
+            "ci_low": -0.07768671148615743,
+            "ci_high": 0.10831598126488591,
+            "n": 2,
+            "sd": 0.010351144822086105,
+            "per_seed": {
+              "1": 0.022633999586105347,
+              "2": 0.007995270192623138
+            },
+            "seeds": [
+              1,
+              2
+            ],
+            "connectome_better_seeds": 2,
+            "orientation": "positive = connectome better"
+          },
+          "gate_acc": {
+            "mean": 0.011250019073486328,
+            "ci_low": -0.0427512238206544,
+            "ci_high": 0.06525126196762707,
+            "n": 2,
+            "sd": 0.006010393478744555,
+            "per_seed": {
+              "1": 0.015500009059906006,
+              "2": 0.00700002908706665
+            },
+            "seeds": [
+              1,
+              2
+            ],
+            "connectome_better_seeds": 2,
             "orientation": "positive = connectome better"
           }
         },
         "linear": {
           "bii_mae": {
-            "mean": 0.04362699016928673,
-            "ci_low": null,
-            "ci_high": null,
-            "n": 1,
+            "mean": 0.04394235461950302,
+            "ci_low": 0.03993526934854363,
+            "ci_high": 0.047949439890462416,
+            "n": 2,
+            "sd": 0.0004459926825862168,
             "per_seed": {
-              "1": 0.04362699016928673
+              "1": 0.04362699016928673,
+              "2": 0.044257719069719315
             },
             "seeds": [
-              1
+              1,
+              2
             ],
-            "connectome_better_seeds": 1,
+            "connectome_better_seeds": 2,
             "orientation": "positive = connectome better"
           },
           "gate_acc": {
-            "mean": 0.3165000081062317,
-            "ci_low": null,
-            "ci_high": null,
-            "n": 1,
+            "mean": 0.3191250264644623,
+            "ci_low": 0.28577100576856723,
+            "ci_high": 0.35247904716035733,
+            "n": 2,
+            "sd": 0.0037123365636880573,
             "per_seed": {
-              "1": 0.3165000081062317
+              "1": 0.3165000081062317,
+              "2": 0.32175004482269287
             },
             "seeds": [
-              1
+              1,
+              2
             ],
-            "connectome_better_seeds": 1,
+            "connectome_better_seeds": 2,
             "orientation": "positive = connectome better"
           }
         }
@@ -3417,8 +5235,8 @@
     }
   },
   "footers": {
-    "dti": "Source: MaleCNS v1.0 (gs://flyem-male-cns/v1.0/...; sha256 in data/README.md; CC-BY 4.0; Berg et al. 2026)\n | Graph: N=166700 neurons (superclass non-null), E=6242118 edges (weight>=5), sign policy plus/plus, graph sha256 d043ac552fd6eb22833eda020224a44497a7b3cd10de4fc79388db8b7be8b952\n | Teacher: pipeline.ts commit e4785726e225e55b1dbdad201758f861f4588ebc, clock frozen at 2026-09-20T00:00:00Z\n | Data: teachers/dti_teacher.jsonl (gen_dti.ts) sha256 2aa26f37b1be93f7af42c4eebfb8f8b03a92839fc433d0e11a0df928936c4b22, run_seed 20260920, 13999/2000/4001 records, split sha256 cb23989c5192e687b635aada79e3a01ee1a645484a16d6b8eb0880cce35aa864, SYNTHETIC, zero PHI\n | Coverage: TEST only, 4001 records, 1 seeds {1} of protocol {1..5}; teacher dimensions excluded as degenerate: none (splits/qa_report.json)\n | Feature spec 3d57b09155d4dd58a2c75eba0fa7fe2e84882320f218fb2f4ad07f1a81e52909 | Evaluated 2026-09-20T22:07:56+00:00 | Language-model arms: claude-opus-5 (served as claude-opus-5), adaptive, effort high, max_tokens 16000, temperature not settable under adaptive thinking (not sent), k=3, N=300, prompt sha256 5e7f42957795, prices from claude-api bundled skill, Claude Code 2.1.278 retrieved 2026-09-20; gpt-5 (served as gpt-5-2025-08-07), reasoning_effort high, effort high, max_tokens 16000, temperature 0.0 requested, accepted False, k=3, N=300, prompt sha256 5e7f42957795, prices from developers.openai.com pricing and model pages retrieved 2026-09-20; grok-4 (served as grok-4.3), reasoning_effort high, effort high, max_tokens 16000, temperature 0.0 requested, accepted True, k=3, N=300, prompt sha256 5e7f42957795, prices from docs.x.ai models page and the API's language-models endpoint retrieved 2026-09-20; gemini-3-flash-preview (served as gemini-3-flash-preview), thinking_level high, effort high, max_tokens 16000, temperature 0.0 requested, accepted True, k=3, N=300, prompt sha256 5e7f42957795, prices from ai.google.dev pricing page retrieved 2026-09-20",
-    "bii": "Source: MaleCNS v1.0 (gs://flyem-male-cns/v1.0/...; sha256 in data/README.md; CC-BY 4.0; Berg et al. 2026)\n | Graph: N=166700 neurons (superclass non-null), E=6242118 edges (weight>=5), sign policy plus/plus, graph sha256 d043ac552fd6eb22833eda020224a44497a7b3cd10de4fc79388db8b7be8b952\n | Teacher: VIGIL commit 1cffd016b7bfa4e6ddc0dcd71a81f281fcd40031 + policy digest 5d8db364...8573859, clock frozen at 2026-09-20T00:00:00Z\n | Data: teachers/bii_teacher.jsonl (gen_bii.py) sha256 c43bb314823f19f35bd993d9860bd444663137bae48c4c836826e7cd7372f67b, run_seed 20260920, 14000/2000/4000 records, split sha256 c42920804158f4b9a3e5779cf1563f99f86818f53fe3083b0e2ca39acbf29127, SYNTHETIC, zero PHI\n | Coverage: TEST only, 4000 records, 1 seeds {1} of protocol {1..5}; teacher dimensions excluded as degenerate: none (splits/qa_report.json)\n | Feature spec 20a2cd2c28bcb3b5ed6728d64eaa9fce7c8ec681c57fb6018beaa855c2dea409 | Evaluated 2026-09-20T22:07:56+00:00 | Language-model arms: not run for this task"
+    "dti": "Source: MaleCNS v1.0 (gs://flyem-male-cns/v1.0/...; sha256 in data/README.md; CC-BY 4.0; Berg et al. 2026)\n | Graph: N=166700 neurons (superclass non-null), E=6242118 edges (weight>=5), sign policy plus/plus, graph sha256 d043ac552fd6eb22833eda020224a44497a7b3cd10de4fc79388db8b7be8b952\n | Teacher: pipeline.ts commit e4785726e225e55b1dbdad201758f861f4588ebc, clock frozen at 2026-09-20T00:00:00Z\n | Data: teachers/dti_teacher.jsonl (gen_dti.ts) sha256 2aa26f37b1be93f7af42c4eebfb8f8b03a92839fc433d0e11a0df928936c4b22, run_seed 20260920, 13999/2000/4001 records, split sha256 cb23989c5192e687b635aada79e3a01ee1a645484a16d6b8eb0880cce35aa864, SYNTHETIC, zero PHI\n | Coverage: TEST only, 4001 records, 2 seeds {1,2} of protocol {1..5}; teacher dimensions excluded as degenerate: none (splits/qa_report.json)\n | Feature spec 3d57b09155d4dd58a2c75eba0fa7fe2e84882320f218fb2f4ad07f1a81e52909 | Evaluated 2026-09-21T05:31:37+00:00 | Language-model arms: claude-opus-5 (served as claude-opus-5), adaptive, effort high, max_tokens 16000, temperature not settable under adaptive thinking (not sent), k=3, N=300, prompt sha256 5e7f42957795, prices from claude-api bundled skill, Claude Code 2.1.278 retrieved 2026-09-20; gpt-5 (served as gpt-5-2025-08-07), reasoning_effort high, effort high, max_tokens 16000, temperature 0.0 requested, accepted False, k=3, N=300, prompt sha256 5e7f42957795, prices from developers.openai.com pricing and model pages retrieved 2026-09-20; grok-4 (served as grok-4.3), reasoning_effort high, effort high, max_tokens 16000, temperature 0.0 requested, accepted True, k=3, N=300, prompt sha256 5e7f42957795, prices from docs.x.ai models page and the API's language-models endpoint retrieved 2026-09-20; gemini-3-flash-preview (served as gemini-3-flash-preview), thinking_level high, effort high, max_tokens 16000, temperature 0.0 requested, accepted True, k=3, N=300, prompt sha256 5e7f42957795, prices from ai.google.dev pricing page retrieved 2026-09-20",
+    "bii": "Source: MaleCNS v1.0 (gs://flyem-male-cns/v1.0/...; sha256 in data/README.md; CC-BY 4.0; Berg et al. 2026)\n | Graph: N=166700 neurons (superclass non-null), E=6242118 edges (weight>=5), sign policy plus/plus, graph sha256 d043ac552fd6eb22833eda020224a44497a7b3cd10de4fc79388db8b7be8b952\n | Teacher: VIGIL commit 1cffd016b7bfa4e6ddc0dcd71a81f281fcd40031 + policy digest 5d8db364...8573859, clock frozen at 2026-09-20T00:00:00Z\n | Data: teachers/bii_teacher.jsonl (gen_bii.py) sha256 c43bb314823f19f35bd993d9860bd444663137bae48c4c836826e7cd7372f67b, run_seed 20260920, 14000/2000/4000 records, split sha256 c42920804158f4b9a3e5779cf1563f99f86818f53fe3083b0e2ca39acbf29127, SYNTHETIC, zero PHI\n | Coverage: TEST only, 4000 records, 2 seeds {1,2} of protocol {1..5}; teacher dimensions excluded as degenerate: none (splits/qa_report.json)\n | Feature spec 20a2cd2c28bcb3b5ed6728d64eaa9fce7c8ec681c57fb6018beaa855c2dea409 | Evaluated 2026-09-21T05:31:37+00:00 | Language-model arms: not run for this task"
   },
   "health_report": "splits/qa_report.json"
 }

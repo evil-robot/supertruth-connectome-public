@@ -69,10 +69,23 @@ def next_version(v: str) -> str:
     return f"{major}.{int(minor) + 1}"
 
 
-def version_sentence() -> str:
-    return (f"Version {VERSION} reports seed 1 of the pre-registered five for every arm that has finished; the BII random-graph and matched-network "
-            f"controls, the post-hoc examples arm (g2), and seeds 2 to 5 are running at the time of writing and will appear in version "
-            f"{next_version(VERSION)} at the same DOI.")
+def version_sentence(D: "Data | None" = None) -> str:
+    """what this version holds and what the next one adds, computed from results.json (21 Sep 2026: the 1.0 wording was a literal)"""
+    if D is None:
+        return f"Version {VERSION} is a published snapshot; cells with no run behind them say \"not in this version\"."
+    word = {1: "one", 2: "two", 3: "three", 4: "four", 5: "five"}
+    dti_n = min(D.R[a]["dti_mae"]["n"] or 0 for a, _ in LOCAL)
+    bii_n = min((D.R[a].get("bii_mae") or {}).get("n") or 0 for a, _ in LOCAL)
+    g2_done = all(D.frontier.get(EX[v]) for v in VENDORS)
+    holds = [f"seeds 1 to {dti_n} of the pre-registered five on the DTI task" if dti_n > 1 else "seed 1 of the pre-registered five on the DTI task"]
+    holds.append(f"{'seeds 1 to ' + str(bii_n) if bii_n > 1 else 'seed 1'} with all five arms on the BII task" if bii_n else "the fly and its shuffle only on the BII task")
+    holds.append("the post-hoc examples arm (g2) for all four vendors" if g2_done else "the paper-only model arms")
+    remaining = []
+    if dti_n < N_SEEDS_PROTOCOL: remaining.append(f"DTI seeds {dti_n + 1} to {N_SEEDS_PROTOCOL}")
+    if bii_n < N_SEEDS_PROTOCOL: remaining.append(f"BII seeds {bii_n + 1} to {N_SEEDS_PROTOCOL}" if bii_n else "the BII controls")
+    if not g2_done: remaining.append("the post-hoc examples arm (g2)")
+    tail = f" {', '.join(remaining)} will appear in version {next_version(VERSION)} at the same DOI." if remaining else ""
+    return f"Version {VERSION} holds {', '.join(holds[:-1])} and {holds[-1]}.{tail}"
 
 
 def g2_running_label() -> str:
@@ -232,6 +245,10 @@ def framing(D: Data) -> dict:
 # ------------------------------------------------------------------ model arms as a group
 VENDORS = ("anthropic", "openai", "xai", "gemini")
 EX = {v: f"{v}_ex" for v in VENDORS}      # post-hoc arm g2-examples beside each arm g row (amendment 1, row 17)
+
+
+def p_fmt(p) -> str:
+    return "n/a" if p is None else ("< 0.001" if p < 0.001 else f"{p:.3f}")
 
 
 def gain_cell(r: dict | None, nd=2, sign=True) -> str:
@@ -439,13 +456,16 @@ def prose_examples(D: Data) -> str:
         r2, r1 = D.R[EX[v]], D.R[v]
         g = fx.get("gain_vs_g") or {}
         gc, gt = g.get("composite_mae_gain") or {}, g.get("tier_acc_gain") or {}
-        cache = f"{fx['cache_hit_share']:.0%} of calls read the cached prefix"
+        cache = f"{fx['cache_hit_share']:.1%} of calls read the cached prefix"
+        cnt = fx["counts"]
+        cut = (f"; {cnt['parse_failures']} of {cnt['calls_total']} calls stopped at the 16,000-token output cap with no answer text and were not scored, "
+               f"so the mean-of-repeats block covers {D.R[EX[v]]['dti_mae']['n']} records" if cnt.get("parse_failures") else "")
         s_ = (f"{short_name(D, v)}: composite error {f(r1['dti_mae']['mean'])} with the paper alone against {f(r2['dti_mae']['mean'])} with the examples "
               f"(paired gain {gain_cell(gc)} points over {g.get('n_records', 0)} records), tier agreement {f(r1['dti_tier_accuracy']['mean'], 3)} against "
               f"{f(r2['dti_tier_accuracy']['mean'], 3)} (Wilson 95% {f(r2['dti_tier_accuracy']['ci_low'], 3)} to {f(r2['dti_tier_accuracy']['ci_high'], 3)}; "
               f"{gt.get('discordant_g2_only', 0)} records right only with examples, {gt.get('discordant_g_only', 0)} right only without, exact McNemar p "
-              f"{'not defined' if gt.get('mcnemar_exact_p') is None else f'{gt['mcnemar_exact_p']:.3f}'}); "
-              f"median latency {fx['latency_ms_median'] / 1000:.1f} s per call, ${fx['usd_per_record']:.3f} per record, {cache}"
+              f"{p_fmt(gt.get('mcnemar_exact_p'))}); "
+              f"median latency {fx['latency_ms_median'] / 1000:.1f} s per call, ${fx['usd_per_record']:.3f} per record, {cache}{cut}"
               f"{'' if fx['complete'] else '; run incomplete'}.")
         sentences.append(s_)
     missing = [short_name(D, v) for v, fx in ex_rows if not fx]
@@ -723,7 +743,7 @@ def table9_examples(D: Data) -> list[str]:
         gt = g.get("tier_acc_gain") or {}
         r1, r2 = D.R[v], D.R[EX[v]]
         tier_gain = ("awaiting run" if gt.get("mean") is None else
-                     f"{gt['mean']:+.3f} ({gt['discordant_g2_only']} / {gt['discordant_g_only']}; p {'n/a' if gt.get('mcnemar_exact_p') is None else f'{gt['mcnemar_exact_p']:.3f}'})")
+                     f"{gt['mean']:+.3f} ({gt['discordant_g2_only']} / {gt['discordant_g_only']}; p {p_fmt(gt.get('mcnemar_exact_p'))})")
         L.append(row([name + ("" if fx2["complete"] else " (g2 run incomplete)"), f(r1["dti_mae"]["mean"]), f(r2["dti_mae"]["mean"]), gain_cell(g.get("composite_mae_gain")),
                       f"{f(r1['dti_tier_accuracy']['mean'], 3)} [{f(r1['dti_tier_accuracy']['ci_low'], 3)}, {f(r1['dti_tier_accuracy']['ci_high'], 3)}]",
                       f"{f(r2['dti_tier_accuracy']['mean'], 3)} [{f(r2['dti_tier_accuracy']['ci_low'], 3)}, {f(r2['dti_tier_accuracy']['ci_high'], 3)}]", tier_gain]))
@@ -840,7 +860,7 @@ def section4(D: Data, F: dict) -> str:
          f"Status **{st}**: {D.doc['runs_completed']} of {D.doc['runs_expected_full_protocol']} local runs finished (seeds {{{', '.join(map(str, D.seeds)) or 'none'}}} of the protocol's "
          f"{{1..{N_SEEDS_PROTOCOL}}}); language-model arms complete: {', '.join(k for k, v in D.frontier.items() if v.get('complete')) or 'none'}. "
          f"Every number in this section is read from results/results.json, regenerated by scripts/render_results.py on {D.doc['generated']} from git "
-         f"{D.doc['git_sha'][:12]}; a cell that says \"awaiting run\" has no run behind it. {version_sentence() + ' ' if VERSION else ''}Means are over finished seeds with a two-sided 95% t-interval "
+         f"{D.doc['git_sha'][:12]}; a cell that says \"awaiting run\" has no run behind it. {version_sentence(D) + ' ' if VERSION else ''}Means are over finished seeds with a two-sided 95% t-interval "
          f"when two or more seeds exist; a single seed is a point marked as such. Paired differences are control minus fly on the same test records, so a "
          f"positive difference means the fly did better. The dataset health report (splits/qa_report.json) passed every line for both tasks before "
          f"any score below was computed. All records are SYNTHETIC; zero PHI.", "",
@@ -876,7 +896,8 @@ def abstract_sentences(D: Data, F: dict) -> str:
     db = D.pair("dti", "shuffled", HEAD); dc = D.pair("dti", "random", HEAD)
     if F["case"] == "awaiting":
         return "[RESULTS SENTENCES: awaiting the fly, shuffle, and random-graph runs.]\n"
-    prov = "On the first of five seeds, " if n == 1 else (f"On {n} of five seeds, " if F["provisional"] else "Over five seeds, ")
+    n_word = {2: "two", 3: "three", 4: "four"}.get(n, str(n))
+    prov = "On the first of five seeds, " if n == 1 else (f"On {n_word} of five seeds, " if F["provisional"] else "Over five seeds, ")
     ci = lambda r, nd=2: f" (95% CI {r['ci_low']:+.{nd}f} to {r['ci_high']:+.{nd}f})" if r.get("ci_low") is not None else ""
     status = "provisional until five seeds" if F["provisional"] else "at five seeds"
     if F["case"] in ("substrate", "substrate_c_caveat"):
@@ -900,8 +921,12 @@ def abstract_sentences(D: Data, F: dict) -> str:
         who = {1: rows[0]["name"], 2: "both models", 3: "the three models", 4: "the four models"}[len(rows)]
         n_rec = rows[0]["fx"]["n_records"]
         s3 = (f" On {n_rec} identical records {who} matched the engine's tier on {span(rows, 'tier', lambda x: f'{x:.0%}')} at "
-              f"{span(rows, 'lat_s', lat_fmt)} and {span(rows, 'usd', lambda x: f'${x:.2f}')} per record; {fly_part} at {lat['mean']:.0f} ms and no marginal cost.")
+              f"{span(rows, 'lat_s', lat_fmt)} and {span(rows, 'usd', lambda x: f'{round(x * 100):d}')} cents per record; {fly_part} at {lat['mean']:.0f} ms and no marginal cost.")
         assert len(s3.split()) <= 45, f"abstract model sentence is {len(s3.split())} words (> 45)"
+        ex_rows = sorted([{"name": short_name(D, v), "tier": D.R[EX[v]]["dti_tier_accuracy"]["mean"]} for v in VENDORS if D.frontier.get(EX[v])], key=lambda x: x["tier"])
+        if len(ex_rows) == len(rows):
+            s3 += (f" Given {D.frontier[EX[VENDORS[0]]].get('n_examples', 100)} engine-scored examples as well (post-hoc), they matched on "
+                   f"{ex_rows[0]['tier']:.0%} to {ex_rows[-1]['tier']:.0%}.")
     out = s1 + " " + s2 + s3
     n_words = len(out.split())
     assert n_words <= ABSTRACT_MAX_WORDS, f"abstract sentences are {n_words} words (> {ABSTRACT_MAX_WORDS}); shorten the templates in abstract_sentences()"
@@ -913,7 +938,8 @@ def page_sentences(D: Data, F: dict) -> dict:
     a = D.m("connectome", "dti_mae"); b = D.m("shuffled", "dti_mae"); c = D.m("random", "dti_mae"); d = D.m("mlp", "dti_mae")
     at = D.m("connectome", "dti_tier_accuracy"); bt = D.m("shuffled", "dti_tier_accuracy"); ct = D.m("random", "dti_tier_accuracy"); dt = D.m("mlp", "dti_tier_accuracy")
     db = D.pair("dti", "shuffled", HEAD); dc = D.pair("dti", "random", HEAD)
-    seeds = f"seed 1 of {N_SEEDS_PROTOCOL}" if n == 1 else (f"{n} of {N_SEEDS_PROTOCOL} seeds" if n < N_SEEDS_PROTOCOL else f"{n} seeds")
+    w = {2: "two", 3: "three", 4: "four", 5: "five"}
+    seeds = f"seed 1 of five" if n == 1 else (f"{w.get(n, n)} of five seeds" if n < N_SEEDS_PROTOCOL else f"all five seeds")
     ci = lambda r: f", 95% CI {r['ci_low']:+.2f} to {r['ci_high']:+.2f}" if r.get("ci_low") is not None else ""
     # The difference a reader can check is the one between the two printed (rounded) values: "1.58 vs 1.53" prints "difference 0.05",
     # never the unrounded 0.06 that the paired table carries to more places; unsigned, since the sentence already says which is which.
@@ -962,7 +988,21 @@ def page_sentences(D: Data, F: dict) -> dict:
         lin = D.m("linear", "bii_mae")
         s4 = ("BII task: the fly's run has not finished." + (f" Linear floor so far: score error {lin['mean']:.3f}, gate agreement "
               f"{D.m('linear', 'bii_gate_accuracy')['mean']:.3f} on 4,000 synthetic windows." if lin["mean"] is not None else ""))
-    out = {"wiring_vs_shuffle": s1, "wiring_vs_random_and_matched_network": s2, "model_arms_beside_fly": s3, "bii": s4}
+    # Fifth sentence (21 Sep 2026): the post-hoc examples arm beside the fly, so a reader of the page sentences sees the fairer round.
+    ex_rows = []
+    for v in VENDORS:
+        fx = D.frontier.get(EX[v])
+        if fx:
+            ex_rows.append({"name": short_name(D, v), "tier": D.R[EX[v]]["dti_tier_accuracy"]["mean"]})
+    if ex_rows and rows:
+        ex_rows.sort(key=lambda x: -x["tier"]); lo_e, hi_e = ex_rows[-1], ex_rows[0]
+        sub = D.ex("connectome", "dti", "subset300"); fly_t = sub["tier_acc"]["mean"] if sub else at["mean"]
+        n_ex = D.frontier[EX[VENDORS[0]]].get("n_examples", 100)
+        s5 = (f"Post-hoc: given the same paper plus {n_ex} engine-scored example records, the {["one","two","three","four"][len(ex_rows)-1]} models matched the engine's tier on "
+              f"{lo_e['tier']:.0%} ({lo_e['name']}) to {hi_e['tier']:.0%} ({hi_e['name']}) of the same 300 records; the fly's wiring, {fly_t:.0%}.")
+    else:
+        s5 = "Post-hoc examples arm: not in this version." if VERSION else "Post-hoc examples arm: awaiting run."
+    out = {"wiring_vs_shuffle": s1, "wiring_vs_random_and_matched_network": s2, "model_arms_beside_fly": s3, "bii": s4, "model_arms_with_examples": s5}
     for k, v in out.items():
         assert len(v) <= PAGE_SENTENCE_MAX, f"page sentence {k} is {len(v)} chars (> {PAGE_SENTENCE_MAX}): {v}"
         assert "—" not in v and "–" not in v, f"dash in page sentence {k}"

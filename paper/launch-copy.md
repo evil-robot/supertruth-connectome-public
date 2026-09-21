@@ -59,21 +59,18 @@ We borrowed a fruit fly's brain to score health data. Every wire in it is public
 
 Intelligence is structure, not scale. We borrowed a brain to prove it.
 
-Health AI asks you to trust a judge nobody can inspect. That is not trust. It is deference.
+The complete wiring of a fruit fly's nervous system became public this year: 166,700 neurons, 6,242,118 connections, each one mapped under a microscope. We kept it exactly as mapped and moved nothing. We tuned only how loud each connection is, where a health record enters, and where the score comes out. Then we asked it to reproduce our Data Trust Index™ on synthetic health records.
 
-This year the complete wiring of a fruit fly's nervous system became public: 166,700 neurons and 6,242,118 connections of five or more synapses, each one mapped under a microscope. We kept it exactly as mapped and moved nothing. We tuned only how loud each connection is, where a health record enters, and where the score comes out. Then we asked it to reproduce our Data Trust Index™ on synthetic health records.
+We made it compete: the same wiring shuffled, a random graph, a same-size network, a linear readout, and four frontier models reading our own paper.
 
-We made it compete: the same wiring shuffled, a random graph, a same-size network, a linear readout, and Claude Opus 5 reading our own paper.
+On 300 identical records the fly came within 1.5 points of our engine. Claude, GPT-5, Grok and Gemini, given the method, missed by 9 to 26. Shuffle the fly's wiring and the score does not move. First seed of five, provisional.
 
-[RESULT]
+To our knowledge, as of 21 September 2026, this is the first use of a whole nervous system connectome to score health data trust.
 
-Every wire in this judge is a published fact.
+I am a co-founder of SuperTruth; this is our work. Claude, GPT, Grok and Gemini belong to their owners; none is affiliated with SuperTruth.
 
-To our knowledge, as of 20 September 2026, this is the first use of a whole nervous system connectome to score health data trust.
-
-I am a co-founder of SuperTruth; this is our work. Claude Opus is a trademark of Anthropic, PBC, not affiliated with SuperTruth.
-
-Paper and the DTI paper it builds on: [URL]
+Paper: https://supertruth.ai/research/connectome
+DOI: https://doi.org/10.5281/zenodo.22865215
 ```
 
 ## 4. Blog post for supertruth.ai

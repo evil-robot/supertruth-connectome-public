@@ -6,12 +6,12 @@ Serving notes: static files, relative paths only, no CDN, no external requests. 
 
 | file | bytes | sha256 |
 |---|---:|---|
-| results_charts.html | 10,167 | 0f3e3e22eaf44e3b5422d81e763220d2a7dfb2b9dd95da2be7ff83f4aea3f923 |
+| results_charts.html | 10,229 | a5237e5427734da3a4a43580b5f20d4b717e6d20bcec9b54fc87fe47142adcb8 |
 | results.schema.json | 2,918 | 30f658a767e718fd4fa2b90445e1a3c387f5360763e51a0e929543a2834746a8 |
 | results.sample.json | 5,909 | 95acdb538b7e3b7dd096a8f556056d1c567c89b271a3d1f0579563ffd237d3aa |
 | vendor/plotly-basic.min.js | 1,071,091 | 138c2e81014b979dc00867a93da55b7605a17495ee78dd7afb433b7f021dfcfa |
 
-Total: 1,090,085 bytes (1.09 MB). Ceilings: HTML under 2 MB, folder under 25 MB.
+Total: 1,090,147 bytes (1.09 MB). Ceilings: HTML under 2 MB, folder under 25 MB.
 
 ## Vendored libraries
 

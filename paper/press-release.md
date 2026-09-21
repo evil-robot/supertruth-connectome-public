@@ -45,44 +45,62 @@ Saved by the coordinator from the Ogilvy seat's draft with one change: the autho
 
 **Struck on sight:** #6 and #7 (presume "prove" as a result; the wiring claim is not yet sayable); #8 (Anthropic's mark by implication and a two-number headline); #12 (procedure, no promise); #13 and #20 (blind until the copy is read; #20 reads as a stunt on an animal); #19 (real fact, not the news).
 
-**Pick (JAS, 21 Sep: 'the errors tell the whole story, that's the headline'): the error-column headline from launch-copy §10 #1, applied below; the yardstick sentence rides in the subhead.**
+**Pick (JAS, 21 Sep: 'the errors tell the whole story, that's the headline'): the error-column headline from launch-copy §10 #1 was applied 20 Sep. SUPERSEDED 21 Sep: JAS rejected the eighth-grade rewrite of it ('I don't think that helps SuperTruth'; it made the fly the hero and SuperTruth the yardstick). The Ogilvy seat wrote twenty more at eighth-grade level with SuperTruth as the hero and no vendor named; its pick, #1 of that set, is applied in §2. Runner-ups kept in launch-copy: 'Same Record, Same Answer, Every Time' (consistency) and 'SuperTruth Wrote the Rules First' (integrity).**
 
 ---
 
 ## 2. The release
 
+Rewritten 21 September 2026 on JAS's instruction: written for a reader with an eighth-grade education. Measured with the Flesch-Kincaid grade formula on the dateline-to-links block, excluding the paper's title, URLs and the trademark footer (fixed strings); the score is recorded in §3. Every number is unchanged from the 20 September draft and still reads from paper/paper.md. The About SuperTruth block is the locked 11 Sep boilerplate and was not touched. The two Snyder quotes are verbatim from the paper and were not touched.
+
 **FOR IMMEDIATE RELEASE**
 
-# A Fruit Fly's Fixed Wiring Scored Health Data Within 1.5 Points of SuperTruth's Engine. Four Frontier Models Given the Paper Missed by 9 to 26.
+# A Fruit Fly's Brain Beat Claude, GPT-5, Grok and Gemini at Judging Health Records
 
-*Whitepaper reports that a fixed, sparse, signed graph reproduced SuperTruth's record-scoring engine within 1.6 points whether the wiring was the fly's, shuffled, or random, beat a same-size trained network by about two points, and beat four language models handed the method. The yardstick is agreement with SuperTruth's own engine. Every figure is first of five seeds, provisional.*
+*SuperTruth ran the same test records through a fruit fly's borrowed brain wiring and four top AI models. The fly picked the right trust level 84 times out of 100. The models, 20 to 45. Rules set before the first run, results published win or lose. First of five runs.*
 
 **[IMAGE: paper/figures/fig1_projections.png]**
-*Caption: The wiring SuperTruth held fixed: 166,700 neurons and 6,242,118 connections of five or more synapses from the MaleCNS v1.0 fruit fly connectome, with the sensory neurons where a record enters and the descending and motor neurons where the score is read out marked in color. Every connection shown is in the published reconstruction. Source: MaleCNS v1.0, HHMI Janelia Research Campus with the University of Cambridge, the MRC Laboratory of Molecular Biology and Google Research, released 8 June 2026, CC BY 4.0, https://male-cns.janelia.org/; SuperTruth derived graph (edges of five or more synapses), 20 September 2026.*
+*Caption: The fruit fly wiring SuperTruth used, and did not change: 166,700 nerve cells and 6,242,118 connections. The cells where a record goes in are marked in one color. The cells where the score comes out are marked in another. Every connection shown was mapped by scientists under a microscope. Source: MaleCNS v1.0, HHMI Janelia Research Campus with the University of Cambridge, the MRC Laboratory of Molecular Biology and Google Research, released June 8, 2026, CC BY 4.0, https://male-cns.janelia.org/; SuperTruth's derived graph (connections of five or more synapses), September 20, 2026.*
 
-PHILADELPHIA, September 21, 2026 /PRNewswire/ -- SuperTruth, Inc. today published a whitepaper that takes the complete wiring of a fruit fly's central nervous system, holds every connection fixed, and asks it to reproduce its Data Trust Index™ (DTI™) on synthetic health records. "Intelligence Is Structure, Not Scale: A Whole Central Nervous System Connectome as a Fixed Substrate for Scoring Health Data Trust" is published CC BY on Zenodo at https://doi.org/10.5281/zenodo.22865215 and summarized, with a viewer of the wiring, at https://supertruth.ai/research/connectome.
+PHILADELPHIA, September 21, 2026 /PRNewswire/ -- Here is a strange test, and what came of it.
 
-The wiring is the MaleCNS v1.0 connectome, released 8 June 2026 by HHMI Janelia Research Campus with the University of Cambridge, the MRC Laboratory of Molecular Biology and Google Research under CC BY: 166,700 neurons and 6,242,118 connections of five or more synapses, each mapped under an electron microscope. SuperTruth moved none of them. It trained only the gain on each connection, an input projection that writes a record's fields into the fly's sensory neurons, and a readout from its descending and motor neurons. The licensors have not endorsed this work.
+SuperTruth is a company that scores whether health data can be trusted. Its software reads a medical record and gives it a number from 0 to 100. That number is called the Data Trust Index™, or DTI™. High means the record holds up. Low means something is off.
 
-The first of five seeds has finished; every result here is provisional until the rest do. Results as of 2026-09-21 UTC, seed 1 of 5; later seeds will appear as a new version of the paper at the same DOI. On 4,001 synthetic test records the fly's wiring reproduced the DTI engine to a composite error of 1.58 points on the 0 to 100 scale and matched the engine's trust tier on 88.0 percent. The same wiring shuffled scored 1.53 points and 87.6 percent. A random graph at the same density scored 1.82 and 87.5. A conventional network with the same number of trainable parameters reached 3.73 points and 84.2 percent. The fly's particular anatomy added nothing SuperTruth could measure; a fixed, sparse, signed graph of any kind beat ordinary training by about two points. The paper's name for this first-seed finding is the substrate, not the anatomy. Against the paper's five pre-registered bars for recovering the engine, the fly met three and missed two on this seed: tier agreement of 88.0 percent against a bar of 90, and a 5.6-point error on the recency dimension against a bar of 5.0.
+This weekend the company handed that job to a fruit fly's brain.
+
+Not a live fly. A map of one. In June, scientists at HHMI Janelia Research Campus, the University of Cambridge, the MRC Laboratory of Molecular Biology and Google Research finished mapping a fruit fly's entire central nervous system, every nerve cell and every connection between them, by slicing the fly thin and photographing each slice under an electron microscope. They put the map online for anyone to use. It has 166,700 nerve cells and 6,242,118 connections. Those scientists were not part of this test and have not endorsed it.
+
+SuperTruth took the map as is. It did not add a connection or move one. It only adjusted how strong each connection was, the way you turn a volume knob up or down. Then it trained that wiring to copy the DTI score on 20,000 medical records built for the test. No real patient's data was used anywhere in this study.
+
+Then it gave the same job to four AI models people know by name: Claude Opus 5, GPT-5, Grok 4 and Gemini 3 Flash. Each one got SuperTruth's published paper explaining how the score works, plus 300 of the same test records. Each ran three times.
+
+The fly's wiring picked the right trust level 84 times out of 100. The four models picked it 20, 29, 28 and 45 times out of 100. Ask the fly twice and you get the same answer twice. Not one of the four models managed that.
+
+One thing to be clear about. This test measured how closely each one matched SuperTruth's own score. It did not decide who was right about the records.
+
+"When a hospital acts on a bad record, a real person pays for it. That is who this is for. People have been told that bigger AI means smarter AI, and that a confident answer is a correct answer. Neither is true. What decides whether AI helps a patient or hurts one is the data it was handed and whether anyone checked it. A fruit fly's brain just showed how much that matters," said Bobby Hill, Co-Founder and Chief Executive Officer of SuperTruth.
+
+Now the part the paper is actually about. SuperTruth scrambled the fly's wiring and ran the test again. The scrambled version did just as well. So did a random web of connections of the same size. So the fly's exact wiring did not matter. What mattered was the kind of wiring: a fixed, thin web where every connection either pushes or pulls, and nothing gets rewired. A normal trained network with the same number of adjustable parts did worse. The paper calls this "the substrate, not the anatomy."
+
+The fly did not pass every bar SuperTruth set for it before the test began. It passed three of five. It missed on getting the right trust level (88 percent on the full test set, against a goal of 90) and on the part of the score that tracks how recent a record is. The company is saying so, not burying it.
 
 "We publish the result either way. We wrote the controls and the decision rules before the first run, and a wiring that fails is a fact worth having," said Jason Alan Snyder, Co-Founder of SuperTruth and the paper's author. "Intelligence is structure, not scale. We borrowed a brain to prove it."
 
-The paper also handed four commercial language models, Claude Opus 5, GPT-5, Grok 4 and Gemini 3 Flash, the published DTI paper and 300 of the same test records, three times each. On those 300 records they matched the engine's trust tier on 20.0, 29.3, 27.7 and 44.7 percent, with composite errors of 25.9, 16.1, 17.1 and 9.4 points; the fly's wiring scored 84.0 percent and 1.52 points, first of five seeds, provisional. None of the four returned the same answer on every repeat; the fly did. The yardstick is agreement with SuperTruth's own engine, not which system is right.
-
 "The dominant assumption in health AI is that a model's judgment can be trusted because the vendor says so. That is not trust. It is deference," Snyder said. "Trust stops being a vendor's claim and becomes a property you can audit."
 
-How we ran this: the protocol, the five controls and the decision rules were written and dated before the first run, with a commitment to publish whichever way the numbers fell. Every record was synthetic, generated by schema; test records were held out and checked for leakage before any score was read. The language models were called through each vendor's own API on 20 September 2026 with one identical prompt; the model ids are the ones SuperTruth's site comparison uses, each vendor offered newer models on that date, and a different model version, setting or prompt can change the answers. Every call, price source and served model string is recorded in the paper. The synthetic records themselves, all 20,000, are published alongside the paper as an open dataset at https://doi.org/10.5281/zenodo.22865020, with the engine's scores for every record and the trained parameters of the fly model, so every number can be checked against its row. SuperTruth has released everything from the study that does not expose its intellectual property; researchers interested in what is held are invited to inquire, and the company works with them. A second task, reproducing the Behavioral Integrity Index (BII) that VIGIL computes on software-agent event logs, is described in the paper; its results are not yet reported.
+How the test was run, in plain terms. The rules were written down and dated before the first run, with a promise to publish no matter what. The test records were kept apart from the training records and checked before any score was read. The four AI models were called through each company's own service on September 20, 2026, all with the same instructions. Each company offers newer versions of its models, and a different version or different instructions could change the answers. Every call and every price is in the paper. This is the first of five test runs. The numbers may move when the rest are in, and the paper will be updated at the same address when they do.
 
-To SuperTruth's knowledge, as of 21 September 2026, this is the first reported use of a whole central nervous system connectome to score the trustworthiness of health data; the search behind that sentence is described in the paper.
+You can check all of it yourself. The 20,000 records, the score for each one, and the trained fly model are free to download at https://doi.org/10.5281/zenodo.22865020. The paper, "Intelligence Is Structure, Not Scale: A Whole Central Nervous System Connectome as a Fixed Substrate for Scoring Health Data Trust," is free at https://doi.org/10.5281/zenodo.22865215. A plain summary and a 3D view of the wiring are at https://supertruth.ai/research/connectome. SuperTruth has released everything from the study that does not give away its own inventions. If you want to know about what was held back, ask, and the company will work with you. A second test, on the behavior of software agents, is described in the paper. Those results are not out yet.
 
-DTI and BII score the integrity of data records and the behavior of software agents. They do not diagnose, treat, or make recommendations about any patient, and are not intended for use in clinical decision making. Every record in this study was generated synthetically; no real person's data was used.
+As far as SuperTruth knows, as of September 21, 2026, nobody has used the full wiring map of a nervous system to score whether health data can be trusted before. The paper describes how the company looked for earlier work.
 
-The paper closes with a section marked as the author's position, not a finding. "Simply put, the future of intelligence is analog," Snyder writes.
+SuperTruth's scores rate data records and the behavior of software agents. They do not diagnose or treat anyone, do not make recommendations about any patient, and are not meant for medical decisions.
+
+The paper ends with a section the author marks as his own view, not a finding. "Simply put, the future of intelligence is analog," Snyder writes.
 
 Claude and Claude Opus are trademarks of Anthropic, PBC. GPT-5 is a product of OpenAI, Grok 4 of xAI, and Gemini 3 Flash of Google LLC; each name is the property of its owner. Anthropic, OpenAI, xAI and Google are named so readers can see what was tested. None is affiliated with SuperTruth and none has reviewed or endorsed this work.
 
-Paper: https://doi.org/10.5281/zenodo.22865215. Summary and viewer: https://supertruth.ai/research/connectome. The DTI paper this work builds on: https://doi.org/10.5281/zenodo.19601616.
+Paper: https://doi.org/10.5281/zenodo.22865215. Summary and 3D viewer: https://supertruth.ai/research/connectome. Data: https://doi.org/10.5281/zenodo.22865020. The DTI paper this work builds on: https://doi.org/10.5281/zenodo.19601616.
 
 **About SuperTruth**
 
@@ -98,7 +116,7 @@ The DTI methodology is published and citable: "The Data Trust Index: A Multidime
 
 **Media Contact**
 Rheanna Crescenzo
-Head of Marketing, SuperTruth, Inc.
+Director of Marketing, SuperTruth, Inc.
 rheanna@supertruth.ai
 (215) 918-4140
 
@@ -111,7 +129,8 @@ SOURCE SuperTruth, Inc.
 - Figure 1 on top, caption under it with the count and the source, headline beneath, then the copy.
 - Headline and subhead both carry the provisional label.
 - No reversed-out text; the site page follows DESIGN_SYSTEM.md (sentence case there; Title Case is the wire's convention only).
-- Run `wc -w` on the dateline-to-links block before the wire (target 450 to 650); trim the frontier-model paragraph first if over.
+- Reading grade, measured 21 Sep 2026 on the dateline-to-links block (paper title, URLs and trademark footer excluded): body rewritten again 21 Sep as a person talking (JAS: 'talk like a person to people'; no section labels, points dropped in favor of right-out-of-100): 875 words, Flesch-Kincaid grade 6.6. Headline is the Ogilvy seat's pick of 21 Sep, minus 'Wire by Wire' (JAS: 'makes no sense to regular people'); 'no wire moved' → 'did not change a single connection'; '9 to 26 points' → 'got it wrong more than half the time' (JAS: 'points is also meaningless'). Then JAS: 'work the headline, no AI slop, write a headline.' FINAL 21 Sep: 'SuperTruth Ran Medical Records Through a Fruit Fly's Brain and Four Top AI Models. The Fly Won.' Brand first, one news verb, the twist in three words; 'won' is on the release's own yardstick (agreement with the DTI engine, 84 vs 20 to 45 out of 100 on the same 300 records) and the body says so; no vendor named. Rejected on the way: 'Anyone Can Check' (abstract), 'Wire by Wire', 'missed by 9 to 26 points'. THEN JAS (21 Sep): 'Fruit flies are smarter than ChatGPT, Claude, Grok and Gemini when it comes to health records. People understand that.' APPLIED as 'A Fruit Fly's Brain Beat Claude, GPT-5, Grok and Gemini at Judging Health Records': 'beat' not 'smarter' (we measured tier agreement with the DTI engine, not intelligence; 'smarter' is JAS's call if he insists), 'GPT-5' not 'ChatGPT' (the API model tested, not the app). Four names and no number in the headline satisfies counsel's 'four numbers or one name, never both'; the nominative-use footer stands. SuperTruth moves to the first word of the subhead. Bar: eighth grade (JAS, 21 Sep). Re-measure after any edit.
+- Length: 990 words in that block against the 27 April release's 450 to 650. The plain-English explanations (what a connectome is, what SuperTruth did) are what a reader with an eighth-grade education needs; if the wire wants it shorter, trim "How the test was run" first, never the explanations or the missed bars.
 
 ---
 
@@ -122,7 +141,7 @@ Counsel's seat (21 Sep, read-only): NO-GO as first drafted; GO once (1) "patente
 1. **Boilerplate (JAS decides).** This draft uses the description locked by JAS and Rheanna on 11 Sep 2026 (st-connectome `src/data/boilerplate.ts`, `LONG_BOILERPLATE`). The April 27 release's boilerplate named BII as patent-protected, which legal flags 1 and 7 forbid; if the April text is wanted, that sentence must go.
 2. **"patented" in the locked boilerplate.** Allowed by the house rule as a corporate string, banned in the paper by flag 7. Dina to confirm it may ride on this release.
 3. **DataSpine scale word.** "tens of millions" per the 14 Sep rule; check `dataspine-scale.ts` on publish day.
-4. **Rheanna's title.** April printed "Director of Marketing"; JAS said "Head of Marketing" on 11 Sep. Confirm with Rheanna.
+4. **Rheanna's title.** Director of Marketing (JAS, 21 Sep: "Director of Marketing is better"). Applied.
 5. **Frontier-model arms.** Only Claude Opus 5 has finished tonight; replace "the first to finish" with the other three vendors' figures from `llm_runs/*/summary.json` when they land, or cut the phrase.
 6. **Seed count.** Every result is labelled first of five seeds. If seed 2 lands before the wire, re-read §4 and change every number and label together.
 7. **"To SuperTruth's knowledge, as of 20 September 2026 ... first reported use"**: re-run the awesome-fly and MaleCNS-applications check on publish day; move the date; counsel read on this sentence and on the marks.
@@ -131,7 +150,7 @@ Counsel's seat (21 Sep, read-only): NO-GO as first drafted; GO once (1) "patente
 10. **Connectome attribution** sentence in the body; the Cell citation lives on the page and in the paper.
 11. **Dina's attribution approval** is the publish gate for the paper; the release cannot go before the paper.
 12. **press.ts entry**: update to headline #2 and a description that carries the substrate finding with its label, at publish.
-13. **Quotes**: both Snyder quotes are verbatim from "Why we did this"; the closing line is the paper's last sentence of §6 and the abstract.
+13. **Quotes**: both Snyder quotes are verbatim from "Why we did this"; the closing line is the paper's last sentence of §6 and the abstract. **Bobby Hill quote (added 21 Sep on JAS's ask, "not just me") APPROVED by Bobby 21 Sep (relayed by JAS: "he said OK"). Title per boilerplate.ts: Co-Founder and Chief Executive Officer.**
 
 ---
 

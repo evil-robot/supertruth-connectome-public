@@ -1,23 +1,24 @@
 {
-  "generated": "2026-09-20T22:07:56+00:00",
+  "generated": "2026-09-21T05:31:37+00:00",
   "status": "partial",
   "seeds": [
-    1
+    1,
+    2
   ],
-  "version": "1.0",
+  "version": "1.1",
   "framing": {
-    "n": 1,
+    "n": 2,
     "case": "substrate",
     "provisional": true
   },
   "outputs": {
-    "paper/results/section4.md": "a3b4c83e319f98ed15ae5d6e4c478216ee91a74705c9444c5875218d21026e83",
-    "paper/results/abstract_sentences.md": "a4832463e638fe3b5bdc21d45f51c17dc8b78fff0efa198e5eebbf1903abd2fd",
-    "paper/results/page_sentences.json": "7b3bceb93db89fbc3aa3e67bf395ed9410c19b1576a5752027ec96f8df150bac",
-    "paper/figures/fig3_paired_differences.png": "00527958111392a5763a326bfec952950db337948c0075ae442cd363a6692636",
-    "paper/figures/fig3_paired_differences.svg": "2aeae356eedadfafdf89a3df831e280146b3118bb98bda6e48312a81d9545c97",
-    "paper/figures/fig4_dimension_mae.png": "013541436a8c260ebedf4258ebe310cad798a42bc80d401195b21831b78d90fe",
-    "paper/figures/fig4_dimension_mae.svg": "285626ba26ce3eae65aa49fb3711973704e1d3ffc052519675cc5e0ef527ef7b",
-    "viz/dist/results/results.json": "cc38fde39303892dcbe19e7121320a26311b31e1264ab0d3ff6fbcd64bb60bbe"
+    "paper/results/section4.md": "c192f187b422163de29d6c3466a257c7e836d191a5396a40061a051a79c591ea",
+    "paper/results/abstract_sentences.md": "eb83432810d0389b1f36242b9705dcf1bfd261d0791e1d77666dee5068810fac",
+    "paper/results/page_sentences.json": "c3c77a72fa5e7dcd349adbaf1c6f16551cef0cb1b32e4ffffacd16b20e17b78a",
+    "paper/figures/fig3_paired_differences.png": "4513308703bec4845ec4a9410d0da0577235a6ab5214f5ce9fc8fc10bcdf675c",
+    "paper/figures/fig3_paired_differences.svg": "4c1cff4a73e77b7605a57b0b6af585d7c95321286f6244fa9b863f15279f2cd6",
+    "paper/figures/fig4_dimension_mae.png": "f16000e9272eb20312b5048fae0486c1689cd204509a0346454bb5e1d578479d",
+    "paper/figures/fig4_dimension_mae.svg": "32f6f98c7cd87e165bb76e10963797d22d1aef7a8d763b92b8eb6d416da0bac3",
+    "viz/dist/results/results.json": "b3f29269d0752bcc2fadc0c68d7bcdf8f7bdd5811bb98302e4af5ec51620d424"
   }
 }

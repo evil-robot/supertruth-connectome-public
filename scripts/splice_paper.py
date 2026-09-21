@@ -10,7 +10,7 @@ with tonight's and changes nothing else.
       table and figure numbers checked against the paper (Tables 1-7 and Figures 1-2 belong to Sections 2-3).
   (b) the abstract's [RESULTS SENTENCES.] placeholder, or the block between <!-- RESULTS-ABSTRACT-START/END -->,
       <- paper/results/abstract_sentences.md.
-  (c) the site page's four <ResultPlaceholder> texts <- paper/results/page_sentences.json, each preceded by {/* RESULT-n */};
+  (c) the site page's five <ResultPlaceholder> texts <- paper/results/page_sentences.json, each preceded by {/* RESULT-n */};
       CONNECTOME_UPDATED_DATE <- today.
   (d) every [RUN: ...] placeholder the pipeline can answer <- runs/, results/results.json, llm_arm/llm_runs/; the filled value is
       wrapped as <!-- RUN: key -->value<!-- /RUN --> so it is recomputed on every run; a key with no evidence stays [RUN: key].
@@ -55,7 +55,7 @@ FIRST_RESULTS_TABLE = 8     # Tables 1-7 are Sections 2-3 (Table 5-7 are named b
 FIRST_RESULTS_FIGURE = 3    # Figures 1-2 are Sections 2-3
 SECTION4_MARK = "<!-- RESULTS-SECTION4: spliced by scripts/splice_paper.py from paper/results/section4.md; edit scripts/render_results.py, not this block -->"
 ABS_START, ABS_END = "<!-- RESULTS-ABSTRACT-START -->", "<!-- RESULTS-ABSTRACT-END -->"
-PAGE_KEYS = ["wiring_vs_shuffle", "wiring_vs_random_and_matched_network", "model_arms_beside_fly", "bii"]
+PAGE_KEYS = ["wiring_vs_shuffle", "wiring_vs_random_and_matched_network", "model_arms_beside_fly", "bii", "model_arms_with_examples"]
 DASH = re.compile("[–—]")
 ARM_LABEL = {"connectome": "fly wiring (a)", "shuffle": "shuffle (b)", "er": "random graph (c)", "mlp": "matched network (d)"}
 VENDOR_NAME = {"anthropic": "Anthropic", "openai": "OpenAI", "xai": "xAI", "gemini": "Google"}

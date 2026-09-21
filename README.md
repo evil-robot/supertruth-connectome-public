@@ -30,6 +30,9 @@ Held: BII scores, BII-trained parameters, and the BII feature specification (unp
 We have released everything that does not expose SuperTruth's intellectual property; write to jas@supertruth.ai about the
 rest. See `LICENSE`.
 
+**Press.** For press and media questions about this project, contact Rheanna Crescenzo, Director of Marketing, SuperTruth, Inc.,
+rheanna@supertruth.ai, (215) 918-4140.
+
 **About this public copy.** This is a clean export of the working repository at the commit named in `dataset/MANIFEST.json`.
 Held back from the export: the Behavioral Integrity Index feature specification and window generator (unpublished work) and
 the raw language-model call logs (kept privately as the substantiation record). Everything else is here.
