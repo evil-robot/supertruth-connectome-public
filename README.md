@@ -108,6 +108,19 @@ rather than something a vendor claims. A judge whose every connection is a publi
 every time and runs in 16 milliseconds on a laptop, is a different kind of judge. The author's position, marked as such in the
 paper: simply put, the future of intelligence is analog.
 
+## Is the comparison fair?
+
+No, and it was not built to be. The fly and its controls were trained on 13,999 records our engine had scored. The four models
+saw our published method and the record, nothing else. The paper says so in its Limitations and refuses the sentence "better
+than Claude", or any vendor, in writing. The finding is not fly versus models. It is that a fixed, thin, signed web of
+connections, trained only in how loudly each connection speaks, reproduces a trust judge, and that a shuffled copy and a random
+web do too while an ordinary network with the same number of adjustable parts does worse. No language model appears in that
+finding. The models are in the paper because that is how records are judged in practice today: someone hands one to a general
+model. We also ran the nearest thing to a fair fight, giving each model 100 of the engine's own scored examples. They rose to
+54% to 76% agreement with the engine's tier; the fly held at 84% on the same 300 records, in 16 milliseconds, at no marginal
+cost, with the same answer every time. A model given all 13,999 examples, or fine-tuned on them, would be a different arm and
+was not run.
+
 ## How it was run
 
 - `docs/PROTOCOL.md` is the pre-registered design; `docs/PROTOCOL-AMENDMENT-2026-09-20.md` the dated amendment (17 rows);
