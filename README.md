@@ -7,7 +7,7 @@ as a Fixed Substrate for Scoring Health Data Trust* (Jason Alan Snyder, SuperTru
 
 | | |
 |---|---|
-| Paper (Zenodo, CC BY 4.0) | https://doi.org/10.5281/zenodo.22865215 |
+| Paper (Zenodo, CC BY 4.0) | https://doi.org/10.5281/zenodo.22865214 |
 | Dataset: 20,000 synthetic records, every engine score, the trained fly model | https://doi.org/10.5281/zenodo.22865020 |
 | Plain summary and 3D viewer of the wiring | https://supertruth.ai/research/connectome |
 | The story, by the author | https://supertruth.ai/blog/fruit-fly-brain-beat-four-ai-models-at-judging-health-records |
@@ -136,7 +136,7 @@ released DTI engine labels in the dataset rather than regenerate them.
 ## Cite
 
 Snyder, Jason Alan (2026). *Intelligence Is Structure, Not Scale: A Whole Central Nervous System Connectome as a Fixed Substrate
-for Scoring Health Data Trust.* SuperTruth Inc., Zenodo. https://doi.org/10.5281/zenodo.22865215
+for Scoring Health Data Trust.* SuperTruth Inc., Zenodo. https://doi.org/10.5281/zenodo.22865214
 
 **Licenses and release.** Code MIT. Derived graph, paper, and dataset CC BY 4.0 with the attribution in the paper. Released:
 all synthetic records and features, all DTI engine labels, the DTI-trained parameters (Zenodo dataset, https://doi.org/10.5281/zenodo.22865020).

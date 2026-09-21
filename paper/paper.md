@@ -8,7 +8,7 @@
 
 **Submitted:** September 2026
 
-**DOI:** https://doi.org/10.5281/zenodo.22865215 (this version). **Dataset:** https://doi.org/10.5281/zenodo.22865020.
+**DOI:** https://doi.org/10.5281/zenodo.22865214 (all versions; each version also carries its own DOI on the Zenodo record). **Dataset:** https://doi.org/10.5281/zenodo.22865020.
 
 ---
 

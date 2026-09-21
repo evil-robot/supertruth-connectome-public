@@ -12,3 +12,5 @@ teachers/.venv-vigil/
 teachers/node_modules/
 dataset/*.gz
 dataset/splits.json
+Intelligence_Is_Structure_Not_Scale_SuperTruth_2026_v1.0.pdf
+viz/article/*.mp4
