@@ -168,7 +168,7 @@ Reads at post day +7 and +30. Every figure comes from a report, not a glance.
 | Impressions, reactions, comments, reposts, link clicks | LinkedIn post analytics, exported at +7 and +30 | The April 2026 DTI paper post: [BASELINE: pull before posting] |
 | Sessions on the page with LinkedIn referrer; time on page | Site analytics, US and real readers only, bots gated; utm_source=linkedin | DTI paper page, first 7 and 30 days: [BASELINE] |
 | Resolutions of the new DOI and of 10.5281/zenodo.19601616 | Zenodo record statistics | DTI record lifetime to 20 Sep 2026 (Zenodo API, read 20 Sep): 241 views (229 unique), 78 downloads (63 unique) since 16 Apr 2026; re-read on post day for the 30-day window |
-| Inbound to jas@supertruth.ai naming the paper | Mail search by sender organization | Zero; the ask is a reply |
+| Inbound through the contact form naming the paper | Mail search by sender organization | Zero; the ask is a reply |
 | Search impressions and clicks for the page | Search Console and Bing Webmaster from launch day | None; new route |
 
 Decision rules: (1) beat the April DTI post on link clicks at +7 or retest with headline #14 at +14; (2) three inbound conversations from named health-system or investor readers by +30, or JAS decides whether the next surface is a direct note to ten named CIOs; (3) if DOI resolutions rise but sessions do not, put the DOI first in later posts.

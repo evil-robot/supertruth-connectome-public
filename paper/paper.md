@@ -4,7 +4,7 @@
 
 ¹SuperTruth Inc., United States. ORCID 0009-0001-6157-8100
 
-**Correspondence:** jas@supertruth.ai
+**Correspondence:** through the SuperTruth contact form, https://supertruth.ai/on-the-record#contact
 
 **Submitted:** September 2026
 
@@ -651,7 +651,7 @@ DTI and BII score the integrity of data records and the behavior of software age
 
 ## Data and Code Availability
 
-Code: MIT license, https://github.com/evil-robot/supertruth-connectome-public. Derived graph: CC BY 4.0, adapted from MaleCNS v1.0 (see Connectome Attribution). Dataset: Zenodo https://doi.org/10.5281/zenodo.22865020, CC BY 4.0, holding all 20,000 synthetic DTI records (the text the engine read, the scoring context, the generator knobs, the 65-float feature vector), the deployed DTI engine's labels for all 20,000 records (eight dimensions, composite, tier, flags), the train/validation/test split, a flag on the 300 records scored by the language-model arms, the DTI-trained parameters of the five finished seed-1 arms, and all 20,000 synthetic BII event windows with their events, 58-float feature vectors and split. Also released: the DTI input feature specification, the pre-registered protocol, the decision rules, and every run manifest. Held: the BII scores and gates, the BII-trained parameters, and the BII feature specification, because the Behavioral Integrity Index scorer is unpublished work; its outputs and the models trained on them are held until it is. The DTI and BII teacher engines are not released. The published DTI framework is available at https://doi.org/10.5281/zenodo.19601616. We have released everything from this study that does not expose SuperTruth's intellectual property: the code, the derived graph, the synthetic records, the DTI feature specification, all DTI engine labels, and the DTI-trained parameters. What is held is named above, with the reason. Anyone interested in what is held can write to jas@supertruth.ai; we work with researchers.
+Code: MIT license, https://github.com/evil-robot/supertruth-connectome-public. Derived graph: CC BY 4.0, adapted from MaleCNS v1.0 (see Connectome Attribution). Dataset: Zenodo https://doi.org/10.5281/zenodo.22865020, CC BY 4.0, holding all 20,000 synthetic DTI records (the text the engine read, the scoring context, the generator knobs, the 65-float feature vector), the deployed DTI engine's labels for all 20,000 records (eight dimensions, composite, tier, flags), the train/validation/test split, a flag on the 300 records scored by the language-model arms, the DTI-trained parameters of the five finished seed-1 arms, and all 20,000 synthetic BII event windows with their events, 58-float feature vectors and split. Also released: the DTI input feature specification, the pre-registered protocol, the decision rules, and every run manifest. Held: the BII scores and gates, the BII-trained parameters, and the BII feature specification, because the Behavioral Integrity Index scorer is unpublished work; its outputs and the models trained on them are held until it is. The DTI and BII teacher engines are not released. The published DTI framework is available at https://doi.org/10.5281/zenodo.19601616. We have released everything from this study that does not expose SuperTruth's intellectual property: the code, the derived graph, the synthetic records, the DTI feature specification, all DTI engine labels, and the DTI-trained parameters. What is held is named above, with the reason. Anyone interested in what is held can write to us through the SuperTruth contact form (https://supertruth.ai/on-the-record#contact); we work with researchers.
 
 ---
 
@@ -669,7 +669,7 @@ Claude and Claude Opus are trademarks of Anthropic, PBC. GPT-5 is a product of O
 
 ## About the Author
 
-**Jason Alan Snyder** is Co-Founder of SuperTruth Inc. and of Artists & Robots. He spent more than twenty years inside Interpublic Group, most recently as Global AI Strategy Lead for enterprise clients. He has held product and technology leadership roles at AOL and Yahoo, founded a consultancy that served as agency of record for Johnson & Johnson, and holds multiple patents in data intelligence and AI orchestration systems. He is a Forbes contributor, has spoken at the United Nations, the Milken Global Conference, and the World AI Summit. Adweek named him to its 2026 AI Power 50. Correspondence: jas@supertruth.ai
+**Jason Alan Snyder** is Co-Founder of SuperTruth Inc. and of Artists & Robots. He spent more than twenty years inside Interpublic Group, most recently as Global AI Strategy Lead for enterprise clients. He has held product and technology leadership roles at AOL and Yahoo, founded a consultancy that served as agency of record for Johnson & Johnson, and holds multiple patents in data intelligence and AI orchestration systems. He is a Forbes contributor, has spoken at the United Nations, the Milken Global Conference, and the World AI Summit. Adweek named him to its 2026 AI Power 50. Correspondence: https://supertruth.ai/on-the-record#contact
 
 ---
 

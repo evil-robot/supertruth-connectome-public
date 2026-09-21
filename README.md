@@ -141,8 +141,8 @@ for Scoring Health Data Trust.* SuperTruth Inc., Zenodo. https://doi.org/10.5281
 **Licenses and release.** Code MIT. Derived graph, paper, and dataset CC BY 4.0 with the attribution in the paper. Released:
 all synthetic records and features, all DTI engine labels, the DTI-trained parameters (Zenodo dataset, https://doi.org/10.5281/zenodo.22865020).
 Held: BII scores, BII-trained parameters, and the BII feature specification (unpublished work), and the teacher engines.
-We have released everything that does not expose SuperTruth's intellectual property; write to jas@supertruth.ai about the
-rest. See `LICENSE`.
+We have released everything that does not expose SuperTruth's intellectual property; write to us through the SuperTruth contact form
+(https://supertruth.ai/on-the-record#contact) about the rest. See `LICENSE`.
 
 **Press.** For press and media questions about this project, contact Rheanna Crescenzo, Director of Marketing, SuperTruth, Inc.,
 rheanna@supertruth.ai, (215) 918-4140.

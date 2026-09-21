@@ -9,7 +9,7 @@ composite, tier, flags); the DTI-trained parameters of the five finished seed-1 
 Behavioral Integrity Index (BII) event windows with their events and 58-float feature vectors. Held: the BII scores
 and gates, the BII-trained parameters and the BII feature specification, because the Behavioral Integrity Index scorer is unpublished work; its outputs and the models trained on them are held until it is. The two teacher engines
 (the DTI scoring module and the VIGIL detection code) are not released. Anyone interested in what is held can write
-to jas@supertruth.ai; we work with researchers.
+to us through the SuperTruth contact form (https://supertruth.ai/on-the-record#contact); we work with researchers.
 
 Every record is synthetic; no real person's data was used. No protected health information exists in this dataset by
 construction: every record is rendered by code from a seed, patient names are `SYN-` tokens, identifiers are `SYN`
