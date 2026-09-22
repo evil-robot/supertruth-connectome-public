@@ -1,24 +1,27 @@
 {
-  "generated": "2026-09-21T05:31:37+00:00",
-  "status": "partial",
+  "generated": "2026-09-22T12:44:41+00:00",
+  "status": "complete",
   "seeds": [
     1,
-    2
+    2,
+    3,
+    4,
+    5
   ],
-  "version": "1.1",
+  "version": "1.2",
   "framing": {
-    "n": 2,
+    "n": 5,
     "case": "substrate",
-    "provisional": true
+    "provisional": false
   },
   "outputs": {
-    "paper/results/section4.md": "c192f187b422163de29d6c3466a257c7e836d191a5396a40061a051a79c591ea",
-    "paper/results/abstract_sentences.md": "eb83432810d0389b1f36242b9705dcf1bfd261d0791e1d77666dee5068810fac",
-    "paper/results/page_sentences.json": "c3c77a72fa5e7dcd349adbaf1c6f16551cef0cb1b32e4ffffacd16b20e17b78a",
-    "paper/figures/fig3_paired_differences.png": "4513308703bec4845ec4a9410d0da0577235a6ab5214f5ce9fc8fc10bcdf675c",
-    "paper/figures/fig3_paired_differences.svg": "4c1cff4a73e77b7605a57b0b6af585d7c95321286f6244fa9b863f15279f2cd6",
-    "paper/figures/fig4_dimension_mae.png": "f16000e9272eb20312b5048fae0486c1689cd204509a0346454bb5e1d578479d",
-    "paper/figures/fig4_dimension_mae.svg": "32f6f98c7cd87e165bb76e10963797d22d1aef7a8d763b92b8eb6d416da0bac3",
-    "viz/dist/results/results.json": "b3f29269d0752bcc2fadc0c68d7bcdf8f7bdd5811bb98302e4af5ec51620d424"
+    "paper/results/section4.md": "679b9489609b8c647e7d796545884cba3469b126f59aaa01bf9c5b7a668189a4",
+    "paper/results/abstract_sentences.md": "42d5b23f1c3a56f8da55cea1e74f2e7c13f73895cf934d6420f154e44488f346",
+    "paper/results/page_sentences.json": "94802e4e16b63284b772217c848452ffcb1c2befeeef8fc9e8e6765b63badb47",
+    "paper/figures/fig3_paired_differences.png": "853cb3a66ae299b5af1090222b075dace8bde33abd928e79c66ca31d53c8fc93",
+    "paper/figures/fig3_paired_differences.svg": "87ab10e5fc959207adc3f877028ec3151c4a0dd32f5d5315b26244b4009b9790",
+    "paper/figures/fig4_dimension_mae.png": "a80f445d87786cf368670e0d0081a4894efee6781a38c9ed8b5290964cbd39f7",
+    "paper/figures/fig4_dimension_mae.svg": "20f5f51b8effcb3334c2ea809c83e83d85848c1a6cd3f152690ad736539c4a50",
+    "viz/dist/results/results.json": "94d6891ae4f4156fe2f3eb4b0f99835b7b9d7a3c41b5b55ba6f6c2cce4620b2c"
   }
 }

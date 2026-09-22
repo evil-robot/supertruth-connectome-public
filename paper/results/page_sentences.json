@@ -1,24 +1,27 @@
 {
-  "generated": "2026-09-21T05:31:37+00:00",
+  "generated": "2026-09-22T12:44:41+00:00",
   "seeds": [
     1,
-    2
+    2,
+    3,
+    4,
+    5
   ],
-  "status": "partial",
+  "status": "complete",
   "max_chars": 300,
   "source": "results/results.json via scripts/render_results.py",
   "sentences": {
-    "wiring_vs_shuffle": "On two of five seeds, the fly's 166,700-neuron wiring and its degree-preserving shuffle reproduced SuperTruth's Data Trust Index engine equally well: composite error 1.57 vs 1.57 points (difference 0.00, 95% CI -0.67 to +0.66), tier agreement 0.877 vs 0.873.",
-    "wiring_vs_random_and_matched_network": "A random graph at the fly's density matched the fly's wiring on tier agreement (0.871 vs 0.877) and came within 0.23 points of it on composite error (1.80 vs 1.57); all three fixed graphs beat a same-size trained network at reproducing the DTI engine (3.56 points, 0.853).",
+    "wiring_vs_shuffle": "On all five seeds, the fly's 166,700-neuron wiring and its degree-preserving shuffle reproduced SuperTruth's Data Trust Index engine equally well: composite error 1.74 vs 1.60 points (difference 0.14, 95% CI -0.45 to +0.17), tier agreement 0.872 vs 0.872.",
+    "wiring_vs_random_and_matched_network": "A random graph at the fly's density matched the fly's wiring on tier agreement (0.869 vs 0.872) and matched it on composite error (1.78 vs 1.74 points); all three fixed graphs came closer than a same-size trained network to reproducing the DTI engine (3.71 points, 0.854).",
     "model_arms_beside_fly": "Four models given the DTI paper and 300 of the same records matched the engine's tier on 20% (Claude Opus 5) to 45% (Gemini 3 Flash), at 13 s to 73 s and $0.04 to $0.26 per record. The fly's wiring matched the engine's tier on 84% of the same 300 records, in 16 ms and at $0 marginal cost per record.",
-    "bii": "On VIGIL's Behavioral Integrity Index (BII), under the seed policy with empty registries, the fly's wiring reached score error 0.0284 and gate agreement 0.916 on 4,000 synthetic windows; shuffle minus fly -0.0025, 95% CI -0.01 to +0.00.",
-    "model_arms_with_examples": "Post-hoc: given the same paper plus 100 engine-scored example records, the four models matched the engine's tier on 54% (GPT-5) to 76% (Claude Opus 5) of the same 300 records; the fly's wiring, 84%."
+    "bii": "On VIGIL's Behavioral Integrity Index (BII), in the reduced setting the paper describes (seed policy, empty registries), the fly's wiring reached score error 0.0272 and gate agreement 0.916 on 4,000 synthetic windows; shuffle minus fly +0.0005, 95% CI -0.00 to +0.00.",
+    "model_arms_with_examples": "In a second round run after the rules were set, given the same paper plus 100 engine-scored example records, the four models matched the engine's tier on 54% (GPT-5) to 76% (Claude Opus 5) of the same 300 records; the fly's wiring, 84%."
   },
   "chars": {
-    "wiring_vs_shuffle": 258,
+    "wiring_vs_shuffle": 255,
     "wiring_vs_random_and_matched_network": 272,
     "model_arms_beside_fly": 300,
-    "bii": 236,
-    "model_arms_with_examples": 198
+    "bii": 267,
+    "model_arms_with_examples": 236
   }
 }

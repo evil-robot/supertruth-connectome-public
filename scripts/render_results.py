@@ -964,7 +964,7 @@ def page_sentences(D: Data, F: dict) -> dict:
             comp_part = f" and matched it on composite error ({c['mean']:.2f} vs {a['mean']:.2f} points)"
         else:
             comp_part = f" and came within {comp_gap:.2f} points of it on composite error ({c['mean']:.2f} vs {a['mean']:.2f})"
-        s2 = (f"A random graph at the fly's density {tier_part}{comp_part}; all three fixed graphs beat a same-size trained network at reproducing the DTI engine "
+        s2 = (f"A random graph at the fly's density {tier_part}{comp_part}; all three fixed graphs came closer than a same-size trained network to reproducing the DTI engine "
               f"({d['mean']:.2f} points, {dt['mean']:.3f}).")
     rows = model_rows(D)
     if rows:
@@ -982,7 +982,7 @@ def page_sentences(D: Data, F: dict) -> dict:
     bii = D.m("connectome", "bii_mae")
     if bii["mean"] is not None:
         bb = D.pair("bii", "shuffled", "bii_mae")
-        s4 = (f"On VIGIL's Behavioral Integrity Index (BII), under the seed policy with empty registries, the fly's wiring reached score error {bii['mean']:.4f} and gate agreement "
+        s4 = (f"On VIGIL's Behavioral Integrity Index (BII), in the reduced setting the paper describes (seed policy, empty registries), the fly's wiring reached score error {bii['mean']:.4f} and gate agreement "
               f"{D.m('connectome', 'bii_gate_accuracy')['mean']:.3f} on 4,000 synthetic windows" + (f"; shuffle minus fly {bb['mean']:+.4f}{ci(bb)}" if bb else "") + ".")
     else:
         lin = D.m("linear", "bii_mae")
@@ -998,7 +998,7 @@ def page_sentences(D: Data, F: dict) -> dict:
         ex_rows.sort(key=lambda x: -x["tier"]); lo_e, hi_e = ex_rows[-1], ex_rows[0]
         sub = D.ex("connectome", "dti", "subset300"); fly_t = sub["tier_acc"]["mean"] if sub else at["mean"]
         n_ex = D.frontier[EX[VENDORS[0]]].get("n_examples", 100)
-        s5 = (f"Post-hoc: given the same paper plus {n_ex} engine-scored example records, the {["one","two","three","four"][len(ex_rows)-1]} models matched the engine's tier on "
+        s5 = (f"In a second round run after the rules were set, given the same paper plus {n_ex} engine-scored example records, the {["one","two","three","four"][len(ex_rows)-1]} models matched the engine's tier on "
               f"{lo_e['tier']:.0%} ({lo_e['name']}) to {hi_e['tier']:.0%} ({hi_e['name']}) of the same 300 records; the fly's wiring, {fly_t:.0%}.")
     else:
         s5 = "Post-hoc examples arm: not in this version." if VERSION else "Post-hoc examples arm: awaiting run."

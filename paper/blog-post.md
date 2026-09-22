@@ -64,7 +64,7 @@ We wrote the rules before the first run and promised to publish either way. The 
 
 Everything that does not give away our own inventions is released. The 20,000 records, the score for each one, and the trained fly model are free to download. The rules, the code, and every call to every model with its price are in the paper. If you want to know about what we held back, ask. We will work with you.
 
-The paper: [Intelligence Is Structure, Not Scale](https://doi.org/10.5281/zenodo.22865215).
+The paper: [Intelligence Is Structure, Not Scale](https://doi.org/10.5281/zenodo.22865214).
 The data: [doi.org/10.5281/zenodo.22865020](https://doi.org/10.5281/zenodo.22865020).
 The page, with a 3D view of the brain: [supertruth.ai/research/connectome](https://supertruth.ai/research/connectome).
 

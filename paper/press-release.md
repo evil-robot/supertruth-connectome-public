@@ -57,7 +57,7 @@ Rewritten 21 September 2026 on JAS's instruction: written for a reader with an e
 
 # A Fruit Fly's Brain Beat Claude, GPT-5, Grok and Gemini at Judging Health Records
 
-*SuperTruth ran the same test records through a fruit fly's borrowed brain wiring and four top AI models. The fly picked the right trust level 84 times out of 100. The models, 20 to 45. Rules set before the first run, results published win or lose. First of five runs.*
+*SuperTruth ran the same test records through a fruit fly's borrowed brain wiring and four top AI models. The fly picked the right trust level 84 times out of 100. The models, 20 to 45. Rules set before the first run, results published win or lose. Two of five runs done.*
 
 **[IMAGE: paper/figures/fig1_projections.png]**
 *Caption: The fruit fly wiring SuperTruth used, and did not change: 166,700 nerve cells and 6,242,118 connections. The cells where a record goes in are marked in one color. The cells where the score comes out are marked in another. Every connection shown was mapped by scientists under a microscope. Source: MaleCNS v1.0, HHMI Janelia Research Campus with the University of Cambridge, the MRC Laboratory of Molecular Biology and Google Research, released June 8, 2026, CC BY 4.0, https://male-cns.janelia.org/; SuperTruth's derived graph (connections of five or more synapses), September 20, 2026.*
@@ -76,7 +76,7 @@ Then it gave the same job to four AI models people know by name: Claude Opus 5, 
 
 The fly's wiring picked the right trust level 84 times out of 100. The four models picked it 20, 29, 28 and 45 times out of 100. Ask the fly twice and you get the same answer twice. Not one of the four models managed that.
 
-One thing to be clear about. This test measured how closely each one matched SuperTruth's own score. It did not decide who was right about the records.
+Two things to be clear about. This test measured how closely each one matched SuperTruth's own score. It did not decide who was right about the records. And the fly was trained on SuperTruth's scores, while the models only read how the score works. So the company ran a second round and gave the models 100 scored examples to learn from. They improved a lot, to 54 to 76 out of 100. The fly still led at 84, and it gave the same answer every time it was asked.
 
 "When a hospital acts on a bad record, a real person pays for it. That is who this is for. People have been told that bigger AI means smarter AI, and that a confident answer is a correct answer. Neither is true. What decides whether AI helps a patient or hurts one is the data it was handed and whether anyone checked it. A fruit fly's brain just showed how much that matters," said Bobby Hill, Co-Founder and Chief Executive Officer of SuperTruth.
 
@@ -88,9 +88,9 @@ The fly did not pass every bar SuperTruth set for it before the test began. It p
 
 "The dominant assumption in health AI is that a model's judgment can be trusted because the vendor says so. That is not trust. It is deference," Snyder said. "Trust stops being a vendor's claim and becomes a property you can audit."
 
-How the test was run, in plain terms. The rules were written down and dated before the first run, with a promise to publish no matter what. The test records were kept apart from the training records and checked before any score was read. The four AI models were called through each company's own service on September 20, 2026, all with the same instructions. Each company offers newer versions of its models, and a different version or different instructions could change the answers. Every call and every price is in the paper. This is the first of five test runs. The numbers may move when the rest are in, and the paper will be updated at the same address when they do.
+How the test was run, in plain terms. The rules were written down and dated before the first run, with a promise to publish no matter what. The test records were kept apart from the training records and checked before any score was read. The four AI models were called through each company's own service on September 20, 2026, all with the same instructions. Each company offers newer versions of its models, and a different version or different instructions could change the answers. Every call and every price is in the paper. Two of the five test runs are done, and the paper's second version holds both. The numbers may move when the rest are in, and the paper will be updated at the same address when they do.
 
-You can check all of it yourself. The 20,000 records, the score for each one, and the trained fly model are free to download at https://doi.org/10.5281/zenodo.22865020. The paper, "Intelligence Is Structure, Not Scale: A Whole Central Nervous System Connectome as a Fixed Substrate for Scoring Health Data Trust," is free at https://doi.org/10.5281/zenodo.22865215. A plain summary and a 3D view of the wiring are at https://supertruth.ai/research/connectome. SuperTruth has released everything from the study that does not give away its own inventions. If you want to know about what was held back, ask, and the company will work with you. A second test, on the behavior of software agents, is described in the paper. Those results are not out yet.
+You can check all of it yourself. The 20,000 records, the score for each one, and the trained fly model are free to download at https://doi.org/10.5281/zenodo.22865020. The paper, "Intelligence Is Structure, Not Scale: A Whole Central Nervous System Connectome as a Fixed Substrate for Scoring Health Data Trust," is free at https://doi.org/10.5281/zenodo.22865214. A plain summary and a 3D view of the wiring are at https://supertruth.ai/research/connectome. SuperTruth has released everything from the study that does not give away its own inventions. If you want to know about what was held back, ask, and the company will work with you. A second test, on the behavior of software agents, is described in the paper. Those results are not out yet.
 
 As far as SuperTruth knows, as of September 21, 2026, nobody has used the full wiring map of a nervous system to score whether health data can be trusted before. The paper describes how the company looked for earlier work.
 
@@ -100,7 +100,7 @@ The paper ends with a section the author marks as his own view, not a finding. "
 
 Claude and Claude Opus are trademarks of Anthropic, PBC. GPT-5 is a product of OpenAI, Grok 4 of xAI, and Gemini 3 Flash of Google LLC; each name is the property of its owner. Anthropic, OpenAI, xAI and Google are named so readers can see what was tested. None is affiliated with SuperTruth and none has reviewed or endorsed this work.
 
-Paper: https://doi.org/10.5281/zenodo.22865215. Summary and 3D viewer: https://supertruth.ai/research/connectome. Data: https://doi.org/10.5281/zenodo.22865020. The DTI paper this work builds on: https://doi.org/10.5281/zenodo.19601616.
+Paper: https://doi.org/10.5281/zenodo.22865214. Summary and 3D viewer: https://supertruth.ai/research/connectome. Data: https://doi.org/10.5281/zenodo.22865020. The DTI paper this work builds on: https://doi.org/10.5281/zenodo.19601616.
 
 **About SuperTruth**
 
@@ -143,7 +143,7 @@ Counsel's seat (21 Sep, read-only): NO-GO as first drafted; GO once (1) "patente
 3. **DataSpine scale word.** "tens of millions" per the 14 Sep rule; check `dataspine-scale.ts` on publish day.
 4. **Rheanna's title.** Director of Marketing (JAS, 21 Sep: "Director of Marketing is better"). Applied.
 5. **Frontier-model arms.** Only Claude Opus 5 has finished tonight; replace "the first to finish" with the other three vendors' figures from `llm_runs/*/summary.json` when they land, or cut the phrase.
-6. **Seed count.** Every result is labelled first of five seeds. If seed 2 lands before the wire, re-read §4 and change every number and label together.
+6. **Seed count.** Updated 21 Sep evening to two of five (paper v1.1, DOI 10.5281/zenodo.22879953; concept DOI 10.5281/zenodo.22865214 used in the copy). Fairness clause added after the "two things to be clear about" line. Re-read §4 when seeds 3 to 5 land.
 7. **"To SuperTruth's knowledge, as of 20 September 2026 ... first reported use"**: re-run the awesome-fly and MaleCNS-applications check on publish day; move the date; counsel read on this sentence and on the marks.
 8. **DTI™ first use** is in the lede; the subhead avoids naming DTI so the mark lands once.
 9. **Zenodo DOI and publish date**: placeholders until JAS uploads. The page URL 404s until `CONNECTOME_PUBLISHED` flips; flip before the wire goes out.
@@ -156,7 +156,7 @@ Counsel's seat (21 Sep, read-only): NO-GO as first drafted; GO once (1) "patente
 
 ## 5. Measurement plan
 
-Read at +7 and +30, every figure from a report: PR Newswire's release report (views, full-text pickups, outlet list) against the 27 April 2026 DTI release's report; page sessions on /research/connectome with wire and news referrers, US real readers only, bots gated; resolutions of https://doi.org/10.5281/zenodo.22865215 in Zenodo statistics against the DTI record's 241 views and 78 downloads to 20 Sep 2026; inbound to Rheanna and JAS naming the paper. Decision rule: if full-text pickups trail the April release at +7, re-pitch five named health and AI reporters with headline #16 and the paired-difference figure; if DOI resolutions rise but page sessions do not, lead later surfaces with the DOI.
+Read at +7 and +30, every figure from a report: PR Newswire's release report (views, full-text pickups, outlet list) against the 27 April 2026 DTI release's report; page sessions on /research/connectome with wire and news referrers, US real readers only, bots gated; resolutions of https://doi.org/10.5281/zenodo.22865214 in Zenodo statistics against the DTI record's 241 views and 78 downloads to 20 Sep 2026; inbound to Rheanna and JAS naming the paper. Decision rule: if full-text pickups trail the April release at +7, re-pitch five named health and AI reporters with headline #16 and the paired-difference figure; if DOI resolutions rise but page sessions do not, lead later surfaces with the DOI.
 
 ---
 

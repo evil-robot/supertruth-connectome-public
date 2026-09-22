@@ -68,7 +68,7 @@ We should be careful what we hand control to. We should stop measuring intellige
 
 The future of digital technologies is analog. Simply put, the future of intelligence is analog. And data truth is AI truth.
 
-The paper: https://doi.org/10.5281/zenodo.22865215
+The paper: https://doi.org/10.5281/zenodo.22865214
 The data, every record and every score: https://doi.org/10.5281/zenodo.22865020
 The page, with a 3D view of the wiring: https://supertruth.ai/research/connectome
 The plain-English story: https://supertruth.ai/blog/fruit-fly-brain-beat-four-ai-models-at-judging-health-records

@@ -186,11 +186,11 @@ https://supertruth.ai/on-the-record#contact</p>
 versions; each version also carries its own DOI on the Zenodo record).
 <strong>Dataset:</strong> https://doi.org/10.5281/zenodo.22865020.</p>
 <hr />
-<!-- STATUS: v1.1 provisional (2026-09-21). Front matter, plain-language opener, attribution, intended use, COI, footer are SETTLED
+<!-- STATUS: v1.2 complete (2026-09-22). Front matter, plain-language opener, attribution, intended use, COI, footer are SETTLED
      (legal flags 1 to 13 applied). Sections 3 to 6 are filled from PROTOCOL.md and the run results; no number appears here that was
-     not produced by a run. Version 1.1 = the complete pre-registered pilot (seeds 1 and 2, both tasks, all five arms) and the post-hoc examples arm (g2) for all
-     four vendors (render_results.py --version 1.1); cells with no run say "not in this version"; the live spot check and the window-cap
-     parity check are SKIPPED with reason; the dataset DOI is filled by splice_paper.py --dataset-doi. Later versions add seeds 3 to 5.
+     not produced by a run. Version 1.2 = the complete pre-registered protocol (seeds 1 to 5, both tasks, all five arms; render_results.py --version 1.2)
+     and the post-hoc examples arm (g2) for all four vendors; decision rules carry PASS/FAIL verdicts at five seeds; the live spot check and the
+     window-cap parity check are SKIPPED with reason.
      BUILD: ./build.sh reproduces the DTI paper's look (pandoc standalone HTML -> headless Chrome PDF). -->
 <h2 id="abstract">Abstract</h2>
 <!-- TODO-RESULTS: fill from results.json; keep to 200 words; last sentence fixed below. -->
@@ -202,16 +202,15 @@ Behavioral Integrity Index (BII) on agent event logs. Controls: a
 shuffled graph, a random graph, a parameter-matched network, a linear
 readout, and four frontier models (Claude Opus 5, GPT-5, Grok 4, Gemini
 3 Flash) given the published DTI paper and the same records.
-<!-- RESULTS-ABSTRACT-START -->On two of five seeds, the
-degree-preserving shuffle matched the fly’s wiring against the DTI
-engine (composite error 1.57 against 1.57 points (95% CI -0.67 to
-+0.66)); the random graph matched on tier agreement and every dimension.
-Every fixed graph beat the parameter-matched network by 1.8 to 2.0
-points: provisional until five seeds, the substrate carries the
-computation. On 300 identical records the four models matched the
-engine’s tier on 20% to 45% at 13 s to 73 s and 4 to 26 cents per
-record; the fly, 84% at 16 ms and no marginal cost. Given 100
-engine-scored examples as well (post-hoc), they matched on 54% to
+<!-- RESULTS-ABSTRACT-START -->Over five seeds, the degree-preserving
+shuffle matched the fly’s wiring against the DTI engine (composite error
+1.60 against 1.74 points (95% CI -0.45 to +0.17)); the random graph
+matched on tier agreement and every dimension. Every fixed graph beat
+the parameter-matched network by 1.9 to 2.1 points: at five seeds, the
+substrate carries the computation. On 300 identical records the four
+models matched the engine’s tier on 20% to 45% at 13 s to 73 s and 4 to
+26 cents per record; the fly, 84% at 16 ms and no marginal cost. Given
+100 engine-scored examples as well (post-hoc), they matched on 54% to
 76%.<!-- RESULTS-ABSTRACT-END --> To our knowledge, as of 20 September
 2026, this is the first reported use of a whole central nervous system
 connectome to score the trustworthiness of health data. Every record was
@@ -685,23 +684,47 @@ shuffle (b) stopped after 16 epochs, checkpoint from epoch 12; BII seed
 2: fly wiring (a) stopped after 16 epochs, checkpoint from epoch 12,
 random graph (c) stopped after 16 epochs, checkpoint from epoch 12,
 matched network (d) stopped after 15 epochs, checkpoint from epoch 11,
-shuffle (b) stopped after 16 epochs, checkpoint from epoch 12; DTI seed
-1: fly wiring (a) stopped after 16 epochs, checkpoint from epoch 12,
+shuffle (b) stopped after 16 epochs, checkpoint from epoch 12; BII seed
+3: fly wiring (a) stopped after 14 epochs, checkpoint from epoch 10,
 random graph (c) stopped after 13 epochs, checkpoint from epoch 9,
-matched network (d) stopped after 8 epochs, checkpoint from epoch 4,
-shuffle (b) stopped after 16 epochs, checkpoint from epoch 12; DTI seed
-2: fly wiring (a) stopped after 14 epochs, checkpoint from epoch 10,
+matched network (d) stopped after 10 epochs, checkpoint from epoch 6,
+shuffle (b) stopped after 14 epochs, checkpoint from epoch 10; BII seed
+4: fly wiring (a) stopped after 17 epochs, checkpoint from epoch 13,
 random graph (c) stopped after 11 epochs, checkpoint from epoch 7,
-matched network (d) stopped after 8 epochs, checkpoint from epoch 4,
-shuffle (b) stopped after 14 epochs, checkpoint from epoch 10 (run.json
-counts epochs from 0; “stopped” means validation loss had not improved
-for 3 epochs, the pre-registered patience)<!-- /RUN -->. Data order
-within an epoch is drawn from a generator seeded with the run seed.
-Every setting is written to run.json. Arm e is fit in closed form and is
-not trained by gradient. Checkpoints are chosen on validation only; the
-test split is read once per (task, arm, seed) by scripts/run_arm.py from
-the best checkpoint, the read is recorded in runs/eval_ledger.jsonl, and
-a second read is refused without a written reason (rule 9).</p>
+matched network (d) stopped after 13 epochs, checkpoint from epoch 9,
+shuffle (b) ran the full budget; BII seed 5: fly wiring (a) stopped
+after 15 epochs, checkpoint from epoch 11, random graph (c) stopped
+after 13 epochs, checkpoint from epoch 9, matched network (d) stopped
+after 13 epochs, checkpoint from epoch 9, shuffle (b) stopped after 16
+epochs, checkpoint from epoch 12; DTI seed 1: fly wiring (a) stopped
+after 16 epochs, checkpoint from epoch 12, random graph (c) stopped
+after 13 epochs, checkpoint from epoch 9, matched network (d) stopped
+after 8 epochs, checkpoint from epoch 4, shuffle (b) stopped after 16
+epochs, checkpoint from epoch 12; DTI seed 2: fly wiring (a) stopped
+after 14 epochs, checkpoint from epoch 10, random graph (c) stopped
+after 11 epochs, checkpoint from epoch 7, matched network (d) stopped
+after 8 epochs, checkpoint from epoch 4, shuffle (b) stopped after 14
+epochs, checkpoint from epoch 10; DTI seed 3: fly wiring (a) stopped
+after 15 epochs, checkpoint from epoch 11, random graph (c) stopped
+after 11 epochs, checkpoint from epoch 7, matched network (d) stopped
+after 6 epochs, checkpoint from epoch 2, shuffle (b) stopped after 15
+epochs, checkpoint from epoch 11; DTI seed 4: fly wiring (a) stopped
+after 10 epochs, checkpoint from epoch 6, random graph (c) stopped after
+10 epochs, checkpoint from epoch 6, matched network (d) stopped after 8
+epochs, checkpoint from epoch 4, shuffle (b) stopped after 14 epochs,
+checkpoint from epoch 10; DTI seed 5: fly wiring (a) stopped after 12
+epochs, checkpoint from epoch 8, random graph (c) stopped after 10
+epochs, checkpoint from epoch 6, matched network (d) stopped after 10
+epochs, checkpoint from epoch 6, shuffle (b) stopped after 18 epochs,
+checkpoint from epoch 14 (run.json counts epochs from 0; “stopped” means
+validation loss had not improved for 3 epochs, the pre-registered
+patience)<!-- /RUN -->. Data order within an epoch is drawn from a
+generator seeded with the run seed. Every setting is written to
+run.json. Arm e is fit in closed form and is not trained by gradient.
+Checkpoints are chosen on validation only; the test split is read once
+per (task, arm, seed) by scripts/run_arm.py from the best checkpoint,
+the read is recorded in runs/eval_ledger.jsonl, and a second read is
+refused without a written reason (rule 9).</p>
 <p><strong>Hardware and feasibility gate.</strong> One Apple M4 Max, 64
 GB, PyTorch MPS (torch 2.14.0). Before any training, one forward and
 backward pass at batch 64 and T = 8 on the threshold-5 graph must finish
@@ -1401,62 +1424,60 @@ rule: two seeds of arms a and b run on the DTI corpus first; if s_seed
 exceeds 0.5 points, the seed count rises to ten for all arms before the
 freeze, and the minimum detectable margin at five seeds is about 1 +
 1.24 × s_seed: <!-- RUN: pilot s_seed and final seed count -->s_seed =
-0.074 points over DTI seeds {1, 2}; verdict 5 seeds stand<!-- /RUN -->.
-The released pilot script (scripts/run_pilot.sh) runs seeds {1, 2}
-across arms a to e on both tasks, sequentially, and skips any run that
-already has a metrics file. Seeds are {1, 2, 3, 4, 5}, or {1, …, 10} if
-the pilot rule fires, identical across arms a to d (rule 20). No
-schedule statement is made before the pilot measures one run’s wall
-clock.</p>
+0.247 points over DTI seeds {1, 2, 3, 4, 5}; verdict 5 seeds
+stand<!-- /RUN -->. The released pilot script (scripts/run_pilot.sh)
+runs seeds {1, 2} across arms a to e on both tasks, sequentially, and
+skips any run that already has a metrics file. Seeds are {1, 2, 3, 4,
+5}, or {1, …, 10} if the pilot rule fires, identical across arms a to d
+(rule 20). No schedule statement is made before the pilot measures one
+run’s wall clock.</p>
 <hr />
 <h2 id="results">4. Results</h2>
 <!-- RESULTS-SECTION4: spliced by scripts/splice_paper.py from paper/results/section4.md; edit scripts/render_results.py, not this block -->
-<p>Status <strong>partial</strong>: 20 of 50 local runs finished (seeds
-{1, 2} of the protocol’s {1..5}); language-model arms complete:
+<p>Status <strong>complete</strong>: 50 of 50 local runs finished (seeds
+{1, 2, 3, 4, 5} of the protocol’s {1..5}); language-model arms complete:
 anthropic, openai, xai, gemini, anthropic_ex, openai_ex, xai_ex,
 gemini_ex. Every number in this section is read from
 results/results.json, regenerated by scripts/render_results.py on
-2026-09-21T05:31:37+00:00 from git 92ee71f3a5f9; a cell that says “not
-in this version” has no run behind it. Version 1.1 holds seeds 1 to 2 of
-the pre-registered five on the DTI task, seeds 1 to 2 with all five arms
+2026-09-22T12:44:41+00:00 from git d8c9ae8e7ea5; a cell that says “not
+in this version” has no run behind it. Version 1.2 holds seeds 1 to 5 of
+the pre-registered five on the DTI task, seeds 1 to 5 with all five arms
 on the BII task and the post-hoc examples arm (g2) for all four vendors.
-DTI seeds 3 to 5, BII seeds 3 to 5 will appear in version 1.2 at the
-same DOI. Means are over finished seeds with a two-sided 95% t-interval
-when two or more seeds exist; a single seed is a point marked as such.
-Paired differences are control minus fly on the same test records, so a
+Means are over finished seeds with a two-sided 95% t-interval when two
+or more seeds exist; a single seed is a point marked as such. Paired
+differences are control minus fly on the same test records, so a
 positive difference means the fly did better. The dataset health report
 (splits/qa_report.json) passed every line for both tasks before any
 score below was computed. All records are SYNTHETIC; zero PHI.</p>
 <h3 id="what-the-finished-seeds-say">4.1 What the finished seeds
 say</h3>
-<p><strong>Provisional: 2 of 5 seeds.</strong> On the 2 seeds finished
-so far the finding is the substrate, not the anatomy. The
-degree-preserving shuffle, which keeps every neuron’s connection counts
-and every sign and destroys only who connects to whom, matched the fly
-wiring: composite error 1.57 [1.04, 2.10] against 1.57 [1.44, 1.70]
-points on 4,001 synthetic test records (shuffle minus fly -0.00 [-0.67,
-+0.66]), tier agreement 0.873 [0.843, 0.904] against 0.877 [0.846,
-0.909]. The random graph at matched density and matched sign fraction
-matched as well: composite error 1.80 [1.50, 2.09] (random minus fly
-+0.23 [+0.06, +0.39]), tier agreement 0.871 [0.823, 0.918] against 0.877
-[0.846, 0.909], and every per-dimension error within a point of the
-fly’s (Table 8c). On the directly predicted composite head the same
-reading is 1.61 [0.92, 2.31] (shuffle) and 2.30 [-3.87, 8.47] (random
-graph) against 1.60 [1.39, 1.82] (fly): shuffle minus fly +0.01 [-0.47,
-+0.49], random minus fly +0.70 [-5.68, +7.08]. Under the pre-registered
-rule the wiring claim needs both controls to trail the fly by at least
-1.0 point on every seed; neither did, so the answer to “does the fly’s
-specific wiring matter” is no on this evidence. What did matter is
-having a fixed, sparse, signed recurrent graph at all. The network with
-the same number of trainable parameters (7,953,594 against 7,955,909)
-reached 3.56 [1.34, 5.78] points and tier agreement 0.853 [0.719,
-0.986]; the fly beat it by 1.99 [-0.10, 4.08] points of composite error
-and 0.025 [-0.140, 0.190] of tier agreement, the shuffle by 1.99 points
-and the random graph by 1.76 points (arm means). Trained on only 65
-inputs, that network overfits (training loss 0.12 against validation
-loss 0.37 at the stop, runs/dti/mlp/seed1/log.txt epoch 7), as
-assumption A12 predicted; the small 2 × 256 reference network (d’) has
-not been run.</p>
+<p><strong>5 seeds.</strong> On the 5 seeds finished so far the finding
+is the substrate, not the anatomy. The degree-preserving shuffle, which
+keeps every neuron’s connection counts and every sign and destroys only
+who connects to whom, matched the fly wiring: composite error 1.60
+[1.52, 1.68] against 1.74 [1.41, 2.07] points on 4,001 synthetic test
+records (shuffle minus fly -0.14 [-0.45, +0.17]), tier agreement 0.872
+[0.869, 0.876] against 0.872 [0.864, 0.880]. The random graph at matched
+density and matched sign fraction matched as well: composite error 1.78
+[1.73, 1.83] (random minus fly +0.04 [-0.31, +0.38]), tier agreement
+0.869 [0.864, 0.874] against 0.872 [0.864, 0.880], and every
+per-dimension error within a point of the fly’s (Table 8c). On the
+directly predicted composite head the same reading is 1.77 [1.45, 2.09]
+(shuffle) and 2.13 [1.64, 2.62] (random graph) against 1.78 [1.54, 2.01]
+(fly): shuffle minus fly -0.00 [-0.39, +0.38], random minus fly +0.35
+[-0.23, +0.94]. Under the pre-registered rule the wiring claim needs
+both controls to trail the fly by at least 1.0 point on every seed;
+neither did, so the answer to “does the fly’s specific wiring matter” is
+no on this evidence. What did matter is having a fixed, sparse, signed
+recurrent graph at all. The network with the same number of trainable
+parameters (7,953,594 against 7,955,909) reached 3.71 [2.85, 4.57]
+points and tier agreement 0.854 [0.842, 0.866]; the fly beat it by 1.97
+[1.28, 2.65] points of composite error and 0.018 [-0.000, 0.036] of tier
+agreement, the shuffle by 2.11 points and the random graph by 1.93
+points (arm means). Trained on only 65 inputs, that network overfits
+(training loss 0.12 against validation loss 0.37 at the stop,
+runs/dti/mlp/seed1/log.txt epoch 7), as assumption A12 predicted; the
+small 2 × 256 reference network (d’) has not been run.</p>
 <p>Composite head, disclosed: two composite estimates exist per arm, the
 directly predicted head and the composite recomputed from the eight
 predicted dimensions with the engine’s own weights. The recomputed
@@ -1469,21 +1490,21 @@ the matched network similar) while the recomputed composite did not; it
 does not touch tier agreement or the per-dimension errors, which are the
 primary evidence (docs/DECISIONS.md, row “composite head”).</p>
 <p><strong>Recovering the engine.</strong> Against the exact teacher on
-the test split the fly reached composite error 1.57 [1.44, 1.70] points
-(recomputed; direct head 1.60 [1.39, 1.82]), tier agreement 0.877
-[0.846, 0.909], macro-F1 0.876 [0.829, 0.923], and expected calibration
-error 0.029 [0.020, 0.039]; per-dimension error ran from 2.40 to 6.18
+the test split the fly reached composite error 1.74 [1.41, 2.07] points
+(recomputed; direct head 1.78 [1.54, 2.01]), tier agreement 0.872
+[0.864, 0.880], macro-F1 0.872 [0.864, 0.879], and expected calibration
+error 0.023 [0.011, 0.035]; per-dimension error ran from 2.51 to 6.35
 points (worst: recency). Of the five pre-registered bars (Table 4) the
 point estimates meet 3 (recomputed composite MAE; macro-F1; calibration
-error) and miss 2 (tier agreement 0.877 against at least 0.90; worst
-per-dimension MAE 6.181 against at most 5.0 points on every dimension).
-The dimensions above the 5.0-point bar are recency (6.18), breadth
+error) and miss 2 (tier agreement 0.872 against at least 0.90; worst
+per-dimension MAE 6.347 against at most 5.0 points on every dimension).
+The dimensions above the 5.0-point bar are recency (6.35), breadth
 (5.17); recency is the dimension with the most thresholds (seven
 distinct values, a 999-day sentinel, element dates that can only lower
 it). The fly’s composite is well inside a tier width, its tier agreement
 is just under the bar, and the verdicts wait for five seeds. It beat the
-linear floor by 1.50 [1.37, 1.63] points of composite error and 0.294
-[0.262, 0.326] of tier agreement, so the engine-recovery claim is not
+linear floor by 1.33 [1.00, 1.66] points of composite error and 0.289
+[0.281, 0.296] of tier agreement, so the engine-recovery claim is not
 reducible to “matches a linear map”.</p>
 <p><strong>The language-model arms beside the fly.</strong> Gemini 3
 Flash (gemini-3-flash-preview, served as gemini-3-flash-preview; N =
@@ -1500,7 +1521,7 @@ per record. Claude Opus 5 (claude-opus-5, served as claude-opus-5; N =
 300, k = 3): composite error 25.88 points (recomputed; direct 25.86),
 tier agreement 0.200 (Wilson 95% 0.159 to 0.249), median latency 13.1 s
 per call (p95 19.3 s), $0.106 per record. The fly on the full test
-split: composite error 1.57 points, tier agreement 0.877, 16.06 ms per
+split: composite error 1.74 points, tier agreement 0.872, 16.06 ms per
 record at batch 1 (4.34 ms at batch 256), $0.00 marginal API spend
 (electricity not measured). On the identical 300 records
 (runs/dti/connectome/seed*/metrics_subset300.json, a logged second read
@@ -1563,9 +1584,9 @@ to 0.686; 102 records right only with examples, 46 right only without,
 exact McNemar p &lt; 0.001); median latency 51.8 s per call, $0.118 per
 record, 100.0% of calls read the cached prefix.</p>
 <p><strong>BII.</strong> Under the seed policy with empty registries the
-fly reached score error 0.0284 [0.0244, 0.0324] (×100: 2.84) and gate
-agreement 0.916 [0.883, 0.950]; shuffle minus fly -0.0025 [-0.0084,
-+0.0034], random graph minus fly -0.0027 [-0.0233, +0.0179]
+fly reached score error 0.0272 [0.0247, 0.0297] (×100: 2.72) and gate
+agreement 0.916 [0.912, 0.919]; shuffle minus fly +0.0005 [-0.0039,
++0.0050], random graph minus fly +0.0016 [-0.0064, +0.0095]
 (pre-registered margin 0.015).</p>
 <h3 id="main-results">4.2 Main results</h3>
 <p><strong>Table 8: Main results by arm, test split, mean over finished
@@ -1593,35 +1614,35 @@ to 100 scale.</em></p>
 <tbody>
 <tr>
 <td>Fly wiring (a)</td>
-<td class="nw" style="text-align: right;">1.57 [1.44, 1.70]</td>
-<td class="nw" style="text-align: right;">1.60 [1.39, 1.82]</td>
-<td class="nw" style="text-align: right;">4.01</td>
+<td class="nw" style="text-align: right;">1.74 [1.41, 2.07]</td>
+<td class="nw" style="text-align: right;">1.78 [1.54, 2.01]</td>
+<td class="nw" style="text-align: right;">4.20</td>
 <td class="nw" style="text-align: right;">7,955,909</td>
-<td>2 of 5</td>
+<td>5 of 5</td>
 </tr>
 <tr>
 <td>Degree-preserving shuffle (b)</td>
-<td class="nw" style="text-align: right;">1.57 [1.04, 2.10]</td>
-<td class="nw" style="text-align: right;">1.61 [0.92, 2.31]</td>
-<td class="nw" style="text-align: right;">3.57</td>
+<td class="nw" style="text-align: right;">1.60 [1.52, 1.68]</td>
+<td class="nw" style="text-align: right;">1.77 [1.45, 2.09]</td>
+<td class="nw" style="text-align: right;">3.55</td>
 <td class="nw" style="text-align: right;">7,955,909</td>
-<td>2 of 5</td>
+<td>5 of 5</td>
 </tr>
 <tr>
 <td>Random graph, matched density (c)</td>
-<td class="nw" style="text-align: right;">1.80 [1.50, 2.09]</td>
-<td class="nw" style="text-align: right;">2.30 [-3.87, 8.47]</td>
-<td class="nw" style="text-align: right;">3.73</td>
+<td class="nw" style="text-align: right;">1.78 [1.73, 1.83]</td>
+<td class="nw" style="text-align: right;">2.13 [1.64, 2.62]</td>
+<td class="nw" style="text-align: right;">3.78</td>
 <td class="nw" style="text-align: right;">7,955,909</td>
-<td>2 of 5</td>
+<td>5 of 5</td>
 </tr>
 <tr>
 <td>Matched-parameter network (d)</td>
-<td class="nw" style="text-align: right;">3.56 [1.34, 5.78]</td>
-<td class="nw" style="text-align: right;">3.68 [1.94, 5.43]</td>
-<td class="nw" style="text-align: right;">5.98</td>
+<td class="nw" style="text-align: right;">3.71 [2.85, 4.57]</td>
+<td class="nw" style="text-align: right;">4.06 [3.17, 4.95]</td>
+<td class="nw" style="text-align: right;">6.26</td>
 <td class="nw" style="text-align: right;">7,953,594</td>
-<td>2 of 5</td>
+<td>5 of 5</td>
 </tr>
 <tr>
 <td>Linear floor, ridge (e)</td>
@@ -1629,7 +1650,7 @@ to 100 scale.</em></p>
 <td class="nw" style="text-align: right;">3.12 [3.12, 3.12]</td>
 <td class="nw" style="text-align: right;">5.62</td>
 <td style="text-align: right;">924 (closed form)</td>
-<td>2 of 5</td>
+<td>5 of 5</td>
 </tr>
 <tr>
 <td>Teacher (f)</td>
@@ -1651,11 +1672,11 @@ d043ac552fd6. Teacher: pipeline.ts commit e4785726e225, clock frozen at
 2026-09-20T00:00:00Z. Data: teachers/dti_teacher.jsonl (gen_dti.ts)
 sha256 2aa26f37b1be, run_seed 20260920, 13,999 / 2,000 / 4,001 records
 (train / validation / test), split sha256 cb23989c5192, synthetic, zero
-PHI. Coverage: TEST split only, 4,001 records, seeds 1, 2 of the
-protocol’s five; teacher dimensions excluded as degenerate: none
-(splits/qa_report.json). Feature spec 3d57b09155d4. Evaluated
-2026-09-21T05:31:37+00:00. Full digests in results/results.json
-(footers) and teachers/MANIFEST.md.</em></small></p>
+PHI. Coverage: TEST split only, 4,001 records, all five seeds; teacher
+dimensions excluded as degenerate: none (splits/qa_report.json). Feature
+spec 3d57b09155d4. Evaluated 2026-09-22T12:44:41+00:00. Full digests in
+results/results.json (footers) and
+teachers/MANIFEST.md.</em></small></p>
 <p><em>8a′. DTI agreement with the engine’s tier (5 classes). Units:
 share of test records; ECE on the same 0 to 1 scale.</em></p>
 <table class="narrow"><colgroup><col style="width:25%"></colgroup>
@@ -1672,38 +1693,38 @@ share of test records; ECE on the same 0 to 1 scale.</em></p>
 <tbody>
 <tr>
 <td>Fly wiring (a)</td>
-<td class="nw" style="text-align: right;">0.877 [0.846, 0.909]</td>
-<td class="nw" style="text-align: right;">0.876 [0.829, 0.923]</td>
-<td class="nw" style="text-align: right;">0.029 [0.020, 0.039]</td>
-<td>2 of 5</td>
+<td class="nw" style="text-align: right;">0.872 [0.864, 0.880]</td>
+<td class="nw" style="text-align: right;">0.872 [0.864, 0.879]</td>
+<td class="nw" style="text-align: right;">0.023 [0.011, 0.035]</td>
+<td>5 of 5</td>
 </tr>
 <tr>
 <td>Degree-preserving shuffle (b)</td>
-<td class="nw" style="text-align: right;">0.873 [0.843, 0.904]</td>
-<td class="nw" style="text-align: right;">0.873 [0.836, 0.909]</td>
-<td class="nw" style="text-align: right;">0.027 [0.013, 0.041]</td>
-<td>2 of 5</td>
+<td class="nw" style="text-align: right;">0.872 [0.869, 0.876]</td>
+<td class="nw" style="text-align: right;">0.873 [0.869, 0.876]</td>
+<td class="nw" style="text-align: right;">0.028 [0.023, 0.032]</td>
+<td>5 of 5</td>
 </tr>
 <tr>
 <td>Random graph, matched density (c)</td>
-<td class="nw" style="text-align: right;">0.871 [0.823, 0.918]</td>
-<td class="nw" style="text-align: right;">0.872 [0.815, 0.929]</td>
-<td class="nw" style="text-align: right;">0.032 [-0.041, 0.104]</td>
-<td>2 of 5</td>
+<td class="nw" style="text-align: right;">0.869 [0.864, 0.874]</td>
+<td class="nw" style="text-align: right;">0.869 [0.864, 0.875]</td>
+<td class="nw" style="text-align: right;">0.027 [0.019, 0.036]</td>
+<td>5 of 5</td>
 </tr>
 <tr>
 <td>Matched-parameter network (d)</td>
-<td class="nw" style="text-align: right;">0.853 [0.719, 0.986]</td>
-<td class="nw" style="text-align: right;">0.848 [0.649, 1.047]</td>
-<td class="nw" style="text-align: right;">0.049 [-0.037, 0.135]</td>
-<td>2 of 5</td>
+<td class="nw" style="text-align: right;">0.854 [0.842, 0.866]</td>
+<td class="nw" style="text-align: right;">0.851 [0.834, 0.868]</td>
+<td class="nw" style="text-align: right;">0.044 [0.029, 0.058]</td>
+<td>5 of 5</td>
 </tr>
 <tr>
 <td>Linear floor, ridge (e)</td>
 <td class="nw" style="text-align: right;">0.583 [0.583, 0.583]</td>
 <td class="nw" style="text-align: right;">0.428 [0.428, 0.428]</td>
 <td class="nw" style="text-align: right;">0.317 [0.317, 0.317]</td>
-<td>2 of 5</td>
+<td>5 of 5</td>
 </tr>
 <tr>
 <td>Teacher (f)</td>
@@ -1714,8 +1735,8 @@ share of test records; ECE on the same 0 to 1 scale.</em></p>
 </tr>
 </tbody>
 </table>
-<p><small><em>Provenance: as Table 8a; snapshot 2026-09-20; seeds 2 of
-5; evaluated 2026-09-21T05:31:37+00:00.</em></small></p>
+<p><small><em>Provenance: as Table 8a; snapshot 2026-09-20; seeds 5 of
+5; evaluated 2026-09-22T12:44:41+00:00.</em></small></p>
 <p><em>8b. BII error under the seed policy with empty registries
 (teacher = VIGIL scorer). Units: score on the 0 to 1 scale; the ×100
 column is the same error in points.</em></p>
@@ -1733,38 +1754,38 @@ column is the same error in points.</em></p>
 <tbody>
 <tr>
 <td>Fly wiring (a)</td>
-<td class="nw" style="text-align: right;">0.0284 [0.0244, 0.0324]</td>
-<td class="nw" style="text-align: right;">2.84</td>
+<td class="nw" style="text-align: right;">0.0272 [0.0247, 0.0297]</td>
+<td class="nw" style="text-align: right;">2.72</td>
 <td class="nw" style="text-align: right;">7,811,162</td>
-<td>2 of 5</td>
+<td>5 of 5</td>
 </tr>
 <tr>
 <td>Degree-preserving shuffle (b)</td>
-<td class="nw" style="text-align: right;">0.0259 [0.0240, 0.0279]</td>
-<td class="nw" style="text-align: right;">2.59</td>
+<td class="nw" style="text-align: right;">0.0278 [0.0243, 0.0312]</td>
+<td class="nw" style="text-align: right;">2.78</td>
 <td class="nw" style="text-align: right;">7,811,162</td>
-<td>2 of 5</td>
+<td>5 of 5</td>
 </tr>
 <tr>
 <td>Random graph, matched density (c)</td>
-<td class="nw" style="text-align: right;">0.0258 [0.0092, 0.0424]</td>
-<td class="nw" style="text-align: right;">2.58</td>
+<td class="nw" style="text-align: right;">0.0288 [0.0233, 0.0343]</td>
+<td class="nw" style="text-align: right;">2.88</td>
 <td class="nw" style="text-align: right;">7,811,162</td>
-<td>2 of 5</td>
+<td>5 of 5</td>
 </tr>
 <tr>
 <td>Matched-parameter network (d)</td>
-<td class="nw" style="text-align: right;">0.0438 [-0.0533, 0.1408]</td>
-<td class="nw" style="text-align: right;">4.38</td>
+<td class="nw" style="text-align: right;">0.0504 [0.0362, 0.0646]</td>
+<td class="nw" style="text-align: right;">5.04</td>
 <td class="nw" style="text-align: right;">7,813,769</td>
-<td>2 of 5</td>
+<td>5 of 5</td>
 </tr>
 <tr>
 <td>Linear floor, ridge (e)</td>
 <td class="nw" style="text-align: right;">0.0724 [0.0724, 0.0724]</td>
 <td class="nw" style="text-align: right;">7.24</td>
 <td style="text-align: right;">295 (closed form)</td>
-<td>2 of 5</td>
+<td>5 of 5</td>
 </tr>
 <tr>
 <td>Teacher (f)</td>
@@ -1775,16 +1796,16 @@ column is the same error in points.</em></p>
 </tr>
 </tbody>
 </table>
-<p><small><em>Provenance: as Table 8a; snapshot 2026-09-20; seeds 2 of
-5; evaluated 2026-09-21T05:31:37+00:00. BII differs: teacher VIGIL
+<p><small><em>Provenance: as Table 8a; snapshot 2026-09-20; seeds 5 of
+5; evaluated 2026-09-22T12:44:41+00:00. BII differs: teacher VIGIL
 commit 1cffd016b7bf + policy digest 5d8db364…8573859, clock frozen at
 2026-09-20T00:00:00Z; data teachers/bii_teacher.jsonl (gen_bii.py)
 sha256 c43bb314823f, run_seed 20260920, 14,000 / 2,000 / 4,000 records
 (train / validation / test), split sha256 c42920804158, synthetic, zero
-PHI; coverage TEST split only, 4,000 records, seeds 1, 2 of the
-protocol’s five; teacher dimensions excluded as degenerate: none
-(splits/qa_report.json); feature spec 20a2cd2c28bc; language-model arms
-not run for this task.</em></small></p>
+PHI; coverage TEST split only, 4,000 records, all five seeds; teacher
+dimensions excluded as degenerate: none (splits/qa_report.json); feature
+spec 20a2cd2c28bc; language-model arms not run for this
+task.</em></small></p>
 <p><em>8b′. BII agreement with the scorer’s gate (4 classes). Units:
 share of test windows; ECE on the 0 to 1 scale.</em></p>
 <table class="narrow"><colgroup><col style="width:25%"></colgroup>
@@ -1801,38 +1822,38 @@ share of test windows; ECE on the 0 to 1 scale.</em></p>
 <tbody>
 <tr>
 <td>Fly wiring (a)</td>
-<td class="nw" style="text-align: right;">0.916 [0.883, 0.950]</td>
-<td class="nw" style="text-align: right;">0.909 [0.872, 0.946]</td>
-<td class="nw" style="text-align: right;">0.012 [0.010, 0.015]</td>
-<td>2 of 5</td>
+<td class="nw" style="text-align: right;">0.916 [0.912, 0.919]</td>
+<td class="nw" style="text-align: right;">0.908 [0.904, 0.913]</td>
+<td class="nw" style="text-align: right;">0.012 [0.010, 0.014]</td>
+<td>5 of 5</td>
 </tr>
 <tr>
 <td>Degree-preserving shuffle (b)</td>
-<td class="nw" style="text-align: right;">0.914 [0.880, 0.949]</td>
-<td class="nw" style="text-align: right;">0.907 [0.869, 0.944]</td>
-<td class="nw" style="text-align: right;">0.008 [-0.020, 0.036]</td>
-<td>2 of 5</td>
+<td class="nw" style="text-align: right;">0.913 [0.908, 0.917]</td>
+<td class="nw" style="text-align: right;">0.905 [0.900, 0.910]</td>
+<td class="nw" style="text-align: right;">0.012 [0.006, 0.017]</td>
+<td>5 of 5</td>
 </tr>
 <tr>
 <td>Random graph, matched density (c)</td>
-<td class="nw" style="text-align: right;">0.911 [0.863, 0.958]</td>
-<td class="nw" style="text-align: right;">0.903 [0.849, 0.956]</td>
-<td class="nw" style="text-align: right;">0.026 [-0.024, 0.076]</td>
-<td>2 of 5</td>
+<td class="nw" style="text-align: right;">0.909 [0.903, 0.914]</td>
+<td class="nw" style="text-align: right;">0.900 [0.893, 0.907]</td>
+<td class="nw" style="text-align: right;">0.019 [0.011, 0.028]</td>
+<td>5 of 5</td>
 </tr>
 <tr>
 <td>Matched-parameter network (d)</td>
-<td class="nw" style="text-align: right;">0.905 [0.818, 0.992]</td>
-<td class="nw" style="text-align: right;">0.898 [0.802, 0.993]</td>
-<td class="nw" style="text-align: right;">0.038 [0.008, 0.067]</td>
-<td>2 of 5</td>
+<td class="nw" style="text-align: right;">0.910 [0.900, 0.919]</td>
+<td class="nw" style="text-align: right;">0.902 [0.892, 0.912]</td>
+<td class="nw" style="text-align: right;">0.032 [0.025, 0.039]</td>
+<td>5 of 5</td>
 </tr>
 <tr>
 <td>Linear floor, ridge (e)</td>
 <td class="nw" style="text-align: right;">0.597 [0.597, 0.597]</td>
 <td class="nw" style="text-align: right;">0.426 [0.426, 0.426]</td>
 <td class="nw" style="text-align: right;">0.307 [0.307, 0.307]</td>
-<td>2 of 5</td>
+<td>5 of 5</td>
 </tr>
 <tr>
 <td>Teacher (f)</td>
@@ -1843,8 +1864,8 @@ share of test windows; ECE on the 0 to 1 scale.</em></p>
 </tr>
 </tbody>
 </table>
-<p><small><em>Provenance: as Table 8a; snapshot 2026-09-20; seeds 2 of
-5; evaluated 2026-09-21T05:31:37+00:00. BII rows as Table
+<p><small><em>Provenance: as Table 8a; snapshot 2026-09-20; seeds 5 of
+5; evaluated 2026-09-22T12:44:41+00:00. BII rows as Table
 8b.</em></small></p>
 <p><em>8c. DTI per-dimension MAE, one row per dimension, arms across.
 Units: points; no dimension is degenerate, every teacher SD is at least
@@ -1866,93 +1887,93 @@ repeats.</em></p>
 <tbody>
 <tr>
 <td>Provenance</td>
-<td class="nw" style="text-align: right;">2.40 [1.88, 2.92]</td>
-<td class="nw" style="text-align: right;">2.31 [2.18, 2.43]</td>
-<td class="nw" style="text-align: right;">2.59 [2.22, 2.96]</td>
-<td class="nw" style="text-align: right;">5.24 [3.16, 7.32]</td>
+<td class="nw" style="text-align: right;">2.51 [2.35, 2.67]</td>
+<td class="nw" style="text-align: right;">2.30 [2.22, 2.37]</td>
+<td class="nw" style="text-align: right;">2.56 [2.44, 2.68]</td>
+<td class="nw" style="text-align: right;">5.63 [4.23, 7.02]</td>
 <td class="nw" style="text-align: right;">4.88 [4.88, 4.88]</td>
 <td class="nw" style="text-align: right;">43.46</td>
 </tr>
 <tr>
 <td>Consent</td>
-<td class="nw" style="text-align: right;">4.73 [2.81, 6.65]</td>
-<td class="nw" style="text-align: right;">4.20 [2.86, 5.53]</td>
-<td class="nw" style="text-align: right;">4.65 [4.01, 5.29]</td>
-<td class="nw" style="text-align: right;">6.25 [4.14, 8.35]</td>
+<td class="nw" style="text-align: right;">4.89 [4.62, 5.15]</td>
+<td class="nw" style="text-align: right;">4.39 [4.12, 4.67]</td>
+<td class="nw" style="text-align: right;">4.79 [4.51, 5.08]</td>
+<td class="nw" style="text-align: right;">6.43 [5.42, 7.45]</td>
 <td class="nw" style="text-align: right;">9.13 [9.13, 9.13]</td>
 <td class="nw" style="text-align: right;">32.22</td>
 </tr>
 <tr>
 <td>Recency</td>
-<td class="nw" style="text-align: right;">6.18 [-0.91, 13.27]</td>
-<td class="nw" style="text-align: right;">4.93 [2.67, 7.19]</td>
-<td class="nw" style="text-align: right;">5.43 [4.37, 6.49]</td>
-<td class="nw" style="text-align: right;">7.06 [1.84, 12.28]</td>
+<td class="nw" style="text-align: right;">6.35 [5.45, 7.24]</td>
+<td class="nw" style="text-align: right;">5.08 [4.71, 5.46]</td>
+<td class="nw" style="text-align: right;">5.59 [5.33, 5.85]</td>
+<td class="nw" style="text-align: right;">7.28 [6.24, 8.33]</td>
 <td class="nw" style="text-align: right;">11.66 [11.66, 11.66]</td>
 <td class="nw" style="text-align: right;">16.52</td>
 </tr>
 <tr>
 <td>Quality</td>
-<td class="nw" style="text-align: right;">2.81 [2.56, 3.05]</td>
-<td class="nw" style="text-align: right;">2.69 [1.63, 3.74]</td>
-<td class="nw" style="text-align: right;">2.79 [2.07, 3.51]</td>
-<td class="nw" style="text-align: right;">6.32 [0.29, 12.36]</td>
+<td class="nw" style="text-align: right;">3.18 [2.30, 4.06]</td>
+<td class="nw" style="text-align: right;">2.74 [2.59, 2.88]</td>
+<td class="nw" style="text-align: right;">2.75 [2.64, 2.85]</td>
+<td class="nw" style="text-align: right;">5.88 [5.00, 6.75]</td>
 <td class="nw" style="text-align: right;">2.43 [2.43, 2.43]</td>
 <td class="nw" style="text-align: right;">34.38</td>
 </tr>
 <tr>
 <td>Concordance</td>
-<td class="nw" style="text-align: right;">3.99 [1.20, 6.78]</td>
-<td class="nw" style="text-align: right;">3.95 [-1.37, 9.27]</td>
-<td class="nw" style="text-align: right;">3.51 [2.90, 4.12]</td>
-<td class="nw" style="text-align: right;">5.61 [4.09, 7.13]</td>
+<td class="nw" style="text-align: right;">4.50 [3.33, 5.68]</td>
+<td class="nw" style="text-align: right;">3.68 [3.20, 4.16]</td>
+<td class="nw" style="text-align: right;">3.73 [3.44, 4.02]</td>
+<td class="nw" style="text-align: right;">6.65 [3.75, 9.55]</td>
 <td class="nw" style="text-align: right;">3.82 [3.82, 3.82]</td>
 <td class="nw" style="text-align: right;">16.97</td>
 </tr>
 <tr>
 <td>Validation</td>
-<td class="nw" style="text-align: right;">3.67 [1.94, 5.40]</td>
-<td class="nw" style="text-align: right;">3.03 [2.26, 3.79]</td>
-<td class="nw" style="text-align: right;">3.31 [2.55, 4.07]</td>
-<td class="nw" style="text-align: right;">5.34 [2.95, 7.73]</td>
+<td class="nw" style="text-align: right;">3.91 [3.47, 4.35]</td>
+<td class="nw" style="text-align: right;">2.95 [2.69, 3.21]</td>
+<td class="nw" style="text-align: right;">3.36 [2.98, 3.74]</td>
+<td class="nw" style="text-align: right;">6.64 [4.09, 9.19]</td>
 <td class="nw" style="text-align: right;">6.09 [6.09, 6.09]</td>
 <td class="nw" style="text-align: right;">14.78</td>
 </tr>
 <tr>
 <td>Breadth</td>
-<td class="nw" style="text-align: right;">5.17 [1.10, 9.25]</td>
-<td class="nw" style="text-align: right;">4.59 [3.35, 5.84]</td>
-<td class="nw" style="text-align: right;">4.67 [-0.94, 10.28]</td>
-<td class="nw" style="text-align: right;">6.18 [-1.09, 13.44]</td>
+<td class="nw" style="text-align: right;">5.17 [4.83, 5.51]</td>
+<td class="nw" style="text-align: right;">4.55 [4.43, 4.67]</td>
+<td class="nw" style="text-align: right;">4.58 [4.15, 5.00]</td>
+<td class="nw" style="text-align: right;">6.37 [5.22, 7.52]</td>
 <td class="nw" style="text-align: right;">5.09 [5.09, 5.09]</td>
 <td class="nw" style="text-align: right;">22.87</td>
 </tr>
 <tr>
 <td>Stability</td>
-<td class="nw" style="text-align: right;">3.11 [2.47, 3.76]</td>
-<td class="nw" style="text-align: right;">2.88 [1.44, 4.33]</td>
-<td class="nw" style="text-align: right;">2.86 [1.47, 4.26]</td>
-<td class="nw" style="text-align: right;">5.81 [-0.78, 12.40]</td>
+<td class="nw" style="text-align: right;">3.09 [2.99, 3.19]</td>
+<td class="nw" style="text-align: right;">2.74 [2.53, 2.94]</td>
+<td class="nw" style="text-align: right;">2.92 [2.63, 3.21]</td>
+<td class="nw" style="text-align: right;">5.22 [4.17, 6.27]</td>
 <td class="nw" style="text-align: right;">1.82 [1.82, 1.82]</td>
 <td class="nw" style="text-align: right;">31.37</td>
 </tr>
 <tr>
 <td>Seeds</td>
-<td style="text-align: right;">2 of 5</td>
-<td style="text-align: right;">2 of 5</td>
-<td style="text-align: right;">2 of 5</td>
-<td style="text-align: right;">2 of 5</td>
-<td style="text-align: right;">2 of 5</td>
+<td style="text-align: right;">5 of 5</td>
+<td style="text-align: right;">5 of 5</td>
+<td style="text-align: right;">5 of 5</td>
+<td style="text-align: right;">5 of 5</td>
+<td style="text-align: right;">5 of 5</td>
 <td style="text-align: right;">300 records, k = 3</td>
 </tr>
 </tbody>
 </table>
-<p><small><em>Provenance: as Table 8a; snapshot 2026-09-20; seeds 2 of
-5; evaluated 2026-09-21T05:31:37+00:00.</em></small></p>
+<p><small><em>Provenance: as Table 8a; snapshot 2026-09-20; seeds 5 of
+5; evaluated 2026-09-22T12:44:41+00:00.</em></small></p>
 <p><strong>Reading the floor against the matched network.</strong> The
 linear floor’s mean per-dimension error (5.62 points) and composite
-error (3.07) are both lower than the matched network’s (5.98 and 3.56)
-while its tier agreement is far lower (0.583 against 0.853). Both follow
+error (3.07) are both lower than the matched network’s (6.26 and 3.71)
+while its tier agreement is far lower (0.583 against 0.854). Both follow
 from what each head is. The ridge dimension heads are least-squares
 fits: on the engine’s coarse ordinal dimensions a linear map lands near
 the right step (stability 1.82, quality 2.43, concordance 3.82 points)
@@ -1961,7 +1982,7 @@ the thresholds. Its tier head is one-hot regression read as logits, not
 a trained classifier: mean confidence 0.27, calibration error 0.32, so
 the argmax is wrong on four records in ten even where the dimensions are
 close. The matched network is trained by cross-entropy on the tier,
-which is why it wins that column, and is a uniform 5.2 to 7.1 points off
+which is why it wins that column, and is a uniform 5.2 to 7.3 points off
 on every dimension: 7,953,594 parameters on 65 inputs, best validation
 loss at epoch 4 of 8, training loss a third of validation loss at the
 stop. It is a weak control by construction and the paper reports it as
@@ -1994,8 +2015,8 @@ per-dimension error on its 300 records lies beyond the shared axis and
 is printed as a number at the right edge of each panel rather than
 plotted, so the comparison the figure exists to make (fixed graphs
 against trained controls) keeps its resolution.</p>
-<p><small><em>Provenance: as Table 8a; snapshot 2026-09-20; seeds 2 of
-5; evaluated 2026-09-21T05:31:37+00:00.</em></small></p>
+<p><small><em>Provenance: as Table 8a; snapshot 2026-09-20; seeds 5 of
+5; evaluated 2026-09-22T12:44:41+00:00.</em></small></p>
 <h3 id="the-language-model-arms">4.4 The language-model arms</h3>
 <p><strong>Table 9: Language-model arms beside the fly: agreement with
 the engine.</strong> One row per vendor; a vendor whose protocol run (N
@@ -2047,11 +2068,11 @@ same-record block below is the fair comparison.</p>
 <tr>
 <td>Fly wiring (a), full test split (the 300 above are a stratified
 subset; the same-record block below is the fair comparison)</td>
-<td style="text-align: right;">4,001 × 2 passes; 2 of 5</td>
-<td class="nw" style="text-align: right;">1.57 [1.44, 1.70] (1.60 [1.39,
-1.82])</td>
-<td class="nw" style="text-align: right;">0.877 [0.846, 0.909]</td>
-<td class="nw" style="text-align: right;">0.876 [0.829, 0.923]</td>
+<td style="text-align: right;">4,001 × 2 passes; 5 of 5</td>
+<td class="nw" style="text-align: right;">1.74 [1.41, 2.07] (1.78 [1.54,
+2.01])</td>
+<td class="nw" style="text-align: right;">0.872 [0.864, 0.880]</td>
+<td class="nw" style="text-align: right;">0.872 [0.864, 0.879]</td>
 </tr>
 </tbody>
 </table>
@@ -2220,8 +2241,8 @@ p.</em></p>
 </tr>
 </tbody>
 </table>
-<p><small><em>Provenance: as Table 8a; snapshot 2026-09-20; seeds 2 of
-5; evaluated 2026-09-21T05:31:37+00:00. Language-model arms:
+<p><small><em>Provenance: as Table 8a; snapshot 2026-09-20; seeds 5 of
+5; evaluated 2026-09-22T12:44:41+00:00. Language-model arms:
 claude-opus-5 (served as claude-opus-5), adaptive, effort high,
 max_tokens 16000, temperature not settable under adaptive thinking (not
 sent), k=3, N=300, prompt sha256 5e7f42957795, prices from claude-api
@@ -2313,7 +2334,7 @@ electricity not measured.</p>
 </tr>
 <tr>
 <td>Fly wiring (a), full test split</td>
-<td style="text-align: right;">1.000 (n = 128 per seed)</td>
+<td style="text-align: right;">1.000 (n = 320 per seed)</td>
 <td class="nw" style="text-align: right;">1.000</td>
 <td class="nw" style="text-align: right;">0</td>
 <td style="text-align: right;">16.06 / not measured</td>
@@ -2396,8 +2417,8 @@ as grok-4.3)</td>
 </tr>
 </tbody>
 </table>
-<p><small><em>Provenance: as Table 8a; snapshot 2026-09-20; seeds 2 of
-5; evaluated 2026-09-21T05:31:37+00:00. Model-arm settings and prices as
+<p><small><em>Provenance: as Table 8a; snapshot 2026-09-20; seeds 5 of
+5; evaluated 2026-09-22T12:44:41+00:00. Model-arm settings and prices as
 the line under Table 9.</em></small></p>
 <h3 id="work-per-record">4.5 Work per record</h3>
 <p><strong>Table 10: Work per record.</strong> The fly’s count is exact
@@ -2493,8 +2514,8 @@ k = 3 calls per record; prices from 20260920T185412Z/prices.json
 calls; $0.0274 per call over k = 3 calls per record; prices from
 20260920T185415Z/prices.json (ai.google.dev pricing page, retrieved
 2026-09-20); output tokens include thinking.</p>
-<p><small><em>Provenance: as Table 8a; snapshot 2026-09-20; seeds 2 of
-5; evaluated 2026-09-21T05:31:37+00:00.</em></small></p>
+<p><small><em>Provenance: as Table 8a; snapshot 2026-09-20; seeds 5 of
+5; evaluated 2026-09-22T12:44:41+00:00.</em></small></p>
 <h3 id="decision-rules">4.6 Decision rules</h3>
 <p><strong>Table 11: Pre-registered decision rules (Table 4 / PROTOCOL
 8.1), evaluated on the finished seeds.</strong> A verdict is PASS or
@@ -2523,108 +2544,108 @@ printed beside the value when a bound exists.</p>
 <td>composite MAE, recomputed from predicted dims (headline; TEST, mean
 over seeds)</td>
 <td>≤ 2.5 and CI upper ≤ 3.0</td>
-<td class="nw">1.5715 [1.4397, 1.7033]</td>
-<td><strong>INSUFFICIENT SEEDS (2/5)</strong></td>
-<td>meets</td>
+<td class="nw">1.7400 [1.4085, 2.0714]</td>
+<td><strong>PASS</strong></td>
+<td></td>
 </tr>
 <tr>
 <td>DTI</td>
 <td>same</td>
 <td>tier accuracy</td>
 <td>≥ 0.90, Wilson lower ≥ 0.88 (n = TEST records)</td>
-<td class="nw">0.8773 [0.8668, 0.8871]</td>
-<td><strong>INSUFFICIENT SEEDS (2/5)</strong></td>
-<td>misses</td>
+<td class="nw">0.8720 [0.8613, 0.8820]</td>
+<td><strong>FAIL</strong></td>
+<td></td>
 </tr>
 <tr>
 <td>DTI</td>
 <td>same</td>
 <td>macro-F1 (tiers with support ≥ 30)</td>
 <td class="nw">≥ 0.85</td>
-<td class="nw">0.8762 [0.8295, 0.9230]</td>
-<td><strong>INSUFFICIENT SEEDS (2/5)</strong></td>
-<td>meets</td>
+<td class="nw">0.8716 [0.8640, 0.8792]</td>
+<td><strong>PASS</strong></td>
+<td></td>
 </tr>
 <tr>
 <td>DTI</td>
 <td>same</td>
 <td>ECE (10 equal-mass bins)</td>
 <td class="nw">≤ 0.05</td>
-<td class="nw">0.0294 [0.0200, 0.0388]</td>
-<td><strong>INSUFFICIENT SEEDS (2/5)</strong></td>
-<td>meets</td>
+<td class="nw">0.0232 [0.0114, 0.0351]</td>
+<td><strong>PASS</strong></td>
+<td></td>
 </tr>
 <tr>
 <td>DTI</td>
 <td>same</td>
 <td>per-dimension MAE, worst of 8 (no dimension is degenerate)</td>
 <td>≤ 5.0 each</td>
-<td class="nw">6.1813</td>
-<td><strong>INSUFFICIENT SEEDS (2/5)</strong></td>
-<td>misses</td>
+<td class="nw">6.3473</td>
+<td><strong>FAIL</strong></td>
+<td></td>
 </tr>
 <tr>
 <td>BII</td>
 <td>Fly recovers the BII scorer</td>
 <td>BII MAE (0 to 1)</td>
 <td>≤ 0.0375 and CI upper ≤ 0.045</td>
-<td class="nw">0.0284 [0.0244, 0.0324]</td>
-<td><strong>INSUFFICIENT SEEDS (2/5)</strong></td>
-<td>meets</td>
+<td class="nw">0.0272 [0.0247, 0.0297]</td>
+<td><strong>PASS</strong></td>
+<td></td>
 </tr>
 <tr>
 <td>BII</td>
 <td>same</td>
 <td>gate accuracy</td>
 <td class="nw">≥ 0.90</td>
-<td class="nw">0.9164 [0.8830, 0.9497]</td>
-<td><strong>INSUFFICIENT SEEDS (2/5)</strong></td>
-<td>meets</td>
+<td class="nw">0.9158 [0.9122, 0.9194]</td>
+<td><strong>PASS</strong></td>
+<td></td>
 </tr>
 <tr>
 <td>BII</td>
 <td>same</td>
 <td>gate macro-F1</td>
 <td class="nw">≥ 0.85</td>
-<td class="nw">0.9090</td>
-<td><strong>INSUFFICIENT SEEDS (2/5)</strong></td>
-<td>meets</td>
+<td class="nw">0.9084</td>
+<td><strong>PASS</strong></td>
+<td></td>
 </tr>
 <tr>
 <td>BII</td>
 <td>same</td>
 <td>ECE</td>
 <td class="nw">≤ 0.05</td>
-<td class="nw">0.0124</td>
-<td><strong>INSUFFICIENT SEEDS (2/5)</strong></td>
-<td>meets</td>
+<td class="nw">0.0119</td>
+<td><strong>PASS</strong></td>
+<td></td>
 </tr>
 <tr>
 <td>DTI</td>
 <td>Wiring matters</td>
 <td>δ_b = MAE(shuffle) − MAE(connectome)</td>
 <td>≥ 1.0, CI lower &gt; 0, connectome better on every seed</td>
-<td class="nw">-0.0035 [-0.6672, 0.6602]</td>
-<td><strong>INSUFFICIENT SEEDS (2/5)</strong></td>
-<td>misses</td>
+<td class="nw">-0.1402 [-0.4472, 0.1668]</td>
+<td><strong>FAIL</strong></td>
+<td></td>
 </tr>
 <tr>
 <td>DTI</td>
 <td>Wiring matters</td>
 <td>δ_c = MAE(ER) − MAE(connectome)</td>
 <td>≥ 1.0, CI lower &gt; 0, connectome better on every seed</td>
-<td class="nw">0.2257 [0.0637, 0.3877]</td>
-<td><strong>INSUFFICIENT SEEDS (2/5)</strong></td>
-<td>misses</td>
+<td class="nw">0.0393 [-0.3060, 0.3847]</td>
+<td><strong>FAIL</strong></td>
+<td></td>
 </tr>
 <tr>
 <td>DTI</td>
 <td>Fly beats the floor</td>
 <td>MAE(ridge) − MAE(connectome)</td>
 <td>&gt; 0, CI lower &gt; 0</td>
-<td class="nw">1.5015 [1.3697, 1.6333]</td>
-<td><strong>INSUFFICIENT SEEDS (2/5)</strong></td>
-<td>meets</td>
+<td class="nw">1.3330 [1.0016, 1.6645]</td>
+<td><strong>PASS</strong></td>
+<td></td>
 </tr>
 <tr>
 <td>DTI</td>
@@ -2632,16 +2653,16 @@ over seeds)</td>
 <td>MAE(MLP) − MAE(connectome)</td>
 <td>≥ 1.0, CI lower &gt; 0, connectome better on every seed (same margin
 as the wiring rule; not pre-registered)</td>
-<td class="nw">1.9858 [-0.1039, 4.0754]</td>
-<td><strong>INSUFFICIENT SEEDS (2/5)</strong></td>
-<td>meets</td>
+<td class="nw">1.9680 [1.2837, 2.6523]</td>
+<td><strong>PASS</strong></td>
+<td></td>
 </tr>
 <tr>
 <td>DTI</td>
 <td>same, directly predicted composite head (descriptive)</td>
 <td>δ_b, direct head</td>
 <td>as above</td>
-<td class="nw">0.0087 [-0.4743, 0.4917]</td>
+<td class="nw">-0.0033 [-0.3914, 0.3849]</td>
 <td><strong>descriptive</strong></td>
 <td></td>
 </tr>
@@ -2650,7 +2671,7 @@ as the wiring rule; not pre-registered)</td>
 <td>same, directly predicted composite head (descriptive)</td>
 <td>δ_c, direct head</td>
 <td>as above</td>
-<td class="nw">0.6969 [-5.6840, 7.0777]</td>
+<td class="nw">0.3548 [-0.2328, 0.9424]</td>
 <td><strong>descriptive</strong></td>
 <td></td>
 </tr>
@@ -2659,7 +2680,7 @@ as the wiring rule; not pre-registered)</td>
 <td>same, directly predicted composite head (descriptive)</td>
 <td>MAE(ridge) − MAE(connectome), direct head</td>
 <td>as above</td>
-<td class="nw">1.5123 [1.3000, 1.7246]</td>
+<td class="nw">1.3394 [1.1030, 1.5758]</td>
 <td><strong>descriptive</strong></td>
 <td></td>
 </tr>
@@ -2668,7 +2689,7 @@ as the wiring rule; not pre-registered)</td>
 <td>same, directly predicted composite head (descriptive)</td>
 <td>MAE(MLP) − MAE(connectome), direct head</td>
 <td>as above</td>
-<td class="nw">2.0802 [0.5499, 3.6104]</td>
+<td class="nw">2.2828 [1.5253, 3.0402]</td>
 <td><strong>descriptive</strong></td>
 <td></td>
 </tr>
@@ -2677,27 +2698,27 @@ as the wiring rule; not pre-registered)</td>
 <td>Wiring matters</td>
 <td>δ_b = MAE(shuffle) − MAE(connectome)</td>
 <td>≥ 0.015, CI lower &gt; 0, connectome better on every seed</td>
-<td class="nw">-0.0025 [-0.0084, 0.0034]</td>
-<td><strong>INSUFFICIENT SEEDS (2/5)</strong></td>
-<td>misses</td>
+<td class="nw">0.0005 [-0.0039, 0.0050]</td>
+<td><strong>FAIL</strong></td>
+<td></td>
 </tr>
 <tr>
 <td>BII</td>
 <td>Wiring matters</td>
 <td>δ_c = MAE(ER) − MAE(connectome)</td>
 <td>≥ 0.015, CI lower &gt; 0, connectome better on every seed</td>
-<td class="nw">-0.0027 [-0.0233, 0.0179]</td>
-<td><strong>INSUFFICIENT SEEDS (2/5)</strong></td>
-<td>misses</td>
+<td class="nw">0.0016 [-0.0064, 0.0095]</td>
+<td><strong>FAIL</strong></td>
+<td></td>
 </tr>
 <tr>
 <td>BII</td>
 <td>Fly beats the floor</td>
 <td>MAE(ridge) − MAE(connectome)</td>
 <td>&gt; 0, CI lower &gt; 0</td>
-<td class="nw">0.0439 [0.0399, 0.0479]</td>
-<td><strong>INSUFFICIENT SEEDS (2/5)</strong></td>
-<td>meets</td>
+<td class="nw">0.0452 [0.0427, 0.0476]</td>
+<td><strong>PASS</strong></td>
+<td></td>
 </tr>
 <tr>
 <td>BII</td>
@@ -2705,9 +2726,9 @@ as the wiring rule; not pre-registered)</td>
 <td>MAE(MLP) − MAE(connectome)</td>
 <td>≥ 0.015, CI lower &gt; 0, connectome better on every seed (same
 margin as the wiring rule; not pre-registered)</td>
-<td class="nw">0.0153 [-0.0777, 0.1083]</td>
-<td><strong>INSUFFICIENT SEEDS (2/5)</strong></td>
-<td>meets</td>
+<td class="nw">0.0232 [0.0077, 0.0387]</td>
+<td><strong>PASS</strong></td>
+<td></td>
 </tr>
 <tr>
 <td>DTI</td>
@@ -2783,8 +2804,8 @@ margin as the wiring rule; not pre-registered)</td>
 </tr>
 </tbody>
 </table>
-<p><small><em>Provenance: as Table 8a; snapshot 2026-09-20; seeds 2 of
-5; evaluated 2026-09-21T05:31:37+00:00. BII rows as Table
+<p><small><em>Provenance: as Table 8a; snapshot 2026-09-20; seeds 5 of
+5; evaluated 2026-09-22T12:44:41+00:00. BII rows as Table
 8b.</em></small></p>
 <p><strong>Table 11′: Seed-level evidence for the paired claims in Table
 11.</strong> Seeds is the count finished; “fly better on every seed” is
@@ -2808,31 +2829,31 @@ over seeds for the primary family {a-b, a-c, a-e}, raw and Holm-adjusted
 <td>DTI</td>
 <td>Wiring matters</td>
 <td>δ_b = MAE(shuffle) − MAE(connectome)</td>
-<td class="nw" style="text-align: right;">2</td>
+<td class="nw" style="text-align: right;">5</td>
 <td>no</td>
-<td class="nw">0.5213 / 0.5213</td>
+<td class="nw">0.8632 / 0.8632</td>
 </tr>
 <tr>
 <td>DTI</td>
 <td>Wiring matters</td>
 <td>δ_c = MAE(ER) − MAE(connectome)</td>
-<td class="nw" style="text-align: right;">2</td>
-<td>yes</td>
-<td class="nw">0.0180 / 0.0359</td>
+<td class="nw" style="text-align: right;">5</td>
+<td>no</td>
+<td class="nw">0.3838 / 0.7676</td>
 </tr>
 <tr>
 <td>DTI</td>
 <td>Fly beats the floor</td>
 <td>MAE(ridge) − MAE(connectome)</td>
-<td class="nw" style="text-align: right;">2</td>
+<td class="nw" style="text-align: right;">5</td>
 <td></td>
-<td class="nw">0.0022 / 0.0066</td>
+<td class="nw">0.0002 / 0.0005</td>
 </tr>
 <tr>
 <td>DTI</td>
 <td>Fixed graph beats matched network (framing, descriptive)</td>
 <td>MAE(MLP) − MAE(connectome)</td>
-<td class="nw" style="text-align: right;">2</td>
+<td class="nw" style="text-align: right;">5</td>
 <td>yes</td>
 <td></td>
 </tr>
@@ -2840,7 +2861,7 @@ over seeds for the primary family {a-b, a-c, a-e}, raw and Holm-adjusted
 <td>DTI</td>
 <td>same, directly predicted composite head (descriptive)</td>
 <td>δ_b, direct head</td>
-<td class="nw" style="text-align: right;">2</td>
+<td class="nw" style="text-align: right;">5</td>
 <td>no</td>
 <td></td>
 </tr>
@@ -2848,7 +2869,7 @@ over seeds for the primary family {a-b, a-c, a-e}, raw and Holm-adjusted
 <td>DTI</td>
 <td>same, directly predicted composite head (descriptive)</td>
 <td>δ_c, direct head</td>
-<td class="nw" style="text-align: right;">2</td>
+<td class="nw" style="text-align: right;">5</td>
 <td>yes</td>
 <td></td>
 </tr>
@@ -2856,7 +2877,7 @@ over seeds for the primary family {a-b, a-c, a-e}, raw and Holm-adjusted
 <td>DTI</td>
 <td>same, directly predicted composite head (descriptive)</td>
 <td>MAE(ridge) − MAE(connectome), direct head</td>
-<td class="nw" style="text-align: right;">2</td>
+<td class="nw" style="text-align: right;">5</td>
 <td>yes</td>
 <td></td>
 </tr>
@@ -2864,7 +2885,7 @@ over seeds for the primary family {a-b, a-c, a-e}, raw and Holm-adjusted
 <td>DTI</td>
 <td>same, directly predicted composite head (descriptive)</td>
 <td>MAE(MLP) − MAE(connectome), direct head</td>
-<td class="nw" style="text-align: right;">2</td>
+<td class="nw" style="text-align: right;">5</td>
 <td>yes</td>
 <td></td>
 </tr>
@@ -2872,45 +2893,45 @@ over seeds for the primary family {a-b, a-c, a-e}, raw and Holm-adjusted
 <td>BII</td>
 <td>Wiring matters</td>
 <td>δ_b = MAE(shuffle) − MAE(connectome)</td>
-<td class="nw" style="text-align: right;">2</td>
+<td class="nw" style="text-align: right;">5</td>
 <td>no</td>
-<td class="nw">0.9416 / 1.0000</td>
+<td class="nw">0.3760 / 0.6131</td>
 </tr>
 <tr>
 <td>BII</td>
 <td>Wiring matters</td>
 <td>δ_c = MAE(ER) − MAE(connectome)</td>
-<td class="nw" style="text-align: right;">2</td>
+<td class="nw" style="text-align: right;">5</td>
 <td>no</td>
-<td class="nw">0.8265 / 1.0000</td>
+<td class="nw">0.3066 / 0.6131</td>
 </tr>
 <tr>
 <td>BII</td>
 <td>Fly beats the floor</td>
 <td>MAE(ridge) − MAE(connectome)</td>
-<td class="nw" style="text-align: right;">2</td>
+<td class="nw" style="text-align: right;">5</td>
 <td></td>
-<td class="nw">0.0023 / 0.0069</td>
+<td class="nw">0.0000 / 0.0000</td>
 </tr>
 <tr>
 <td>BII</td>
 <td>Fixed graph beats matched network (framing, descriptive)</td>
 <td>MAE(MLP) − MAE(connectome)</td>
-<td class="nw" style="text-align: right;">2</td>
+<td class="nw" style="text-align: right;">5</td>
 <td>yes</td>
 <td></td>
 </tr>
 </tbody>
 </table>
-<p><small><em>Provenance: as Table 8a; snapshot 2026-09-20; seeds 2 of
-5; evaluated 2026-09-21T05:31:37+00:00. BII rows as Table
+<p><small><em>Provenance: as Table 8a; snapshot 2026-09-20; seeds 5 of
+5; evaluated 2026-09-22T12:44:41+00:00. BII rows as Table
 8b.</em></small></p>
 <p>Wiring sentence (rule 22, one of three pre-written strings):
-<strong>not yet sayable (2 of 5 seeds)</strong>.</p>
+<strong>wiring did not matter</strong>.</p>
 <p>Pilot rule (Section 3.9): seeds with both the fly and the shuffle
-finished on DTI = {1, 2}; s_seed of the shuffle-minus-fly difference =
-0.074 points; verdict: <strong>5 seeds stand</strong>; minimum
-detectable margin at five seeds about 1.09 points.</p>
+finished on DTI = {1, 2, 3, 4, 5}; s_seed of the shuffle-minus-fly
+difference = 0.247 points; verdict: <strong>5 seeds stand</strong>;
+minimum detectable margin at five seeds about 1.31 points.</p>
 <hr />
 <h2 id="limitations">5. Limitations</h2>
 <p><strong>A digital simulation of an analog object.</strong> The fly’s

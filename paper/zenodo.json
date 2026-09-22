@@ -11,12 +11,12 @@
         "orcid": "0009-0001-6157-8100"
       }
     ],
-    "description": "We took the wiring diagram of a fruit fly's central nervous system, held every connection and sign fixed, and trained only synaptic gains, an input projection and a readout. The task: reproduce two SuperTruth trust scores, the Data Trust Index™ (DTI) on health records and the Behavioral Integrity Index (BII) on agent event logs. Controls: a shuffled graph, a random graph, a parameter-matched network, a linear readout, and four frontier models (Claude Opus 5, GPT-5, Grok 4, Gemini 3 Flash) given the published DTI paper and the same records. On two of five seeds, the degree-preserving shuffle matched the fly's wiring against the DTI engine (composite error 1.57 against 1.57 points (95% CI -0.67 to +0.66)); the random graph matched on tier agreement and every dimension. Every fixed graph beat the parameter-matched network by 1.8 to 2.0 points: provisional until five seeds, the substrate carries the computation. On 300 identical records the four models matched the engine's tier on 20% to 45% at 13 s to 73 s and 4 to 26 cents per record; the fly, 84% at 16 ms and no marginal cost. Given 100 engine-scored examples as well (post-hoc), they matched on 54% to 76%. To our knowledge, as of 20 September 2026, this is the first reported use of a whole central nervous system connectome to score the trustworthiness of health data. Every record was synthetic; no real person's data was used. Simply put, the future of intelligence is analog. Version 1.1 is provisional: it holds the complete pre-registered pilot (seeds 1 and 2 of five, both tasks, all five controls) and the post-hoc examples arm for all four vendors; later versions add seeds 3 to 5 at the same DOI.",
+    "description": "We took the wiring diagram of a fruit fly's central nervous system, held every connection and sign fixed, and trained only synaptic gains, an input projection and a readout. The task: reproduce two SuperTruth trust scores, the Data Trust Index™ (DTI) on health records and the Behavioral Integrity Index (BII) on agent event logs. Controls: a shuffled graph, a random graph, a parameter-matched network, a linear readout, and four frontier models (Claude Opus 5, GPT-5, Grok 4, Gemini 3 Flash) given the published DTI paper and the same records. Over five seeds, the degree-preserving shuffle matched the fly's wiring against the DTI engine (composite error 1.60 against 1.74 points (95% CI -0.45 to +0.17)); the random graph matched on tier agreement and every dimension. Every fixed graph beat the parameter-matched network by 1.9 to 2.1 points: at five seeds, the substrate carries the computation. On 300 identical records the four models matched the engine's tier on 20% to 45% at 13 s to 73 s and 4 to 26 cents per record; the fly, 84% at 16 ms and no marginal cost. Given 100 engine-scored examples as well (post-hoc), they matched on 54% to 76%. To our knowledge, as of 20 September 2026, this is the first reported use of a whole central nervous system connectome to score the trustworthiness of health data. Every record was synthetic; no real person's data was used. Simply put, the future of intelligence is analog. Version 1.2 completes the pre-registered protocol: all five seeds on both tasks with every control, verdicts on every decision rule, and the post-hoc examples arm for all four vendors.",
     "access_right": "open",
     "license": "cc-by-4.0",
     "publication_date": "2026-09-20",
     "language": "eng",
-    "version": "1.1",
+    "version": "1.2",
     "keywords": [
       "connectome",
       "Drosophila",
@@ -62,6 +62,6 @@
       }
     ],
     "notes": "Every record in this study was generated synthetically; no real person's data was used. DTI and BII score data records and software-agent behavior; they do not diagnose, treat, or make recommendations about any patient.",
-    "_conceptdoi_note": "Concept DOI (all versions) 10.5281/zenodo.22865214; v1.0 version DOI 10.5281/zenodo.22865215; Zenodo mints each new version DOI, do not prefill."
+    "_conceptdoi_note": "Concept DOI (all versions) 10.5281/zenodo.22865214; v1.0 version DOI 10.5281/zenodo.22865215; v1.1 version DOI 10.5281/zenodo.22879953 (reserved by JAS 21 Sep 2026); Zenodo mints each new version DOI, do not prefill."
   }
 }

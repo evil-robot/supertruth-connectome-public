@@ -41,17 +41,17 @@ got 100 records with the engine's scores on them, to learn from.
 ## What happened
 
 The rules, the five controls and the decision rules were written and dated before the first run, with a commitment to publish
-whichever way the numbers fell. Version 1.1 of the paper holds the complete pre-registered pilot: seeds 1 and 2 of five, both
-tasks, every control, plus the post-hoc examples round. Every number below is read from `results/results.json`.
+whichever way the numbers fell. Version 1.2 of the paper completes the pre-registered protocol: all five seeds, both tasks,
+every control, plus the second-round examples arm. Every number below is read from `results/results.json`.
 
-**Health records (DTI), 4,001 test records, mean of seeds 1 and 2**
+**Health records (DTI), 4,001 test records, mean of five seeds**
 
 | Arm | Error, 0 to 100 scale | Right trust level |
 |---|---:|---:|
-| Fly wiring, held fixed | 1.57 | 87.7% |
-| Fly wiring, scrambled (each cell keeps its connection count and signs) | 1.57 | 87.3% |
-| Random graph, same density | 1.80 | 87.1% |
-| Ordinary trained network, same number of adjustable parts | 3.56 | 85.3% |
+| Fly wiring, held fixed | 1.74 | 87.2% |
+| Fly wiring, scrambled (each cell keeps its connection count and signs) | 1.60 | 87.2% |
+| Random graph, same density | 1.78 | 86.9% |
+| Ordinary trained network, same number of adjustable parts | 3.71 | 85.4% |
 | Straight-line fit | 3.07 | 58.3% |
 
 **The same 300 test records, fly beside the four models**
@@ -63,33 +63,33 @@ tasks, every control, plus the post-hoc examples round. Every number below is re
 | GPT-5 | the DTI paper | 29% | 16.1 | 0% |
 | Grok 4 | the DTI paper | 28% | 17.1 | 0% |
 | Gemini 3 Flash | the DTI paper | 45% | 9.4 | 27% |
-| Claude Opus 5 | paper + 100 scored examples (post-hoc) | 76% | 3.3 | 3% |
-| GPT-5 | paper + 100 scored examples (post-hoc) | 54% | 6.1 | 0% |
-| Grok 4 | paper + 100 scored examples (post-hoc) | 55% | 5.5 | 1% |
-| Gemini 3 Flash | paper + 100 scored examples (post-hoc) | 63% | 5.2 | 28% |
+| Claude Opus 5 | paper + 100 scored examples (second round) | 76% | 3.3 | 3% |
+| GPT-5 | paper + 100 scored examples (second round) | 54% | 6.1 | 0% |
+| Grok 4 | paper + 100 scored examples (second round) | 55% | 5.5 | 1% |
+| Gemini 3 Flash | paper + 100 scored examples (second round) | 63% | 5.2 | 28% |
 
-**Agent behavior (VIGIL's Behavioral Integrity Index, BII), 4,000 test windows, mean of seeds 1 and 2**
+**Agent behavior (VIGIL's Behavioral Integrity Index, BII), 4,000 test windows, mean of five seeds**
 
 | Arm | Error, 0 to 1 scale | Right gate |
 |---|---:|---:|
-| Fly wiring, held fixed | 0.028 | 91.6% |
-| Fly wiring, scrambled | 0.026 | 91.5% |
-| Random graph, same density | 0.026 | 91.1% |
-| Ordinary trained network, same size | 0.044 | 90.5% |
+| Fly wiring, held fixed | 0.027 | 91.6% |
+| Fly wiring, scrambled | 0.028 | 91.3% |
+| Random graph, same density | 0.029 | 90.9% |
+| Ordinary trained network, same size | 0.050 | 91.0% |
 | Straight-line fit | 0.072 | 59.7% |
 
 Three things to read off those tables.
 
 1. **The fly's exact wiring did not matter.** The scrambled copy and the random graph did as well as the real fly, on both
-   tasks and both seeds. What mattered was the kind of wiring: a fixed, sparse web where every connection either pushes or
+   tasks and all five seeds. What mattered was the kind of wiring: a fixed, sparse web where every connection either pushes or
    pulls, and nothing gets rewired while it learns. The paper calls this **the substrate, not the anatomy**.
-2. **Every fixed graph beat the ordinary trained network** with the same number of adjustable parts.
-3. **The fly beat all four models**, on the paper-only round and on the examples round. The gap closed most for Claude Opus 5
+2. **Every fixed graph came closer to the engine than the ordinary trained network** with the same number of adjustable parts.
+3. **The fly matched the engine more closely than all four models**, on the paper-only round and on the examples round. The gap closed most for Claude Opus 5
    (20% to 76%). The fly gave the same answer on every repeat; none of the models did on every record.
 
 The comparison measures how closely each system matched SuperTruth's engine. It does not decide who was right about the
 records, and it ranks no vendor. The fly did not pass every bar set for it in advance: it passed three of five, missing the
-tier-agreement bar (88% against 90%) and the recency dimension. The paper says so.
+tier-agreement bar (87% against 90%) and the recency dimension. The paper says so.
 
 ![Per-seed paired differences, control minus fly, on the same test records](paper/figures/fig3_paired_differences.png)
 
