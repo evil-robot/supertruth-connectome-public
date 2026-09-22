@@ -1,8 +1,9 @@
 """LinkedIn video: the fly's wiring rotating, 1920x1080, 30 fps, ~25 s. Frames from matplotlib, encoded with ffmpeg (H.264).
-Run: uv run --project ~/Projects/ds-lab python viz/article_video.py
+Run: uv run --project ~/Projects/ds-lab python viz/article_video.py [--wording counsel|beat]
+  counsel (default): the company-page wording counsel asked for (22 Sep 2026) -> viz/article_company/; beat: JAS's own wording -> viz/article/
 """
 from __future__ import annotations
-import subprocess, sys, tempfile
+import argparse, subprocess, sys, tempfile
 from pathlib import Path
 import numpy as np
 import matplotlib
@@ -13,7 +14,10 @@ ROOT = Path(__file__).resolve().parents[1]; sys.path.insert(0, str(ROOT / "viz")
 from figures import C, load_points, FOOTER  # noqa: E402
 
 FPS, ROT_S, HOLD_S = 30, 20, 5
-OUT = ROOT / "viz" / "article" / "fly_wiring_rotation_1080p.mp4"
+_ap = argparse.ArgumentParser(); _ap.add_argument("--wording", choices=("counsel", "beat"), default="counsel"); WORDING = _ap.parse_args().wording
+OUT = ROOT / "viz" / ("article" if WORDING == "beat" else "article_company") / "fly_wiring_rotation_1080p.mp4"; OUT.parent.mkdir(exist_ok=True)
+HEAD = {"beat": "A fruit fly's brain beat\nClaude, GPT-5, Grok and Gemini\nat judging health records.",
+        "counsel": "A fruit fly's brain matched\nSuperTruth's health data trust score\nmore often than four leading AI models."}[WORDING]
 
 xyz, role, meta = load_points(); rc = meta["role_counts"]
 xyz = xyz - xyz.mean(axis=0)
@@ -36,7 +40,7 @@ def frame(theta, path, hold_alpha=0.0):
     for r, col, sz, a in order:
         m = role[idx] == r
         ax.scatter(h[idx][m], v[idx][m], s=sz, c=col, alpha=a, linewidths=0, rasterized=True)
-    fig.text(0.04, 0.86, "A fruit fly's brain beat\nClaude, GPT-5, Grok and Gemini\nat judging health records.", fontsize=36, weight="bold", va="top", linespacing=1.15)
+    fig.text(0.04, 0.86, HEAD, fontsize=36 if WORDING == "beat" else 32, weight="bold", va="top", linespacing=1.15)
     for fy, col, txt in ((0.50, C["sensory"], f"Where a record goes in: {rc['sensory']:,} sensory cells"),
                          (0.455, C["readout"], f"Where the score comes out: {rc['descending'] + rc['motor']:,} descending and motor cells"),
                          (0.41, C["other"], f"The fixed wiring between: {rc['other']:,} cells. Not one connection moved.")):
@@ -46,7 +50,7 @@ def frame(theta, path, hold_alpha=0.0):
         fig.text(0.04, 0.34, "Same 300 medical records. The fly's fixed wiring matched\nSuperTruth's trust level on 84 in 100. The four models: 20 to 45.\nGiven 100 scored examples, the best reached 76. The fly gave\nthe same answer every time it was asked.",
                  fontsize=17, color=C["ink2"], va="top", linespacing=1.45, alpha=hold_alpha)
     fig.text(0.04, 0.085, f"{meta['n_neurons'] - meta['n_unpositioned']:,} of {meta['n_neurons']:,} nerve cells at their recorded positions; 6,242,118 connections. Synthetic records only.\n"
-             + FOOTER + "\nAgreement with SuperTruth's own DTI score; ranks no vendor. doi:10.5281/zenodo.22865215. Two of five planned runs; provisional.",
+             + FOOTER + "\nAgreement with SuperTruth's own DTI score; ranks no vendor. doi:10.5281/zenodo.22865214. All five planned runs complete.",
              fontsize=10.5, color=C["ink2"], va="top", linespacing=1.45)
     fig.savefig(path, dpi=100); plt.close(fig)
 
