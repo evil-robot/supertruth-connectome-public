@@ -58,7 +58,7 @@ That is why SuperTruth exists. Not to build a bigger brain. To make sure the dat
 
 ## What we got wrong
 
-We wrote the rules before the first run and promised to publish either way. The fly passed three of our five bars. It missed our target for getting the trust level right (88 percent on the full test set, against a bar of 90), and it missed on the part of the score that tracks how recent a record is. We say so in the paper. This is the first of five runs. The numbers may move, and when they do the paper gets a new version at the same address.
+We wrote the rules before the first run and promised to publish either way. The fly passed three of our five bars. It missed our target for getting the trust level right (87 percent on the full test set, against a bar of 90), and it missed on the part of the score that tracks how recent a record is. We say so in the paper. All five runs are done, and the third version of the paper holds them. The finding did not change as the seeds came in.
 
 ## Check it yourself
 
