@@ -10,7 +10,7 @@ On the same 300 records, the fly picked the right trust level 84 times out of 10
 
 Then came the part that surprised us. We scrambled the fly's wiring and ran the test again. It did just as well. A purely random web of connections the same size did just as well too. And an ordinary trained network with the same number of adjustable parts did worse than all three. So it was never about the fly. It was about the shape of the thing: a fixed, thin web (a sparse, signed graph) where every connection either pushes or pulls, and nothing gets rewired while it learns. The paper calls it the substrate, not the anatomy. Structure did the work. Not size.
 
-We wrote the rules before the first run (pre-registered them) and promised to publish no matter how it came out. The fly passed three of the five bars we set for it and missed two. The paper says so. Two of five planned runs are done. Every record, every score and the trained model are free to download, so anyone can check any number. Links are at the bottom.
+We wrote the rules before the first run (pre-registered them) and promised to publish no matter how it came out. The fly passed three of the five bars we set for it and missed two. The paper says so. All five planned runs are done, and the finding held. Every record, every score and the trained model are free to download, so anyone can check any number. Links are at the bottom.
 
 But this article is not about the fly. The fly is a doorway. I want to talk about what is on the other side of it.
 
